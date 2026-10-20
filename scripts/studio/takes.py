@@ -126,7 +126,7 @@ def build_continuity_sheets(proj: Path, shots: list, batch_size: int = 4) -> lis
 
 
 def build_take_prompt(project: dict, shot: dict, cfg: dict, n: int, dur: float) -> str:
-    rubric = "\n".join(f"- {r['id']}: {r['check']}" for r in rubric_for(project, cfg))
+    rubric = "\n".join(f"- {r['id']}: {(r.get('check') or r.get('description', ''))}" for r in rubric_for(project, cfg))
     return TAKE_CHECKLIST.format(n=n, dur=dur, prompt=shot.get("veo_prompt", ""), rubric=rubric)
 
 

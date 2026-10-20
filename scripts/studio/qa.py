@@ -43,12 +43,15 @@ def detect_bars(frames, thr: float) -> dict:
     # Lấy max theo thời gian: dải đen thật phải tối ở MỌI frame.
     mx = stack.max(axis=0)
     h, w = mx.shape
-    rows, cols = mx.mean(axis=1), mx.mean(axis=0)
+    # Dải letterbox/pillarbox thật sự vừa tối (mean < thr) vừa đồng nhất theo chiều ngang/dọc (std < 3.5);
+    # cảnh đêm có mặt nước/bóng tối tự nhiên ở mép khung sẽ có độ lệch chuẩn cao hơn.
+    row_score = np.where(mx.std(axis=1) < 3.5, mx.mean(axis=1), 255.0)
+    col_score = np.where(mx.std(axis=0) < 3.5, mx.mean(axis=0), 255.0)
     return {
-        "top": _edge_band(rows, thr) / h,
-        "bottom": _edge_band(rows[::-1], thr) / h,
-        "left": _edge_band(cols, thr) / w,
-        "right": _edge_band(cols[::-1], thr) / w,
+        "top": _edge_band(row_score, thr) / h,
+        "bottom": _edge_band(row_score[::-1], thr) / h,
+        "left": _edge_band(col_score, thr) / w,
+        "right": _edge_band(col_score[::-1], thr) / w,
     }
 
 

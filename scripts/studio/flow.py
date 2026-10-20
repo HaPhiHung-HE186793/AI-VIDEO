@@ -130,11 +130,14 @@ def norm_text(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").lower()).strip()
 
 
-def match_row_to_shot(row_text: str, prompts: dict, prefix_len: int = 240, min_len: int = 40) -> str:
+def match_row_to_shot(row_text: str, prompts: dict, prefix_len: int = 800, min_len: int = 40,
+                      prefer_shots: set = None) -> str:
     """Hàng hiển thị prompt (bị cắt bớt) → shot có prompt bắt đầu khớp nhất. prompts: {shot_id: prompt}.
 
     Phải truyền prompt của MỌI shot (không chỉ shot cần tải): nhiều prompt chung phần mở đầu
     ("Extreme close-up macro shot, 100mm lens: ..."), chỉ so toàn bộ mới chọn đúng shot khớp dài nhất.
+    Nếu nhiều sub-shot (vd. shot_06a, shot_06b từ mid_actions) có cùng tiền tố bị Flow cắt bằng "…",
+    ưu tiên shot nằm trong prefer_shots (các shot còn thiếu quota).
     """
     rt = norm_text(row_text)
     scored = []
@@ -145,9 +148,17 @@ def match_row_to_shot(row_text: str, prompts: dict, prefix_len: int = 240, min_l
         if n:
             scored.append((n, sid))
     scored.sort(reverse=True)
-    if not scored or (len(scored) > 1 and scored[0][0] == scored[1][0]):
+    if not scored:
+        return None
+    top_n = scored[0][0]
+    tied = [sid for n, sid in scored if n == top_n]
+    if len(tied) > 1 and prefer_shots:
+        pref = [sid for sid in tied if sid in prefer_shots]
+        if pref:
+            tied = pref
+    if len(tied) > 1:
         return None  # không khớp, hoặc hòa → không đoán
-    return scored[0][1]
+    return tied[0]
 
 
 class Flow:
@@ -488,13 +499,15 @@ class Flow:
                 if re.search(r"\b\d{1,3}%", txt) and (stall == 0 or kind == "image" or "play_arrow" not in txt):
                     continue
                 # Hai hàng có thể trùng chữ (tạo lại cùng prompt) → khóa = chữ + thứ tự xuất hiện.
-                seen_count[txt] = seen_count.get(txt, 0) + 1
-                key = f"{txt[:200]}#{seen_count[txt]}"
+                prefix = txt[:600]
+                seen_count[prefix] = seen_count.get(prefix, 0) + 1
+                key = f"{prefix}#{seen_count[prefix]}"
                 if key in done_rows:
                     continue
                 done_rows.add(key)
                 progressed = True
-                sid = match_row_to_shot(txt, prompts)
+                active_pref = {s for s in (only_shots or set(prompts)) if s not in skip_shots and (not quota or quota.get(s, 1) > 0)}
+                sid = match_row_to_shot(txt, prompts, prefer_shots=active_pref)
                 if not sid or sid in skip_shots or (only_shots and sid not in only_shots):
                     continue
                 if sid in quota and quota[sid] <= 0:
@@ -665,8 +678,9 @@ class Flow:
         texts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"])
         seen, keys = {}, []
         for txt in texts:
-            seen[txt] = seen.get(txt, 0) + 1
-            keys.append(f"{txt[:200]}#{seen[txt]}")
+            prefix = txt[:600]
+            seen[prefix] = seen.get(prefix, 0) + 1
+            keys.append(f"{prefix}#{seen[prefix]}")
         return keys
 
     def _find_row(self, key: str, max_scroll: int = 40):
