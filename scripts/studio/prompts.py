@@ -166,6 +166,66 @@ def build_prompt(project: dict, shot: dict) -> str:
     return re.sub(r"\s{2,}", " ", " ".join(p for p in parts if p)).strip()
 
 
+def build_first_frame_prompt(project: dict, shot: dict) -> str:
+    """Dựng prompt ảnh Keyframe mở đầu (`first_frame_prompt`) cho Nano Banana từ trường có cấu trúc."""
+    chars = mf.characters_by_id(project)
+    envs = mf.environments_by_id(project)
+    props = mf.props_by_id(project)
+
+    cam = re.sub(
+        r"\b(slow|very slow|gentle|subtle|smooth)?\s*(push[- ]in|pull[- ]back|pan|tilt|track(?:ing)?|dolly|orbit|zoom)[^,.]*",
+        "",
+        shot.get("camera") or shot.get("camera_shot") or "",
+        flags=re.I,
+    ).strip(" ,.")
+    parts = [_sentence(cam or shot.get("camera") or shot.get("camera_shot"))]
+
+    for cid in shot.get("subjects", []):
+        c = chars.get(cid, {})
+        if c.get("identity_line"):
+            parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+
+    pose = shot.get("start_action") or shot.get("action") or ""
+    parts.append(_sentence(pose))
+
+    for pid in shot.get("props", []):
+        p = props.get(pid, {})
+        if p.get("name"):
+            parts.append(_sentence(f"Visible prop: {p['name']}"))
+
+    setting = shot.get("setting")
+    if not setting and shot.get("environment") in envs:
+        setting = envs[shot["environment"]].get("identity_line") or envs[shot["environment"]].get("name")
+    parts.append(_sentence(", ".join(x for x in [setting, shot.get("lighting")] if x)))
+    parts.append(_sentence(project.get("style_line") or project.get("visual_style")))
+    parts.append("Single still keyframe, exact composition and lighting, no text, no subtitles.")
+    return re.sub(r"\s{2,}", " ", " ".join(p for p in parts if p)).strip()
+
+
+def build_last_frame_prompt(project: dict, shot: dict) -> str:
+    """Dựng prompt ảnh Keyframe kết thúc (`last_frame_prompt`) khóa chặt góc máy và nền với Keyframe mở đầu."""
+    chars = mf.characters_by_id(project)
+    envs = mf.environments_by_id(project)
+
+    end_pose = shot.get("end_action") or shot.get("action") or ""
+    parts = [
+        "Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference.",
+    ]
+    for cid in shot.get("subjects", []):
+        c = chars.get(cid, {})
+        if c.get("identity_line"):
+            parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+    parts.append(_sentence(f"Final state at the end of the shot: {end_pose}"))
+
+    setting = shot.get("setting")
+    if not setting and shot.get("environment") in envs:
+        setting = envs[shot["environment"]].get("identity_line") or envs[shot["environment"]].get("name")
+    parts.append(_sentence(", ".join(x for x in [setting, shot.get("lighting")] if x)))
+    parts.append(_sentence(project.get("style_line") or project.get("visual_style")))
+    parts.append("Single still keyframe, identical framing to start frame, no text, no subtitles.")
+    return re.sub(r"\s{2,}", " ", " ".join(p for p in parts if p)).strip()
+
+
 def effective_negative_prompt(project: dict, shot: dict) -> str:
     items = [project.get("negative_prompt", ""), shot.get("negative_prompt", "")]
     return ", ".join(x.strip(" ,") for x in items if x and x.strip(" ,"))
@@ -307,6 +367,13 @@ def complexity_score(shot: dict, index: int, total: int) -> tuple:
     if (mf.shot_audio(shot)["mode"]) == "veo_dialogue":
         score += 2
         reasons.append("nhép miệng")
+    if (
+        shot.get("generation_mode") in ("first_frame", "first_last")
+        and mf.shot_audio(shot)["mode"] != "veo_dialogue"
+        and not INTERACTION_WORDS.search(text)
+    ):
+        score = max(1, score - 2)
+        reasons.append("đã khóa bố cục bằng keyframe (in-betweening)")
     return min(10, score), reasons or ["cảnh đơn giản"]
 
 

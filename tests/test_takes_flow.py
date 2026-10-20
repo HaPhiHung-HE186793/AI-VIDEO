@@ -155,3 +155,134 @@ def test_detect_rubber_stamp_blocks_uniform_batch(project, capsys):
     assert exc.value.code == 2
     out = json.loads(capsys.readouterr().out)
     assert out["error"] == "RUBBER_STAMP_DETECTED" and len(out["issues"]) == 2
+
+
+def test_keyframe_uid_and_daisy_chaining(tmp_path):
+    from studio import manifest as mf
+
+    m = {
+        "project_slug": "podcast-giac-mo-thiep-cuoi",
+        "shots": [
+            {
+                "shot_id": "shot_01",
+                "order": 1,
+                "generation_mode": "first_last",
+                "first_frame_path": "assets/frames/KF_PGMTC_S01_START.png",
+                "last_frame_path": "assets/frames/KF_PGMTC_S01_END.png",
+                "transition_to_next": "INTRA_SCENE_CONTINUE",
+            },
+            {
+                "shot_id": "shot_02",
+                "order": 2,
+                "generation_mode": "first_frame",
+                "first_frame_path": "",
+                "chain_from_prev": True,
+            },
+        ],
+    }
+    assert mf.project_code(m) == "PGMTC"
+    assert mf.keyframe_uid(m, "shot_01", "start") == "KF_PGMTC_S01_START"
+    assert mf.keyframe_uid(m, "shot_01", "end") == "KF_PGMTC_S01_END"
+    assert mf.asset_uid(m, "CHAR_NAM", "front") == "REF_PGMTC_CHAR_NAM_FRONT"
+
+    linked = mf.resolve_chained_keyframes(m)
+    assert len(linked) == 1
+    assert m["shots"][1]["first_frame_path"] == "assets/frames/KF_PGMTC_S01_END.png"
+
+
+def test_build_prompts_generates_first_and_last_keyframe_prompts(project, capsys):
+    import json
+    from studio import cli, manifest as mf
+
+    m = mf.load(project)
+    m["project_slug"] = "podcast-giac-mo-thiep-cuoi"
+    m["characters"] = [{"id": "CHAR_NAM", "short_name": "Nam", "identity_line": "a 28-year-old man in an olive shirt"}]
+    m["environments"] = [{"id": "ENV_STUDIO", "identity_line": "a warm podcast studio with acoustic panels"}]
+    m["shots"] = [
+        {
+            "shot_id": "shot_01",
+            "order": 1,
+            "camera": "Medium shot, 50mm lens, slow push-in",
+            "subjects": ["CHAR_NAM"],
+            "environment": "ENV_STUDIO",
+            "action": "Nam places a red wedding invitation card on the wooden table",
+            "end_action": "Nam rests his hand beside the red wedding invitation card on the table",
+            "lighting": "warm tungsten key light",
+            "audio": {"mode": "voiceover_external", "line": "Tối qua tao mơ thấy đám cưới."},
+            "generation_mode": "first_last",
+            "transition_to_next": "INTRA_SCENE_CONTINUE",
+        },
+        {
+            "shot_id": "shot_02",
+            "order": 2,
+            "camera": "Close-up shot, 85mm lens",
+            "subjects": ["CHAR_NAM"],
+            "environment": "ENV_STUDIO",
+            "action": "Nam looks down at the card thoughtfully",
+            "lighting": "warm tungsten key light",
+            "audio": {"mode": "voiceover_external", "line": "Tấm thiệp đỏ nằm ngay trên bàn."},
+            "generation_mode": "first_frame",
+            "chain_from_prev": True,
+        },
+    ]
+    mf.save(project, m)
+
+    cli.main(["build-prompts", "--project", str(project)])
+    out = json.loads(capsys.readouterr().out)
+    assert "shot_01:start" in out["built_keyframe_prompts"]
+    assert "shot_01:end" in out["built_keyframe_prompts"]
+    m2 = mf.load(project)
+    s1, s2 = m2["shots"][0], m2["shots"][1]
+    assert s1["first_frame_path"] == "assets/frames/KF_PGMTC_S01_START.png"
+    assert s1["last_frame_path"] == "assets/frames/KF_PGMTC_S01_END.png"
+    assert "start frame reference" in s1["last_frame_prompt"].lower()
+    # Shot 2 tự động nối từ last_frame_path của Shot 1 (Daisy-Chain)
+    assert s2["first_frame_path"] == "assets/frames/KF_PGMTC_S01_END.png"
+    # Keyframe-locked shot không nhép miệng -> giảm độ khó, định tuyến sang Fast
+    assert s2["routing"]["tier"] == "fast"
+
+
+def test_stage_unique_file_and_sort_shots_for_flow(tmp_path):
+    from studio import cli, flow as fl
+
+    char_dir = tmp_path / "assets" / "characters" / "nam"
+    char_dir.mkdir(parents=True)
+    front = char_dir / "front.png"
+    front.write_bytes(b"fake-png")
+
+    staged = fl.stage_unique_file(front, stage_dir=tmp_path / ".staged")
+    assert staged.name == "REF_NAM_FRONT.png"
+    assert staged.exists()
+
+    explicit = fl.stage_unique_file(front, stage_dir=tmp_path / ".staged", uid="KF_PGMTC_S01_START")
+    assert explicit.name == "KF_PGMTC_S01_START.png"
+
+    shots = [
+        {"shot_id": "shot_01", "generation_mode": "first_frame", "routing": {"label": "Veo 3.1 - Quality"}},
+        {"shot_id": "shot_02", "generation_mode": "first_frame", "routing": {"label": "Veo 3.1 - Fast"}},
+        {"shot_id": "shot_03", "generation_mode": "first_frame", "routing": {"label": "Veo 3.1 - Quality"}},
+        {"shot_id": "shot_04", "generation_mode": "first_frame", "routing": {"label": "Veo 3.1 - Fast"}},
+    ]
+    sorted_shots = cli.sort_shots_for_flow(shots, "video", "Veo 3.1 - Quality")
+    # Các shot cùng model được gom liền nhau để không phải mở Settings đổi qua lại ở mỗi shot
+    labels = [s["routing"]["label"] for s in sorted_shots]
+    assert labels == ["Veo 3.1 - Fast", "Veo 3.1 - Fast", "Veo 3.1 - Quality", "Veo 3.1 - Quality"]
+
+
+def test_build_continuity_sheets(tmp_path):
+    from pathlib import Path
+    import numpy as np
+    from studio import media
+
+    cv2 = media.cv2_module()
+    shots = []
+    for i in range(1, 4):
+        sid = f"shot_{i:02d}"
+        shots.append({"shot_id": sid, "selected_take": 1, "takes": [{"take": 1}]})
+        sp = takes.take_paths(tmp_path, sid, 1)["sheet"]
+        sp.parent.mkdir(parents=True, exist_ok=True)
+        cv2.imwrite(str(sp), np.full((240, 640, 3), 80 * i, dtype=np.uint8))
+
+    sheets = takes.build_continuity_sheets(tmp_path, shots, batch_size=2)
+    assert len(sheets) == 2
+    assert Path(sheets[0]).exists()

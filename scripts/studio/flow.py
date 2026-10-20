@@ -36,6 +36,7 @@ UI = {
     "upload_btn": "Tải nội dung nghe nhìn lên",
     "plus": "button[aria-label='Thêm thành phần vào ô nhập câu lệnh']",
     "start_slot": "Bắt đầu",
+    "end_slot": "Kết thúc",
     "voices_tab": "Giọng nói",
     "filter_video": "Video",
     "filter_image": "Hình ảnh",
@@ -91,6 +92,38 @@ JS_STRIP = r"""(i) => { const bs = [...document.querySelectorAll('button')].filt
 
 class FlowError(Exception):
     pass
+
+
+GENERIC_STEMS = {"front", "three_quarter", "profile", "head", "expressions", "start", "end", "clean_plate", "turnaround"}
+
+
+def stage_unique_file(path: Path, stage_dir: Path = None, uid: str = "") -> Path:
+    """Đảm bảo file đưa lên Google Flow có tên (stem) duy nhất để ô tìm kiếm khớp 100% ngay lần đầu.
+
+    Nếu file có tên chung (vd: `assets/characters/nam/front.png` -> stem `front` dễ trùng với nhân vật khác)
+    hoặc được cấp `uid` rõ ràng (vd: `KF_PGMT_S01_START`), tạo bản sao nhẹ trong `.flow/staged/<uid>.ext`.
+    """
+    import shutil
+
+    path = Path(path)
+    if not path.exists():
+        return path
+    stem = path.stem
+    if uid:
+        unique_stem = re.sub(r"[^a-zA-Z0-9_-]+", "_", uid).strip("_")
+    elif stem.lower() in GENERIC_STEMS or len(stem) < 5:
+        parent = re.sub(r"[^a-zA-Z0-9]+", "_", path.parent.name).strip("_").upper()
+        unique_stem = f"REF_{parent}_{stem.upper()}" if parent else stem
+    else:
+        return path
+    if unique_stem == stem:
+        return path
+    target_dir = Path(stage_dir) if stage_dir else (path.parent / ".staged")
+    target_dir.mkdir(parents=True, exist_ok=True)
+    staged = target_dir / f"{unique_stem}{path.suffix.lower()}"
+    if not staged.exists() or staged.stat().st_mtime < path.stat().st_mtime or staged.stat().st_size != path.stat().st_size:
+        shutil.copy2(path, staged)
+    return staged
 
 
 def norm_text(s: str) -> str:
@@ -268,51 +301,63 @@ class Flow:
             self.page.keyboard.type("@")
         self.page.locator(UI["ingredient_search"]).first.wait_for(timeout=8000)
 
-    def _pick_in_picker(self, path: Path = None, query: str = "") -> None:
-        """Trong bảng chọn (thành phần / khung hình): tìm theo tên, tải lên nếu chưa có, chọn, thêm vào câu lệnh."""
+    def _pick_in_picker(self, path: Path = None, query: str = "", stage_dir: Path = None, uid: str = "") -> None:
+        """Trong bảng chọn (thành phần / khung hình): tìm theo tên Unique ID, tải lên nếu chưa có, chọn, thêm vào câu lệnh."""
+        if path:
+            path = stage_unique_file(Path(path), stage_dir=stage_dir, uid=uid)
         query = query or Path(path).stem
+        target = Path(path).name if path else query
         search = self.page.locator(UI["ingredient_search"]).last
         search.fill(query)
-        self.wait(1.5)
+        # Chờ phản hồi linh hoạt (0.25s/bước thay vì cố định 1.5s) để tăng tốc khi thành phần đã có sẵn
+        for _ in range(6):
+            self.wait(0.25)
+            if self.page.get_by_text(target, exact=False).count() or self.page.get_by_text(UI["not_found"]).count():
+                break
         if path and (self.page.get_by_text(UI["not_found"]).count() or not self.page.get_by_text(Path(path).name).count()):
             with self.page.expect_file_chooser(timeout=10000) as fc:
                 self.page.locator("button", has_text=UI["upload_btn"]).last.click()
             fc.value.set_files(str(Path(path).resolve()))
             # Danh sách không tự làm mới theo ô tìm kiếm: xóa rồi gõ lại cho tới khi file vừa tải xuất hiện.
             for _ in range(30):
-                self.wait(2)
+                self.wait(1.5)
                 search.fill("")
-                self.wait(0.4)
+                self.wait(0.3)
                 search.fill(query)
-                self.wait(1.2)
+                self.wait(0.8)
                 if self.page.get_by_text(Path(path).name).count():
                     break
             else:
                 raise FlowError(f"Tải lên {Path(path).name} nhưng không thấy trong danh sách sau 60s.")
-        target = Path(path).name if path else query
         self.page.get_by_text(target, exact=False).last.click()
-        self.wait(1.2)
+        self.wait(0.5)
         add = self.page.get_by_role("button", name=UI["add_to_prompt"], exact=True)
         if add.count():
             add.last.click()
-            self.wait(1)
+            self.wait(0.5)
 
-    def attach_file(self, path: Path):
-        """Đính ảnh tham chiếu (thành phần) theo tên file — tải lên nếu dự án chưa có."""
+    def attach_file(self, path: Path, stage_dir: Path = None, uid: str = ""):
+        """Đính ảnh tham chiếu (thành phần) theo tên file / Unique ID — tải lên nếu dự án chưa có."""
         self._open_ingredients()
-        self._pick_in_picker(path=path)
+        self._pick_in_picker(path=path, stage_dir=stage_dir, uid=uid)
 
     def attach_voice(self, voice: str):
         self._open_ingredients()
         self.page.get_by_text(UI["voices_tab"], exact=True).last.click()
-        self.wait(0.8)
+        self.wait(0.5)
         self._pick_in_picker(query=voice)
 
-    def set_start_frame(self, path: Path):
+    def set_start_frame(self, path: Path, stage_dir: Path = None, uid: str = ""):
         self.close_panels()
         self.page.get_by_role("button", name=UI["start_slot"], exact=True).first.click()
         self.page.locator(UI["ingredient_search"]).last.wait_for(timeout=8000)
-        self._pick_in_picker(path=path)
+        self._pick_in_picker(path=path, stage_dir=stage_dir, uid=uid)
+
+    def set_end_frame(self, path: Path, stage_dir: Path = None, uid: str = ""):
+        self.close_panels()
+        self.page.get_by_role("button", name=UI["end_slot"], exact=True).first.click()
+        self.page.locator(UI["ingredient_search"]).last.wait_for(timeout=8000)
+        self._pick_in_picker(path=path, stage_dir=stage_dir, uid=uid)
 
     def submit(self):
         btn = self.page.locator(UI["submit"])
@@ -352,13 +397,15 @@ class Flow:
         return None
 
     def harvest_rows(self, kind: str, prompts: dict, out_dir: Path, skip_shots: set = (), timeout: int = 150,
-                     only_shots: set = None, quota: dict = None, known_sha: dict = None) -> list:
-        """Tải từng HÀNG có prompt khớp shot. Trả về [{shot, files[], row_text}]. kind: video | image.
+                     only_shots: set = None, quota: dict = None, known_sha: dict = None,
+                     wait_done: bool = False, wait_timeout: int = 1500, on_row=None) -> list:
+        """Tải từng HÀNG có prompt khớp shot (Streaming Harvest: tải cuốn chiếu ngay khi hàng vừa xong).
 
         quota {shot: n}: chỉ tải n hàng MỚI NHẤT của shot (lưới xếp mới → cũ) — tương ứng số job đang chờ;
         shot không có trong quota thì không giới hạn (dự án cũ chưa có nhật ký job).
-        known_sha {shot: {sha256}}: hàng cũ đã tải (mọi file trùng take sẵn có) → bỏ, KHÔNG trừ quota. Cần khi hàng mới
-        cùng phần đầu prompt chưa xong (chưa có nút tải) mà hàng cũ của shot đứng ngay sau.
+        known_sha {shot: {sha256}}: hàng cũ đã tải (mọi file trùng take sẵn có) → bỏ, KHÔNG trừ quota.
+        wait_done: nếu True, vừa tải cuốn chiếu các hàng đã xong vừa chờ các hàng đang render (%) hoàn tất.
+        on_row: callback(row_dict) gọi ngay sau mỗi hàng tải xong để đăng ký take & lưu manifest tức thì.
         """
         out_dir = Path(out_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -366,6 +413,7 @@ class Flow:
         watch = [d for d in (self.download_dir, Path.home() / "Downloads") if d and d.exists()]
         self._filter(UI["filter_video"] if kind == "video" else UI["filter_image"])
         results, done_rows, stall = [], set(), 0
+        t0 = time.time()
         while stall < 3:
             texts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"])
             progressed, seen_count = False, {}
@@ -389,7 +437,10 @@ class Flow:
                 keys_now = self._row_keys()
                 if i >= len(keys_now) or keys_now[i] != key:
                     if key not in keys_now:
-                        results.append({"shot": sid, "error": "hàng bị xê dịch, không tìm lại được", "row_text": txt[:120]})
+                        row = {"shot": sid, "error": "hàng bị xê dịch, không tìm lại được", "row_text": txt[:120]}
+                        results.append(row)
+                        if on_row:
+                            on_row(row)
                         continue
                     i = keys_now.index(key)
                     btn = self.page.locator(UI["bulk_download"]).nth(i)
@@ -398,25 +449,40 @@ class Flow:
                 btn.click()
                 got = self._wait_new_file(watch, before, timeout)
                 if not got:
-                    results.append({"shot": sid, "error": "timeout", "row_text": txt[:120]})
+                    row = {"shot": sid, "error": "timeout", "row_text": txt[:120]}
+                    results.append(row)
+                    if on_row:
+                        on_row(row)
                     continue
                 files = _unpack(got, out_dir, kind)
                 known = (known_sha or {}).get(sid)
                 if known and files and all(media.sha256_file(f) in known for f in files):
                     for f in files:
                         Path(f).unlink(missing_ok=True)
-                    results.append({"shot": sid, "skipped": "hàng cũ đã có trong take", "row_text": txt[:120]})
+                    row = {"shot": sid, "skipped": "hàng cũ đã có trong take", "row_text": txt[:120]}
+                    results.append(row)
+                    if on_row:
+                        on_row(row)
                     continue
                 if sid in quota:
                     quota[sid] -= 1
-                results.append({"shot": sid, "files": [str(f) for f in files], "row_text": txt[:120]})
-                self.wait(1.5)
+                row = {"shot": sid, "files": [str(f) for f in files], "row_text": txt[:120]}
+                results.append(row)
+                if on_row:
+                    on_row(row)
+                self.wait(1.0)
             targets = only_shots or set(quota)
             if quota and targets and all(quota.get(s, 1) <= 0 for s in targets):
                 break  # đã đủ mọi hàng cần tải — không quét tiếp lưới cũ
             stall = 0 if progressed else stall + 1
+            if stall >= 3 and wait_done and (time.time() - t0 < wait_timeout) and self.progress():
+                # Vẫn còn hàng đang render (%) trên đầu lưới → cuộn về đầu trang chờ cuốn chiếu
+                self.page.evaluate(JS_SCROLLER, None)
+                self.wait(8.0)
+                stall = 0
+                continue
             self.page.evaluate(JS_SCROLLER, 800)
-            self.wait(1.5)
+            self.wait(1.2)
         return results
 
     # ------------------------------------------------------------- upscale 1080p
@@ -574,7 +640,8 @@ def _unpack(path: Path, out_dir: Path, kind: str) -> list:
     files = []
     if path.suffix.lower() == ".zip":
         with zipfile.ZipFile(path) as zf:
-            for k, info in enumerate(zf.infolist()):
+            infos = sorted(zf.infolist(), key=lambda x: x.filename)
+            for k, info in enumerate(infos):
                 if info.filename.lower().endswith(exts):
                     dst = out_dir / f"{stamp}_{k}{Path(info.filename).suffix.lower()}"
                     dst.write_bytes(zf.read(info))

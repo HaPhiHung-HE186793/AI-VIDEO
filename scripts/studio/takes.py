@@ -81,6 +81,50 @@ def take_paths(proj: Path, shot_id: str, take_no: int) -> dict:
     return {"sheet": base.with_suffix(".jpg"), "packet": base.with_suffix(".md"), "result": base.with_suffix(".json")}
 
 
+def build_continuity_sheets(proj: Path, shots: list, batch_size: int = 4) -> list:
+    """Ghép contact sheet của 4–5 shot liên tiếp thành 1 bảng tổng quan (`continuity_batch_XX.jpg`).
+
+    Giúp Agent / Đạo diễn vừa giảm 75% lượt mở ảnh, vừa kiểm tra được tính liên tục ánh sáng, màu sắc,
+    vị trí nhân vật (quy tắc 180°) và đạo cụ giữa các shot liền kề.
+    """
+    import numpy as np
+
+    cv2 = media.cv2_module()
+    proj = Path(proj)
+    entries = []
+    for s in shots:
+        takes = s.get("takes") or []
+        if not takes:
+            continue
+        sel = s.get("selected_take") or takes[-1]["take"]
+        sp = take_paths(proj, s["shot_id"], sel)["sheet"]
+        if sp.exists():
+            entries.append((f"{s['shot_id']} (take {sel})", sp))
+    if len(entries) < 2:
+        return []
+    out_paths = []
+    out_dir = proj / "assets" / "qa" / "takes"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    target_w = 1280
+    for b_idx in range(0, len(entries), batch_size):
+        chunk = entries[b_idx: b_idx + batch_size]
+        strips = []
+        for label, sp in chunk:
+            im = cv2.imread(str(sp))
+            if im is None:
+                continue
+            h_new = max(120, int(target_w * im.shape[0] / im.shape[1]))
+            im = cv2.resize(im, (target_w, h_new))
+            banner = np.zeros((32, target_w, 3), dtype=np.uint8)
+            cv2.putText(banner, label, (10, 23), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+            strips.append(np.vstack([banner, im]))
+        if strips:
+            out_file = out_dir / f"continuity_batch_{b_idx // batch_size + 1:02d}.jpg"
+            cv2.imwrite(str(out_file), np.vstack(strips), [int(cv2.IMWRITE_JPEG_QUALITY), 86])
+            out_paths.append(str(out_file.resolve()))
+    return out_paths
+
+
 def build_take_prompt(project: dict, shot: dict, cfg: dict, n: int, dur: float) -> str:
     rubric = "\n".join(f"- {r['id']}: {r['check']}" for r in rubric_for(project, cfg))
     return TAKE_CHECKLIST.format(n=n, dur=dur, prompt=shot.get("veo_prompt", ""), rubric=rubric)

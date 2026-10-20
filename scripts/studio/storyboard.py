@@ -16,7 +16,7 @@ from . import beats as bt
 from . import manifest as mf
 from . import media
 
-HASH_FIELDS = ("beat", "order", "camera", "action", "subjects", "first_frame_path", "generation_mode", "veo_prompt")
+HASH_FIELDS = ("beat", "order", "camera", "action", "subjects", "first_frame_path", "last_frame_path", "generation_mode", "veo_prompt")
 
 
 def content_hash(project: dict) -> str:
@@ -36,6 +36,10 @@ def _frame_for(proj: Path, s: dict) -> list:
     paths = []
     if s.get("first_frame_path") and (proj / s["first_frame_path"]).exists():
         paths.append(proj / s["first_frame_path"])
+    if s.get("last_frame_path") and (proj / s["last_frame_path"]).exists():
+        lp = proj / s["last_frame_path"]
+        if lp not in paths:
+            paths.append(lp)
     for c in s.get("frame_candidates", []):
         p = proj / c["path"]
         if p.exists() and p not in paths:
@@ -61,6 +65,7 @@ def groups(project: dict) -> list:
 
 def build(proj: Path, project: dict, cfg: dict, credits_per_shot: int) -> dict:
     proj = Path(proj)
+    mf.resolve_chained_keyframes(project, proj)
     out_dir = proj / "output"
     out_dir.mkdir(parents=True, exist_ok=True)
     page = out_dir / "storyboard.html"

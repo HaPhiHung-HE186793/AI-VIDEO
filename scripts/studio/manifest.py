@@ -70,6 +70,88 @@ def props_by_id(manifest: dict) -> dict:
     return {p["id"]: p for p in manifest.get("props", []) if p.get("id")}
 
 
+def project_code(manifest: dict) -> str:
+    """Mã viết tắt 4–6 ký tự chữ-số in hoa của dự án để đóng dấu Unique ID cho mọi frame/asset trên Flow."""
+    import re
+
+    if manifest.get("project_code"):
+        return re.sub(r"[^A-Z0-9]", "", str(manifest["project_code"]).upper())[:6] or "PROJ"
+    slug = manifest.get("project_slug") or manifest.get("project_name") or "proj"
+    parts = [p for p in re.split(r"[^a-zA-Z0-9]+", slug) if p]
+    if not parts:
+        return "PROJ"
+    if len(parts) == 1:
+        return parts[0][:5].upper()
+    code = "".join(p[0] for p in parts[:6]).upper()
+    if len(code) < 4:
+        code = (code + parts[0][1:].upper())[:4]
+    return code[:6]
+
+
+def keyframe_uid(manifest: dict, shot_id: str, slot: str = "start") -> str:
+    """ID duy nhất cho Keyframe đầu/cuối của shot (vd: KF_PGMT_S01_START, KF_PGMT_S01_END)."""
+    import re
+
+    pcode = project_code(manifest)
+    m = re.search(r"(\d+)$", shot_id)
+    scode = f"S{int(m.group(1)):02d}" if m else re.sub(r"[^A-Z0-9]", "", shot_id.upper())[:6]
+    tag = "END" if str(slot).lower() in ("end", "last") else "START"
+    return f"KF_{pcode}_{scode}_{tag}"
+
+
+def keyframe_rel_path(manifest: dict, shot_id: str, slot: str = "start", ext: str = ".png") -> str:
+    """Đường dẫn tương đối chuẩn có gắn Unique ID cho Keyframe của shot."""
+    ext = ext if ext.startswith(".") else f".{ext}"
+    return f"assets/frames/{keyframe_uid(manifest, shot_id, slot)}{ext}"
+
+
+def asset_uid(manifest: dict, asset_id: str, view: str = "") -> str:
+    """ID duy nhất cho ảnh tham chiếu nhân vật/bối cảnh/đạo cụ khi tìm kiếm trên Flow."""
+    import re
+
+    pcode = project_code(manifest)
+    clean_id = re.sub(r"[^A-Z0-9_]", "_", str(asset_id).upper()).strip("_")
+    suffix = f"_{re.sub(r'[^A-Z0-9]', '', view.upper())}" if view else ""
+    return f"REF_{pcode}_{clean_id}{suffix}"
+
+
+def resolve_chained_keyframes(manifest: dict, proj_dir: Path = None) -> list:
+    """Tự động nối Keyframe giữa các shot liên tiếp cùng cảnh (Daisy-Chain Keyframing).
+
+    - Nếu shot N có `transition_to_next == "INTRA_SCENE_CONTINUE"` hoặc shot N+1 đặt `chain_from_prev=True`:
+      + Nếu shot N có `last_frame_path`, tự gán làm `first_frame_path` của shot N+1 (nối liền mạch tuyệt đối).
+      + Ngược lại, nếu shot N ở chế độ `first_last` nhưng chưa có `last_frame_path`, còn shot N+1 đã có
+        `first_frame_path`, tự dùng `first_frame_path` của shot N+1 làm `last_frame_path` của shot N.
+    """
+    shots = ordered_shots(manifest)
+    linked = []
+
+    def exists_ok(rel_path: str) -> bool:
+        if not rel_path:
+            return False
+        return True if proj_dir is None else (Path(proj_dir) / rel_path).exists()
+
+    for i in range(len(shots) - 1):
+        prev, cur = shots[i], shots[i + 1]
+        if prev.get("exclude_from_edit") or cur.get("exclude_from_edit"):
+            continue
+        is_chained = bool(cur.get("chain_from_prev") or prev.get("transition_to_next") == "INTRA_SCENE_CONTINUE")
+        if not is_chained:
+            continue
+        prev_last = prev.get("last_frame_path") or ""
+        cur_first = cur.get("first_frame_path") or ""
+        if exists_ok(prev_last) and (cur.get("chain_from_prev") or not exists_ok(cur_first)):
+            if cur.get("first_frame_path") != prev_last:
+                cur["first_frame_path"] = prev_last
+                linked.append({"from": f"{prev['shot_id']}.last_frame_path",
+                               "to": f"{cur['shot_id']}.first_frame_path", "path": prev_last})
+        elif prev.get("generation_mode") == "first_last" and not exists_ok(prev_last) and exists_ok(cur_first):
+            prev["last_frame_path"] = cur_first
+            linked.append({"from": f"{cur['shot_id']}.first_frame_path",
+                           "to": f"{prev['shot_id']}.last_frame_path", "path": cur_first})
+    return linked
+
+
 def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limit: int = 3,
                          include_env: bool = True) -> list:
     """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin) cho shot trong giới hạn slot của Flow/Veo.
