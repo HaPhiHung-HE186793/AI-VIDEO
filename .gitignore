@@ -23,3 +23,5 @@ venv/
 **/_downloading/
 **/_flow_v2/
 **/.flow/
+
+**/_archived_*/

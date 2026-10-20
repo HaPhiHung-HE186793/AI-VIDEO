@@ -429,7 +429,9 @@ class Flow:
 
     # ------------------------------------------------------------- theo dõi & thu về
     def progress(self) -> list:
-        return re.findall(r"\b(\d{1,2})%", self.page.evaluate("() => document.body.innerText"))
+        txts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"]) or []
+        tile_prefixes = " ".join(t.split("download")[0] for t in txts)
+        return re.findall(r"\b(\d{1,2})%", tile_prefixes)
 
     def wait_until_done(self, timeout: int = 1200, poll: int = 15) -> bool:
         t0 = time.time()
@@ -500,7 +502,8 @@ class Flow:
             progressed, seen_count = False, {}
             for i, txt in enumerate(texts):
                 # Hàng đang render dở (có chỉ báo %) → bỏ qua ở vòng đầu; nếu vòng sau vẫn kẹt 99% nhưng đã có ít nhất 1 video xong (play_arrow) thì vẫn tải.
-                if re.search(r"\b\d{1,3}%", txt) and (stall == 0 or kind == "image" or "play_arrow" not in txt):
+                tile_txt = txt.split("download")[0]
+                if re.search(r"\b\d{1,3}%", tile_txt) and (stall == 0 or kind == "image" or "play_arrow" not in tile_txt):
                     continue
                 # Hai hàng có thể trùng chữ (tạo lại cùng prompt) → khóa = chữ + thứ tự xuất hiện.
                 prefix = txt[:600]
@@ -538,7 +541,7 @@ class Flow:
                     btn = self.page.locator(UI["bulk_download"]).nth(i)
                     btn.scroll_into_view_if_needed()
                 before = {f for d in watch for f in d.iterdir()}
-                partial_hung = kind == "video" and bool(re.search(r"\b\d{1,3}%", txt)) and "play_arrow" in txt
+                partial_hung = kind == "video" and bool(re.search(r"\b\d{1,3}%", tile_txt)) and "play_arrow" in tile_txt
                 got = None
                 files = []
                 if not partial_hung:

@@ -493,7 +493,7 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
     props = mf.props_by_id(project)
 
     cam = re.sub(
-        r"\b(slow|very slow|gentle|subtle|smooth)?\s*(push[- ]in|pull[- ]back|pan|tilt|track(?:ing)?|dolly|orbit|zoom)[^,.]*",
+        r"\b(slow|very slow|gentle|subtle|smooth)?\s*(push[- ]in|pull[- ]back|pan|tilt|track(?:ing)?|dolly|orbit|zoom)\b[^,.]*",
         "",
         shot.get("camera") or shot.get("camera_shot") or "",
         flags=re.I,
@@ -542,8 +542,10 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
         r"collide|collides|slash|slashes|clamp|clamps|wrench|wrenches|stomp|stomps|lunge|lunges|recoil|recoils)\b",
         re.I,
     )
-    is_displacement = bool(shot.get("physical_displacement")) or bool(
-        impact_re.search(f"{shot.get('action', '')} {shot.get('end_action', '')}")
+    is_macro_ecu = bool(re.search(r"\b(extreme\s+close[- ]up|macro|ecu)\b", cam_raw, re.I))
+    is_displacement = (not is_macro_ecu) and (
+        bool(shot.get("physical_displacement"))
+        or bool(impact_re.search(f"{shot.get('action', '')} {shot.get('end_action', '')}"))
     )
     if shot.get("dynamic_camera") and cam_raw:
         anchor_rule = (

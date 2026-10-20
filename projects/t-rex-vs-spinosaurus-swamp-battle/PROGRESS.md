@@ -19,35 +19,43 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 ## Trạng thái
 
 - **Slug:** `t-rex-vs-spinosaurus-swamp-battle` — thư mục `projects/t-rex-vs-spinosaurus-swamp-battle/` (KHÔNG `init` dự án mới)
-- **Flow:** https://flow.google.com/project/6d4a0c22-1a61-47bc-aac8-d2224a0dcbc2
+- **Flow:** https://flow.google.com/project/5e06c00b-e4b1-4460-b012-4454fd94fa25
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T00:33:01 trên máy **DESKTOP-HUP72C4** (lệnh `lint-prompts`)
+- **Cập nhật lần cuối:** 2026-10-21T02:27:37 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
 - **Storyboard:** đã sửa sau khi duyệt (cần duyệt lại: 4104a924f329a648)
 
-## ▶ Bước tiếp theo: 7. Upscale 1080p
+## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
 
-Còn 720p: shot_01, shot_02, shot_02b, shot_03, shot_04, shot_04b, shot_05, shot_06a, shot_06b, shot_06c, shot_07, shot_08
+Đã gửi tạo nhưng CHƯA tải về: shot_01, shot_02, shot_04b (image). Kết quả nằm sẵn trên Flow (cùng tài khoản Google) — KHÔNG gửi tạo lại (mất credit).
 
 ```powershell
-python scripts/studio_helper.py flow-upscale --project t-rex-vs-spinosaurus-swamp-battle --shots shot_01,shot_02,shot_02b,shot_03,shot_04,shot_04b,shot_05,shot_06a,shot_06b,shot_06c,shot_07,shot_08
+python scripts/studio_helper.py flow-harvest --project t-rex-vs-spinosaurus-swamp-battle --kind image --wait
 ```
+
+### ⚠ Job Flow đang tạo dở (đã tiêu credit, chưa tải)
+
+| Shot | Loại | Model | Số bản | Credit | Gửi lúc |
+|---|---|---|---|---|---|
+| shot_01 | image | Nano Banana Pro | 2 | 0 | 2026-10-21T01:41:42 |
+| shot_02 | image | Nano Banana Pro | 2 | 0 | 2026-10-21T01:41:52 |
+| shot_04b | image | Nano Banana Pro | 2 | 0 | 2026-10-21T01:42:05 |
 
 ## Shot
 
 | # | Shot | Beat | Trạng thái | Take chọn | 1080p | Cắt |
 |---|---|---|---|---|---|---|
-| 1 | shot_01 | beat_01 | qa_pass | 1 / 2 |  | 1.84–5.59 |
-| 2 | shot_02 | beat_01 | qa_pass | 2 / 2 |  | 2.76–6.11 |
-| 3 | shot_02b | beat_01 | qa_pass | 1 / 2 |  | 2.43–4.18 |
-| 4 | shot_03 | beat_02 | qa_pass | 1 / 2 |  | 1.51–4.46 |
-| 5 | shot_04 | beat_02 | qa_pass | 2 / 2 |  | 1.14–3.49 |
-| 6 | shot_04b | beat_02 | qa_pass | 1 / 2 |  | 2.51–4.46 |
-| 7 | shot_05 | beat_03 | qa_pass | 2 / 2 |  | 3.18–6.13 |
-| 8 | shot_06a | beat_03 | qa_pass | 1 / 2 |  | 5.25–8.00 |
-| 9 | shot_06b | beat_03 | qa_pass | 2 / 2 |  | 0.00–2.75 |
-| 10 | shot_06c | beat_03 | qa_pass | 2 / 2 |  | 4.31–6.16 |
-| 11 | shot_07 | beat_04 | qa_pass | 1 / 2 |  | 0.88–4.43 |
-| 12 | shot_08 | beat_04 | qa_pass | 2 / 2 |  | 3.42–7.37 |
+| 1 | shot_01 | beat_01 | pending | - / 0 |  | 1.84–5.59 |
+| 2 | shot_02 | beat_01 | pending | - / 0 |  | 2.76–6.11 |
+| 3 | shot_02b | beat_01 | pending | - / 0 |  | 2.43–4.18 |
+| 4 | shot_03 | beat_02 | pending | - / 0 |  | 1.51–4.46 |
+| 5 | shot_04 | beat_02 | pending | - / 0 |  | 1.14–3.49 |
+| 6 | shot_04b | beat_02 | pending | - / 0 |  | 2.51–4.46 |
+| 7 | shot_05 | beat_03 | pending | - / 0 |  | 3.18–6.13 |
+| 8 | shot_06a | beat_03 | pending | - / 0 |  | 5.25–8.00 |
+| 9 | shot_06b | beat_03 | pending | - / 0 |  | 0.00–2.75 |
+| 10 | shot_06c | beat_03 | pending | - / 0 |  | 4.31–6.16 |
+| 11 | shot_07 | beat_04 | pending | - / 0 |  | 0.88–4.43 |
+| 12 | shot_08 | beat_04 | pending | - / 0 |  | 3.42–7.37 |
 
 ## Beat & lời dẫn
 
@@ -64,7 +72,20 @@ python scripts/studio_helper.py flow-upscale --project t-rex-vs-spinosaurus-swam
 
 ## Media trên máy này
 
-Đủ 55/55 file media trên máy **DESKTOP-HUP72C4**.
+⚠ Máy **DESKTOP-HUP72C4** thiếu 12/43 file — chạy `media-pull` (hoặc tải lại take từ Flow).
+
+- `assets/clips/shot_01.mp4` — shot_01 clip dựng
+- `assets/clips/shot_02.mp4` — shot_02 clip dựng
+- `assets/clips/shot_02b.mp4` — shot_02b clip dựng
+- `assets/clips/shot_03.mp4` — shot_03 clip dựng
+- `assets/clips/shot_04.mp4` — shot_04 clip dựng
+- `assets/clips/shot_04b.mp4` — shot_04b clip dựng
+- `assets/clips/shot_05.mp4` — shot_05 clip dựng
+- `assets/clips/shot_06a.mp4` — shot_06a clip dựng
+- `assets/clips/shot_06b.mp4` — shot_06b clip dựng
+- `assets/clips/shot_06c.mp4` — shot_06c clip dựng
+- `assets/clips/shot_07.mp4` — shot_07 clip dựng
+- `assets/clips/shot_08.mp4` — shot_08 clip dựng
 
 ## Quyết định & ghi chú bàn giao
 
@@ -74,18 +95,18 @@ python scripts/studio_helper.py flow-upscale --project t-rex-vs-spinosaurus-swam
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-21 00:33 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
-| 10-21 00:33 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
-| 10-21 00:11 | DESKTOP-HUP72C4 | `auto-select ` | ok |
-| 10-21 00:10 | DESKTOP-HUP72C4 | `qa-takes-submit ` | ok |
-| 10-21 00:09 | DESKTOP-HUP72C4 | `auto-select ` | ok |
-| 10-21 00:09 | DESKTOP-HUP72C4 | `qa-takes-submit ` | ok |
-| 10-21 00:07 | DESKTOP-HUP72C4 | `qa-takes --shots shot_01 --reviewer agent` | ok |
-| 10-21 00:07 | DESKTOP-HUP72C4 | `qa-takes --shots shot_01 --reviewer agent` | ok |
-| 10-21 00:06 | DESKTOP-HUP72C4 | `qa-takes --shots shot_01 --reviewer agent` | ok |
-| 10-21 00:06 | DESKTOP-HUP72C4 | `qa-takes --shots shot_01 --reviewer agent` | ok |
-| 10-21 00:03 | DESKTOP-HUP72C4 | `qa-takes --reviewer agent` | ok |
-| 10-20 23:59 | DESKTOP-HUP72C4 | `flow-harvest --kind video --wait` | ok |
-| 10-20 23:57 | DESKTOP-HUP72C4 | `flow-generate --kind video --shots shot_04,shot_04b,shot_05,shot_06a,shot_06b,shot_06c,shot_07,shot_08` | ok |
-| 10-20 23:54 | DESKTOP-HUP72C4 | `flow-generate --kind video --shots shot_01,shot_02,shot_02b,shot_03` | ok |
-| 10-20 23:53 | DESKTOP-HUP72C4 | `storyboard-approve --by user` | ok |
+| 10-21 02:27 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 02:26 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_06c --wait` | ok |
+| 10-21 02:25 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_06c --count 2` | ok |
+| 10-21 02:24 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
+| 10-21 02:19 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 02:18 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --wait` | ok |
+| 10-21 02:17 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_01,shot_02,shot_04b --count 2` | ok |
+| 10-21 02:16 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
+| 10-21 02:15 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --all` | ok |
+| 10-21 02:11 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --all` | ok |
+| 10-21 02:07 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 02:07 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --wait` | ok |
+| 10-21 01:42 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_01,shot_02,shot_04b --count 2` | ok |
+| 10-21 01:41 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --all` | ok |
+| 10-21 01:39 | DESKTOP-HUP72C4 | `storyboard ` | ok |

@@ -1154,7 +1154,8 @@ def cmd_flow_generate(args, cfg):
                     if slot == "end" and anchor_p and anchor_p.exists():
                         anchor_sid = s.get("anchor_frame_shot") or s["shot_id"]
                         attach_list = [(anchor_p, mf.keyframe_uid(m, anchor_sid, "start"))]
-                        attach_list += [(r, "") for r in refs if r.resolve() != anchor_p.resolve()][:1]
+                        if not re.search(r"\b(extreme\s+close[- ]up|macro|ecu)\b", s.get("camera") or "", re.I):
+                            attach_list += [(r, "") for r in refs if r.resolve() != anchor_p.resolve()][:1]
                     else:
                         attach_list = [(r, "") for r in refs]
                     f.clear_prompt()
