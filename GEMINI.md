@@ -47,6 +47,12 @@ Quy trình chi tiết: skill [ai-video-studio](.agents/skills/ai-video-studio/SK
 
 9. **Mỗi lần sửa code hoặc cập nhật dự án phải tự động đẩy lên GitHub.** Sau mỗi lần chỉnh sửa mã nguồn (`scripts/`, `.agents/`, `tests/`), cấu hình hoặc cập nhật dự án (`projects/<slug>/`), Agent phải chạy `git add .`, `git commit -m "<mô tả ngắn>"` và `git push origin main` để kho lưu trữ `https://github.com/HaPhiHung-HE186793/AI-VIDEO.git` luôn có bản mới nhất. Không commit file `.env` hay khóa bí mật.
 
+10. **Làm việc trên 2 máy / nhiều phiên chat — luôn đọc tiến độ trước.** Mỗi dự án có `projects/<slug>/PROGRESS.md` (tự sinh sau mọi lệnh) và `projects/INDEX.md`.
+    - **Đầu phiên:** `git pull` → `python scripts/studio_helper.py resume` (không `--project` = dự án hoạt động gần nhất) → đọc `PROGRESS.md` → làm tiếp đúng "Bước tiếp theo". Người dùng nói "làm tiếp" = tiếp dự án đang dở, **không `init` dự án mới**. Có job Flow "đang tạo dở" → chỉ `flow-harvest`, không gửi tạo lại (mất credit). Thiếu media → `media-pull`.
+    - **Trong phiên:** quyết định của người dùng / vấn đề / việc còn dở → `note --kind decision|issue|todo "..."` (phiên sau trên máy khác chỉ biết những gì nằm trong file).
+    - **Cuối phiên (hoặc trước khi rời máy):** `media-push` → `git add -A && git commit && git push` (quy tắc 9).
+    - Không chạy 2 máy cùng lúc trên 1 dự án (khóa dự án chỉ có tác dụng trong 1 máy; `resume` cảnh báo nếu máy kia vừa hoạt động).
+
 ---
 
 ## Khi User gửi yêu cầu
@@ -58,6 +64,8 @@ Quy trình chi tiết: skill [ai-video-studio](.agents/skills/ai-video-studio/SK
 Sau đó theo đúng runbook trong skill: `init` → tài nguyên tiền kỳ → kịch bản & shot → `build-prompts` + `lint-prompts` → tạo trên Flow → `register-clip` → `qa` + `qa-vision` → `voiceover` → `assemble`.
 
 ## Những điều KHÔNG làm
+
+- **Không dùng / không đề xuất dịch vụ trả phí thêm** (bật thanh toán Google Cloud, Lyria, TTS trả phí, model chỉ có ở bậc trả phí). Chỉ dùng credit Flow trong gói Ultra, bậc miễn phí Gemini API và công cụ miễn phí (`cost_policy: free_only`). Tiêu credit Flow vẫn phải báo trước.
 
 - Không né cơ chế phát hiện bot khi tự động hóa (không cờ ẩn danh, không giả mạo). User đã cho phép agent thao tác Flow/Gemini/Drive trên tài khoản của họ qua lệnh `browser` — làm theo [flow_ui_playbook.md](.agents/skills/ai-video-studio/references/flow_ui_playbook.md), xem ảnh chụp sau mỗi bước, báo số credit trước khi bấm tạo hàng loạt.
 - Không bắt chước người thật, thương hiệu, hay phong cách nhận diện của một kênh cụ thể.

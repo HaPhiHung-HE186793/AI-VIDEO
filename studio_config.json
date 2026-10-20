@@ -7,16 +7,40 @@
   },
   "models": {
     "video": {
-      "quality": {"label": "Veo 3.1 - Quality", "credits": 100},
-      "fast": {"label": "Veo 3.1 - Fast", "credits": 10}
+      "quality": {
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "fast": {
+        "label": "Veo 3.1 - Fast",
+        "credits": 10
+      }
     },
-    "image": {"pro": "Nano Banana Pro", "standard": "Nano Banana 2"},
-    "gemini_vision_qa": "gemini-4-argon",
-    "gemini_vision_qa_fallbacks": ["gemini-3.5-flash", "gemini-3.8-flash"],
+    "image": {
+      "pro": "Nano Banana Pro",
+      "standard": "Nano Banana 2"
+    },
+    "gemini_vision_qa": "gemini-3.5-flash",
+    "gemini_vision_qa_fallbacks": [
+      "gemini-3.8-flash"
+    ],
     "gemini_tts": "gemini-3.8-flash-tts",
     "gemini_transcribe": "gemini-3.5-transcribe"
   },
-  "credits": {"budget": 85000, "takes_per_shot": 2, "quality_threshold": 4},
-  "tts": {"voice": "Charon"},
-  "output": {"width": 1920, "height": 1080, "fps": 24, "loudness_lufs": -14.0}
+  "credits": {
+    "budget": 85000,
+    "takes_per_shot": 2,
+    "quality_threshold": 4
+  },
+  "tts": {
+    "voice": "Charon"
+  },
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "loudness_lufs": -14.0
+  },
+  "cost_policy": "free_only",
+  "_cost_policy_note": "Không dùng dịch vụ trả phí (Cloud billing). Chỉ dùng credit Flow có sẵn trong gói Ultra + bậc miễn phí của Gemini API."
 }

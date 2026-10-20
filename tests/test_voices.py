@@ -62,3 +62,11 @@ def test_fit_narration_removes_long_pause_and_speeds_up(tmp_path):
     info = au.fit_narration(src, tmp_path / "fit.wav", max_sec=5.0)
     assert info["before_sec"] == 8.0
     assert info["tempo"] > 1.0 and abs(info["after_sec"] - 5.0) < 0.15       # rút lặng → 6.3s → tăng tốc về 5s
+
+
+def test_voiceover_hash_changes_only_when_inputs_change():
+    from studio import audio
+    h = audio.text_hash("Then, he commits.", "Charon", "", "m1")
+    assert h == audio.text_hash(" Then, he commits. ", "Charon", "", "m1")
+    assert h != audio.text_hash("Then he commits.", "Charon", "", "m1")
+    assert h != audio.text_hash("Then, he commits.", "Kore", "", "m1")

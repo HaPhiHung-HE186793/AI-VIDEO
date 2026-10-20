@@ -4297,7 +4297,7 @@
       "scene_id": "ch1_b07",
       "camera": "Slow push-in on a dark treeline, 85mm lens, locked-off then creeping forward",
       "subjects": [],
-      "action": "Deep in the shadows between the redwood trunks, a pair of large amber eyes slowly opens and holds still, the huge head behind them almost invisible in the darkness; nothing else moves",
+      "action": "Deep in the shadows between the trees, a second, larger pair of amber eyes slowly opens and watches",
       "environment": "ENV_HELL_CREEK_DAWN",
       "lighting": "deep shade, faint fog, a single shaft of light",
       "audio": {
@@ -4307,7 +4307,7 @@
       },
       "generation_mode": "first_frame",
       "first_frame_prompt": "Slow push-in shot, 85mm lens, on a dark redwood treeline in deep shade with faint fog: barely visible between the trunks, a huge shadowed head of a second, larger Tyrannosaurus rex with only two amber eyes catching a shaft of light. Photorealistic natural history documentary film still, cinematic composition, 16:9, no text.",
-      "first_frame_path": "assets/frames/candidates/c1_16_c01.jpg",
+      "first_frame_path": "assets/frames/candidates/c1_16_c02.jpg",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/c1_16.mp4",
@@ -4546,7 +4546,7 @@
           }
         }
       ],
-      "veo_prompt": "Slow push-in on a dark treeline, 85mm lens, locked-off then creeping forward. Deep in the shadows between the redwood trunks, a pair of large amber eyes slowly opens and holds still, the huge head behind them almost invisible in the darkness; nothing else moves. A misty Late Cretaceous redwood floodplain with tall ferns, shallow pools and soft fog at dawn, deep shade, faint fog, a single shaft of light. Photorealistic natural history documentary, large-format cinema camera, naturalistic color, soft dawn light, shallow depth of field. Ambient sound only: silence, then a very low distant rumble. No subtitles, no on-screen text.",
+      "veo_prompt": "Slow push-in on a dark treeline, 85mm lens, locked-off then creeping forward. Deep in the shadows between the trees, a second, larger pair of amber eyes slowly opens and watches. A misty Late Cretaceous redwood floodplain with tall ferns, shallow pools and soft fog at dawn, deep shade, faint fog, a single shaft of light. Photorealistic natural history documentary, large-format cinema camera, naturalistic color, soft dawn light, shallow depth of field. Ambient sound only: silence, then a very low distant rumble. No subtitles, no on-screen text.",
       "routing": {
         "complexity": 7,
         "reasons": [
@@ -4579,7 +4579,10 @@
         "reason": "điểm 12.2 (cao nhất / 1 take đạt)",
         "alternatives": []
       },
-      "lock_take": false
+      "lock_take": false,
+      "notes": [
+        "2026-10-20: thử 'chỉ đôi mắt, đứng yên' (take 3–4, frame c01) thất bại — Veo vẫn cho Rex bước ra + khói thở. Giữ take 2."
+      ]
     }
   ],
   "title": "24 Hours in Hell Creek: The Reign of Tyrannosaurus Rex (3D Paleo-Documentary)",
@@ -4804,7 +4807,8 @@
       "order": 1,
       "purpose": "hook",
       "narration": "Before sunrise, the most dangerous animal in Hell Creek opens his eyes.",
-      "voiceover_path": "assets/audio/vo/beat_b01.wav"
+      "voiceover_path": "assets/audio/vo/beat_b01.wav",
+      "voiceover_hash": "8ff80597a90342fa"
     },
     {
       "beat_id": "b02",
@@ -4812,14 +4816,16 @@
       "purpose": "need",
       "narration": "He hasn't eaten in four days. Nine tons of hunger, moving almost without a sound.",
       "j_cut_sec": 0.4,
-      "voiceover_path": "assets/audio/vo/beat_b02.wav"
+      "voiceover_path": "assets/audio/vo/beat_b02.wav",
+      "voiceover_hash": "2b66186a3fb58f3d"
     },
     {
       "beat_id": "b03",
       "order": 3,
       "purpose": "senses",
       "narration": "He can smell his prey from miles away. And when he looks, both eyes lock forward, like a hawk's.",
-      "voiceover_path": "assets/audio/vo/beat_b03.wav"
+      "voiceover_path": "assets/audio/vo/beat_b03.wav",
+      "voiceover_hash": "acad96aaec88d745"
     },
     {
       "beat_id": "b04",
@@ -4827,14 +4833,16 @@
       "purpose": "target",
       "narration": "Across the river: breakfast. Unaware.",
       "j_cut_sec": 0.5,
-      "voiceover_path": "assets/audio/vo/beat_b04.wav"
+      "voiceover_path": "assets/audio/vo/beat_b04.wav",
+      "voiceover_hash": "4f68b7aaa3474977"
     },
     {
       "beat_id": "b05",
       "order": 5,
       "purpose": "escalation",
       "narration": "Patience is his greatest weapon. One wrong step, and the meal is gone.",
-      "voiceover_path": "assets/audio/vo/beat_b05.wav"
+      "voiceover_path": "assets/audio/vo/beat_b05.wav",
+      "voiceover_hash": "6cce4145e5dcd337"
     },
     {
       "beat_id": "b06",
@@ -4842,20 +4850,22 @@
       "purpose": "climax",
       "narration": "Then, he commits.",
       "j_cut_sec": 0.3,
-      "voiceover_path": "assets/audio/vo/beat_b06.wav"
+      "voiceover_path": "assets/audio/vo/beat_b06.wav",
+      "voiceover_hash": "18487e5a8cdb26ee"
     },
     {
       "beat_id": "b07",
       "order": 7,
       "purpose": "cliffhanger",
       "narration": "But in Hell Creek, the hunter is never the only one watching.",
-      "voiceover_path": "assets/audio/vo/beat_b07.wav"
+      "voiceover_path": "assets/audio/vo/beat_b07.wav",
+      "voiceover_hash": "b0181be8334ed9c9"
     }
   ],
   "storyboard": {
-    "status": "approved",
-    "built_hash": "c9b3b1d474c69f53",
-    "built_at": "2026-10-20T09:28:46",
+    "status": "pending",
+    "built_hash": "5a57fc0eb89842ec",
+    "built_at": "2026-10-20T09:55:29",
     "approved_hash": "c9b3b1d474c69f53",
     "approved_at": "2026-10-20T09:28:47",
     "approved_by": "user (tiếp tục, 2026-10-20)"
@@ -4865,5 +4875,106 @@
     "kind": "procedural",
     "seed": 7,
     "license": "tự tổng hợp, miễn bản quyền"
+  },
+  "publish": {
+    "title": "A T. rex Hunts at Dawn | 24 Hours in Hell Creek, Chapter 1",
+    "shorts_title": "Nine tons of hunger, moving without a sound 🦖",
+    "description": "Before sunrise, the most dangerous animal in Hell Creek opens his eyes. He hasn't eaten in four days.\nFollow a hungry Tyrannosaurus rex through the misty floodplains of Late Cretaceous Montana, 66 million years ago, as he scents, stalks and charges a Triceratops — and discovers he is not the only hunter watching.",
+    "shorts_description": "He hasn't eaten in four days. And he's not the only one hunting. #TRex #Dinosaurs",
+    "tags": [
+      "T. rex",
+      "Tyrannosaurus rex",
+      "dinosaurs",
+      "Hell Creek",
+      "Triceratops",
+      "Cretaceous",
+      "paleontology",
+      "dinosaur documentary",
+      "prehistoric life",
+      "nature documentary",
+      "AI film",
+      "Veo 3"
+    ],
+    "video_landscape": "output/T-Rex_Chapter1_v4.mp4",
+    "video_vertical": "output/T-Rex_Chapter1_v4_9x16.mp4",
+    "thumbnail_title": "24 Hours in Hell Creek",
+    "thumbnail_subtitle": "Chapter 1 · The Hunt"
+  },
+  "thumbnail_title": "24 Hours in Hell Creek",
+  "thumbnail_subtitle": "Chapter 1 · The Hunt",
+  "lut_path": "assets/grade/documentary_100.cube",
+  "handoff_notes": [
+    {
+      "at": "2026-10-20T10:33:36",
+      "machine": "DESKTOP-HUP72C4",
+      "kind": "decision",
+      "text": "Không trả thêm phí: chỉ dùng credit Flow trong gói Ultra + bậc miễn phí Gemini API (cost_policy free_only). Tiêu credit Flow phải báo trước."
+    },
+    {
+      "at": "2026-10-20T10:33:36",
+      "machine": "DESKTOP-HUP72C4",
+      "kind": "decision",
+      "text": "Lời dẫn tiếng Anh, giọng Charon; giữ đúng model TTS ghi ở manifest.voiceover_model cho cả phim (đổi model = giọng khác)."
+    },
+    {
+      "at": "2026-10-20T10:33:36",
+      "machine": "DESKTOP-HUP72C4",
+      "kind": "decision",
+      "text": "Chương 1 v4 hoàn tất: 16 shot 1080p, nhạc score tự tổng hợp, LUT documentary, thumbnail tiếng Anh, publish.md. Chờ người dùng đăng."
+    },
+    {
+      "at": "2026-10-20T10:33:37",
+      "machine": "DESKTOP-HUP72C4",
+      "kind": "issue",
+      "text": "c1_16: thử 'chỉ đôi mắt, đứng yên' (take 3–4) thất bại, giữ take 2 (2 con T-Rex). Storyboard phải duyệt lại trước lần tạo video sau."
+    },
+    {
+      "at": "2026-10-20T10:33:37",
+      "machine": "DESKTOP-HUP72C4",
+      "kind": "todo",
+      "text": "Tiếp theo: viết kịch bản Chương 2 (0 credit) → storyboard → người dùng duyệt; hoặc 4.1 video 9:16 gốc (tốn credit, hỏi trước)."
+    }
+  ],
+  "session_log": [
+    {
+      "at": "2026-10-20T10:33:36",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "note",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T10:33:36",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "note",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T10:33:36",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "note",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T10:33:37",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "note",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T10:33:37",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "note",
+      "args": "",
+      "ok": true
+    }
+  ],
+  "last_activity": {
+    "at": "2026-10-20T10:33:37",
+    "machine": "DESKTOP-HUP72C4",
+    "command": "note"
   }
 }

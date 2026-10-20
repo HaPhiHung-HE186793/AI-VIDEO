@@ -1,4 +1,5 @@
-"""Nhạc nền tự tổng hợp (miễn bản quyền, 0 credit) — phương án dự phòng khi chưa có Lyria / file nhạc.
+"""Nhạc nền tự tổng hợp (miễn bản quyền, 0 credit) — nguồn nhạc mặc định (dự án không dùng dịch vụ trả phí). Muốn nhạc thật: file miễn phí
+(vd. YouTube Audio Library) → `assemble --music <file>` hoặc đặt `music_path`.
 
 Bám nhịp truyện: mỗi beat có `purpose` → cường độ; nhạc dâng ở leo thang, đập mạnh ở cao trào, rơi về lặng
 ở câu hỏi treo với một cú "boom" trầm. Các lớp: drone trầm (D thứ), dây dâng (hợp âm thứ), trống trầm (taiko)
@@ -69,7 +70,42 @@ def intensity_curve(sections: list, duration: float, sr_ctrl: int = 100):
     return _smooth(curve, int(1.2 * sr_ctrl))
 
 
-def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000, seed: int = 7) -> dict:
+def _riser(sr, length, rng):
+    """Tiếng 'hút' dâng lên trước cú nhấn: nhiễu lọc thấp mở dần + to dần."""
+    import numpy as np
+
+    n = int(sr * length)
+    x = rng.standard_normal(n)
+    out, acc = np.empty(n), 0.0
+    for i in range(n):
+        a = np.exp(-2 * np.pi * (200 + 3800 * (i / n) ** 2) / sr)
+        acc = a * acc + (1 - a) * x[i]
+        out[i] = acc
+    return out / (np.abs(out).max() + 1e-9) * np.linspace(0, 1, n) ** 2.5
+
+
+def drum_times(duration: float, ctrl, cuts: list = ()) -> list:
+    """Thời điểm trống: nhịp theo cường độ; mỗi điểm cắt hình trong đoạn có trống → trống rơi đúng điểm cắt, nhịp tính lại từ đó."""
+    cuts = sorted(c for c in cuts if 0 < c < duration - 0.3)
+    lvl = lambda t: ctrl[min(int(t * 100), len(ctrl) - 1)]  # noqa: E731
+    times, pos = [], 0.0
+    while pos < duration - 0.5:
+        level = lvl(pos)
+        nxt = next((c for c in cuts if c > pos + 0.05), None)
+        if level >= 0.45:
+            if times and pos - times[-1] < 0.3:
+                times.pop()  # nhịp trước quá sát điểm cắt → nhường cho điểm cắt
+            times.append(round(float(pos), 3))
+            step = 60.0 / (50 + 65 * (level - 0.45) / 0.55)
+            # cắt hình sắp tới trong khoảng nhịp → nhảy tới đúng điểm cắt (nếu ở đó vẫn có trống)
+            pos = nxt if nxt is not None and nxt < pos + step and lvl(nxt) >= 0.45 else pos + step
+        else:
+            pos = nxt if nxt is not None and nxt < pos + 0.25 and lvl(nxt) >= 0.45 else pos + 0.25
+    return times
+
+
+def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000, seed: int = 7,
+                cuts: list = ()) -> dict:
     import numpy as np
 
     rng = np.random.default_rng(seed)
@@ -89,22 +125,27 @@ def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000
     # 3. Trống trầm: chỉ khi cường độ ≥ 0.45, nhịp 50 → 115 BPM theo cường độ
     drums = np.zeros(n)
     hit = _hit(sr)
-    pos = 0.0
-    while pos < duration - 0.5:
-        i = int(pos * 100)
-        level = ctrl[min(i, len(ctrl) - 1)]
-        if level >= 0.45:
-            k = int(pos * sr)
-            seg = hit[: n - k] * (0.35 + 0.65 * level)
-            drums[k:k + len(seg)] += seg
-            bpm = 50 + 65 * (level - 0.45) / 0.55
-            pos += 60.0 / bpm
-        else:
-            pos += 0.25
+    hits = drum_times(duration, ctrl, cuts)
+    cut_set = {round(c, 3) for c in cuts}
+    for pos in hits:
+        level = ctrl[min(int(pos * 100), len(ctrl) - 1)]
+        k = int(pos * sr)
+        accent = 1.35 if round(pos, 3) in cut_set else 1.0  # nhấn mạnh hơn khi trùng điểm cắt
+        seg = hit[: n - k] * (0.35 + 0.65 * level) * accent
+        drums[k:k + len(seg)] += seg
     # 4. Không khí: nhiễu lọc thấp, rất nhỏ
     air = _lowpass_noise(n, sr, 900, rng) * 0.035 * (0.6 + 0.4 * inten)
     mix = drone + strings + drums * 0.55 + air
-    # 5. Câu hỏi treo: một cú boom ở đầu đoạn
+    # 5. Riser 1.8 s dẫn vào cao trào + cú nhấn lớn đúng điểm vào
+    for t0, _, purpose in sections:
+        if purpose == "climax" and t0 > 2.0:
+            r = _riser(sr, 1.8, rng) * 0.22
+            k = int(t0 * sr) - len(r)
+            mix[k:k + len(r)] += r
+            big = _hit(sr, 2.5, 60.0, 30.0, 2.5) * 0.8
+            k = int(t0 * sr)
+            mix[k:k + len(big)] += big[: n - k]
+    # 6. Câu hỏi treo: một cú boom ở đầu đoạn
     for t0, _, purpose in sections:
         if purpose == "cliffhanger":
             k = int(t0 * sr)
@@ -136,7 +177,13 @@ def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000
         w.setsampwidth(2)
         w.setframerate(sr)
         w.writeframes(pcm.tobytes())
-    return {"path": str(out_path), "duration": round(duration, 2), "sections": len(sections)}
+    return {"path": str(out_path), "duration": round(duration, 2), "sections": len(sections),
+            "drum_hits": len(hits), "hits_on_cuts": sum(1 for h in hits if round(h, 3) in cut_set)}
+
+
+def cut_times(segs: list) -> list:
+    """Điểm cắt hình trên timeline (bỏ shot đầu)."""
+    return [round(s["timeline_start"], 3) for s in segs[1:]]
 
 
 def sections_from_timeline(segs: list, project: dict) -> list:

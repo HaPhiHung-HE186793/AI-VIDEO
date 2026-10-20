@@ -183,7 +183,7 @@ def _retry_after(err) -> float:
 
 
 class QuotaExhausted(Exception):
-    """Hết hạn mức dài hạn (vd. theo ngày) — chờ không có ích, cần đổi model hoặc bật thanh toán."""
+    """Hết hạn mức miễn phí dài hạn (vd. theo ngày) — dừng lại, phần đã tạo được giữ; chạy lại khi hạn mức đặt lại."""
 
 
 def tts_prompt(text: str, direction: str = "") -> str:
@@ -193,6 +193,13 @@ def tts_prompt(text: str, direction: str = "") -> str:
     """
     direction = (direction or "").strip().rstrip(":").strip()
     return f"{direction}: {text}" if direction else text
+
+
+def text_hash(text: str, voice: str, direction: str, model: str) -> str:
+    """Dấu vân tay của 1 câu lời dẫn: đổi chữ / giọng / chỉ đạo / model → phải đọc lại; không đổi → dùng lại file (tiết kiệm hạn mức)."""
+    import hashlib
+
+    return hashlib.sha256("|".join([text.strip(), voice or "", direction or "", model or ""]).encode("utf-8")).hexdigest()[:16]
 
 
 def expected_speech_sec(text: str, words_per_sec: float = 2.3) -> float:
@@ -281,7 +288,8 @@ def synthesize(text: str, out_wav: Path, cfg: dict, voice: str = None, direction
             wait = _retry_after(e)
             if wait > 120:
                 raise QuotaExhausted(f"Model {model} hết hạn mức (chờ {wait / 3600:.1f} giờ). "
-                                     "Dùng --model khác hoặc bật thanh toán.") from e
+                                     "Phần đã tạo được giữ — chạy lại `voiceover` sau khi hạn mức miễn phí đặt lại "
+                                     "(dự án không dùng dịch vụ trả phí).") from e
             time.sleep(wait)
     data = resp.candidates[0].content.parts[0].inline_data.data
     _write_wav(Path(out_wav), data, cfg["tts"]["sample_rate"])

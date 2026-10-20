@@ -145,9 +145,26 @@ python scripts/studio_helper.py score --project <slug>        # nhạc tự tổ
 python scripts/studio_helper.py thumbnail --project <slug> --title "..." --subtitle "..." [--shot shot_05]
 python scripts/studio_helper.py assemble --project <slug> --format both --music "assets/audio/music/score.mp3"
 python scripts/studio_helper.py assemble --project <slug> --format vertical --burn-subs
+python scripts/studio_helper.py make-lut --project <slug>      # LUT màu .cube tạo bằng code → assemble tự áp
+python scripts/studio_helper.py publish-kit --project <slug>   # agent viết manifest.publish (title, description, tags...) trước
 ```
 - Độ dài shot: `edit_in/edit_out` thủ công > độ dài lời dẫn > vùng thoại ước lượng > cả clip. Audio và video luôn cắt cùng cửa sổ (không lệch tiếng).
 - Mix: âm Veo (giảm khi có lời dẫn) + lời dẫn + nhạc (tự hạ khi có lời) → loudnorm −14 LUFS / −1.5 dBTP.
 - Đầu ra: `output/final_video.mp4` (16:9), `output/final_video_9x16.mp4`, `subtitles*.srt` (đăng kèm YouTube), `timeline.json`.
 - Chỉnh màu đồng bộ: `--lut grade.cube`.
 - Đọc `edit_notes` trong kết quả và báo User (điểm nối lệch, lời dẫn dài hơn hình...).
+
+## 9. Làm tiếp trên máy khác / phiên chat mới
+
+```powershell
+git pull
+python scripts/studio_helper.py resume                       # dự án hoạt động gần nhất: bước tiếp theo, job Flow dở, media thiếu, kiểm tra máy
+python scripts/studio_helper.py media-pull --project <slug>  # lấy clip/âm thanh từ STUDIO_MEDIA_DIR (vd. Google Drive)
+# ... làm việc ...
+python scripts/studio_helper.py note --project <slug> --kind decision "Người dùng chốt ..."
+python scripts/studio_helper.py media-push --project <slug>
+git add -A; git commit -m "..."; git push
+```
+- `projects/<slug>/PROGRESS.md` tự sinh sau mọi lệnh sửa dự án; `projects/INDEX.md` liệt kê mọi dự án + bước tiếp theo.
+- Code + manifest + PROGRESS đi qua git; media (đã .gitignore) đi qua `STUDIO_MEDIA_DIR` (đặt trong `.env` của từng máy, cùng `STUDIO_MACHINE`).
+- Thiếu media mà chưa có thư mục chung: clip vẫn nằm trên Flow (cùng tài khoản) — tải lại thủ công từ dự án Flow ghi trong PROGRESS.md.

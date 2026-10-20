@@ -1,6 +1,6 @@
 # Bảng prompt cho Google Flow — t-rex-24h-in-hell-creek
 
-Tạo lúc 2026-10-20 09:28. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.
+Tạo lúc 2026-10-20 09:55. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.
 
 ## shot_01 — Veo 3.1 - Quality (độ khó 6/10)
 
@@ -230,10 +230,10 @@ exposed teeth while the mouth is closed, red facial skin, cartoon look, extra li
 ## c1_16 — Veo 3.1 - Quality (độ khó 7/10)
 
 - Chế độ: **first_frame**
-- First frame: `assets/frames/candidates/c1_16_c01.jpg`
+- First frame: `assets/frames/candidates/c1_16_c02.jpg`
 
 ```text
-Slow push-in on a dark treeline, 85mm lens, locked-off then creeping forward. Deep in the shadows between the redwood trunks, a pair of large amber eyes slowly opens and holds still, the huge head behind them almost invisible in the darkness; nothing else moves. A misty Late Cretaceous redwood floodplain with tall ferns, shallow pools and soft fog at dawn, deep shade, faint fog, a single shaft of light. Photorealistic natural history documentary, large-format cinema camera, naturalistic color, soft dawn light, shallow depth of field. Ambient sound only: silence, then a very low distant rumble. No subtitles, no on-screen text.
+Slow push-in on a dark treeline, 85mm lens, locked-off then creeping forward. Deep in the shadows between the trees, a second, larger pair of amber eyes slowly opens and watches. A misty Late Cretaceous redwood floodplain with tall ferns, shallow pools and soft fog at dawn, deep shade, faint fog, a single shaft of light. Photorealistic natural history documentary, large-format cinema camera, naturalistic color, soft dawn light, shallow depth of field. Ambient sound only: silence, then a very low distant rumble. No subtitles, no on-screen text.
 ```
 
 Negative prompt (nếu chế độ hỗ trợ):

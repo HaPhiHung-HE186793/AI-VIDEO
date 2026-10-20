@@ -724,22 +724,26 @@ def cmd_voiceover(args, cfg):
         if not wav.exists() and wav.with_suffix(".raw.wav").exists():
             wav.with_suffix(".raw.wav").replace(wav)
         script.append(f"- **{s['shot_id']}**: {a['line']}")
-        if wav.exists() and not args.force:
+        tts_model = args.model or m.get("voiceover_model") or cfg["models"]["gemini_tts"]
+        h = au.text_hash(a["line"], voice, direction, tts_model)
+        stale = wav.exists() and s.target.get("voiceover_hash") not in (None, h)
+        if wav.exists() and not args.force and not stale:
             status = "existing"
+            s.target.setdefault("voiceover_hash", h)  # file cũ chưa có dấu vân tay → coi là khớp câu hiện tại
         elif ok:
             try:
-                au.synthesize(a["line"], wav, cfg, voice=voice, direction=direction,
-                              model=args.model or m.get("voiceover_model") or None)
+                au.synthesize(a["line"], wav, cfg, voice=voice, direction=direction, model=tts_model)
             except au.QuotaExhausted as e:
                 report.append({"shot": s["shot_id"], "status": "quota_exhausted", "error": str(e)})
                 break
-            status = "synthesized"
+            status = "resynthesized_changed_text" if stale else "synthesized"
+            s.target["voiceover_hash"] = h
         else:
             report.append({"shot": s["shot_id"], "status": "missing_wav"})
             continue
         # Siết nhịp: luôn làm lại từ bản gốc (*.raw.wav) để chạy nhiều lần không bị siết chồng.
         raw = wav.with_suffix(".raw.wav")
-        if status == "synthesized" or not raw.exists():
+        if status != "existing" or not raw.exists():
             wav.replace(raw)
         ed = cfg["editorial"]
         is_beat = "beat_id" in s.target  # lời của beat trải qua nhiều shot → không bị giới hạn theo 1 clip 8s
@@ -752,7 +756,7 @@ def cmd_voiceover(args, cfg):
                "raw_sec": fit["before_sec"], "tempo": fit["tempo"]}
         if dur > max_sec + 0.05:
             row["warning"] = f"Vẫn dài {dur:.1f}s > {max_sec}s sau khi siết — rút gọn câu hoặc dùng Extend cho shot."
-        if status == "synthesized":
+        if status != "existing":
             heard = au.transcribe(wav, cfg)
             if heard:
                 score = au.words_match(a["line"], heard)
@@ -809,6 +813,7 @@ def cmd_assemble(args, cfg):
     formats = ["landscape", "vertical"] if args.format == "both" else (
         [args.format] if args.format else m.get("delivery_formats", ["landscape"]))
     music = Path(args.music) if args.music else (proj / m["music_path"] if m.get("music_path") else None)
+    lut = None if args.no_lut else (Path(args.lut) if args.lut else (proj / m["lut_path"] if m.get("lut_path") else None))
     renders, srts, cues = [], [], 0
     for fmt in formats:
         path = outdir / render.output_name(args.out, fmt)
@@ -817,7 +822,7 @@ def cmd_assemble(args, cfg):
             cues = render.write_srt(segs, srt, cfg, fmt)
             srts.append(str(srt))
         info = render.render(segs, path, cfg, fmt=fmt, fit=args.fit, music=music, srt=srt,
-                             burn_subs=args.burn_subs, lut=Path(args.lut) if args.lut else None)
+                             burn_subs=args.burn_subs, lut=lut)
         probe = media.probe(path)
         info["duration_actual"] = round(probe["duration"], 2)
         renders.append(info)
@@ -838,7 +843,8 @@ def cmd_score(args, cfg):
     segs = timeline.compute(proj, m, cfg)
     secs = music.sections_from_timeline(segs, m)
     rel = "assets/audio/music/score_auto.wav"
-    res = music.synth_score(timeline.total_duration(segs), secs, proj / rel, seed=args.seed)
+    res = music.synth_score(timeline.total_duration(segs), secs, proj / rel, seed=args.seed,
+                            cuts=music.cut_times(segs))
     m["music_path"], m["music_source"] = rel, {"kind": "procedural", "seed": args.seed, "license": "tự tổng hợp, miễn bản quyền"}
     mf.save(proj, m)
     out({"status": "ok", **res, "music_path": rel,
@@ -856,6 +862,146 @@ def cmd_thumbnail(args, cfg):
     res = thumbnail.make(segs, proj / "output", title, args.subtitle or m.get("thumbnail_subtitle", ""),
                          shot=args.shot or None, at=args.at)
     out({"status": "ok", **res})
+
+
+def cmd_make_lut(args, cfg):
+    from . import grade
+
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    rel_path = f"assets/grade/{args.preset}_{int(args.strength * 100)}.cube"
+    grade.write_cube(proj / rel_path, args.preset, args.strength)
+    res = {"status": "ok", "lut": rel_path}
+    clip = next((mf.clip_path(proj, s) for s in mf.ordered_shots(m) if mf.clip_path(proj, s).exists()), None)
+    if clip:
+        cv2 = media.cv2_module()
+        frame, _ = media.read_frame_at(clip, 2.0)
+        prev = proj / "output" / "grade_preview.jpg"
+        prev.parent.mkdir(exist_ok=True)
+        cv2.imwrite(str(prev), grade.preview(cv2.resize(frame, (960, 540)), args.preset, args.strength))
+        res["preview"] = str(prev)
+    if not args.no_apply:
+        m["lut_path"] = rel_path
+        mf.save(proj, m)
+        res["note"] = "Đã đặt manifest.lut_path — assemble tự áp (tắt: --no-lut)."
+    out(res)
+
+
+# ---------------------------------------------------------------- bàn giao giữa các máy / phiên
+
+def _latest_project_dir() -> Path:
+    from . import progress  # noqa: F401
+
+    best, best_at = None, ""
+    for mp in PROJECTS_DIR.glob("*/project_manifest.json"):
+        try:
+            at = (mf.load(mp.parent).get("last_activity") or {}).get("at", "")
+        except Exception:  # noqa: BLE001
+            continue
+        if at > best_at:
+            best, best_at = mp.parent, at
+    return best
+
+
+def _has_ffmpeg() -> bool:
+    try:
+        return bool(media.ffmpeg_exe())
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def _machine_checks(cfg) -> dict:
+    import os
+
+    from . import progress
+
+    checks = {"machine": progress.machine(cfg),
+              "gemini_api_key": bool(os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")),
+              "ffmpeg": _has_ffmpeg(),
+              "media_dir": str(progress.media_dir(cfg, "")) if progress.media_dir(cfg, "") else None}
+    try:
+        import urllib.request
+
+        urllib.request.urlopen(f"http://127.0.0.1:{cfg['browser']['debug_port']}/json/version", timeout=2)
+        checks["chrome_debug"] = True
+    except Exception:  # noqa: BLE001
+        checks["chrome_debug"] = False
+    fixes = []
+    if not checks["gemini_api_key"]:
+        fixes.append("Tạo .env (chép .env.example) và dán GEMINI_API_KEY — .env không đồng bộ qua git.")
+    if not checks["media_dir"]:
+        fixes.append("Thêm STUDIO_MEDIA_DIR=<thư mục chung, vd. G:/My Drive/AI-video-media> vào .env để media-pull/push.")
+    if not checks["chrome_debug"]:
+        fixes.append("Chưa mở Chrome điều khiển (cần cho bước Flow): chạy `check-browser` để xem lệnh mở, đăng nhập Google một lần.")
+    checks["fixes"] = fixes
+    return checks
+
+
+def cmd_resume(args, cfg):
+    from . import progress
+
+    proj = proj_dir_of(args) if args.project else _latest_project_dir()
+    if not proj:
+        out({"status": "no_project", "note": "Chưa có dự án nào — dùng init."})
+        return
+    m = mf.load(proj)
+    st = progress.stage(proj, m)
+    miss = progress.missing_media(proj, m)
+    other = progress.other_machine_active(m, cfg)
+    path = proj / "PROGRESS.md"
+    if not args.no_write:
+        progress.write(proj, m, cfg)
+    res = {"project": proj.name, "progress_md": str(path), "next_step": st,
+           "pending_flow_jobs": [j for j in m.get("flow_jobs", []) if not j.get("harvested")],
+           "missing_media": len(miss), "missing_examples": [p for p, _ in miss[:8]],
+           "last_activity": m.get("last_activity"), "recent_notes": m.get("handoff_notes", [])[-5:],
+           "machine": _machine_checks(cfg)}
+    warnings = []
+    if other:
+        warnings.append(f"Máy '{other['machine']}' vừa chạy `{other['command']}` {other['minutes_ago']} phút trước — "
+                        "đừng chạy song song 2 máy trên cùng dự án (khóa dự án không có tác dụng giữa 2 máy).")
+    if miss:
+        warnings.append(f"Máy này thiếu {len(miss)} file media → media-pull trước khi dựng/QA.")
+    res["warnings"] = warnings
+    out(res)
+
+
+def cmd_note(args, cfg):
+    from . import progress
+
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    n = progress.add_note(m, args.text, cfg, args.kind)
+    mf.save(proj, m)
+    out({"status": "ok", "note": n})
+
+
+def cmd_progress(args, cfg):
+    from . import progress
+
+    proj = proj_dir_of(args)
+    out({"status": "ok", "progress_md": str(progress.write(proj, mf.load(proj), cfg))})
+
+
+def cmd_media_sync(args, cfg):
+    from . import progress
+
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    out({"status": "ok", **progress.sync_media(proj, m, cfg, "push" if args.command == "media-push" else "pull", args.all)})
+
+
+def cmd_publish_kit(args, cfg):
+    from . import publish
+
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    segs = timeline.compute(proj, m, cfg)
+    res = publish.build(segs, m, proj / "output")
+    if res["drafted"]:
+        res["next"] = (f"Agent: viết {', '.join(res['drafted'])} vào manifest.publish (tiêu đề hấp dẫn, ≤ 100 ký tự; "
+                       "mô tả 2–3 câu; 8–15 tag) rồi chạy lại.")
+    out(res)
 
 
 # ---------------------------------------------------------------- storyboard (cổng duyệt 0 credit)
@@ -1448,7 +1594,8 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--format", choices=["landscape", "vertical", "both"])
     sp.add_argument("--fit", choices=["pad", "crop", "blur"], help="Cách đưa nguồn khác tỷ lệ vào khung")
     sp.add_argument("--music", default="")
-    sp.add_argument("--lut", default="", help="File .cube để chỉnh màu đồng bộ")
+    sp.add_argument("--lut", default="", help="File .cube để chỉnh màu đồng bộ (mặc định: manifest.lut_path)")
+    sp.add_argument("--no-lut", action="store_true", help="Bỏ chỉnh màu")
     sp.add_argument("--burn-subs", action="store_true", help="In cứng phụ đề lên hình (video ngắn)")
     sp.add_argument("--no-subs", action="store_true")
     sp.add_argument("--include-failed", action="store_true", help="Dựng cả shot qa_fail")
@@ -1465,6 +1612,33 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--subtitle", default="")
     sp.add_argument("--shot", default="", help="Chọn shot (mặc định: tự chọn frame nét + tương phản tốt nhất)")
     sp.add_argument("--at", type=float, default=None, help="Giây trong clip của --shot")
+
+    sp = add("resume", cmd_resume, "Bắt đầu phiên (máy khác / chat mới): bước tiếp theo, job dở, media thiếu, kiểm tra máy")
+    sp.add_argument("--project", default="", help="Mặc định: dự án hoạt động gần nhất")
+    sp.add_argument("--no-write", action="store_true", help=argparse.SUPPRESS)
+
+    sp = add("note", cmd_note, "Ghi chú bàn giao / quyết định vào PROGRESS.md")
+    project_arg(sp)
+    sp.add_argument("text")
+    sp.add_argument("--kind", choices=["note", "decision", "todo", "issue"], default="note")
+
+    sp = add("progress", cmd_progress, "Sinh lại PROGRESS.md + projects/INDEX.md")
+    project_arg(sp)
+
+    for name, desc in (("media-push", "Đẩy media (clip, lời dẫn, nhạc, đầu ra) lên thư mục chung STUDIO_MEDIA_DIR"),
+                       ("media-pull", "Lấy media còn thiếu từ thư mục chung STUDIO_MEDIA_DIR về máy này")):
+        sp = add(name, cmd_media_sync, desc)
+        project_arg(sp)
+        sp.add_argument("--all", action="store_true", help="Mọi file media của dự án (cả take không chọn), không chỉ file đang dùng")
+
+    sp = add("make-lut", cmd_make_lut, "Tạo LUT màu .cube bằng code (0 đồng) + ảnh so sánh trước/sau")
+    project_arg(sp)
+    sp.add_argument("--preset", choices=["documentary", "warm_dawn"], default="documentary")
+    sp.add_argument("--strength", type=float, default=1.0)
+    sp.add_argument("--no-apply", action="store_true", help="Chỉ tạo file, không đặt vào manifest")
+
+    sp = add("publish-kit", cmd_publish_kit, "Bộ đăng kênh: tiêu đề / mô tả / tag / chương / nhãn AI → output/publish.md")
+    project_arg(sp)
 
     sp = add("storyboard", cmd_storyboard, "Xuất storyboard (ảnh mở đầu + lời dẫn theo beat) để duyệt — 0 credit")
     project_arg(sp)
@@ -1554,13 +1728,41 @@ def main(argv=None):
         sys.stderr.reconfigure(encoding="utf-8")
     args = build_parser().parse_args(argv)
     cfg = load_config()
-    read_only = {"status", "timeline", "plan", "list-models", "compare-voices", "browser", "check-browser"}
+    read_only = {"publish-kit", "status", "timeline", "plan", "list-models", "compare-voices", "browser", "check-browser",
+                 "resume", "progress"}
     try:
         if getattr(args, "project", None) and args.command not in read_only:
-            with mf.ProjectLock(proj_dir_of(args)):
-                args.func(args, cfg)
+            proj = proj_dir_of(args)
+            with mf.ProjectLock(proj):
+                ok, err = False, ""
+                try:
+                    args.func(args, cfg)
+                    ok = True
+                except SystemExit as e:
+                    ok, err = e.code in (0, None), "" if e.code in (0, None) else str(e.code)
+                    raise
+                except Exception as e:
+                    err = f"{type(e).__name__}: {e}"
+                    raise
+                finally:
+                    _record_progress(proj, args, argv, cfg, ok, err)
         else:
             args.func(args, cfg)
     except (mf.ManifestError, media.MediaError) as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         sys.exit(1)
+
+
+def _record_progress(proj, args, argv, cfg, ok, err):
+    """Sau mỗi lệnh sửa dự án: ghi nhật ký + cập nhật PROGRESS.md / INDEX.md (lỗi ở đây không được làm hỏng lệnh chính)."""
+    from . import progress
+
+    try:
+        if not mf.manifest_path(proj).exists():
+            return
+        m = mf.load(proj)
+        progress.log_command(m, args.command, list(argv if argv is not None else sys.argv[1:])[1:], cfg, ok, err)
+        mf.save(proj, m)
+        progress.write(proj, m, cfg)
+    except Exception as e:  # noqa: BLE001
+        print(f"[WARN] Không cập nhật được PROGRESS.md: {e}", file=sys.stderr)
