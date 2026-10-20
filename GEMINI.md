@@ -51,6 +51,7 @@ Quy trình chi tiết: skill [ai-video-studio](.agents/skills/ai-video-studio/SK
     - **Đầu phiên:** `git pull` → `python scripts/studio_helper.py resume` (không `--project` = dự án hoạt động gần nhất) → đọc `PROGRESS.md` → làm tiếp đúng "Bước tiếp theo". Người dùng nói "làm tiếp" = tiếp dự án đang dở, **không `init` dự án mới**. Có job Flow "đang tạo dở" → chỉ `flow-harvest`, không gửi tạo lại (mất credit). Thiếu media → `media-pull`.
     - **Trong phiên:** quyết định của người dùng / vấn đề / việc còn dở → `note --kind decision|issue|todo "..."` (phiên sau trên máy khác chỉ biết những gì nằm trong file).
     - **Cuối phiên (hoặc trước khi rời máy):** `media-push` → `git add -A && git commit && git push` (quy tắc 9).
+    - Cài đặt / đồng bộ máy (Windows 11 ở nhà, Ubuntu ở công ty; media qua rclone → Google Drive): **[docs/SYNC_SETUP.md](docs/SYNC_SETUP.md)**. `resume` báo thiếu công cụ, `.env` hay media → đọc file đó và làm theo đúng phần của hệ điều hành đang chạy.
     - Không chạy 2 máy cùng lúc trên 1 dự án (khóa dự án chỉ có tác dụng trong 1 máy; `resume` cảnh báo nếu máy kia vừa hoạt động).
 
 ---

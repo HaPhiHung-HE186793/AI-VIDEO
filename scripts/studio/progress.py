@@ -201,6 +201,7 @@ def render(proj: Path, m: dict, cfg: dict) -> str:
          "```", "",
          "Bước Flow (tạo / tải / upscale) mở đúng dự án Flow bên dưới — Chrome điều khiển của máy này (`check-browser`) "
          "phải đăng nhập **cùng tài khoản Google** (lần đầu trên máy mới: đăng nhập 1 lần, profile được giữ lại).", "",
+         "Máy mới (Windows / Ubuntu) hoặc thiếu rclone / `.env`: làm theo [docs/SYNC_SETUP.md](../../docs/SYNC_SETUP.md).", "",
          "Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (quy tắc 9).", "",
          "## Trạng thái", "",
          f"- **Slug:** `{slug}` — thư mục `projects/{slug}/` (KHÔNG `init` dự án mới)",
@@ -292,9 +293,72 @@ def write_index(projects_dir: Path, cfg: dict) -> Path:
 
 
 # ---------------------------------------------------------------- đồng bộ media qua thư mục chung
-def media_dir(cfg: dict, slug: str) -> Path:
-    root = os.environ.get("STUDIO_MEDIA_DIR") or (cfg.get("sync") or {}).get("media_dir")
-    return Path(os.path.expanduser(root)) / slug if root else None
+def media_target(cfg: dict) -> str:
+    return (os.environ.get("STUDIO_MEDIA_DIR") or (cfg.get("sync") or {}).get("media_dir") or "").strip()
+
+
+def media_dir(cfg: dict, slug: str):
+    """Thư mục chung: đường dẫn thường (Drive for desktop, ổ mạng, USB) hoặc `rclone:<remote>:<thư mục>` (chuỗi)."""
+    root = media_target(cfg)
+    if not root:
+        return None
+    if root.startswith("rclone:"):
+        return f"{root[len('rclone:'):].rstrip('/')}/{slug}" if slug else root[len("rclone:"):]
+    return Path(os.path.expanduser(root)) / slug
+
+
+def rclone_exe() -> str:
+    import shutil
+
+    exe = shutil.which("rclone")
+    if exe:
+        return exe
+    for cand in (Path(os.environ.get("LOCALAPPDATA", "")) / "Programs/rclone/rclone.exe", Path.home() / ".local/bin/rclone",
+                 Path("/usr/bin/rclone"), Path("/usr/local/bin/rclone")):
+        if cand.exists():
+            return str(cand)
+    raise mf.ManifestError("Chưa cài rclone — xem docs/SYNC_SETUP.md.")
+
+
+def _rclone(args: list, timeout: int = 7200):
+    import subprocess
+
+    r = subprocess.run([rclone_exe(), *args], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
+    if r.returncode != 0:
+        raise mf.ManifestError(f"rclone lỗi ({r.returncode}): {(r.stderr or r.stdout)[-600:]}")
+    return r
+
+
+def _sync_rclone(proj: Path, remote: str, rels: list, direction: str) -> dict:
+    import tempfile
+
+    remote_files = set(_rclone(["lsf", "-R", "--files-only", remote]).stdout.splitlines()) if _remote_exists(remote) else set()
+    if direction == "push":
+        todo = [r for r in rels if (Path(proj) / r).exists()]
+        missing = [r for r in rels if not (Path(proj) / r).exists() and r not in remote_files]
+        src, dst = str(proj), remote
+    else:
+        todo = [r for r in rels if r in remote_files]
+        missing = [r for r in rels if r not in remote_files and not (Path(proj) / r).exists()]
+        src, dst = remote, str(proj)
+    copied = []
+    if todo:
+        with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as f:
+            f.write("\n".join(todo))
+            lst = f.name
+        try:
+            r = _rclone(["copy", src, dst, "--files-from", lst, "--update", "--transfers", "4", "-v", "--stats", "0"])
+            copied = [ln.split(": Copied")[0].split("INFO  : ")[-1].strip() for ln in r.stderr.splitlines() if ": Copied" in ln]
+        finally:
+            os.unlink(lst)
+    return {"copied": len(copied), "copied_files": copied[:50], "missing_everywhere": missing}
+
+
+def _remote_exists(remote: str) -> bool:
+    import subprocess
+
+    r = subprocess.run([rclone_exe(), "lsf", "--max-depth", "1", remote], capture_output=True, text=True)
+    return r.returncode == 0
 
 
 def sync_media(proj: Path, m: dict, cfg: dict, direction: str, everything: bool = False) -> dict:
@@ -304,8 +368,8 @@ def sync_media(proj: Path, m: dict, cfg: dict, direction: str, everything: bool 
     slug = m.get("project_slug") or Path(proj).name
     shared = media_dir(cfg, slug)
     if not shared:
-        raise mf.ManifestError("Chưa đặt thư mục chung: thêm STUDIO_MEDIA_DIR=<đường dẫn> vào .env của máy này "
-                               "(vd. G:/My Drive/AI-video-media khi dùng Google Drive for desktop).")
+        raise mf.ManifestError("Chưa đặt thư mục chung: thêm STUDIO_MEDIA_DIR=rclone:gdrive:AI-video-media vào .env "
+                               "của máy này (xem docs/SYNC_SETUP.md).")
     if everything:
         rels = sorted({p.relative_to(proj).as_posix() for p in Path(proj).rglob("*") if p.is_file()
                        and p.suffix.lower() in (".mp4", ".wav", ".mp3", ".jpg", ".png", ".cube")
@@ -315,6 +379,8 @@ def sync_media(proj: Path, m: dict, cfg: dict, direction: str, everything: bool 
         out_dir = Path(proj) / "output"
         if out_dir.exists():
             rels += [p.relative_to(proj).as_posix() for p in out_dir.iterdir() if p.suffix.lower() in (".mp4", ".srt", ".jpg")]
+    if isinstance(shared, str):  # rclone remote
+        return {"direction": direction, "shared_dir": shared, **_sync_rclone(proj, shared, list(dict.fromkeys(rels)), direction)}
     copied, missing = [], []
     for rel_path in dict.fromkeys(rels):
         a, b = (Path(proj) / rel_path, shared / rel_path) if direction == "push" else (shared / rel_path, Path(proj) / rel_path)

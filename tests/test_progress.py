@@ -47,3 +47,20 @@ def test_media_push_pull_roundtrip(project, cfg, tmp_path, monkeypatch):
     assert progress.sync_media(project, m, cfg, "push")["copied"] == 1
     f.unlink()
     assert progress.sync_media(project, m, cfg, "pull")["copied"] == 1 and f.read_bytes() == b"RIFF...."
+
+
+def test_media_sync_via_rclone_remote(project, cfg, tmp_path, monkeypatch):
+    import pytest
+    try:
+        progress.rclone_exe()
+    except Exception:
+        pytest.skip("rclone chưa cài")
+    m = _proj(project, music_path="assets/audio/music/x.wav")
+    f = project / "assets/audio/music/x.wav"
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_bytes(b"RIFF-rclone")
+    monkeypatch.setenv("STUDIO_MEDIA_DIR", "rclone:" + (tmp_path / "remote").as_posix())
+    assert progress.sync_media(project, m, cfg, "push")["copied"] == 1
+    f.unlink()
+    res = progress.sync_media(project, m, cfg, "pull")
+    assert res["copied"] == 1 and f.read_bytes() == b"RIFF-rclone"

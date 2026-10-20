@@ -930,7 +930,13 @@ def _machine_checks(cfg) -> dict:
     if not checks["gemini_api_key"]:
         fixes.append("Tạo .env (chép .env.example) và dán GEMINI_API_KEY — .env không đồng bộ qua git.")
     if not checks["media_dir"]:
-        fixes.append("Thêm STUDIO_MEDIA_DIR=<thư mục chung, vd. G:/My Drive/AI-video-media> vào .env để media-pull/push.")
+        fixes.append("Thêm STUDIO_MEDIA_DIR=rclone:gdrive:AI-video-media vào .env để media-pull/push (docs/SYNC_SETUP.md).")
+    if progress.media_target(cfg).startswith("rclone:"):
+        try:
+            checks["rclone"] = progress.rclone_exe()
+        except mf.ManifestError:
+            checks["rclone"] = None
+            fixes.append("STUDIO_MEDIA_DIR dùng rclone nhưng máy chưa cài rclone — docs/SYNC_SETUP.md.")
     if not checks["chrome_debug"]:
         fixes.append("Chưa mở Chrome điều khiển (cần cho bước Flow): chạy `check-browser` để xem lệnh mở, đăng nhập Google một lần.")
     checks["fixes"] = fixes
@@ -1434,7 +1440,9 @@ def cmd_check_browser(args, cfg):
         exe = b["chrome_exe"] or next((p for p in (
             r"C:\Program Files\Google\Chrome\Application\chrome.exe",
             r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-        ) if Path(p).exists()), "")
+            "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        ) if Path(p).exists()), "") or next((shutil.which(n) for n in (
+            "google-chrome", "google-chrome-stable", "chromium", "chromium-browser") if shutil.which(n)), "")
         if not exe:
             sys.exit("[ERROR] Không tìm thấy Chrome — đặt browser.chrome_exe trong studio_config.json")
         profile = str(Path(b["profile_dir"]).expanduser())

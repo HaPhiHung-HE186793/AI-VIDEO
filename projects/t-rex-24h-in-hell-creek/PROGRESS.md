@@ -12,6 +12,8 @@ python scripts/studio_helper.py resume --project t-rex-24h-in-hell-creek       #
 
 Bước Flow (tạo / tải / upscale) mở đúng dự án Flow bên dưới — Chrome điều khiển của máy này (`check-browser`) phải đăng nhập **cùng tài khoản Google** (lần đầu trên máy mới: đăng nhập 1 lần, profile được giữ lại).
 
+Máy mới (Windows / Ubuntu) hoặc thiếu rclone / `.env`: làm theo [docs/SYNC_SETUP.md](../../docs/SYNC_SETUP.md).
+
 Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (quy tắc 9).
 
 ## Trạng thái
@@ -19,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `t-rex-24h-in-hell-creek` — thư mục `projects/t-rex-24h-in-hell-creek/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/2f69c7dc-37da-443e-bcc6-0bc3de7d3e03
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `Charon`, TTS `gemini-3.8-flash-lite-tts`
-- **Cập nhật lần cuối:** 2026-10-20T10:33:37 trên máy **DESKTOP-HUP72C4** (lệnh `note`)
+- **Cập nhật lần cuối:** 2026-10-20T11:09:49 trên máy **may-nha-win11** (lệnh `media-push`)
 - **Storyboard:** đã sửa sau khi duyệt (cần duyệt lại: 5a57fc0eb89842ec)
 
 ## ▶ Bước tiếp theo: 11. Xong — chờ người dùng đăng / yêu cầu mới
@@ -72,7 +74,7 @@ python scripts/studio_helper.py publish-kit --project t-rex-24h-in-hell-creek
 
 ## Media trên máy này
 
-Đủ 76/76 file media trên máy **DESKTOP-HUP72C4**.
+Đủ 76/76 file media trên máy **may-nha-win11**.
 
 ## Quyết định & ghi chú bàn giao
 
@@ -86,6 +88,8 @@ python scripts/studio_helper.py publish-kit --project t-rex-24h-in-hell-creek
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-20 11:09 | may-nha-win11 | `media-push ` | ok |
+| 10-20 11:08 | may-nha-win11 | `media-push ` | ok |
 | 10-20 10:33 | DESKTOP-HUP72C4 | `note ` | ok |
 | 10-20 10:33 | DESKTOP-HUP72C4 | `note ` | ok |
 | 10-20 10:33 | DESKTOP-HUP72C4 | `note ` | ok |

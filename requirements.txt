@@ -1,6 +1,11 @@
 numpy>=1.26
 opencv-python>=4.9
 imageio-ffmpeg>=0.5
+# Tự động hóa Google Flow (Chrome qua CDP) — sau khi cài: không cần `playwright install` (dùng Chrome có sẵn)
+playwright>=1.45
+# Thumbnail
+pillow>=10
+fonttools>=4.40
 # Tùy chọn: QA thị giác + TTS lời dẫn qua Gemini API (cần GEMINI_API_KEY)
 google-genai>=2.25
 # Phát triển

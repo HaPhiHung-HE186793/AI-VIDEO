@@ -40,3 +40,7 @@ Cấu hình máy, model, đơn giá credit, ngân sách: [studio_config.json](st
 
 **Có sẵn câu chuyện:**
 > *"Đây là câu chuyện của tôi: [..]. Chuyển thể thành video [phong cách], [thời lượng], lời [ngôn ngữ], phát hành trên [nền tảng]."*
+
+## Làm việc trên nhiều máy
+
+Windows ↔ Ubuntu, media qua rclone + Google Drive: [docs/SYNC_SETUP.md](docs/SYNC_SETUP.md). Đầu phiên: `git pull` → `python scripts/studio_helper.py resume`.
