@@ -328,6 +328,21 @@ def lint_project(project: dict, cfg: dict) -> list:
             f"Dự án có {len(shots)} shot dùng voiceover_external nhưng chưa định nghĩa `beats` — lời dẫn sẽ bị "
             "đóng khung theo từng shot (không có L-cut/J-cut trải qua nhiều góc máy).")
 
+    if len(shots) >= 6:
+        veo_dlg = [s["shot_id"] for s in shots if mf.shot_audio(s)["mode"] == "veo_dialogue"]
+        if len(veo_dlg) / len(shots) > 0.65:
+            add("warn", "EXCESSIVE_VEO_DIALOGUE",
+                f"{len(veo_dlg)}/{len(shots)} shot ({len(veo_dlg)/len(shots):.0%}) dùng `veo_dialogue` (nhép miệng trực tiếp). "
+                "Nên áp dụng cấu trúc Hybrid 50/50: chỉ giữ `veo_dialogue` cho cảnh cận nhân vật nói câu đắt giá, "
+                "còn lại chuyển sang cảnh phản ứng/đặc tả đạo cụ (`voiceover_external` + `first_frame`/`first_last`) "
+                "để giảm 50% thời gian render và tránh lỗi méo miệng.")
+        ing_only = [s["shot_id"] for s in shots if s.get("generation_mode") == "ingredients" and not s.get("first_frame_path")]
+        if len(ing_only) / len(shots) > 0.70:
+            add("info", "PREFER_KEYFRAME_FIRST",
+                f"{len(ing_only)}/{len(shots)} shot đang dùng `ingredients` không có Keyframe mở đầu. "
+                "Nên ưu tiên chế độ `first_frame` / `first_last` (tạo ảnh Keyframe 0 credit trên Nano Banana trước) "
+                "để khóa bố cục và giảm tỷ lệ tạo lại.")
+
     props = mf.props_by_id(project)
     if props:
         used_props = set()

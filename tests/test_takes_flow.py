@@ -286,3 +286,25 @@ def test_build_continuity_sheets(tmp_path):
     sheets = takes.build_continuity_sheets(tmp_path, shots, batch_size=2)
     assert len(sheets) == 2
     assert Path(sheets[0]).exists()
+
+
+def test_lint_project_warns_excessive_veo_dialogue_and_prefers_keyframes():
+    from studio import prompts
+    from studio.config import load_config
+
+    cfg = load_config()
+    m = {
+        "shots": [
+            {
+                "shot_id": f"shot_{i:02d}",
+                "order": i,
+                "generation_mode": "ingredients",
+                "audio": {"mode": "veo_dialogue", "line": "Câu thoại nhép miệng"},
+            }
+            for i in range(1, 8)
+        ]
+    }
+    findings = prompts.lint_project(m, cfg)
+    codes = {f["code"] for f in findings}
+    assert "EXCESSIVE_VEO_DIALOGUE" in codes
+    assert "PREFER_KEYFRAME_FIRST" in codes

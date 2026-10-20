@@ -270,6 +270,26 @@ class Flow:
         self.page.keyboard.press("Delete")
         self.wait(0.3)
 
+    def replace_prompt_text(self, text: str) -> bool:
+        """Chỉ thay phần văn bản câu lệnh, giữ nguyên các thẻ Ingredients/Voice đang đính kèm trên thanh composer.
+
+        Trả về True nếu giữ được thành phần đính kèm, False nếu cần đính kèm lại.
+        """
+        self.close_panels()
+        box = self.page.locator(UI["prompt_box"])
+        box.click()
+        # Đếm số thẻ thành phần (chip/button) bên trong khung composer trước khi xóa chữ
+        chip_sel = "flow-prompt-chip, [data-ingredient-chip], button[aria-label*='Xoá'], mat-chip"
+        chips_before = self.page.locator(chip_sel).count()
+        self.page.keyboard.press("Control+A")
+        self.page.keyboard.press("Backspace")
+        self.wait(0.2)
+        chips_after = self.page.locator(chip_sel).count()
+        if chips_before > 0 and chips_after == 0:
+            return False
+        self.type_prompt(text)
+        return True
+
     def type_prompt(self, text: str):
         box = self.page.locator(UI["prompt_box"])
         box.click()
@@ -596,7 +616,16 @@ class Flow:
             ri = self._find_row(key)
             if ri is None:
                 continue
-            for ti in range(self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], ri, -1])):
+            row_sid = match_row_to_shot(key.rsplit("#", 1)[0], prompts)
+            n_tiles = self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], ri, -1])
+            # Ưu tiên mở thẳng ô `tile_index` đã ghi nhận lúc harvest (bỏ qua bước tải nháp 720p nếu khớp duy nhất)
+            direct_candidates = [
+                (k_sha, w) for k_sha, w in pending.items()
+                if w["shot"] == row_sid and w.get("tile_index") is not None and 0 <= int(w["tile_index"]) < n_tiles
+            ]
+            tile_order = [int(w["tile_index"]) for _, w in direct_candidates]
+            tile_order += [t for t in range(n_tiles) if t not in tile_order]
+            for ti in tile_order:
                 if not pending:
                     return
                 try:
@@ -604,18 +633,25 @@ class Flow:
                     self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], ri, ti])
                     self.page.wait_for_url(re.compile(r"/edit/"), timeout=20000)
                     self.wait(2)
-                    small = self._download_from_editor("720", watch, 120)
-                    k = match_fn(small, pending) if small else None
-                    if small:
-                        small.unlink(missing_ok=True)
-                    hit = pending.get(k) if k else None
+                    direct_hit = next(
+                        ((k_sha, w) for k_sha, w in direct_candidates if int(w["tile_index"]) == ti and w.get("single_job", True)),
+                        None,
+                    )
+                    if direct_hit:
+                        k, hit = direct_hit
+                    else:
+                        small = self._download_from_editor("720", watch, 120)
+                        k = match_fn(small, pending) if small else None
+                        if small:
+                            small.unlink(missing_ok=True)
+                        hit = pending.get(k) if k else None
                     if hit:
                         big = self._download_from_editor(res, watch, timeout)
                         pending.pop(k, None)
                         if big:
                             dest = Path(hit["dest"])
                             big.replace(dest)
-                            r = {**hit, "dest": str(dest), "edit_id": self.page.url.rsplit("/", 1)[-1]}
+                            r = {**hit, "dest": str(dest), "edit_id": self.page.url.rsplit("/", 1)[-1], "direct_tile": bool(direct_hit)}
                         else:
                             r = {**hit, "error": f"timeout chờ upscale {res}p"}
                         results.append(r)

@@ -1073,7 +1073,7 @@ def _flow_targets(m: dict, args) -> list:
 
 
 def sort_shots_for_flow(shots: list, kind: str, fallback_model: str, explicit_model: str = "") -> list:
-    """Gom nhóm shot theo (vmode, model) để giảm 80% số lần mở bảng cài đặt trên Google Flow."""
+    """Gom nhóm shot theo (vmode, model, bộ subjects/environment) để giảm tối đa thao tác đổi Settings & gắn lại Ingredients."""
     if kind != "video" or len(shots) <= 2:
         return list(shots)
 
@@ -1082,7 +1082,9 @@ def sort_shots_for_flow(shots: list, kind: str, fallback_model: str, explicit_mo
         mode = s.get("generation_mode", "text")
         vmode = "frames" if mode in ("first_frame", "first_last") else "ingredients"
         model = explicit_model or (s.get("routing") or {}).get("label") or fallback_model
-        return (vmode, model, idx)
+        subj_sig = tuple(s.get("subjects") or []) if vmode == "ingredients" else ()
+        env_sig = (s.get("environment") or "") if vmode == "ingredients" else ""
+        return (vmode, model, subj_sig, env_sig, idx)
 
     return [s for _, s in sorted(enumerate(shots), key=group_key)]
 
@@ -1117,7 +1119,7 @@ def cmd_flow_generate(args, cfg):
         if args.new_project or not m.get("flow_project_url"):
             m["flow_project_url"] = f.new_project()
             mf.save(proj, m)
-        last_mode, setting, cost = None, {}, None
+        last_mode, last_attach_sig, setting, cost = None, None, {}, None
         for s in shots:
             mode = s.get("generation_mode", "text") if kind == "video" else "image"
             vmode = "frames" if mode in ("first_frame", "first_last") else "ingredients"
@@ -1128,6 +1130,7 @@ def cmd_flow_generate(args, cfg):
                 setting = f.configure(kind=kind, video_mode=vmode, aspect=aspect, model=shot_model,
                                       duration=args.duration, count=args.count)
                 cost, last_mode = setting["credits_per_submit"], (kind, vmode, shot_model)
+                last_attach_sig = None
             if kind == "image":
                 slots = []
                 if s.get("first_frame_prompt"):
@@ -1141,18 +1144,22 @@ def cmd_flow_generate(args, cfg):
                         row["skipped"] = f"vượt ngân sách --max-credits {args.max_credits}"
                         report.append(row)
                         continue
-                    f.clear_prompt()
                     refs = _ref_paths(proj, m, s)
                     if slot == "end" and s.get("first_frame_path") and (proj / s["first_frame_path"]).exists():
-                        # Khóa bố cục END frame theo START frame để tránh lỗi morphing khi nối trong Veo
                         start_p = proj / s["first_frame_path"]
-                        f.attach_file(start_p, stage_dir=stage_dir, uid=mf.keyframe_uid(m, s["shot_id"], "start"))
-                        for ref in [r for r in refs if r.resolve() != start_p.resolve()][:2]:
-                            f.attach_file(ref, stage_dir=stage_dir)
+                        attach_list = [(start_p, mf.keyframe_uid(m, s["shot_id"], "start"))]
+                        attach_list += [(r, "") for r in refs if r.resolve() != start_p.resolve()][:2]
                     else:
-                        for ref in refs:
-                            f.attach_file(ref, stage_dir=stage_dir)
-                    f.type_prompt(text)
+                        attach_list = [(r, "") for r in refs]
+                    cur_sig = ("image", tuple((str(p.resolve()), u) for p, u in attach_list))
+                    if cur_sig != last_attach_sig or not f.replace_prompt_text(text):
+                        f.clear_prompt()
+                        for p, u in attach_list:
+                            f.attach_file(p, stage_dir=stage_dir, uid=u)
+                        f.type_prompt(text)
+                        last_attach_sig = cur_sig
+                    else:
+                        row["reused_attachments"] = True
                     row["composed"] = f.screenshot(proj / ".flow" / f"{s['shot_id']}_{slot}_compose.png")
                     if args.dry_run:
                         row["dry_run"] = True
@@ -1172,29 +1179,41 @@ def cmd_flow_generate(args, cfg):
                 row["skipped"] = f"vượt ngân sách --max-credits {args.max_credits}"
                 report.append(row)
                 continue
-            f.clear_prompt()
-            if mode in ("first_frame", "first_last"):
-                if not s.get("first_frame_path") or not (proj / s["first_frame_path"]).exists():
-                    row["skipped"] = "thiếu first_frame_path"
-                    report.append(row)
-                    continue
-                if mode == "first_last" and (not s.get("last_frame_path") or not (proj / s["last_frame_path"]).exists()):
-                    row["skipped"] = "thiếu last_frame_path"
-                    report.append(row)
-                    continue
-                f.set_start_frame(proj / s["first_frame_path"], stage_dir=stage_dir,
-                                  uid=mf.keyframe_uid(m, s["shot_id"], "start"))
-                if mode == "first_last":
-                    f.set_end_frame(proj / s["last_frame_path"], stage_dir=stage_dir,
-                                    uid=mf.keyframe_uid(m, s["shot_id"], "end"))
-            elif mode == "ingredients":
-                for ref in _ref_paths(proj, m, s):
-                    f.attach_file(ref, stage_dir=stage_dir)
-            voice = prompts.shot_voice(m, s)
-            if voice and mf.shot_audio(s)["mode"] in ("veo_dialogue", "veo_narration"):
-                f.attach_voice(voice)
             text = s.get("veo_prompt", "")
-            f.type_prompt(text)
+            voice = prompts.shot_voice(m, s) if mf.shot_audio(s)["mode"] in ("veo_dialogue", "veo_narration") else ""
+            if mode == "ingredients":
+                refs = _ref_paths(proj, m, s)
+                cur_sig = ("video_ingredients", tuple(str(r.resolve()) for r in refs), voice)
+                if cur_sig != last_attach_sig or not f.replace_prompt_text(text):
+                    f.clear_prompt()
+                    for ref in refs:
+                        f.attach_file(ref, stage_dir=stage_dir)
+                    if voice:
+                        f.attach_voice(voice)
+                    f.type_prompt(text)
+                    last_attach_sig = cur_sig
+                else:
+                    row["reused_attachments"] = True
+            else:
+                last_attach_sig = None
+                f.clear_prompt()
+                if mode in ("first_frame", "first_last"):
+                    if not s.get("first_frame_path") or not (proj / s["first_frame_path"]).exists():
+                        row["skipped"] = "thiếu first_frame_path"
+                        report.append(row)
+                        continue
+                    if mode == "first_last" and (not s.get("last_frame_path") or not (proj / s["last_frame_path"]).exists()):
+                        row["skipped"] = "thiếu last_frame_path"
+                        report.append(row)
+                        continue
+                    f.set_start_frame(proj / s["first_frame_path"], stage_dir=stage_dir,
+                                      uid=mf.keyframe_uid(m, s["shot_id"], "start"))
+                    if mode == "first_last":
+                        f.set_end_frame(proj / s["last_frame_path"], stage_dir=stage_dir,
+                                        uid=mf.keyframe_uid(m, s["shot_id"], "end"))
+                if voice:
+                    f.attach_voice(voice)
+                f.type_prompt(text)
             row["composed"] = f.screenshot(proj / ".flow" / f"{s['shot_id']}_{kind}_compose.png")
             if args.dry_run:
                 row["dry_run"] = True
@@ -1243,19 +1262,16 @@ def cmd_flow_harvest(args, cfg):
             return
         only = set(quota) if not only else only & set(quota)
     incoming = proj / "assets" / ("frames/_incoming" if kind == "image" else "clips/_incoming")
-    with fl.Flow(cfg["browser"]["debug_port"], m.get("flow_project_url", ""), download_dir=incoming) as f:
-        known = {s["shot_id"]: {tk["sha256"] for tk in s.get("takes", []) if tk.get("sha256")} for s in m["shots"]}
-        rows = f.harvest_rows(kind, prompt_map, incoming, only_shots=only, quota=quota, known_sha=known,
-                              wait_done=bool(args.wait), wait_timeout=args.wait_timeout)
     report = []
-    for r in rows:
+
+    def _handle_harvest_row(r):
         raw_sid = r["shot"]
         slot = "end" if raw_sid.endswith("__end") else "start"
         sid = raw_sid[:-5] if slot == "end" else raw_sid
         s = mf.find_shot(m, sid)
         if "error" in r or "skipped" in r:
             report.append(r)
-            continue
+            return
         job = next((j for j in pending if j["shot"] == sid and (j.get("slot", "start") == slot or kind == "video") and not j.get("harvested")), None)
         if job:
             job["harvested"] = datetime.now().isoformat(timespec="seconds")
@@ -1302,13 +1318,17 @@ def cmd_flow_harvest(args, cfg):
                 Path(fpath).replace(dst)
                 cands.append({"path": rel(proj, dst), "sha256": sha, "uid": uid_prefix})
             if cands and (not s.get(path_key) or not (proj / s[path_key]).exists()):
-                # Đặt bản sao/đường dẫn chuẩn có gắn Unique ID vào assets/frames/KF_<PROJ>_<SHOT>_<SLOT>.png
                 canonical = proj / mf.keyframe_rel_path(m, s["shot_id"], slot, Path(cands[0]["path"]).suffix)
                 canonical.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(proj / cands[0]["path"], canonical)
                 s[path_key] = rel(proj, canonical)
             report.append({"shot": s["shot_id"], "slot": slot, "uid": uid_prefix, "candidates": [c["path"] for c in cands]})
-        mf.save(proj, m)
+        mf.save(proj, m)  # Lưu ngay sau từng hàng tải xong (Streaming Harvest)
+
+    with fl.Flow(cfg["browser"]["debug_port"], m.get("flow_project_url", ""), download_dir=incoming) as f:
+        known = {s["shot_id"]: {tk["sha256"] for tk in s.get("takes", []) if tk.get("sha256")} for s in m["shots"]}
+        f.harvest_rows(kind, prompt_map, incoming, only_shots=only, quota=quota, known_sha=known,
+                       wait_done=bool(args.wait), wait_timeout=args.wait_timeout, on_row=_handle_harvest_row)
     if kind == "image":
         chained = mf.resolve_chained_keyframes(m, proj)
         if chained:
@@ -1336,9 +1356,12 @@ def cmd_flow_upscale(args, cfg):
             if not src.exists():
                 continue
             dest = src.with_name(f"{src.stem}_{args.res}p.mp4")
+            video_jobs = sum(1 for j in m.get("flow_jobs", []) if j.get("shot") == s["shot_id"] and j.get("kind") == "video")
             wanted[t["sha256"]] = {"shot": s["shot_id"], "take": t["take"], "dest": str(dest),
                                    "prompt": t.get("prompt") or s.get("veo_prompt", ""),
-                                   "sig": takes.visual_signature(src)}
+                                   "sig": takes.visual_signature(src),
+                                   "tile_index": t.get("flow_tile_index"),
+                                   "single_job": video_jobs <= 1}
     if not wanted:
         out({"status": "nothing_to_do"})
         return
