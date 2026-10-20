@@ -9,8 +9,8 @@
   "delivery_formats": [
     "landscape"
   ],
-  "visual_style": "Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens",
-  "style_line": "Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens",
+  "visual_style": "Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain",
+  "style_line": "Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain",
   "negative_prompt": "cartoon look, toy plastic texture, extra limbs, duplicate dinosaurs, fused heads, dorsal sail on Tyrannosaurus, short snout on Spinosaurus, text, watermark, black letterbox bars",
   "audio_strategy": "sfx_only",
   "qa_rubric": [
@@ -176,15 +176,15 @@
         "sfx": "deafening thunderclap, massive water explosion, guttural Spinosaurus bellow"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Low-angle wide shot at water level, 28mm anamorphic lens: Spino's dorsal sail slices through the churning black swamp water. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Low-angle wide shot at water level, 28mm anamorphic lens: Spino's dorsal sail slices through the churning black swamp water. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S01_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Spino towers above the waves with water cascading off its sail. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Spino towers above the waves with water cascading off its sail. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S01_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Low-angle wide shot at water level, 28mm anamorphic lens. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino's dorsal sail slices through the churning black swamp water, Spino erupts upward in an explosive 3D splash curtain with jaws wide open, then smoothly settling into the final state where Spino towers above the waves with water cascading off its sail. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: deafening thunderclap, massive water explosion, guttural Spinosaurus bellow. No subtitles, no on-screen text.",
+      "veo_prompt": "Low-angle wide shot at water level, 28mm anamorphic lens. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino's dorsal sail slices through the churning black swamp water, Spino erupts upward in an explosive 3D splash curtain with jaws wide open, then smoothly settling into the final state where Spino towers above the waves with water cascading off its sail. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: deafening thunderclap, massive water explosion, guttural Spinosaurus bellow. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_01.mp4",
       "status": "qa_pass",
       "takes": [
@@ -291,6 +291,12 @@
         }
       ],
       "routing": {
+        "complexity": 10,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "cận chi tiết giải phẫu",
+          "hook / cảnh kết"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -299,7 +305,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "899 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+          "msg": "928 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
         },
         {
           "level": "info",
@@ -376,15 +382,15 @@
         "sfx": "earth-shaking footfall, deep sub-bass Tyrannosaurus roar, heavy rain"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Low-angle medium close-up, 50mm lens: Rex stands on the left in knee-deep water facing right in heavy rain. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Low-angle medium close-up, 50mm lens: Rex stands on the left in knee-deep water facing right in heavy rain. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S02_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex holds a low combat stance facing right with warm mist from its jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex holds a low combat stance facing right with warm mist from its jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S02_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Low-angle medium close-up, 50mm lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex stands on the left in knee-deep water facing right in heavy rain, Rex stomps a heavy foot splashing mud upward and unleashes a shockwave roar, then smoothly settling into the final state where Rex holds a low combat stance facing right with warm mist from its jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: earth-shaking footfall, deep sub-bass Tyrannosaurus roar, heavy rain. No subtitles, no on-screen text.",
+      "veo_prompt": "Low-angle medium close-up, 50mm lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex stands on the left in knee-deep water facing right in heavy rain, Rex stomps a heavy foot splashing mud upward and unleashes a shockwave roar, then smoothly settling into the final state where Rex holds a low combat stance facing right with warm mist from its jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: earth-shaking footfall, deep sub-bass Tyrannosaurus roar, heavy rain. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_02.mp4",
       "status": "qa_pass",
       "takes": [
@@ -491,6 +497,10 @@
         }
       ],
       "routing": {
+        "complexity": 5,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -499,7 +509,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "882 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+          "msg": "911 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
         },
         {
           "level": "info",
@@ -555,10 +565,75 @@
       "film_grain": 3
     },
     {
+      "shot_id": "shot_02b",
+      "scene_id": "scene_01",
+      "beat": "beat_01",
+      "order": 3,
+      "camera": "Extreme close-up macro ground-level POV, 85mm Anamorphic lens",
+      "subjects": [
+        "CHAR_TREX"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "props": [
+        "PROP_SPLINTERED_LIGHTNING_STRUCK_CYPRESS_TRUNK"
+      ],
+      "physical_displacement": true,
+      "start_action": "Rex's massive three-toed foot hovers above black swamp water beside a burning cypress branch",
+      "action": "Rex's 9-ton clawed foot slams into the mud puddle inches from the lens, crushing the burning branch and blasting mud and sparks",
+      "end_action": "Rex's giant talons sit deep in the bubbling mud crater with glowing embers and water streaming off its scales",
+      "lighting": "blue-violet lightning backlight and warm orange ember bounce",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "seismic footstep thud, splintering wood crack, explosive mud splash"
+      },
+      "generation_mode": "first_last",
+      "target_duration": 1.6,
+      "camera_shake": {
+        "amp": 22.0,
+        "at": 0.65
+      },
+      "film_grain": 3,
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "clip_output_path": "assets/clips/shot_02b.mp4",
+      "status": "pending",
+      "first_frame_prompt": "Extreme close-up macro ground-level POV, 85mm Anamorphic lens: Rex's massive three-toed foot hovers above black swamp water beside a burning cypress branch. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blue-violet lightning backlight and warm orange ember bounce. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S02B_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex's giant talons sit deep in the bubbling mud crater with glowing embers and water streaming off its scales. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blue-violet lightning backlight and warm orange ember bounce. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S02B_END.jpg",
+      "veo_prompt": "Extreme close-up macro ground-level POV, 85mm Anamorphic lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex's massive three-toed foot hovers above black swamp water beside a burning cypress branch, Rex's 9-ton clawed foot slams into the mud puddle inches from the lens, crushing the burning branch and blasting mud and sparks, then smoothly settling into the final state where Rex's giant talons sit deep in the bubbling mud crater with glowing embers and water streaming off its scales. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blue-violet lightning backlight and warm orange ember bounce. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: seismic footstep thud, splintering wood crack, explosive mud splash. No subtitles, no on-screen text.",
+      "negative_prompt": "cartoon look, video game CGI look, toy plastic texture, extra limbs, duplicate dinosaurs, fused heads, dorsal sail on Tyrannosaurus, short snout on Spinosaurus, text, watermark, black letterbox bars, cross-dissolve, double exposure",
+      "routing": {
+        "complexity": 1,
+        "reasons": [
+          "cận chi tiết giải phẫu",
+          "đã khóa bố cục bằng keyframe (in-betweening)"
+        ],
+        "tier": "fast",
+        "label": "Omni 1.1 Flash",
+        "credits": 12
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1055 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ]
+    },
+    {
       "shot_id": "shot_03",
       "scene_id": "scene_02",
       "beat": "beat_02",
-      "order": 3,
+      "order": 4,
       "camera": "Wide side-profile tracking shot, 35mm anamorphic lens",
       "subjects": [
         "CHAR_TREX",
@@ -577,15 +652,15 @@
         "sfx": "rapid heavy splashes, bone-crushing collision impact, twin monster snarls"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Wide side-profile, 35mm anamorphic lens: Rex on the left and Spino on the right charge toward each other. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Wide side-profile, 35mm anamorphic lens: Rex on the left and Spino on the right charge toward each other. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S03_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex on the left and Spino on the right press together with snapping jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left and Spino on the right press together with snapping jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S03_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Wide side-profile tracking shot, 35mm anamorphic lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left and Spino on the right charge toward each other, Rex and Spino collide chest-to-chest, blasting a huge 3D shockwave ring of water, then smoothly settling into the final state where Rex on the left and Spino on the right press together with snapping jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: rapid heavy splashes, bone-crushing collision impact, twin monster snarls. No subtitles, no on-screen text.",
+      "veo_prompt": "Wide side-profile tracking shot, 35mm anamorphic lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left and Spino on the right charge toward each other, Rex and Spino collide chest-to-chest, blasting a huge 3D shockwave ring of water, then smoothly settling into the final state where Rex on the left and Spino on the right press together with snapping jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: rapid heavy splashes, bone-crushing collision impact, twin monster snarls. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_03.mp4",
       "status": "qa_pass",
       "takes": [
@@ -692,6 +767,11 @@
         }
       ],
       "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -700,7 +780,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "1095 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+          "msg": "1124 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
         },
         {
           "level": "info",
@@ -759,7 +839,7 @@
       "shot_id": "shot_04",
       "scene_id": "scene_02",
       "beat": "beat_02",
-      "order": 4,
+      "order": 5,
       "camera": "Medium close-up two-shot, 65mm lens",
       "subjects": [
         "CHAR_TREX",
@@ -778,15 +858,15 @@
         "sfx": "whoosh of heavy claws, sharp tearing impact, splashing mud, pained roar"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Medium close-up two-shot, 65mm lens: Spino on the right raises its curved forelimb claws while Rex braces on the left. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Medium close-up two-shot, 65mm lens: Spino on the right raises its curved forelimb claws while Rex braces on the left. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S04_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex on the left recoils with bared teeth as Spino presses forward on the right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left recoils with bared teeth as Spino presses forward on the right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S04_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Medium close-up two-shot, 65mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino on the right raises its curved forelimb claws while Rex braces on the left, Spino slashes its claws across Rex's shoulder, splashing a 3D arc of mud and water, then smoothly settling into the final state where Rex on the left recoils with bared teeth as Spino presses forward on the right. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: whoosh of heavy claws, sharp tearing impact, splashing mud, pained roar. No subtitles, no on-screen text.",
+      "veo_prompt": "Medium close-up two-shot, 65mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino on the right raises its curved forelimb claws while Rex braces on the left, Spino slashes its claws across Rex's shoulder, splashing a 3D arc of mud and water, then smoothly settling into the final state where Rex on the left recoils with bared teeth as Spino presses forward on the right. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: whoosh of heavy claws, sharp tearing impact, splashing mud, pained roar. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_04.mp4",
       "status": "qa_pass",
       "takes": [
@@ -893,6 +973,11 @@
         }
       ],
       "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -901,7 +986,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "1096 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+          "msg": "1125 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
         },
         {
           "level": "info",
@@ -957,10 +1042,74 @@
       "film_grain": 3
     },
     {
+      "shot_id": "shot_04b",
+      "scene_id": "scene_01",
+      "beat": "beat_02",
+      "order": 6,
+      "camera": "Over-the-shoulder close-up depth shot, 50mm lens",
+      "spatial_mode": "ots_right",
+      "physical_displacement": true,
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Spino raises its curved claws in the right foreground as Rex lunges from the left",
+      "action": "Spino slashes its claws across Rex's snout, spraying rain as Rex's head jolts aside",
+      "end_action": "Rex's snout recoils low on the left while Spino's wet claws fill the right foreground",
+      "lighting": "cyan lightning rim light on wet scales and flying droplets",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "visceral claw slash impact, sharp T-Rex snarl, water spray"
+      },
+      "generation_mode": "first_last",
+      "target_duration": 1.8,
+      "camera_shake": {
+        "amp": 18.0,
+        "at": 0.75
+      },
+      "film_grain": 3,
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "clip_output_path": "assets/clips/shot_04b.mp4",
+      "status": "pending",
+      "first_frame_prompt": "Over-the-shoulder close-up depth shot, 50mm lens: Spino raises its curved claws in the right foreground as Rex lunges from the left. Looming in the midground on the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. In the close foreground on the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cyan lightning rim light on wet scales and flying droplets. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S04B_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex's snout recoils low on the left while Spino's wet claws fill the right foreground. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. Looming in the midground on the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. In the close foreground on the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cyan lightning rim light on wet scales and flying droplets. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S04B_END.jpg",
+      "veo_prompt": "Over-the-shoulder close-up depth shot, 50mm lens. Looming in the midground on the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. In the close foreground on the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino raises its curved claws in the right foreground as Rex lunges from the left, Spino slashes its claws across Rex's snout, spraying rain as Rex's head jolts aside, then smoothly settling into the final state where Rex's snout recoils low on the left while Spino's wet claws fill the right foreground. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cyan lightning rim light on wet scales and flying droplets. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: visceral claw slash impact, sharp T-Rex snarl, water spray. No subtitles, no on-screen text.",
+      "negative_prompt": "cartoon look, video game CGI look, toy plastic texture, extra limbs, duplicate dinosaurs, fused heads, dorsal sail on Tyrannosaurus, short snout on Spinosaurus, text, watermark, black letterbox bars, cross-dissolve, double exposure",
+      "routing": {
+        "complexity": 1,
+        "reasons": [
+          "nhiều chủ thể trong khung",
+          "đã khóa bố cục bằng keyframe (in-betweening)"
+        ],
+        "tier": "fast",
+        "label": "Omni 1.1 Flash",
+        "credits": 12
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1186 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ]
+    },
+    {
       "shot_id": "shot_05",
       "scene_id": "scene_03",
       "beat": "beat_03",
-      "order": 5,
+      "order": 7,
       "camera": "Wide low-angle action shot, 35mm lens",
       "subjects": [
         "CHAR_TREX",
@@ -982,15 +1131,15 @@
         "sfx": "whipping tail splash, explosive cracking timber, sizzling embers hitting water"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Wide low-angle action shot, 35mm lens: Spino on the right pivots beside a burning cypress trunk as Rex advances on the left. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Wide low-angle action shot, 35mm lens: Spino on the right pivots beside a burning cypress trunk as Rex advances on the left. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S05_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex on the left lowers its head amidst flying orange embers and shattered wood. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left lowers its head amidst flying orange embers and shattered wood. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S05_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Wide low-angle action shot, 35mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino on the right pivots beside a burning cypress trunk as Rex advances on the left, Spino whips its tail to crash through the splintered lightning-struck cypress trunk, blasting 3D embers, then smoothly settling into the final state where Rex on the left lowers its head amidst flying orange embers and shattered wood. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: whipping tail splash, explosive cracking timber, sizzling embers hitting water. No subtitles, no on-screen text.",
+      "veo_prompt": "Wide low-angle action shot, 35mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino on the right pivots beside a burning cypress trunk as Rex advances on the left, Spino whips its tail to crash through the splintered lightning-struck cypress trunk, blasting 3D embers, then smoothly settling into the final state where Rex on the left lowers its head amidst flying orange embers and shattered wood. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: whipping tail splash, explosive cracking timber, sizzling embers hitting water. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_05.mp4",
       "status": "qa_pass",
       "takes": [
@@ -1097,6 +1246,11 @@
         }
       ],
       "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -1105,7 +1259,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "1132 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+          "msg": "1161 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
         },
         {
           "level": "info",
@@ -1164,7 +1318,7 @@
       "shot_id": "shot_06a",
       "scene_id": "scene_03",
       "beat": "beat_03",
-      "order": 6,
+      "order": 8,
       "camera": "Medium two-shot at eye level, 50mm lens",
       "subjects": [
         "CHAR_TREX",
@@ -1182,15 +1336,15 @@
         "sfx": "snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Medium two-shot at eye level, 50mm lens: Rex on the left crouches low under embers while Spino lunges from the right. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Medium two-shot at eye level, 50mm lens: Rex on the left crouches low under embers while Spino lunges from the right. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S06A_START.jpg",
-      "last_frame_prompt": "Intermediate waypoint 1 (shot_06a): Rex on the left ducks under Spino's snout and surges up with open jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Intermediate waypoint 1 (shot_06a): Rex on the left ducks under Spino's snout and surges up with open jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S06A_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
-      "veo_prompt": "Medium two-shot at eye level, 50mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left crouches low under embers while Spino lunges from the right, Rex ducks beneath Spino's snapping jaws and surges up splashing swamp water, then smoothly settling into the final state where Rex on the left ducks under Spino's snout and surges up with open jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar. No subtitles, no on-screen text.",
+      "veo_prompt": "Medium two-shot at eye level, 50mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left crouches low under embers while Spino lunges from the right, Rex ducks beneath Spino's snapping jaws and surges up splashing swamp water, then smoothly settling into the final state where Rex on the left ducks under Spino's snout and surges up with open jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_06a.mp4",
       "status": "qa_pass",
       "action": "Rex ducks beneath Spino's snapping jaws and surges up splashing swamp water",
@@ -1201,6 +1355,13 @@
       "anchor_frame_shot": "shot_06a",
       "chain_from_prev": false,
       "routing": {
+        "complexity": 6,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung",
+          "cận chi tiết giải phẫu",
+          "đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -1209,7 +1370,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "1089 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+          "msg": "1118 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
         },
         {
           "level": "info",
@@ -1386,7 +1547,7 @@
       "shot_id": "shot_06b",
       "scene_id": "scene_03",
       "beat": "beat_03",
-      "order": 7,
+      "order": 9,
       "camera": "Medium two-shot at eye level, 50mm lens",
       "subjects": [
         "CHAR_TREX",
@@ -1404,15 +1565,15 @@
         "sfx": "snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Medium two-shot at eye level, 50mm lens: Rex on the left ducks under Spino's snout and surges up with open jaws. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Medium two-shot at eye level, 50mm lens: Rex on the left ducks under Spino's snout and surges up with open jaws. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S06A_END.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex on the left bites and clamps firmly onto Spino's neck on the right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left bites and clamps firmly onto Spino's neck on the right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S06B_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Medium two-shot at eye level, 50mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Rex on the left ducks under Spino's snout and surges up with open jaws then smoothly transitions to: Rex on the left bites and clamps firmly onto Spino's neck on the right. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar. No subtitles, no on-screen text.",
+      "veo_prompt": "Medium two-shot at eye level, 50mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Rex on the left ducks under Spino's snout and surges up with open jaws then smoothly transitions to: Rex on the left bites and clamps firmly onto Spino's neck on the right. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_06b.mp4",
       "status": "qa_pass",
       "action": "Rex on the left ducks under Spino's snout and surges up with open jaws then smoothly transitions to: Rex on the left bites and clamps firmly onto Spino's neck on the right",
@@ -1423,6 +1584,13 @@
       "anchor_frame_shot": "shot_06a",
       "chain_from_prev": true,
       "routing": {
+        "complexity": 6,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung",
+          "cận chi tiết giải phẫu",
+          "đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -1431,7 +1599,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "972 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+          "msg": "1001 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
         },
         {
           "level": "info",
@@ -1583,10 +1751,75 @@
       "film_grain": 3
     },
     {
+      "shot_id": "shot_06c",
+      "scene_id": "scene_01",
+      "beat": "beat_03",
+      "order": 10,
+      "camera": "Extreme close-up macro shot, 100mm Anamorphic lens",
+      "spatial_mode": "ots_left",
+      "physical_displacement": true,
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex's amber eye and open jaws fill the left foreground near Spino's wet neck",
+      "action": "Rex's jaws clamp deep into Spino's neck hide, spraying saliva as its pupil dilates",
+      "end_action": "Rex's teeth lock tight into Spino's neck scales as Rex wrenches Spino down",
+      "lighting": "blue-white lightning reflecting in Rex's wet amber eye and teeth",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "bone-crunching jaw clamp, guttural T-Rex growl, Spinosaurus screech"
+      },
+      "generation_mode": "first_last",
+      "target_duration": 1.7,
+      "camera_shake": {
+        "amp": 19.0,
+        "at": 0.7
+      },
+      "film_grain": 3,
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "clip_output_path": "assets/clips/shot_06c.mp4",
+      "status": "pending",
+      "first_frame_prompt": "Extreme close-up macro shot, 100mm Anamorphic lens: Rex's amber eye and open jaws fill the left foreground near Spino's wet neck. In the close foreground on the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Looming in the midground on the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blue-white lightning reflecting in Rex's wet amber eye and teeth. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S06C_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex's teeth lock tight into Spino's neck scales as Rex wrenches Spino down. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. In the close foreground on the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Looming in the midground on the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blue-white lightning reflecting in Rex's wet amber eye and teeth. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S06C_END.jpg",
+      "veo_prompt": "Extreme close-up macro shot, 100mm Anamorphic lens. In the close foreground on the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Looming in the midground on the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex's amber eye and open jaws fill the left foreground near Spino's wet neck, Rex's jaws clamp deep into Spino's neck hide, spraying saliva as its pupil dilates, then smoothly settling into the final state where Rex's teeth lock tight into Spino's neck scales as Rex wrenches Spino down. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blue-white lightning reflecting in Rex's wet amber eye and teeth. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: bone-crunching jaw clamp, guttural T-Rex growl, Spinosaurus screech. No subtitles, no on-screen text.",
+      "negative_prompt": "cartoon look, video game CGI look, toy plastic texture, extra limbs, duplicate dinosaurs, fused heads, dorsal sail on Tyrannosaurus, short snout on Spinosaurus, text, watermark, black letterbox bars, cross-dissolve, double exposure",
+      "routing": {
+        "complexity": 10,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung",
+          "cận chi tiết giải phẫu"
+        ],
+        "tier": "quality",
+        "label": "Omni 1.1 Flash",
+        "credits": 12
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1186 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ]
+    },
+    {
       "shot_id": "shot_07",
       "scene_id": "scene_04",
       "beat": "beat_04",
-      "order": 8,
+      "order": 11,
       "camera": "Wide low-angle two-shot, 28mm anamorphic lens",
       "subjects": [
         "CHAR_TREX",
@@ -1605,15 +1838,15 @@
         "sfx": "straining muscle growl, earth-shattering body slam into water, tidal wave splash"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Wide low-angle two-shot, 28mm anamorphic lens: Rex on the left grips Spino's neck in its jaws and plants its feet in the mud. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Wide low-angle two-shot, 28mm anamorphic lens: Rex on the left grips Spino's neck in its jaws and plants its feet in the mud. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S07_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex stands tall on the left as Spino lies in a towering wall of white water spray. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex stands tall on the left as Spino lies in a towering wall of white water spray. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S07_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "cut",
-      "veo_prompt": "Wide low-angle two-shot, 28mm anamorphic lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left grips Spino's neck in its jaws and plants its feet in the mud, Rex wrenches its neck to throw and crash Spino into a colossal 3D water geyser, then smoothly settling into the final state where Rex stands tall on the left as Spino lies in a towering wall of white water spray. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: straining muscle growl, earth-shattering body slam into water, tidal wave splash. No subtitles, no on-screen text.",
+      "veo_prompt": "Wide low-angle two-shot, 28mm anamorphic lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left grips Spino's neck in its jaws and plants its feet in the mud, Rex wrenches its neck to throw and crash Spino into a colossal 3D water geyser, then smoothly settling into the final state where Rex stands tall on the left as Spino lies in a towering wall of white water spray. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: straining muscle growl, earth-shattering body slam into water, tidal wave splash. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_07.mp4",
       "status": "qa_pass",
       "takes": [
@@ -1720,6 +1953,11 @@
         }
       ],
       "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
         "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
@@ -1728,7 +1966,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "1121 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+          "msg": "1150 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
         },
         {
           "level": "info",
@@ -1787,7 +2025,7 @@
       "shot_id": "shot_08",
       "scene_id": "scene_04",
       "beat": "beat_04",
-      "order": 9,
+      "order": 12,
       "camera": "Heroic low-angle wide shot, 35mm anamorphic lens",
       "subjects": [
         "CHAR_TREX"
@@ -1808,15 +2046,15 @@
         "sfx": "triumphant echoing Tyrannosaurus roar, twin lightning strikes, rolling thunder"
       },
       "generation_mode": "first_last",
-      "first_frame_prompt": "Heroic low-angle wide shot, 35mm anamorphic lens: Rex plants one heavy foot atop the splintered lightning-struck cypress trunk. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "Heroic low-angle wide shot, 35mm anamorphic lens: Rex plants one heavy foot atop the splintered lightning-struck cypress trunk. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_TRVSSB_S08_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Rex holds its roaring pose silhouetted against bright lightning and heavy rain. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex holds its roaring pose silhouetted against bright lightning and heavy rain. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_TRVSSB_S08_END.jpg",
       "reference_images": [],
       "negative_prompt": "",
       "transition_to_next": "INTER_SCENE_CUT",
       "transition_out": "dissolve",
-      "veo_prompt": "Heroic low-angle wide shot, 35mm anamorphic lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex plants one heavy foot atop the splintered lightning-struck cypress trunk, Rex grips the splintered trunk with its claws and unleashes a triumphant roar, then smoothly settling into the final state where Rex holds its roaring pose silhouetted against bright lightning and heavy rain. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: triumphant echoing Tyrannosaurus roar, twin lightning strikes, rolling thunder. No subtitles, no on-screen text.",
+      "veo_prompt": "Heroic low-angle wide shot, 35mm anamorphic lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex plants one heavy foot atop the splintered lightning-struck cypress trunk, Rex grips the splintered trunk with its claws and unleashes a triumphant roar, then smoothly settling into the final state where Rex holds its roaring pose silhouetted against bright lightning and heavy rain. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Live-action creature feature, IMAX 70mm Panavision Anamorphic lens, wet pebbled reptile hide, specular lightning rim light, 35mm film grain. Ambient sound only: triumphant echoing Tyrannosaurus roar, twin lightning strikes, rolling thunder. No subtitles, no on-screen text.",
       "clip_output_path": "assets/clips/shot_08.mp4",
       "status": "qa_pass",
       "takes": [
@@ -1931,7 +2169,12 @@
         }
       ],
       "routing": {
-        "tier": "quality",
+        "complexity": 1,
+        "reasons": [
+          "hook / cảnh kết",
+          "đã khóa bố cục bằng keyframe (in-betweening)"
+        ],
+        "tier": "fast",
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
@@ -1939,7 +2182,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "935 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+          "msg": "964 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
         },
         {
           "level": "info",
@@ -1996,41 +2239,6 @@
     }
   ],
   "session_log": [
-    {
-      "at": "2026-10-20T21:11:56",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_07,shot_08 --wait --wait-timeout 180",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:11:57",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:16:03",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_01 --all",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:16:04",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:19:06",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "note",
-      "args": "",
-      "ok": true
-    },
     {
       "at": "2026-10-20T21:19:06",
       "machine": "DESKTOP-HUP72C4",
@@ -2284,12 +2492,47 @@
       "command": "assemble",
       "args": "--format landscape --out final_video_v2_blockbuster.mp4",
       "ok": true
+    },
+    {
+      "at": "2026-10-20T22:51:07",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:52:17",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:52:57",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "--strict",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:55:42",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:55:42",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "--strict",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-20T22:37:23",
+    "at": "2026-10-20T22:55:42",
     "machine": "DESKTOP-HUP72C4",
-    "command": "assemble"
+    "command": "lint-prompts"
   },
   "flow_project_url": "https://flow.google.com/project/6d4a0c22-1a61-47bc-aac8-d2224a0dcbc2",
   "flow_jobs": [
