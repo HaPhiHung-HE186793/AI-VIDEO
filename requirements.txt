@@ -1,0 +1,7 @@
+numpy>=1.26
+opencv-python>=4.9
+imageio-ffmpeg>=0.5
+# Tùy chọn: QA thị giác + TTS lời dẫn qua Gemini API (cần GEMINI_API_KEY)
+google-genai>=2.25
+# Phát triển
+pytest>=8

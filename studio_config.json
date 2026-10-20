@@ -1,0 +1,22 @@
+{
+  "_comment": "Cấu hình riêng của máy/tài khoản. Ghi đè giá trị mặc định trong scripts/studio/config.py.",
+  "browser": {
+    "profile_dir": "~/chrome_ai_bot",
+    "debug_port": 9222,
+    "flow_url": "https://labs.google/fx/tools/flow"
+  },
+  "models": {
+    "video": {
+      "quality": {"label": "Veo 3.1 - Quality", "credits": 100},
+      "fast": {"label": "Veo 3.1 - Fast", "credits": 10}
+    },
+    "image": {"pro": "Nano Banana Pro", "standard": "Nano Banana 2"},
+    "gemini_vision_qa": "gemini-4-argon",
+    "gemini_vision_qa_fallbacks": ["gemini-3.5-flash", "gemini-3.8-flash"],
+    "gemini_tts": "gemini-3.8-flash-tts",
+    "gemini_transcribe": "gemini-3.5-transcribe"
+  },
+  "credits": {"budget": 85000, "takes_per_shot": 2, "quality_threshold": 4},
+  "tts": {"voice": "Charon"},
+  "output": {"width": 1920, "height": 1080, "fps": 24, "loudness_lufs": -14.0}
+}

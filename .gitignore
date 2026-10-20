@@ -1,0 +1,17 @@
+# Media sinh ra (nặng, tái tạo được)
+*.mp4
+*.mov
+*.wav
+*.mp3
+**/assets/qa/
+**/assets/clips/_temp_rerender/
+**/output/
+__pycache__/
+*.pyc
+.pytest_cache/
+# Bí mật
+.env
+*.json.bak
+*.json.tmp
+.browser/
+**/.studio.lock

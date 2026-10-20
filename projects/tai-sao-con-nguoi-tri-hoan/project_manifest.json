@@ -1,0 +1,622 @@
+{
+  "project_name": "tai-sao-con-nguoi-tri-hoan",
+  "project_slug": "tai-sao-con-nguoi-tri-hoan",
+  "title": "Bên trong bộ não của một đứa chuyên nước đến chân mới nhảy trông ra sao? 🤯",
+  "created_at": "2026-10-18T15:19:30+07:00",
+  "visual_style": "2D Animation Vui Vẻ",
+  "aspect_ratio": "16:9",
+  "plan": {
+    "target_duration_sec": 60,
+    "veo_shot_duration_sec": 8,
+    "num_shots": 8,
+    "raw_total_duration_sec": 64,
+    "final_trim_sec": 4,
+    "language_code": "vi",
+    "language_name": "Tiếng Việt (Vietnamese)",
+    "speech_unit": "âm tiết (chữ)",
+    "recommended_max_units_per_shot": 19,
+    "hard_max_units_per_shot": 22,
+    "total_recommended_words": 152
+  },
+  "characters": [
+    {
+      "id": "CHAR_LOGIC",
+      "name": "Trạm trưởng Logic",
+      "nano_banana_prompt": "2D flat expressive cartoon character design, Logic Stationmaster, a nerdy brain cell wearing thick glasses and a neat tie, holding a detailed clipboard. Bold clean outlines, vibrant solid colors, funny serious expression, 'Vui Ve' channel animation style, full body reference sheet, solid white background, 16:9, no text.",
+      "reference_images": [
+        "assets/characters/CHAR_LOGIC.png"
+      ],
+      "identity_line": "a nerdy pink brain cell with thick round glasses and a neat blue tie, 2D flat cartoon with bold clean outlines",
+      "short_name": "Logic"
+    },
+    {
+      "id": "CHAR_EMOTION",
+      "name": "Tổ lái Cảm Xúc",
+      "nano_banana_prompt": "2D flat expressive cartoon character design, Emotion Pilot, a playful chaotic brain cell wearing a backward cap, holding a boba milk tea and a smartphone displaying TikTok. Bold clean outlines, vibrant solid colors, mischievous hyperactive expression, 'Vui Ve' channel animation style, full body reference sheet, solid white background, 16:9, no text.",
+      "reference_images": [
+        "assets/characters/CHAR_EMOTION.png"
+      ],
+      "identity_line": "a playful pink brain cell in a backward green cap and teal sneakers, 2D flat cartoon with bold clean outlines",
+      "short_name": "Emo"
+    },
+    {
+      "id": "CHAR_PANIC",
+      "name": "Quái vật Hoảng Loạn",
+      "nano_banana_prompt": "2D flat expressive cartoon character design, Panic Monster, a giant frantic red furry monster with wide terrified eyes, screaming, holding a ticking clock. Bold clean outlines, vibrant solid colors, exaggerated funny panicked expression, 'Vui Ve' channel animation style, full body reference sheet, solid white background, 16:9, no text.",
+      "reference_images": [
+        "assets/characters/CHAR_PANIC.png"
+      ],
+      "identity_line": "a giant frantic red furry monster with huge white eyes and small fangs, 2D flat cartoon with bold clean outlines",
+      "short_name": "the Panic Monster"
+    }
+  ],
+  "environments": [
+    {
+      "id": "ENV_BRAIN_HQ",
+      "name": "Phòng Điều Khiển Trung Tâm Não Bộ 2D",
+      "nano_banana_prompt": "2D flat cartoon background design, Brain Control Room, a high-tech console with glowing buttons, computer screens showing a blank document, a giant red lever. Bold clean outlines, vibrant solid colors, 'Vui Ve' channel animation style, 16:9 aspect ratio, no characters, no text, clean layout.",
+      "identity_line": "a neon pink-and-blue brain control room with a curved console, glowing monitors and a big red lever"
+    }
+  ],
+  "shots": [
+    {
+      "shot_id": "shot_01",
+      "order": 1,
+      "camera_shot": "Medium Close-Up (Lip-Sync)",
+      "active_speaker": "CHAR_LOGIC",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Nào mọi người ơi, hạn chót là tối nay rồi, chúng ta phải tập trung làm việc thôi!",
+      "ingredients_used": [
+        "CHAR_LOGIC",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Close-Up, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Logic Stationmaster (nerdy brain cell wearing thick glasses and a neat tie, holding a clipboard) starts looking at his clipboard, then looks up directly at the camera with natural expressive lip-sync speaking clearly in Vietnamese with an urgent serious voice, saying: \"Nào mọi người ơi, hạn chót là tối nay rồi, chúng ta phải tập trung làm việc thôi!\". Logic ends holding the clipboard down, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_01.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Nào mọi người ơi, hạn chót là tối nay rồi, chúng ta phải tập trung làm việc thôi!",
+        "speaker": "CHAR_LOGIC"
+      },
+      "subjects": [
+        "CHAR_LOGIC"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Close-Up (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_01.mp4",
+          "sha256": "e2d7ce7301f8f5648c8634800fba44e924842e8c6d0e69c116484e0e9aeafb13",
+          "registered_at": "2026-10-19T18:09:44",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 10,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "hook / cảnh kết",
+          "nhép miệng"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_LOGIC → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_01_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_02",
+      "order": 2,
+      "camera_shot": "Medium Shot (Lip-Sync)",
+      "active_speaker": "CHAR_EMOTION",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Trời đất, thời gian còn xài nhòe, để em uống xong ly trà sữa này đã anh trai.",
+      "ingredients_used": [
+        "CHAR_EMOTION",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Shot, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Emotion Pilot (playful brain cell wearing a backward cap, holding boba milk tea and smartphone) starts sipping his boba tea, lowers the cup, looks directly at the camera with natural expressive lip-sync speaking clearly in Vietnamese with a carefree playful voice, saying: \"Trời đất, thời gian còn xài nhòe, để em uống xong ly trà sữa này đã anh trai.\". Emotion ends holding up his smartphone playfully, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_02.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Trời đất, thời gian còn xài nhòe, để em uống xong ly trà sữa này đã anh trai.",
+        "speaker": "CHAR_EMOTION"
+      },
+      "subjects": [
+        "CHAR_EMOTION"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Shot (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_02.mp4",
+          "sha256": "b26a85ddae1172be5199e4b1eee4cd6995051cf3cb39423f86962fd3815117f3",
+          "registered_at": "2026-10-19T18:09:44",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 7,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhép miệng"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_EMOTION → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_02_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_03",
+      "order": 3,
+      "camera_shot": "Medium Close-Up (Lip-Sync)",
+      "active_speaker": "CHAR_LOGIC",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Không được, mở file báo cáo ra ngay, đã ba ngày nay chúng ta chỉ xem tóp tóp rồi!",
+      "ingredients_used": [
+        "CHAR_LOGIC",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Close-Up, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Logic Stationmaster (nerdy brain cell with thick glasses and tie) starts pointing at the blank computer screen angrily, turns directly to the camera with natural expressive lip-sync speaking clearly in Vietnamese with an angry scolding voice, saying: \"Không được, mở file báo cáo ra ngay, đã ba ngày nay chúng ta chỉ xem tóp tóp rồi!\". Logic ends with both hands on his hips, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_03.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Không được, mở file báo cáo ra ngay, đã ba ngày nay chúng ta chỉ xem tóp tóp rồi!",
+        "speaker": "CHAR_LOGIC"
+      },
+      "subjects": [
+        "CHAR_LOGIC"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Close-Up (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_03.mp4",
+          "sha256": "79fb844cdbb2d4756aa2e4fcf3804d0d81bb4af6877ec9f3d66af6cf3b677a82",
+          "registered_at": "2026-10-19T18:09:44",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 3,
+        "reasons": [
+          "nhép miệng"
+        ],
+        "tier": "fast",
+        "label": "Veo 3.1 - Fast",
+        "credits": 10
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_LOGIC → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_03_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_04",
+      "order": 4,
+      "camera_shot": "Medium Shot (Lip-Sync)",
+      "active_speaker": "CHAR_EMOTION",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Anh bớt căng thẳng đi, lướt điện thoại thêm năm phút nữa cho đầu óc thư giãn xíu nè.",
+      "ingredients_used": [
+        "CHAR_EMOTION",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Shot, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Emotion Pilot (playful brain cell in backward cap) starts swiping on his smartphone screen, looks directly at the camera winking with natural expressive lip-sync speaking clearly in Vietnamese with a cheeky relaxed voice, saying: \"Anh bớt căng thẳng đi, lướt điện thoại thêm năm phút nữa cho đầu óc thư giãn xíu nè.\". Emotion ends shrugging his shoulders with a cheeky smile, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_04.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Anh bớt căng thẳng đi, lướt điện thoại thêm năm phút nữa cho đầu óc thư giãn xíu nè.",
+        "speaker": "CHAR_EMOTION"
+      },
+      "subjects": [
+        "CHAR_EMOTION"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Shot (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_04.mp4",
+          "sha256": "ca2d9516a7de70908029b1dce7e5ae5e028292cd177cb0946902638f3c32522b",
+          "registered_at": "2026-10-19T18:09:44",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 3,
+        "reasons": [
+          "nhép miệng"
+        ],
+        "tier": "fast",
+        "label": "Veo 3.1 - Fast",
+        "credits": 10
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_EMOTION → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_04_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_05",
+      "order": 5,
+      "camera_shot": "Medium Close-Up (Lip-Sync)",
+      "active_speaker": "CHAR_LOGIC",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Đồng hồ điểm mười một giờ đêm rồi kìa, não bộ sắp cạn kiệt năng lượng hoàn toàn rồi!",
+      "ingredients_used": [
+        "CHAR_LOGIC",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Close-Up, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Logic Stationmaster (nerdy brain cell with thick glasses and tie) starts looking down at his wristwatch, then grabs his head in utter frustration looking at the camera with natural expressive lip-sync speaking clearly in Vietnamese with a panicked exhausted voice, saying: \"Đồng hồ điểm mười một giờ đêm rồi kìa, não bộ sắp cạn kiệt năng lượng hoàn toàn rồi!\". Logic ends frozen in shock with wide eyes, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_05.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Đồng hồ điểm mười một giờ đêm rồi kìa, não bộ sắp cạn kiệt năng lượng hoàn toàn rồi!",
+        "speaker": "CHAR_LOGIC"
+      },
+      "subjects": [
+        "CHAR_LOGIC"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Close-Up (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_05.mp4",
+          "sha256": "3f7fb658b720a22bcb19f15b4844a37743fde67ad332bd6c27fb281a32eb4749",
+          "registered_at": "2026-10-19T18:09:44",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 7,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhép miệng"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_LOGIC → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_05_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_06",
+      "order": 6,
+      "camera_shot": "Medium Shot (Lip-Sync)",
+      "active_speaker": "CHAR_PANIC",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Trời ơi cứu tôi với, sếp chuẩn bị đòi bài rồi, chúng ta sẽ tiêu đời mất thôi!",
+      "ingredients_used": [
+        "CHAR_PANIC",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Shot, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Panic Monster (giant frantic red furry monster with wide terrified eyes holding a ticking clock) bursts into the frame looking at the camera with natural expressive lip-sync speaking clearly in Vietnamese with a loud frantic screaming voice, saying: \"Trời ơi cứu tôi với, sếp chuẩn bị đòi bài rồi, chúng ta sẽ tiêu đời mất thôi!\". Panic Monster ends shaking the control console, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, alarm siren sound effect, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_06.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Trời ơi cứu tôi với, sếp chuẩn bị đòi bài rồi, chúng ta sẽ tiêu đời mất thôi!",
+        "speaker": "CHAR_PANIC"
+      },
+      "subjects": [
+        "CHAR_PANIC"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Shot (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_06.mp4",
+          "sha256": "ec94bac5024a6a3ba709436e1f1b6a157c7d58595150f47ed9525dc17240ebc1",
+          "registered_at": "2026-10-19T18:09:45",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 9,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "cận chi tiết giải phẫu",
+          "nhép miệng"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_PANIC → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_06_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_07",
+      "order": 7,
+      "camera_shot": "Medium Shot (Lip-Sync)",
+      "active_speaker": "CHAR_EMOTION",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Đừng hoảng loạn thế chứ, để em gõ phím với tốc độ ánh sáng ngay bây giờ luôn nha.",
+      "ingredients_used": [
+        "CHAR_EMOTION",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Shot, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Emotion Pilot (brain cell in backward cap) drops his phone in terror, turns to the control keyboard looking at the camera with natural expressive lip-sync speaking clearly in Vietnamese with a nervous fast-paced voice, saying: \"Đừng hoảng loạn thế chứ, để em gõ phím với tốc độ ánh sáng ngay bây giờ luôn nha.\". Emotion ends typing frantically on the console keyboard, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, rapid keyboard clacking SFX, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_07.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Đừng hoảng loạn thế chứ, để em gõ phím với tốc độ ánh sáng ngay bây giờ luôn nha.",
+        "speaker": "CHAR_EMOTION"
+      },
+      "subjects": [
+        "CHAR_EMOTION"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Shot (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_07.mp4",
+          "sha256": "05f2774a9bb15b05d98e7275af0b0b570424d3d0eea7dea765269c5536abeac0",
+          "registered_at": "2026-10-19T18:09:45",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 7,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhép miệng"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_EMOTION → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_07_qa_grid.jpg"
+      }
+    },
+    {
+      "shot_id": "shot_08",
+      "order": 8,
+      "camera_shot": "Medium Close-Up (Lip-Sync)",
+      "active_speaker": "CHAR_LOGIC",
+      "dialogue_language": "Tiếng Việt (Vietnamese)",
+      "dialogue_text": "Lần nào cũng vừa khóc vừa làm, ngày mai tôi nhất định sẽ bắt đầu từ sớm hơn!",
+      "ingredients_used": [
+        "CHAR_LOGIC",
+        "ENV_BRAIN_HQ"
+      ],
+      "veo_prompt": "Medium Close-Up, 2D flat expressive cartoon animation in Vui Ve style inside the Brain Control Room. Logic Stationmaster (nerdy brain cell with thick glasses and tie) wipes sweat from his forehead, sighs heavily while looking directly at the camera with natural expressive lip-sync speaking clearly in Vietnamese with a relieved comedic voice, saying: \"Lần nào cũng vừa khóc vừa làm, ngày mai tôi nhất định sẽ bắt đầu từ sớm hơn!\". Logic ends facepalming himself in comedic defeat, closes mouth naturally at 7.0s and holds pose until 8.0s. Bold clean outlines, vibrant colors, studio-clear vocal articulation, no background chatter, no subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_08.mp4",
+      "status": "qa_warn",
+      "audio": {
+        "mode": "veo_dialogue",
+        "line": "Lần nào cũng vừa khóc vừa làm, ngày mai tôi nhất định sẽ bắt đầu từ sớm hơn!",
+        "speaker": "CHAR_LOGIC"
+      },
+      "subjects": [
+        "CHAR_LOGIC"
+      ],
+      "environment": "ENV_BRAIN_HQ",
+      "camera": "Medium Close-Up (Lip-Sync)",
+      "generation_mode": "ingredients",
+      "transition_out": "cut",
+      "takes": [
+        {
+          "take": 1,
+          "path": "assets/clips/shot_08.mp4",
+          "sha256": "4eab787f9266d24b5329c57125efcc9acedf459664fc9aaa76106d34cef0bd26",
+          "registered_at": "2026-10-19T18:09:45",
+          "generation_mode": "unknown",
+          "note": "nhập từ dự án cũ — không rõ input đã dùng"
+        }
+      ],
+      "selected_take": 1,
+      "routing": {
+        "complexity": 6,
+        "reasons": [
+          "hook / cảnh kết",
+          "nhép miệng"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "warn",
+          "code": "IDENTITY_LINE_DRIFT",
+          "msg": "Prompt không chứa nguyên văn identity_line của CHAR_LOGIC → mô tả trôi giữa các shot."
+        }
+      ],
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-19T18:17:33"
+        },
+        "contact_sheet": "assets/qa/shot_08_qa_grid.jpg"
+      }
+    }
+  ],
+  "schema_version": 2,
+  "language": "vi",
+  "style_line": "2D Animation Vui Vẻ",
+  "negative_prompt": "",
+  "delivery_formats": [
+    "landscape"
+  ]
+}
