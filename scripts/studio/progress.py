@@ -199,6 +199,8 @@ def render(proj: Path, m: dict, cfg: dict) -> str:
          f"python scripts/studio_helper.py media-pull --project {slug}   # lấy clip/âm thanh từ thư mục chung (STUDIO_MEDIA_DIR)",
          f"python scripts/studio_helper.py resume --project {slug}       # kiểm tra máy + in bước tiếp theo",
          "```", "",
+         "Bước Flow (tạo / tải / upscale) mở đúng dự án Flow bên dưới — Chrome điều khiển của máy này (`check-browser`) "
+         "phải đăng nhập **cùng tài khoản Google** (lần đầu trên máy mới: đăng nhập 1 lần, profile được giữ lại).", "",
          "Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (quy tắc 9).", "",
          "## Trạng thái", "",
          f"- **Slug:** `{slug}` — thư mục `projects/{slug}/` (KHÔNG `init` dự án mới)",

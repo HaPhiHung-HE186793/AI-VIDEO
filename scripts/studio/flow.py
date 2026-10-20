@@ -137,11 +137,17 @@ class Flow:
         if self.project_url:
             pages = [p for p in pages if self.project_url in p.url] or pages
         if not pages:
-            raise FlowError("Không có tab Google Flow nào đang mở.")
+            if not self.project_url or not self.browser.contexts:
+                raise FlowError("Không có tab Google Flow nào đang mở.")
+            pages = [self.browser.contexts[0].new_page()]  # máy mới / phiên mới: tự mở tab dự án
         self.page = pages[0]
         if self.project_url and self.project_url not in self.page.url:
             self.page.goto(self.project_url, wait_until="domcontentloaded")
             self.page.wait_for_timeout(3000)
+        if self.project_url and self.project_url.rstrip("/") not in self.page.url:
+            # Bị chuyển hướng (chưa đăng nhập / khác tài khoản Google) → dừng, không thao tác nhầm chỗ.
+            raise FlowError(f"Không mở được dự án Flow {self.project_url} (trang hiện tại: {self.page.url[:120]}). "
+                            "Chrome điều khiển trên máy này phải đăng nhập ĐÚNG tài khoản Google đã tạo dự án.")
         self.page.bring_to_front()
         if self.download_dir:
             self.download_dir.mkdir(parents=True, exist_ok=True)

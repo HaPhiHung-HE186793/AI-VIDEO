@@ -10,6 +10,8 @@ python scripts/studio_helper.py media-pull --project t-rex-24h-in-hell-creek   #
 python scripts/studio_helper.py resume --project t-rex-24h-in-hell-creek       # kiểm tra máy + in bước tiếp theo
 ```
 
+Bước Flow (tạo / tải / upscale) mở đúng dự án Flow bên dưới — Chrome điều khiển của máy này (`check-browser`) phải đăng nhập **cùng tài khoản Google** (lần đầu trên máy mới: đăng nhập 1 lần, profile được giữ lại).
+
 Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (quy tắc 9).
 
 ## Trạng thái
@@ -22,7 +24,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 
 ## ▶ Bước tiếp theo: 11. Xong — chờ người dùng đăng / yêu cầu mới
 
-Bản cuối: projects\t-rex-24h-in-hell-creek\output\T-Rex_Chapter1_v4.mp4
+Bản cuối: output/T-Rex_Chapter1_v4.mp4
 
 ```powershell
 python scripts/studio_helper.py publish-kit --project t-rex-24h-in-hell-creek
