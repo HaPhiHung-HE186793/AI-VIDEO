@@ -446,3 +446,70 @@ def test_director_timeline_and_keyframe_staging_choreography(cfg):
     shot["timeline_phases"][1]["subjects"].pop("CHAR_SPINO")
     codes_missing = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
     assert "PASSIVE_SUBJECT_IN_PHASE" in codes_missing
+
+
+
+def test_ilm_3d_spatial_modes_contact_physics_and_fantasy_trap_linter(cfg):
+    proj = {
+        "language": "en",
+        "style_line": "Photorealistic ILM Jurassic World Dominion live-action creature cinematography",
+        "characters": [
+            {"id": "CHAR_TREX", "name": "Rex", "short_name": "Rex",
+             "identity_line": "a massive 9-ton adult Tyrannosaurus rex with wet dark amber reptile eyes",
+             "reference_images": ["assets/characters/rex.png"]},
+            {"id": "CHAR_SPINO", "name": "Spino", "short_name": "Spino",
+             "identity_line": "a colossal 11-ton adult Spinosaurus with a weathered dark dorsal sail",
+             "reference_images": ["assets/characters/spino.png"]},
+        ],
+        "environments": [{"id": "ENV_SWAMP", "name": "Sanctuary", "identity_line": "a flooded cypress forest at night"}],
+    }
+    shot = {
+        "shot_id": "shot_06b",
+        "generation_mode": "first_last",
+        "spatial_mode": "jaw_clamp",
+        "first_frame_path": "f1.jpg",
+        "last_frame_path": "f2.jpg",
+        "camera": "1.6m close-up 3/4 combat shot, 50mm Panavision Anamorphic lens",
+        "subjects": ["CHAR_TREX", "CHAR_SPINO"],
+        "environment": "ENV_SWAMP",
+        "lighting": "warm 2700K amber ground firelight and cold 6500K steel-teal rain rim light",
+        "start_action": "Rex's open jaws press against Spino's throat",
+        "action": "Rex clamps its jaws deep into Spino's neck flesh",
+        "end_action": "Rex holds Spino's neck pinned in a jaw clamp",
+        "start_staging": {
+            "camera_blocking": "1.6m close-up 3/4 combat shot, 50mm lens at f/2.0",
+            "foreground_occlusion": "Blurred wet cypress roots in lower-left foreground",
+            "subject_poses": {
+                "CHAR_TREX": "Center-left driving upward",
+                "CHAR_SPINO": "Center-right caught in Rex's jaws",
+            },
+            "contact_physics": "Full jaw-clamp tissue deformation on wet neck hide",
+            "vfx_environment": "Heavy steel-teal rain sheets",
+        },
+        "end_staging": {
+            "camera_blocking": "1.6m close-up tilted downward",
+            "subject_poses": {
+                "CHAR_TREX": "Center-left clamping Spino's throat",
+                "CHAR_SPINO": "Center-right wrenched downward",
+            },
+            "contact_physics": "35,000-Newton bite compressing neck skin folds",
+            "vfx_environment": "Saliva and rainwater spray",
+        },
+        "audio": {"mode": "sfx_only", "sfx": "visceral bite crunch"},
+    }
+    ff_p = prompts.build_first_frame_prompt(proj, shot)
+    veo_p = prompts.build_prompt(proj, shot)
+    shot["veo_prompt"] = veo_p
+
+    assert "Driving forward from center-left with jaws clamped deep into its rival's neck, Rex is" in veo_p
+    assert "Pinned in center-right with neck hide compressed under the bite, Spino is" in veo_p
+    assert "foreground scale anchor: Blurred wet cypress roots" in ff_p
+    assert "Physical Contact & Mass Coupling: Full jaw-clamp tissue deformation" in ff_p
+
+    codes_clean = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
+    assert "FANTASY_LIGHTING_TRAP" not in codes_clean
+
+    # Inject fantasy traps -> linter must flag FANTASY_LIGHTING_TRAP
+    shot["veo_prompt"] += " Rex has glowing amber eyes under blue-violet lightning."
+    codes_trap = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
+    assert "FANTASY_LIGHTING_TRAP" in codes_trap

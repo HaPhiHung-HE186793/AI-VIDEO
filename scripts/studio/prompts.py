@@ -227,8 +227,13 @@ def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
     chars = chars or {}
     parts = []
     cam_block = (stg.get("camera_blocking") or "").strip(" .")
-    if cam_block:
+    fg_occ = (stg.get("foreground_occlusion") or stg.get("dirty_frame") or "").strip(" .")
+    if cam_block and fg_occ:
+        parts.append(_sentence(f"Camera & Optics: {cam_block}; foreground scale anchor: {fg_occ}"))
+    elif cam_block:
         parts.append(_sentence(f"Camera & Optics: {cam_block}"))
+    elif fg_occ:
+        parts.append(_sentence(f"Foreground Scale Anchor: {fg_occ}"))
     subj_poses = stg.get("subject_poses")
     if isinstance(subj_poses, dict) and subj_poses:
         p_list = []
@@ -243,6 +248,9 @@ def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
                 p_list.append(f"{c_name}: {clean_p}")
         if p_list:
             parts.append(_sentence(f"Character Staging & Anatomy: {' | '.join(p_list)}"))
+    contact_phys = (stg.get("contact_physics") or "").strip(" .")
+    if contact_phys:
+        parts.append(_sentence(f"Physical Contact & Mass Coupling: {contact_phys}"))
     vfx_env = (stg.get("vfx_environment") or stg.get("vfx") or "").strip(" .")
     if vfx_env:
         parts.append(_sentence(f"Environment & 3D VFX State: {vfx_env}"))
@@ -298,6 +306,12 @@ def _format_cast_lines(shot: dict, chars: dict) -> list:
             pos_tags = ["Looming in the midground on the left,", "In the close foreground on the right,"]
         elif sp_mode == "depth_clash":
             pos_tags = ["Charging from the foreground left,", "Bracing in the midground right,"]
+        elif sp_mode == "clinched_grapple":
+            pos_tags = ["Physically clinched in center-left in an overlapping 3D grapple,", "Locked chest-to-chest in center-right with overlapping body mass,"]
+        elif sp_mode == "jaw_clamp":
+            pos_tags = ["Driving forward from center-left with jaws clamped deep into its rival's neck,", "Pinned in center-right with neck hide compressed under the bite,"]
+        elif sp_mode == "low_angle_3d":
+            pos_tags = ["Towering in the left foreground at a 3/4 low-angle perspective,", "Lunging from the right midground across the z-axis depth,"]
         else:
             pos_tags = ["On the left,", "On the right,"]
     else:
@@ -744,6 +758,13 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     junk = sorted({m.group(0) for m in JUNK_TOKENS.finditer(prompt)})
     if junk:
         add("warn", "JUNK_TOKENS", f"Token vô nghĩa với Veo: {', '.join(junk)}.")
+    style_str = f"{project.get('visual_style', '')} {project.get('style_line', '')}".lower()
+    if "live-action" in style_str or "photorealistic" in style_str:
+        fantasy_traps = re.findall(r"\b(glowing\s+(?:\w+\s+)?eyes|blue-violet\s+lightning|purple\s+lightning|neon\s+\w+)\b", prompt, flags=re.I)
+        if fantasy_traps:
+            add("warn", "FANTASY_LIGHTING_TRAP",
+                f"Phim live-action nhưng prompt chứa cụm từ gợi hiệu ứng giả tưởng/hoạt hình ({sorted(set(fantasy_traps))}) "
+                "→ dễ sinh mắt đèn LED hoặc tinh thể tím giả tạo. Hãy thay bằng 'wet dark eyes with firelight catchlights' và '2700K amber firelight vs 6500K cold steel-teal rain rim light'.")
     negs = [m.group(0) for m in NEGATION.finditer(prompt)]
     if len(negs) >= 3:
         add("warn", "TOO_MANY_NEGATIONS", f"{len(negs)} cụm phủ định ({', '.join(negs[:5])}…). Chuyển sang negative_prompt và mô tả điều MUỐN thấy.")
@@ -927,7 +948,9 @@ def lint_project(project: dict, cfg: dict) -> list:
         cam_s = (s.get("camera") or s.get("camera_shot") or "").lower()
         sp_m = (s.get("spatial_mode") or "").lower()
         is_macro = bool(re.search(r"\b(extreme close-up|macro|insert|detail|eye|foot|claw|jaws)\b", cam_s))
-        is_ots_or_pov = bool(re.search(r"\b(over-the-shoulder|ots|pov|ground-level|ankle-level|bird|overhead)\b", cam_s)) or sp_m in ("ots_left", "ots_right", "depth_clash")
+        is_ots_or_pov = bool(re.search(r"\b(over-the-shoulder|ots|pov|ground-level|ankle-level|bird|overhead|3/4)\b", cam_s)) or sp_m in (
+            "ots_left", "ots_right", "depth_clash", "clinched_grapple", "jaw_clamp", "low_angle_3d"
+        )
         if len(s.get("subjects", [])) >= 2 and not is_macro and not is_ots_or_pov:
             flat_streak.append(s["shot_id"])
             if len(flat_streak) >= 3:
