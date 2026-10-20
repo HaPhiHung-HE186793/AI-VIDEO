@@ -234,12 +234,14 @@ def score_take(q: dict) -> float:
             + 0.2 * q.get("aesthetic_1_10", q["overall_score_1_10"]) - 0.7 * minors)
 
 
-def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None) -> dict:
+def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chain_next: bool = False) -> dict:
     """Quyết định take + cửa sổ cắt. Trả về {take, edit_in, edit_out, score, reason} hoặc {retake: True, reasons}.
 
     pref: độ dài cắt mong muốn (mặc định preferred_shot_sec; shot trong beat dùng đúng phần chia của beat).
+    chain_next: True nếu shot kế tiếp có `chain_from_prev=True` (nối từ frame cuối của shot này).
     """
     pref = float(pref if pref is not None else cfg["editorial"].get("preferred_shot_sec", 4.0))
+    chain_prev = bool(shot.get("chain_from_prev"))
     candidates, reasons = [], []
     for t in shot.get("takes", []):
         q = t.get("qa") or {}
@@ -260,10 +262,22 @@ def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None) -> d
             reasons.append(f"{tag}: đoạn sạch dài nhất {0 if not best else best[1] - best[0]:.1f}s < cần {need_sec:.1f}s")
             continue
         length = min(best[1] - best[0], max(need_sec, pref))
-        # Đặt cửa sổ ở giữa đoạn sạch: tránh khựng đầu clip và đoạn "đỗ" cuối clip của Veo.
-        a = round(best[0] + (best[1] - best[0] - length) / 2, 2)
+        if chain_prev and chain_next and best[0] <= 0.25 and best[1] >= dur - 0.25:
+            a, b = round(best[0], 2), round(best[1], 2)
+        elif chain_next and best[1] >= dur - 0.25:
+            # Shot nối tiếp bắt đầu từ frame cuối của shot này -> neo cửa sổ sát cuối để khớp Daisy-Chain.
+            b = round(best[1], 2)
+            a = round(max(best[0], b - length), 2)
+        elif chain_prev and best[0] <= 0.25:
+            # Shot này bắt đầu từ frame cuối của shot trước -> neo cửa sổ sát đầu (0.0s) để nối không vết cắt.
+            a = round(best[0], 2)
+            b = round(min(best[1], a + length), 2)
+        else:
+            # Đặt cửa sổ ở giữa đoạn sạch: tránh khựng đầu clip và đoạn "đỗ" cuối clip của Veo.
+            a = round(best[0] + (best[1] - best[0] - length) / 2, 2)
+            b = round(a + length, 2)
         score = score_take(v) + (0.5 if v.get("verdict") == "pass" else -2.0)
-        candidates.append({"take": t["take"], "edit_in": a, "edit_out": round(a + length, 2), "score": round(score, 2),
+        candidates.append({"take": t["take"], "edit_in": a, "edit_out": b, "score": round(score, 2),
                            "window": best})
     if not candidates:
         return {"retake": True, "reasons": reasons}

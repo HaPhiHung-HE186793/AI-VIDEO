@@ -24,7 +24,7 @@ UI = {
     "clear_prompt": "button[aria-label='Xoá câu lệnh']",
     "bulk_download": "button[aria-label='Tải xuống hàng loạt']",
     "editor_download": "button[aria-label='Tải nội dung nghe nhìn xuống']",
-    "ingredient_search": "input[placeholder='Tìm kiếm thành phần']",
+    "ingredient_search": "input[placeholder*='Tìm kiếm']",
     "group_mode": "Chế độ",
     "group_aspect": "Tỷ lệ khung hình",
     "group_duration": "Thời lượng video",
@@ -182,6 +182,17 @@ class Flow:
             raise FlowError(f"Không mở được dự án Flow {self.project_url} (trang hiện tại: {self.page.url[:120]}). "
                             "Chrome điều khiển trên máy này phải đăng nhập ĐÚNG tài khoản Google đã tạo dự án.")
         self.page.bring_to_front()
+        try:
+            if self.page.evaluate("() => window.innerWidth") < 1000:
+                pcdp = self.page.context.new_cdp_session(self.page)
+                win = pcdp.send("Browser.getWindowForTarget")
+                pcdp.send("Browser.setWindowBounds", {
+                    "windowId": win["windowId"],
+                    "bounds": {"width": 1280, "height": 960, "windowState": "normal"},
+                })
+                self.page.wait_for_timeout(400)
+        except Exception:
+            pass
         if self.download_dir:
             self.download_dir.mkdir(parents=True, exist_ok=True)
             self._cdp = self.browser.new_browser_cdp_session()
@@ -385,12 +396,14 @@ class Flow:
         self.page.get_by_role("button", name=UI["start_slot"], exact=True).first.click()
         self.page.locator(UI["ingredient_search"]).last.wait_for(timeout=8000)
         self._pick_in_picker(path=path, stage_dir=stage_dir, uid=uid)
+        self.wait(0.8)
 
     def set_end_frame(self, path: Path, stage_dir: Path = None, uid: str = ""):
         self.close_panels()
         self.page.get_by_role("button", name=UI["end_slot"], exact=True).first.click()
         self.page.locator(UI["ingredient_search"]).last.wait_for(timeout=8000)
         self._pick_in_picker(path=path, stage_dir=stage_dir, uid=uid)
+        self.wait(0.8)
 
     def submit(self):
         btn = self.page.locator(UI["submit"])
@@ -415,20 +428,25 @@ class Flow:
         self.back_to_grid()
         clicked = self.page.evaluate(
             r"""(lbl) => {
-                const wantIcon = /hình ảnh|image/i.test(lbl) ? 'image' : (/video|cảnh/i.test(lbl) ? 'movie' : '');
-                const btns = [...document.querySelectorAll('button')].filter(b => b.getBoundingClientRect().width > 0 && b.getBoundingClientRect().left < 280);
-                const hit = btns.find(b => {
-                    const tc = (b.textContent || '').trim();
-                    const it = (b.innerText || '').trim();
-                    return tc.includes(lbl) || (wantIcon && (it === wantIcon || tc.startsWith(wantIcon + ' ')));
-                });
-                if (hit) { hit.click(); return true; }
+                const wantIcon = /hình ảnh|image/i.test(lbl) ? 'image' : (/video/i.test(lbl) ? 'videocam' : '');
+                const allBtns = [...document.querySelectorAll('button, [mat-list-item]')];
+                const visBtns = allBtns.filter(b => b.getBoundingClientRect().width > 0 && b.getBoundingClientRect().left < 280);
+                for (const pool of [visBtns, allBtns]) {
+                    const hit = pool.find(b => {
+                        const tc = (b.textContent || '').trim();
+                        const it = (b.innerText || '').trim();
+                        return tc.includes(lbl) || (wantIcon && (it === wantIcon || it.startsWith(wantIcon + ' ') || tc.startsWith(wantIcon)));
+                    });
+                    if (hit) { hit.click(); return true; }
+                }
                 return false;
             }""",
             label,
         )
         if not clicked:
-            self.page.get_by_text(label, exact=True).first.click()
+            loc = self.page.get_by_text(label, exact=True).first
+            if loc.is_visible():
+                loc.click()
         self.wait(2.5)
         self.page.evaluate(JS_SCROLLER, None)
         self.wait(1)
@@ -466,8 +484,8 @@ class Flow:
             texts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"])
             progressed, seen_count = False, {}
             for i, txt in enumerate(texts):
-                # Hàng đang render dở (có chỉ báo %) → bỏ qua ở vòng quét này, chờ vòng sau khi hoàn tất 100%
-                if re.search(r"\b\d{1,3}%", txt):
+                # Hàng đang render dở (có chỉ báo %) → bỏ qua ở vòng đầu; nếu vòng sau vẫn kẹt 99% nhưng đã có ít nhất 1 video xong (play_arrow) thì vẫn tải.
+                if re.search(r"\b\d{1,3}%", txt) and (stall == 0 or kind == "image" or "play_arrow" not in txt):
                     continue
                 # Hai hàng có thể trùng chữ (tạo lại cùng prompt) → khóa = chữ + thứ tự xuất hiện.
                 seen_count[txt] = seen_count.get(txt, 0) + 1
@@ -480,6 +498,12 @@ class Flow:
                 if not sid or sid in skip_shots or (only_shots and sid not in only_shots):
                     continue
                 if sid in quota and quota[sid] <= 0:
+                    continue
+                if kind == "video" and "Không thành công" in txt and "play_arrow" not in txt:
+                    row = {"shot": sid, "error": "Flow báo Không thành công trên cả hàng", "row_text": txt[:120]}
+                    results.append(row)
+                    if on_row:
+                        on_row(row)
                     continue
                 btn = self.page.locator(UI["bulk_download"]).nth(i)
                 btn.scroll_into_view_if_needed()
@@ -497,8 +521,22 @@ class Flow:
                     btn = self.page.locator(UI["bulk_download"]).nth(i)
                     btn.scroll_into_view_if_needed()
                 before = {f for d in watch for f in d.iterdir()}
-                btn.click()
-                got = self._wait_new_file(watch, before, timeout)
+                partial_hung = kind == "video" and bool(re.search(r"\b\d{1,3}%", txt)) and "play_arrow" in txt
+                got = None
+                if not partial_hung:
+                    btn.click()
+                    got = self._wait_new_file(watch, before, timeout)
+                if not got and kind == "video" and "play_arrow" in txt:
+                    try:
+                        self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], i, 0])
+                        self.page.wait_for_url(re.compile(r"/edit/"), timeout=15000)
+                        self.wait(1.5)
+                        got = self._download_from_editor("720", watch, timeout)
+                    except Exception:
+                        pass
+                    finally:
+                        if "/edit/" in self.page.url:
+                            self._filter(UI["filter_video"])
                 if not got:
                     row = {"shot": sid, "error": "timeout", "row_text": txt[:120]}
                     results.append(row)

@@ -1533,6 +1533,11 @@ def cmd_qa_takes_submit(args, cfg):
 def cmd_auto_select(args, cfg):
     proj = proj_dir_of(args)
     m = mf.load(proj)
+    ordered = mf.ordered_shots(m)
+    next_chained = {
+        ordered[i]["shot_id"]: bool(ordered[i + 1].get("chain_from_prev"))
+        for i in range(len(ordered) - 1)
+    }
     report = []
     for s in takes.shots_with_takes(m, args.shots):
         if s.get("lock_take"):
@@ -1540,7 +1545,8 @@ def cmd_auto_select(args, cfg):
             continue
         need = takes.needed_seconds(proj, s, cfg, m)
         in_beat = s.get("beat") in bt.beats_by_id(m)
-        d = takes.choose_take(s, need, cfg, pref=need if in_beat else None)
+        d = takes.choose_take(s, need, cfg, pref=need if in_beat else None,
+                              chain_next=next_chained.get(s["shot_id"], False))
         if d.get("retake"):
             rounds = sum(1 for j in m.get("flow_jobs", []) if j["shot"] == s["shot_id"] and j["kind"] == "video")
             cap = cfg["credits"].get("max_retakes_per_shot", 2)
