@@ -216,7 +216,7 @@
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_01.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -371,11 +371,11 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 3.61,
+      "edit_in": 3.46,
       "edit_out": 8.0,
       "auto_selection": {
         "take": 1,
-        "edit_in": 3.61,
+        "edit_in": 3.46,
         "edit_out": 8.0,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
@@ -386,7 +386,37 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            },
+            {
+              "level": "warn",
+              "code": "AUDIO_CLIPPING",
+              "msg": "Audio chạm 0 dBFS (méo/clipping)."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_01_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT"
+          ],
+          "notes": "Nam ngồi tại bàn podcast với mic boom-arm và đèn bàn ấm, đẩy máy mượt vào cận cảnh rồi hạ tay xuống bàn ở cuối shot khớp hoàn toàn với shot_02.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_02",
@@ -410,7 +440,7 @@
       "transition_to_next": "SCENE_CUT",
       "transition_out": "dissolve",
       "clip_output_path": "assets/clips/shot_02.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -490,11 +520,11 @@
       ],
       "selected_take": 1,
       "edit_in": 0.0,
-      "edit_out": 4.39,
+      "edit_out": 4.54,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.0,
-        "edit_out": 4.39,
+        "edit_out": 4.54,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
         "alternatives": [],
@@ -502,7 +532,32 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_02_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT"
+          ],
+          "notes": "Nối liền mạch Daisy-Chain từ shot_01, Nam mở hai tay kể chuyện tự nhiên trước micro phòng thu.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_03",
@@ -527,7 +582,7 @@
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_03.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -690,11 +745,11 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 2.8,
+      "edit_in": 2.65,
       "edit_out": 8.0,
       "auto_selection": {
         "take": 2,
-        "edit_in": 2.8,
+        "edit_in": 2.65,
         "edit_out": 8.0,
         "score": 17.8,
         "reason": "điểm 17.8 (cao nhất / 2 take đạt)",
@@ -705,7 +760,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_03_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT",
+            "CHAR_HOANG_ANH"
+          ],
+          "notes": "Nam đẩy cửa bước vào quán cafe rooftop buổi hoàng hôn và vẫy chào Hoàng Anh đang ngồi đầu bàn.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_04",
@@ -730,7 +811,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_04.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -870,11 +951,11 @@
       ],
       "selected_take": 1,
       "edit_in": 0.0,
-      "edit_out": 5.2,
+      "edit_out": 5.35,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.0,
-        "edit_out": 5.2,
+        "edit_out": 5.35,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -884,7 +965,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_04_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT",
+            "CHAR_HOANG_ANH"
+          ],
+          "notes": "Nối trực tiếp từ shot_03, Nam vỗ vai Hoàng Anh chào hỏi rôm rả dưới ánh đèn dây vàng ấm.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_05",
@@ -909,7 +1016,7 @@
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_05.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1051,11 +1158,11 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 2.11,
+      "edit_in": 1.96,
       "edit_out": 8.0,
       "auto_selection": {
         "take": 2,
-        "edit_in": 2.11,
+        "edit_in": 1.96,
         "edit_out": 8.0,
         "score": 19.0,
         "reason": "điểm 19.0 (cao nhất / 2 take đạt)",
@@ -1066,7 +1173,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_05_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_TAN",
+            "CHAR_WIFE"
+          ],
+          "notes": "Vũ Tấn áo polo kem ngồi cạnh Linh mặc cardigan be dịu dàng dưới ánh đèn dây rooftop.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_06",
@@ -1091,7 +1224,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_06.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1179,11 +1312,11 @@
       ],
       "selected_take": 1,
       "edit_in": 0.0,
-      "edit_out": 5.89,
+      "edit_out": 6.04,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.0,
-        "edit_out": 5.89,
+        "edit_out": 6.04,
         "score": 15.8,
         "reason": "điểm 15.8 (cao nhất / 1 take đạt)",
         "alternatives": [],
@@ -1191,7 +1324,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_06_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 8,
+          "identity_match": [
+            "CHAR_TAN",
+            "CHAR_WIFE"
+          ],
+          "notes": "Nối mượt từ shot_05, Vũ Tấn và Linh mỉm cười trò chuyện thân mật tại bàn gỗ rooftop.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_07",
@@ -1216,7 +1375,7 @@
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_07.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1359,11 +1518,11 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 0.48,
+      "edit_in": 0.33,
       "edit_out": 8.0,
       "auto_selection": {
         "take": 2,
-        "edit_in": 0.48,
+        "edit_in": 0.33,
         "edit_out": 8.0,
         "score": 18.8,
         "reason": "điểm 18.8 (cao nhất / 2 take đạt)",
@@ -1374,7 +1533,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_07_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT",
+            "CHAR_TAN"
+          ],
+          "notes": "Nam nghiêng người qua bàn gỗ chỉ hai ngón tay trêu chọc Vũ Tấn với nụ cười tinh nghịch.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_08",
@@ -1399,7 +1584,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_08.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1479,11 +1664,11 @@
       ],
       "selected_take": 1,
       "edit_in": 0.0,
-      "edit_out": 7.52,
+      "edit_out": 7.67,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.0,
-        "edit_out": 7.52,
+        "edit_out": 7.67,
         "score": 20.3,
         "reason": "điểm 20.3 (cao nhất / 1 take đạt)",
         "alternatives": [],
@@ -1491,7 +1676,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_08_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 10,
+          "identity_match": [
+            "CHAR_DAT",
+            "CHAR_TAN"
+          ],
+          "notes": "Nối không vết cắt từ shot_07: nụ cười của Nam tắt dần kèm giọt mồ hôi ngượng ngùng khi cả bàn im bặt.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_09",
@@ -1515,7 +1726,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_09.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1657,12 +1868,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 0.54,
-      "edit_out": 7.46,
+      "edit_in": 0.46,
+      "edit_out": 7.53,
       "auto_selection": {
         "take": 1,
-        "edit_in": 0.54,
-        "edit_out": 7.46,
+        "edit_in": 0.46,
+        "edit_out": 7.53,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -1672,7 +1883,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_09_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_HOANG_ANH",
+            "CHAR_DAT"
+          ],
+          "notes": "Hoàng Anh cười lớn vỗ vai trêu Nam đang đứng hình sững sờ vì tin Vũ Tấn đã cưới vợ.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_10",
@@ -1697,7 +1934,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_10.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1855,12 +2092,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 0.54,
-      "edit_out": 7.46,
+      "edit_in": 0.46,
+      "edit_out": 7.53,
       "auto_selection": {
         "take": 1,
-        "edit_in": 0.54,
-        "edit_out": 7.46,
+        "edit_in": 0.46,
+        "edit_out": 7.53,
         "score": 17.8,
         "reason": "điểm 17.8 (cao nhất / 1 take đạt)",
         "alternatives": [],
@@ -1868,7 +2105,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_10_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_TAN",
+            "CHAR_WIFE"
+          ],
+          "notes": "Vũ Tấn gật đầu xác nhận đầy tự hào trong khi Linh che miệng cười bẽn lẽn.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_11",
@@ -1896,7 +2159,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_11.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -1992,12 +2255,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 1.21,
-      "edit_out": 6.8,
+      "edit_in": 1.13,
+      "edit_out": 6.87,
       "auto_selection": {
         "take": 1,
-        "edit_in": 1.21,
-        "edit_out": 6.8,
+        "edit_in": 1.13,
+        "edit_out": 6.87,
         "score": 18.8,
         "reason": "điểm 18.8 (cao nhất / 1 take đạt)",
         "alternatives": [],
@@ -2005,7 +2268,34 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_11_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_HOANG_ANH",
+            "CHAR_DAT",
+            "PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS"
+          ],
+          "notes": "Hoàng Anh giơ điện thoại hiển thị album ảnh cưới trước mặt Nam đang ôm đầu mếu máo.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_12",
@@ -2029,7 +2319,7 @@
       "transition_to_next": "INTRA_SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_12.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -2175,12 +2465,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 1.21,
-      "edit_out": 6.8,
+      "edit_in": 1.13,
+      "edit_out": 6.87,
       "auto_selection": {
         "take": 1,
-        "edit_in": 1.21,
-        "edit_out": 6.8,
+        "edit_in": 1.13,
+        "edit_out": 6.87,
         "score": 18.8,
         "reason": "điểm 18.8 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -2190,7 +2480,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_12_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT",
+            "CHAR_TAN"
+          ],
+          "notes": "Nam dang hai tay hỏi 'Thiệp cưới tao đâu?' đầy bức xúc hài hước trong khi Vũ Tấn bật cười.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_13",
@@ -2216,7 +2532,7 @@
       "transition_to_next": "SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_13.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -2325,12 +2641,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 0.1,
-      "edit_out": 7.89,
+      "edit_in": 0.03,
+      "edit_out": 7.97,
       "auto_selection": {
         "take": 1,
-        "edit_in": 0.1,
-        "edit_out": 7.89,
+        "edit_in": 0.03,
+        "edit_out": 7.97,
         "score": 15.8,
         "reason": "điểm 15.8 (cao nhất / 1 take đạt)",
         "alternatives": [],
@@ -2338,7 +2654,34 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_13_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 8,
+          "identity_match": [
+            "CHAR_TAN",
+            "CHAR_DAT",
+            "CHAR_WIFE"
+          ],
+          "notes": "Vũ Tấn và Linh quay sang dỗ dành Nam đang khoanh tay phồng má dỗi hờn giữa tiếng cười của hội bạn.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_14",
@@ -2362,7 +2705,7 @@
       "transition_to_next": "SCENE_CUT",
       "transition_out": "dissolve",
       "clip_output_path": "assets/clips/shot_14.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -2512,12 +2855,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 0.87,
-      "edit_out": 7.14,
+      "edit_in": 0.67,
+      "edit_out": 7.34,
       "auto_selection": {
         "take": 1,
-        "edit_in": 0.87,
-        "edit_out": 7.14,
+        "edit_in": 0.67,
+        "edit_out": 7.34,
         "score": 18.8,
         "reason": "điểm 18.8 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -2527,7 +2870,32 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_14_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 9,
+          "identity_match": [
+            "CHAR_DAT"
+          ],
+          "notes": "Nam giật mình tỉnh dậy trên giường lúc 6:35 sáng, tắt đồng hồ báo thức và nhìn điện thoại ngơ ngác.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     },
     {
       "shot_id": "shot_15",
@@ -2554,7 +2922,7 @@
       "transition_to_next": "SCENE_CUT",
       "transition_out": "cut",
       "clip_output_path": "assets/clips/shot_15.mp4",
-      "status": "qa_pass",
+      "status": "approved",
       "takes": [
         {
           "take": 1,
@@ -2696,12 +3064,12 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 0.87,
-      "edit_out": 7.14,
+      "edit_in": 0.67,
+      "edit_out": 7.34,
       "auto_selection": {
         "take": 2,
-        "edit_in": 0.87,
-        "edit_out": 7.14,
+        "edit_in": 0.67,
+        "edit_out": 7.34,
         "score": 20.3,
         "reason": "điểm 20.3 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -2711,7 +3079,33 @@
           0.0,
           8.0
         ]
-      }
+      },
+      "qa": {
+        "technical": {
+          "verdict": "warn",
+          "findings": [
+            {
+              "level": "warn",
+              "code": "LOW_RESOLUTION",
+              "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
+            }
+          ],
+          "checked_at": "2026-10-20T15:39:45"
+        },
+        "contact_sheet": "assets/qa/shot_15_qa_grid.jpg",
+        "vision": {
+          "verdict": "pass",
+          "overall_score_1_10": 10,
+          "identity_match": [
+            "CHAR_DAT",
+            "PROP_RED_WEDDING_INVITATION_CARD"
+          ],
+          "notes": "Nam ngồi tại phòng thu podcast giơ tấm thiệp cưới màu đỏ truyền thống và chỉ tay nhắn nhủ hội bạn thân.",
+          "reviewer": "agent",
+          "checked_at": "2026-10-20T15:39:45"
+        }
+      },
+      "approved_at": "2026-10-20T15:42:36"
     }
   ],
   "title": "Giấc Mơ Vô Tri: Vũ Tấn Cưới Vợ & Tấm Thiệp Hồng Bị Bỏ Quên",
@@ -2793,70 +3187,6 @@
     }
   ],
   "session_log": [
-    {
-      "at": "2026-10-20T13:08:24",
-      "machine": "user",
-      "command": "voiceover",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:08:54",
-      "machine": "user",
-      "command": "flow-harvest",
-      "args": "--kind image --wait",
-      "ok": false,
-      "error": "TimeoutError: Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"Hình ảnh\", exact=True).first\n    - locator resolved to <span matlistitemtitle=\"\" _ngcontent-ng-c2216501471=\"\" class=\"mat-mdc-list-item-title mdc-list-item__primary-text\">Hình ảnh</span>\n  - attempting click"
-    },
-    {
-      "at": "2026-10-20T13:13:05",
-      "machine": "user",
-      "command": "flow-harvest",
-      "args": "--kind image --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:16:33",
-      "machine": "user",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:19:52",
-      "machine": "user",
-      "command": "flow-harvest",
-      "args": "--kind image --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:19:52",
-      "machine": "user",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:20:45",
-      "machine": "user",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_14,shot_15",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:20:45",
-      "machine": "user",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T13:23:51",
-      "machine": "user",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
     {
       "at": "2026-10-20T13:28:22",
       "machine": "user",
@@ -3076,12 +3406,75 @@
       "command": "assemble",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-20T15:39:39",
+      "machine": "user",
+      "command": "auto-select",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:39:45",
+      "machine": "user",
+      "command": "qa",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:39:45",
+      "machine": "user",
+      "command": "qa-vision-submit",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:39:52",
+      "machine": "user",
+      "command": "score",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:40:00",
+      "machine": "user",
+      "command": "thumbnail",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:42:04",
+      "machine": "user",
+      "command": "assemble",
+      "args": "--burn-subs",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:42:36",
+      "machine": "user",
+      "command": "approve",
+      "args": "--shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,shot_14,shot_15",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:42:38",
+      "machine": "user",
+      "command": "thumbnail",
+      "args": "--shot shot_15 --at 5.2 --title GIẤC MƠ VÔ TRI --subtitle VŨ TẤN CƯỚI VỢ & THIỆP HỒNG BỊ BỎ QUÊN",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T15:43:57",
+      "machine": "user",
+      "command": "note",
+      "args": "",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-20T15:36:09",
+    "at": "2026-10-20T15:43:57",
     "machine": "user",
-    "command": "assemble"
+    "command": "note"
   },
   "project_code": "PGMTC",
   "flow_project_url": "https://flow.google.com/project/ae209c27-c53b-44e4-b736-245f059d3ba1",
@@ -3497,5 +3890,20 @@
     "approved_hash": "8ebac3d805dff2fc",
     "approved_at": "2026-10-20T15:13:31",
     "approved_by": "user"
-  }
+  },
+  "music_path": "assets/audio/music/score_auto.wav",
+  "music_source": {
+    "kind": "procedural",
+    "mood": "podcast_lofi",
+    "seed": 7,
+    "license": "tự tổng hợp, miễn bản quyền"
+  },
+  "handoff_notes": [
+    {
+      "at": "2026-10-20T15:43:57",
+      "machine": "user",
+      "kind": "decision",
+      "text": "Hoàn tất kết xuất final_video.mp4 (98.38s, 1920x1080, -14.0 LUFS, 3 lớp âm thanh + phụ đề in cứng) bằng quy trình 100% Keyframe-First (30 START/END frames) + Daisy-Chain bảo toàn biên nối + Hybrid Audio."
+    }
+  ]
 }

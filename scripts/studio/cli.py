@@ -1545,7 +1545,7 @@ def cmd_auto_select(args, cfg):
             continue
         need = takes.needed_seconds(proj, s, cfg, m)
         in_beat = s.get("beat") in bt.beats_by_id(m)
-        d = takes.choose_take(s, need, cfg, pref=need if in_beat else None,
+        d = takes.choose_take(s, need, cfg, pref=round(need + 0.15, 2) if in_beat else None,
                               chain_next=next_chained.get(s["shot_id"], False))
         if d.get("retake"):
             rounds = sum(1 for j in m.get("flow_jobs", []) if j["shot"] == s["shot_id"] and j["kind"] == "video")

@@ -52,7 +52,15 @@ def shot_need(proj: Path, project: dict, shot: dict, cfg: dict) -> float:
     """Thời lượng hình tối thiểu cho một shot trong beat: chia đều nhu cầu của beat, không dưới min_beat_shot_sec."""
     ed = cfg["editorial"]
     beat = beats_by_id(project).get(shot.get("beat"))
-    n = max(1, len(shots_in_beat(project, shot["beat"]))) if beat else 1
+    b_shots = shots_in_beat(project, shot["beat"]) if beat else []
+    n = max(1, len(b_shots))
     total = beat_total_need(proj, beat, cfg) if beat else 0.0
+    if total and len(b_shots) > 1:
+        overlap = sum(
+            float(s.get("transition_sec", ed.get("dissolve_sec", 0.5)))
+            for s in b_shots[:-1]
+            if s.get("transition_out", "cut") in ("dissolve", "fade_black")
+        )
+        total += overlap
     share = total / n if total else float(ed.get("preferred_shot_sec", 4.0))
     return round(max(float(ed.get("min_beat_shot_sec", 2.0)), share), 2)

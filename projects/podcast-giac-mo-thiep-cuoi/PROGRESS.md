@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `podcast-giac-mo-thiep-cuoi` — thư mục `projects/podcast-giac-mo-thiep-cuoi/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/ae209c27-c53b-44e4-b736-245f059d3ba1
 - **Ngôn ngữ / khung:** vi / 16:9; giọng dẫn `Charon`
-- **Cập nhật lần cuối:** 2026-10-20T15:36:09 trên máy **user** (lệnh `assemble`)
+- **Cập nhật lần cuối:** 2026-10-20T15:43:57 trên máy **user** (lệnh `note`)
 - **Storyboard:** đã duyệt (8ebac3d805dff2fc)
 
 ## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
@@ -42,21 +42,21 @@ python scripts/studio_helper.py flow-harvest --project podcast-giac-mo-thiep-cuo
 
 | # | Shot | Beat | Trạng thái | Take chọn | 1080p | Cắt |
 |---|---|---|---|---|---|---|
-| 1 | shot_01 | b01_hook | qa_pass | 1 / 2 |  | 3.61–8.00 |
-| 2 | shot_02 | b01_hook | qa_pass | 1 / 1 |  | 0.00–4.39 |
-| 3 | shot_03 | b02_rooftop_reunion | qa_pass | 2 / 2 |  | 2.80–8.00 |
-| 4 | shot_04 | b02_rooftop_reunion | qa_pass | 1 / 2 |  | 0.00–5.20 |
-| 5 | shot_05 | b03_mystery_bride | qa_pass | 2 / 2 |  | 2.11–8.00 |
-| 6 | shot_06 | b03_mystery_bride | qa_pass | 1 / 1 |  | 0.00–5.89 |
-| 7 | shot_07 | b04_tease_and_silence | qa_pass | 2 / 2 |  | 0.48–8.00 |
-| 8 | shot_08 | b04_tease_and_silence | qa_pass | 1 / 1 |  | 0.00–7.52 |
-| 9 | shot_09 | b05_wife_bombshell | qa_pass | 1 / 2 |  | 0.54–7.46 |
-| 10 | shot_10 | b05_wife_bombshell | qa_pass | 1 / 2 |  | 0.54–7.46 |
-| 11 | shot_11 | b06_clone_acc_and_missing_card | qa_pass | 1 / 1 |  | 1.21–6.80 |
-| 12 | shot_12 | b06_clone_acc_and_missing_card | qa_pass | 1 / 2 |  | 1.21–6.80 |
-| 13 | shot_13 | b07_sulking_paparazzi | qa_pass | 1 / 1 |  | 0.10–7.89 |
-| 14 | shot_14 | b08_alarm_and_psa | qa_pass | 1 / 2 |  | 0.87–7.14 |
-| 15 | shot_15 | b08_alarm_and_psa | qa_pass | 2 / 2 |  | 0.87–7.14 |
+| 1 | shot_01 | b01_hook | approved | 1 / 2 |  | 3.46–8.00 |
+| 2 | shot_02 | b01_hook | approved | 1 / 1 |  | 0.00–4.54 |
+| 3 | shot_03 | b02_rooftop_reunion | approved | 2 / 2 |  | 2.65–8.00 |
+| 4 | shot_04 | b02_rooftop_reunion | approved | 1 / 2 |  | 0.00–5.35 |
+| 5 | shot_05 | b03_mystery_bride | approved | 2 / 2 |  | 1.96–8.00 |
+| 6 | shot_06 | b03_mystery_bride | approved | 1 / 1 |  | 0.00–6.04 |
+| 7 | shot_07 | b04_tease_and_silence | approved | 2 / 2 |  | 0.33–8.00 |
+| 8 | shot_08 | b04_tease_and_silence | approved | 1 / 1 |  | 0.00–7.67 |
+| 9 | shot_09 | b05_wife_bombshell | approved | 1 / 2 |  | 0.46–7.53 |
+| 10 | shot_10 | b05_wife_bombshell | approved | 1 / 2 |  | 0.46–7.53 |
+| 11 | shot_11 | b06_clone_acc_and_missing_card | approved | 1 / 1 |  | 1.13–6.87 |
+| 12 | shot_12 | b06_clone_acc_and_missing_card | approved | 1 / 2 |  | 1.13–6.87 |
+| 13 | shot_13 | b07_sulking_paparazzi | approved | 1 / 1 |  | 0.03–7.97 |
+| 14 | shot_14 | b08_alarm_and_psa | approved | 1 / 2 |  | 0.67–7.34 |
+| 15 | shot_15 | b08_alarm_and_psa | approved | 2 / 2 |  | 0.67–7.34 |
 
 ## Beat & lời dẫn
 
@@ -71,30 +71,32 @@ python scripts/studio_helper.py flow-harvest --project podcast-giac-mo-thiep-cuo
 
 ## Đầu ra gần nhất
 
-- `output/final_video.mp4` (2026-10-20 15:36)
+- `output/final_video.mp4` (2026-10-20 15:42)
 
 ## Media trên máy này
 
-Đủ 72/72 file media trên máy **user**.
+Đủ 73/73 file media trên máy **user**.
+
+## Quyết định & ghi chú bàn giao
+
+- 2026-10-20 15:43 · user · decision: Hoàn tất kết xuất final_video.mp4 (98.38s, 1920x1080, -14.0 LUFS, 3 lớp âm thanh + phụ đề in cứng) bằng quy trình 100% Keyframe-First (30 START/END frames) + Daisy-Chain bảo toàn biên nối + Hybrid Audio.
 
 ## Nhật ký lệnh (mới nhất trước)
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-20 15:43 | user | `note ` | ok |
+| 10-20 15:42 | user | `thumbnail --shot shot_15 --at 5.2 --title GIẤC MƠ VÔ TRI --subtitle VŨ TẤN CƯỚI VỢ & THIỆP HỒNG BỊ BỎ QUÊN` | ok |
+| 10-20 15:42 | user | `approve --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,shot_14,shot_15` | ok |
+| 10-20 15:42 | user | `assemble --burn-subs` | ok |
+| 10-20 15:40 | user | `thumbnail ` | ok |
+| 10-20 15:39 | user | `score ` | ok |
+| 10-20 15:39 | user | `qa-vision-submit ` | ok |
+| 10-20 15:39 | user | `qa ` | ok |
+| 10-20 15:39 | user | `auto-select ` | ok |
 | 10-20 15:36 | user | `assemble ` | ok |
 | 10-20 15:33 | user | `auto-select ` | ok |
 | 10-20 15:32 | user | `auto-select ` | ok |
 | 10-20 15:32 | user | `qa-takes-submit ` | ok |
 | 10-20 15:26 | user | `qa-vision ` | ok |
 | 10-20 15:26 | user | `qa-takes ` | ok |
-| 10-20 15:25 | user | `flow-harvest --kind video --shots shot_06,shot_08` | ok |
-| 10-20 15:22 | user | `register-clip --shot shot_06 --clip projects/podcast-giac-mo-thiep-cuoi/assets/clips/_incoming/shot_06_take01.mp4 --mode first_last --model Veo 3.1 - Fast` | ❌ FileNotFoundError: [Errno 2] No such file or directory: 'projects/podcast-giac-m |
-| 10-20 15:20 | user | `qa-vision --reviewer agent` | ok |
-| 10-20 15:20 | user | `qa-takes ` | ok |
-| 10-20 15:20 | user | `register-clip --shot shot_06 --clip projects/podcast-giac-mo-thiep-cuoi/assets/clips/_incoming/shot_06_take01.mp4` | ❌ FileNotFoundError: [Errno 2] No such file or directory: 'projects/podcast-giac-m |
-| 10-20 15:19 | user | `flow-harvest --kind video --shots shot_06,shot_08,shot_10 --all --wait` | ok |
-| 10-20 15:16 | user | `flow-generate --kind video --shots shot_10 --count 2` | ok |
-| 10-20 15:13 | user | `flow-generate --kind video --shots shot_10 --count 2` | ❌ TimeoutError: Locator.wait_for: Timeout 8000ms exceeded.
-Call log:
-  - waiting f |
-| 10-20 15:13 | user | `storyboard-approve --by user` | ok |
