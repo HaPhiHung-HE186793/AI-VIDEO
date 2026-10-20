@@ -627,6 +627,30 @@
           "code": "FIRST_LAST_FRAMING",
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02B_START_c01.jpg",
+          "sha256": "95a5166202bfb181108f40a3717b530248ea82fcc431e25b40fcd6e73c64829e",
+          "uid": "KF_TRVSSB_S02B_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02B_START_c02.jpg",
+          "sha256": "5a4ba268b01b0a4c730e85eb60467a5d4f4a471378750b5b826b4ed46d1f8c83",
+          "uid": "KF_TRVSSB_S02B_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02B_END_c01.jpg",
+          "sha256": "7f30751c26c2de8a922267192483ba79962d9383520e4f7921528c9fd14d112d",
+          "uid": "KF_TRVSSB_S02B_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02B_END_c02.jpg",
+          "sha256": "050e2ebe7690ef80d441241d22dc2ec47ce091997c4391634358dee1824623d9",
+          "uid": "KF_TRVSSB_S02B_END"
+        }
       ]
     },
     {
@@ -1102,6 +1126,30 @@
           "level": "info",
           "code": "FIRST_LAST_FRAMING",
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04B_START_c01.jpg",
+          "sha256": "c716178261bb28dbb7601a8f410eb30fcc76a06e04b044f414a6646c6ed219d5",
+          "uid": "KF_TRVSSB_S04B_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04B_START_c02.jpg",
+          "sha256": "ca46c48c49c52c0ef059c796c633dbbfffa4dbbc8aa702bd3375d9bc2056eb1c",
+          "uid": "KF_TRVSSB_S04B_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04B_END_c01.jpg",
+          "sha256": "1622ea282d63e555513537d0b9316e0a068f4ee348678de9ac0350bde5999b17",
+          "uid": "KF_TRVSSB_S04B_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04B_END_c02.jpg",
+          "sha256": "ccb838023f397fc589e9f27f7fec05b9438cd1608da917dea8d77272df4114c8",
+          "uid": "KF_TRVSSB_S04B_END"
         }
       ]
     },
@@ -1813,6 +1861,30 @@
           "code": "FIRST_LAST_FRAMING",
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06C_START_c01.jpg",
+          "sha256": "c07ceca0d994bb00e53b7cb8ba045aef72a346b454d7f3448c61714510cf523e",
+          "uid": "KF_TRVSSB_S06C_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06C_START_c02.jpg",
+          "sha256": "9434772b786d8e2dd83486f64e3050d145e9cb749e12dd7c7b8210636ee73991",
+          "uid": "KF_TRVSSB_S06C_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06C_END_c01.jpg",
+          "sha256": "7e3316422e911e0f06175e2245cb1ee67f82e2318ae0ba85d8d614b129744e59",
+          "uid": "KF_TRVSSB_S06C_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06C_END_c02.jpg",
+          "sha256": "134135311705ef7863f3ff134a85ace131f6153e85c0504c50443ff2f36be52c",
+          "uid": "KF_TRVSSB_S06C_END"
+        }
       ]
     },
     {
@@ -2240,51 +2312,6 @@
   ],
   "session_log": [
     {
-      "at": "2026-10-20T21:19:06",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard-approve",
-      "args": "--by user",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:23:03",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind video --count 2 --max-credits 2000",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:26:36",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind video --wait --wait-timeout 900",
-      "ok": false,
-      "error": "TimeoutError: Locator.scroll_into_view_if_needed: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"button[aria-label='Tải xuống hàng loạt']\").nth(8)\n"
-    },
-    {
-      "at": "2026-10-20T21:26:55",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "qa-takes",
-      "args": "--reviewer agent",
-      "ok": false,
-      "error": "KeyError: 'check'"
-    },
-    {
-      "at": "2026-10-20T21:28:27",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind video --wait --wait-timeout 420",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:29:01",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "qa-takes",
-      "args": "--reviewer agent",
-      "ok": false,
-      "error": "KeyError: 'check'"
-    },
-    {
       "at": "2026-10-20T21:29:44",
       "machine": "DESKTOP-HUP72C4",
       "command": "flow-harvest",
@@ -2527,12 +2554,54 @@
       "command": "lint-prompts",
       "args": "--strict",
       "ok": true
+    },
+    {
+      "at": "2026-10-20T22:57:10",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_02b,shot_04b,shot_06c",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:57:51",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_02b,shot_04b,shot_06c --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:58:55",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_02b,shot_04b,shot_06c",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:59:39",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_02b,shot_04b,shot_06c --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T23:00:11",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T23:00:11",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard-approve",
+      "args": "--by user",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-20T22:55:42",
+    "at": "2026-10-20T23:00:11",
     "machine": "DESKTOP-HUP72C4",
-    "command": "lint-prompts"
+    "command": "storyboard-approve"
   },
   "flow_project_url": "https://flow.google.com/project/6d4a0c22-1a61-47bc-aac8-d2224a0dcbc2",
   "flow_jobs": [
@@ -2816,14 +2885,74 @@
       "credits": 200,
       "at": "2026-10-20T21:23:03",
       "harvested": "2026-10-20T21:28:07"
+    },
+    {
+      "shot": "shot_02b",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T22:56:50",
+      "harvested": "2026-10-20T22:57:44"
+    },
+    {
+      "shot": "shot_04b",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T22:57:00",
+      "harvested": "2026-10-20T22:57:39"
+    },
+    {
+      "shot": "shot_06c",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T22:57:10",
+      "harvested": "2026-10-20T22:57:49"
+    },
+    {
+      "shot": "shot_02b",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T22:58:21",
+      "harvested": "2026-10-20T22:59:38"
+    },
+    {
+      "shot": "shot_04b",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T22:58:38",
+      "harvested": "2026-10-20T22:59:34"
+    },
+    {
+      "shot": "shot_06c",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T22:58:55",
+      "harvested": "2026-10-20T22:59:29"
     }
   ],
   "storyboard": {
     "status": "approved",
-    "built_hash": "19f65ca1104f15fc",
-    "built_at": "2026-10-20T21:16:04",
-    "approved_hash": "19f65ca1104f15fc",
-    "approved_at": "2026-10-20T21:19:06",
+    "built_hash": "df2f92ee7430f075",
+    "built_at": "2026-10-20T23:00:11",
+    "approved_hash": "df2f92ee7430f075",
+    "approved_at": "2026-10-20T23:00:11",
     "approved_by": "user"
   },
   "handoff_notes": [
