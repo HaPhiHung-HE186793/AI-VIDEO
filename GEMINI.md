@@ -12,7 +12,7 @@ Quy trình chi tiết: skill [ai-video-studio](.agents/skills/ai-video-studio/SK
 
 ---
 
-## 8 nguyên tắc bắt buộc
+## 9 nguyên tắc bắt buộc
 
 1. **Manifest là nguồn sự thật duy nhất.** Mọi thứ (nhân vật, shot, prompt, take, QA) nằm trong `projects/<slug>/project_manifest.json`. Sửa ở đó rồi chạy lệnh; không chép tay prompt sang chỗ khác. `prompts_for_flow.md` được sinh tự động bằng `build-prompts`.
 
@@ -44,6 +44,8 @@ Quy trình chi tiết: skill [ai-video-studio](.agents/skills/ai-video-studio/SK
 8. **Agent đang chat là bộ não, API chỉ là phương án dự phòng.** Khi bạn (Claude trong Claude Code, Gemini trong Antigravity) điều phối dự án, mọi việc cần "trí tuệ" do chính bạn làm: nghiên cứu, kịch bản, prompt, và **chấm QA thị giác**. Không gọi Gemini API cho những việc này. API key trong `studio_config.json` chỉ dùng khi người dùng chạy script độc lập, không có AI. Ngoại lệ: **TTS lời dẫn** (agent chat không xuất được file âm thanh) — cần API hoặc công cụ TTS ngoài.
    - Claude Code được nhận diện tự động (biến `CLAUDECODE`). **Antigravity / agent khác: luôn chạy với `--reviewer agent`** hoặc đặt `$env:STUDIO_REVIEWER = "agent"` trước khi chạy lệnh.
    - Quy trình QA thị giác: `qa-vision` → xem từng ảnh trong packet bằng công cụ đọc ảnh → ghi JSON vào `result_path` → `qa-vision-submit`.
+
+9. **Mỗi lần sửa code hoặc cập nhật dự án phải tự động đẩy lên GitHub.** Sau mỗi lần chỉnh sửa mã nguồn (`scripts/`, `.agents/`, `tests/`), cấu hình hoặc cập nhật dự án (`projects/<slug>/`), Agent phải chạy `git add .`, `git commit -m "<mô tả ngắn>"` và `git push origin main` để kho lưu trữ `https://github.com/HaPhiHung-HE186793/AI-VIDEO.git` luôn có bản mới nhất. Không commit file `.env` hay khóa bí mật.
 
 ---
 
