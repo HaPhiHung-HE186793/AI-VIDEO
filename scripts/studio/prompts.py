@@ -178,15 +178,14 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
         shot.get("camera") or shot.get("camera_shot") or "",
         flags=re.I,
     ).strip(" ,.")
-    parts = [_sentence(cam or shot.get("camera") or shot.get("camera_shot"))]
+    pose = shot.get("start_action") or shot.get("action") or ""
+    cam_head = (cam or shot.get("camera") or shot.get("camera_shot") or "").rstrip(".")
+    parts = [_sentence(f"{cam_head}: {pose}" if cam_head and pose else (cam_head or pose))]
 
     for cid in shot.get("subjects", []):
         c = chars.get(cid, {})
         if c.get("identity_line"):
             parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
-
-    pose = shot.get("start_action") or shot.get("action") or ""
-    parts.append(_sentence(pose))
 
     for pid in shot.get("props", []):
         p = props.get(pid, {})
@@ -209,13 +208,13 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
 
     end_pose = shot.get("end_action") or shot.get("action") or ""
     parts = [
+        _sentence(f"Final state at the end of the shot: {end_pose}"),
         "Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference.",
     ]
     for cid in shot.get("subjects", []):
         c = chars.get(cid, {})
         if c.get("identity_line"):
             parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
-    parts.append(_sentence(f"Final state at the end of the shot: {end_pose}"))
 
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
@@ -363,11 +362,14 @@ def lint_project(project: dict, cfg: dict) -> list:
 
 
 def complexity_score(shot: dict, index: int, total: int) -> tuple:
-    text = " ".join(str(shot.get(k) or "") for k in ("action", "camera", "camera_shot"))
-    if not shot.get("action"):
-        text += " " + re.split(r"saying[^:]*:|says[^:]*:", shot.get("veo_prompt") or "", flags=re.I)[0]
+    cam_text = " ".join(str(shot.get(k) or "") for k in ("camera", "camera_shot"))
+    act_text = str(shot.get("action") or "")
+    if not act_text:
+        act_text = re.split(r"saying[^:]*:|says[^:]*:", shot.get("veo_prompt") or "", flags=re.I)[0]
+    act_clean = re.sub(r"\b(push[- ]in|pull[- ]back)\b", "", act_text, flags=re.I)
+    text = f"{act_text} {cam_text}"
     score, reasons = 1, []
-    if INTERACTION_WORDS.search(text):
+    if INTERACTION_WORDS.search(act_clean):
         score += 4
         reasons.append("tương tác vật lý / tay cầm nắm")
     if len(shot.get("subjects", [])) >= 2 or re.search(r"two-shot|over-the-shoulder", text, re.I):
@@ -385,9 +387,10 @@ def complexity_score(shot: dict, index: int, total: int) -> tuple:
     if (
         shot.get("generation_mode") in ("first_frame", "first_last")
         and mf.shot_audio(shot)["mode"] != "veo_dialogue"
-        and not INTERACTION_WORDS.search(text)
+        and not INTERACTION_WORDS.search(act_clean)
     ):
-        score = max(1, score - 2)
+        discount = 3 if shot.get("generation_mode") == "first_last" else 2
+        score = max(1, score - discount)
         reasons.append("đã khóa bố cục bằng keyframe (in-betweening)")
     return min(10, score), reasons or ["cảnh đơn giản"]
 

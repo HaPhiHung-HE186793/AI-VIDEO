@@ -22,3 +22,4 @@ venv/
 **/_incoming/
 **/_downloading/
 **/_flow_v2/
+**/.flow/

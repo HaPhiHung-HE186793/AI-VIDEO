@@ -232,8 +232,10 @@ class Flow:
         """Đặt cài đặt tạo. Trả về chuỗi tóm tắt + số credit Flow báo sẽ tốn."""
         self.back_to_grid()
         self.close_panels()
-        self.page.locator(UI["settings"]).click()
-        self.page.locator(f"flow-toggles[aria-label='{UI['group_mode']}']").first.wait_for(timeout=8000)
+        mode_toggle = self.page.locator(f"flow-toggles[aria-label='{UI['group_mode']}']").first
+        if not (mode_toggle.count() and mode_toggle.is_visible()):
+            self.page.locator(UI["settings"]).click()
+        mode_toggle.wait_for(timeout=8000)
         self._toggle(UI["group_mode"], UI["kind_video"] if kind == "video" else UI["kind_image"])
         if kind == "video":
             mode_label = UI["mode_frames"] if video_mode in ("frames", "first_frame", "first_last") else UI["mode_ingredients"]
@@ -247,7 +249,12 @@ class Flow:
             if model not in current:
                 self.page.locator(UI["model_trigger"]).first.click()
                 self.wait(0.8)
-                self.page.get_by_text(model, exact=True).last.click()
+                pat = re.compile(rf"(?:^|\s){re.escape(model)}(?:\.1)?\s*$", re.I)
+                opt = self.page.locator("[role=menuitem], [role=option], button, li").filter(has_text=pat)
+                if opt.count():
+                    opt.last.click()
+                else:
+                    self.page.get_by_text(model, exact=False).last.click()
                 self.wait(0.8)
         cost_txt = self.page.locator(UI["credit_label"]).first.inner_text()
         m = re.search(r"(\d[\d.,]*)\s*tín dụng", cost_txt)
@@ -304,7 +311,13 @@ class Flow:
         """Đóng mọi bảng chọn/popup đang mở (bảng bị bỏ mở sẽ che nút cài đặt và làm hỏng bước sau)."""
         for _ in range(4):
             search = self.page.locator(UI["ingredient_search"])
-            if not (search.count() and search.last.is_visible()):
+            backdrop = self.page.locator(".cdk-overlay-backdrop-showing")
+            mode_toggle = self.page.locator(f"flow-toggles[aria-label='{UI['group_mode']}']")
+            if not (
+                (search.count() and search.last.is_visible())
+                or (backdrop.count() and backdrop.first.is_visible())
+                or (mode_toggle.count() and mode_toggle.first.is_visible())
+            ):
                 return
             self.escape()
 
@@ -400,7 +413,22 @@ class Flow:
 
     def _filter(self, label: str):
         self.back_to_grid()
-        self.page.get_by_text(label, exact=True).first.click()
+        clicked = self.page.evaluate(
+            r"""(lbl) => {
+                const wantIcon = /hình ảnh|image/i.test(lbl) ? 'image' : (/video|cảnh/i.test(lbl) ? 'movie' : '');
+                const btns = [...document.querySelectorAll('button')].filter(b => b.getBoundingClientRect().width > 0 && b.getBoundingClientRect().left < 280);
+                const hit = btns.find(b => {
+                    const tc = (b.textContent || '').trim();
+                    const it = (b.innerText || '').trim();
+                    return tc.includes(lbl) || (wantIcon && (it === wantIcon || tc.startsWith(wantIcon + ' ')));
+                });
+                if (hit) { hit.click(); return true; }
+                return false;
+            }""",
+            label,
+        )
+        if not clicked:
+            self.page.get_by_text(label, exact=True).first.click()
         self.wait(2.5)
         self.page.evaluate(JS_SCROLLER, None)
         self.wait(1)
@@ -438,6 +466,9 @@ class Flow:
             texts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"])
             progressed, seen_count = False, {}
             for i, txt in enumerate(texts):
+                # Hàng đang render dở (có chỉ báo %) → bỏ qua ở vòng quét này, chờ vòng sau khi hoàn tất 100%
+                if re.search(r"\b\d{1,3}%", txt):
+                    continue
                 # Hai hàng có thể trùng chữ (tạo lại cùng prompt) → khóa = chữ + thứ tự xuất hiện.
                 seen_count[txt] = seen_count.get(txt, 0) + 1
                 key = f"{txt[:200]}#{seen_count[txt]}"

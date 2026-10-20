@@ -313,15 +313,13 @@ def cmd_build_prompts(args, cfg):
             built.append(s["shot_id"])
             mode = s.get("generation_mode") or "text"
             if mode in ("first_frame", "first_last"):
-                if not s.get("first_frame_prompt"):
-                    s["first_frame_prompt"] = prompts.build_first_frame_prompt(m, s)
-                    built_frames.append(f"{s['shot_id']}:start")
+                s["first_frame_prompt"] = prompts.build_first_frame_prompt(m, s)
+                built_frames.append(f"{s['shot_id']}:start")
                 if not s.get("first_frame_path"):
                     s["first_frame_path"] = mf.keyframe_rel_path(m, s["shot_id"], "start")
             if mode == "first_last" or s.get("end_action"):
-                if not s.get("last_frame_prompt"):
-                    s["last_frame_prompt"] = prompts.build_last_frame_prompt(m, s)
-                    built_frames.append(f"{s['shot_id']}:end")
+                s["last_frame_prompt"] = prompts.build_last_frame_prompt(m, s)
+                built_frames.append(f"{s['shot_id']}:end")
                 if mode == "first_last" and not s.get("last_frame_path"):
                     s["last_frame_path"] = mf.keyframe_rel_path(m, s["shot_id"], "end")
         elif not s.get("veo_prompt"):
@@ -1133,13 +1131,19 @@ def cmd_flow_generate(args, cfg):
                 last_attach_sig = None
             if kind == "image":
                 slots = []
-                if s.get("first_frame_prompt"):
-                    slots.append(("start", s["first_frame_prompt"]))
+                if s.get("first_frame_prompt") and not s.get("chain_from_prev"):
+                    if args.retakes or not s.get("first_frame_path") or not (proj / s["first_frame_path"]).exists():
+                        slots.append(("start", s["first_frame_prompt"]))
                 if s.get("last_frame_prompt") and (s.get("generation_mode") == "first_last" or s.get("end_action")):
-                    slots.append(("end", s["last_frame_prompt"]))
+                    if args.retakes or not s.get("last_frame_path") or not (proj / s["last_frame_path"]).exists():
+                        slots.append(("end", s["last_frame_prompt"]))
                 for slot, text in slots:
                     row = {"shot": s["shot_id"], "slot": slot, "mode": "image", "model": shot_model,
                            "uid": mf.keyframe_uid(m, s["shot_id"], slot), "settings": setting.get("summary"), "credits": cost}
+                    if slot == "end" and (not s.get("first_frame_path") or not (proj / s["first_frame_path"]).exists()):
+                        row["skipped"] = "chờ tải first_frame_path trước khi tạo last_frame_path (Anchor-Locked)"
+                        report.append(row)
+                        continue
                     if args.max_credits and cost is not None and spent + cost > args.max_credits:
                         row["skipped"] = f"vượt ngân sách --max-credits {args.max_credits}"
                         report.append(row)
@@ -1240,7 +1244,7 @@ def cmd_flow_harvest(args, cfg):
     prompt_map = {}
     for s in mf.ordered_shots(m):
         if kind == "image":
-            if s.get("first_frame_prompt"):
+            if s.get("first_frame_prompt") and not s.get("chain_from_prev"):
                 prompt_map[s["shot_id"]] = s["first_frame_prompt"]
             if s.get("last_frame_prompt"):
                 prompt_map[f"{s['shot_id']}__end"] = s["last_frame_prompt"]
@@ -1318,9 +1322,26 @@ def cmd_flow_harvest(args, cfg):
                 Path(fpath).replace(dst)
                 cands.append({"path": rel(proj, dst), "sha256": sha, "uid": uid_prefix})
             if cands and (not s.get(path_key) or not (proj / s[path_key]).exists()):
-                canonical = proj / mf.keyframe_rel_path(m, s["shot_id"], slot, Path(cands[0]["path"]).suffix)
+                chosen_rel = cands[0]["path"]
+                if slot == "end" and len(cands) > 1 and s.get("first_frame_path") and (proj / s["first_frame_path"]).exists():
+                    try:
+                        import numpy as np
+                        cv2 = media.cv2_module()
+                        ref_im = cv2.resize(cv2.imread(str(proj / s["first_frame_path"])), (160, 90)).astype(np.float32)
+                        scored = []
+                        for c in cands:
+                            cim = cv2.imread(str(proj / c["path"]))
+                            if cim is not None:
+                                cim = cv2.resize(cim, (160, 90)).astype(np.float32)
+                                scored.append((float(1.0 - np.mean(np.abs(ref_im - cim)) / 255.0), c["path"]))
+                        if scored:
+                            scored.sort(reverse=True)
+                            chosen_rel = scored[0][1]
+                    except Exception:  # noqa: BLE001
+                        pass
+                canonical = proj / mf.keyframe_rel_path(m, s["shot_id"], slot, Path(chosen_rel).suffix)
                 canonical.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(proj / cands[0]["path"], canonical)
+                shutil.copy2(proj / chosen_rel, canonical)
                 s[path_key] = rel(proj, canonical)
             report.append({"shot": s["shot_id"], "slot": slot, "uid": uid_prefix, "candidates": [c["path"] for c in cands]})
         mf.save(proj, m)  # Lưu ngay sau từng hàng tải xong (Streaming Harvest)
@@ -1623,6 +1644,7 @@ def cmd_check_browser(args, cfg):
              "--no-first-run", "--no-default-browser-check", b["flow_url"]],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
+            start_new_session=True,
         )
         for _ in range(20):  # chờ Chrome mở cổng debug
             time.sleep(0.5)
