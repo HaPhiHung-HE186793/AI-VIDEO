@@ -1154,18 +1154,13 @@ def cmd_flow_generate(args, cfg):
                     if slot == "end" and anchor_p and anchor_p.exists():
                         anchor_sid = s.get("anchor_frame_shot") or s["shot_id"]
                         attach_list = [(anchor_p, mf.keyframe_uid(m, anchor_sid, "start"))]
-                        attach_list += [(r, "") for r in refs if r.resolve() != anchor_p.resolve()][:4]
+                        attach_list += [(r, "") for r in refs if r.resolve() != anchor_p.resolve()][:1]
                     else:
                         attach_list = [(r, "") for r in refs]
-                    cur_sig = ("image", tuple((str(p.resolve()), u) for p, u in attach_list))
-                    if cur_sig != last_attach_sig or not f.replace_prompt_text(text):
-                        f.clear_prompt()
-                        for p, u in attach_list:
-                            f.attach_file(p, stage_dir=stage_dir, uid=u)
-                        f.type_prompt(text)
-                        last_attach_sig = cur_sig
-                    else:
-                        row["reused_attachments"] = True
+                    f.clear_prompt()
+                    for p, u in attach_list:
+                        f.attach_file(p, stage_dir=stage_dir, uid=u)
+                    f.type_prompt(text)
                     row["composed"] = f.screenshot(proj / ".flow" / f"{s['shot_id']}_{slot}_compose.png")
                     if args.dry_run:
                         row["dry_run"] = True
@@ -1189,17 +1184,12 @@ def cmd_flow_generate(args, cfg):
             voice = prompts.shot_voice(m, s) if mf.shot_audio(s)["mode"] in ("veo_dialogue", "veo_narration") else ""
             if mode == "ingredients":
                 refs = _ref_paths(proj, m, s)
-                cur_sig = ("video_ingredients", tuple(str(r.resolve()) for r in refs), voice)
-                if cur_sig != last_attach_sig or not f.replace_prompt_text(text):
-                    f.clear_prompt()
-                    for ref in refs:
-                        f.attach_file(ref, stage_dir=stage_dir)
-                    if voice:
-                        f.attach_voice(voice)
-                    f.type_prompt(text)
-                    last_attach_sig = cur_sig
-                else:
-                    row["reused_attachments"] = True
+                f.clear_prompt()
+                for ref in refs:
+                    f.attach_file(ref, stage_dir=stage_dir)
+                if voice:
+                    f.attach_voice(voice)
+                f.type_prompt(text)
             else:
                 last_attach_sig = None
                 f.clear_prompt()

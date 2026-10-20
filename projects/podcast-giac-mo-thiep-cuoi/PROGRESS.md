@@ -19,106 +19,138 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 ## Trạng thái
 
 - **Slug:** `podcast-giac-mo-thiep-cuoi` — thư mục `projects/podcast-giac-mo-thiep-cuoi/` (KHÔNG `init` dự án mới)
-- **Flow:** https://flow.google.com/project/ae209c27-c53b-44e4-b736-245f059d3ba1
+- **Flow:** https://flow.google.com/project/69dec2a7-c3f5-4f28-b83b-5327bb8e2d5f
 - **Ngôn ngữ / khung:** vi / 16:9; giọng dẫn `Charon`
-- **Cập nhật lần cuối:** 2026-10-20T17:13:31 trên máy **user** (lệnh `storyboard-approve`)
-- **Storyboard:** đã duyệt (478a24d5f6585d26)
+- **Cập nhật lần cuối:** 2026-10-20T18:32:44 trên máy **user** (lệnh `storyboard`)
+- **Storyboard:** chưa duyệt
 
-## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
+## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
 
-Đã gửi tạo nhưng CHƯA tải về: shot_10 (video). Kết quả nằm sẵn trên Flow (cùng tài khoản Google) — KHÔNG gửi tạo lại (mất credit).
+46 shot chưa có video. Storyboard chưa duyệt.
 
 ```powershell
-python scripts/studio_helper.py flow-harvest --project podcast-giac-mo-thiep-cuoi --kind video --wait
+python scripts/studio_helper.py storyboard --project podcast-giac-mo-thiep-cuoi
+(người dùng xem output/storyboard.html)
+python scripts/studio_helper.py storyboard-approve --project podcast-giac-mo-thiep-cuoi --by "<tên>"
 ```
-
-### ⚠ Job Flow đang tạo dở (đã tiêu credit, chưa tải)
-
-| Shot | Loại | Model | Số bản | Credit | Gửi lúc |
-|---|---|---|---|---|---|
-| shot_10 | video | Veo 3.1 - Fast | 2 | 20 | 2026-10-20T15:16:03 |
 
 ## Shot
 
 | # | Shot | Beat | Trạng thái | Take chọn | 1080p | Cắt |
 |---|---|---|---|---|---|---|
-| 1 | shot_01 | b01_hook | approved | 1 / 2 |  | 3.26–8.00 |
-| 2 | shot_02 | b01_hook | approved | 1 / 1 |  | 0.00–4.74 |
-| 3 | shot_03 | b02_rooftop_reunion | approved | 2 / 2 |  | 2.45–8.00 |
-| 4 | shot_04 | b02_rooftop_reunion | approved | 1 / 2 |  | 0.00–5.55 |
-| 5 | shot_05 | b03_mystery_bride | approved | 2 / 2 |  | 1.76–8.00 |
-| 6 | shot_06 | b03_mystery_bride | approved | 1 / 1 |  | 0.00–6.24 |
-| 7 | shot_07 | b04_tease_and_silence | approved | 2 / 2 |  | 0.13–8.00 |
-| 8 | shot_08 | b04_tease_and_silence | approved | 1 / 1 |  | 0.00–7.87 |
-| 9 | shot_09 | b05_wife_bombshell | approved | 1 / 2 |  | 0.46–7.53 |
-| 10 | shot_10 | b05_wife_bombshell | approved | 1 / 2 |  | 0.46–7.53 |
-| 11 | shot_11 | b06_clone_acc_and_missing_card | approved | 1 / 1 |  | 1.13–6.87 |
-| 12 | shot_12 | b06_clone_acc_and_missing_card | approved | 1 / 2 |  | 1.13–6.87 |
-| 13 | shot_13 | b07_sulking_paparazzi | approved | 1 / 1 |  | 0.03–7.97 |
-| 14 | shot_14 | b08_alarm_and_psa | approved | 1 / 2 |  | 0.67–7.34 |
-| 15 | shot_15 | b08_alarm_and_psa | approved | 2 / 2 |  | 0.67–7.34 |
+| 1 | shot_01a | b01_noon_break_hook | pending | - / 0 |  |  |
+| 2 | shot_01b | b01_noon_break_hook | pending | - / 0 |  |  |
+| 3 | shot_02a | b02_post_grad_busy_life | pending | - / 0 |  |  |
+| 4 | shot_02b | b02_post_grad_busy_life | pending | - / 0 |  |  |
+| 5 | shot_02c | b02_post_grad_busy_life | pending | - / 0 |  |  |
+| 6 | shot_03a | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
+| 7 | shot_03b | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
+| 8 | shot_04a | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
+| 9 | shot_04b | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
+| 10 | shot_05a | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
+| 11 | shot_05b | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
+| 12 | shot_06a | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
+| 13 | shot_06b | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
+| 14 | shot_07a | b05_teasing_the_pioneers | pending | - / 0 |  |  |
+| 15 | shot_07b | b05_teasing_the_pioneers | pending | - / 0 |  |  |
+| 16 | shot_07c | b05_teasing_the_pioneers | pending | - / 0 |  |  |
+| 17 | shot_08a | b06_dead_silence_alien_stare | pending | - / 0 |  |  |
+| 18 | shot_08b | b06_dead_silence_alien_stare | pending | - / 0 |  |  |
+| 19 | shot_08c | b06_dead_silence_alien_stare | pending | - / 0 |  |  |
+| 20 | shot_09a | b07_hoang_anh_viet_duong_bombshell | pending | - / 0 |  |  |
+| 21 | shot_09b | b07_hoang_anh_viet_duong_bombshell | pending | - / 0 |  |  |
+| 22 | shot_09c | b07_hoang_anh_viet_duong_bombshell | pending | - / 0 |  |  |
+| 23 | shot_10a | b08_tan_nods_bride_smiles | pending | - / 0 |  |  |
+| 24 | shot_10b | b08_tan_nods_bride_smiles | pending | - / 0 |  |  |
+| 25 | shot_10c | b08_tan_nods_bride_smiles | pending | - / 0 |  |  |
+| 26 | shot_11a | b09_secret_wedding_album_reveal | pending | - / 0 |  |  |
+| 27 | shot_11b | b09_secret_wedding_album_reveal | pending | - / 0 |  |  |
+| 28 | shot_11c | b09_secret_wedding_album_reveal | pending | - / 0 |  |  |
+| 29 | shot_12a | b10_where_is_my_invitation | pending | - / 0 |  |  |
+| 30 | shot_12b | b10_where_is_my_invitation | pending | - / 0 |  |  |
+| 31 | shot_12c | b10_where_is_my_invitation | pending | - / 0 |  |  |
+| 32 | shot_13a | b11_tantrum_and_paparazzi | pending | - / 0 |  |  |
+| 33 | shot_13b | b11_tantrum_and_paparazzi | pending | - / 0 |  |  |
+| 34 | shot_13c | b11_tantrum_and_paparazzi | pending | - / 0 |  |  |
+| 35 | shot_14a | b12_alarm_635_ceiling_shock | pending | - / 0 |  |  |
+| 36 | shot_14b | b12_alarm_635_ceiling_shock | pending | - / 0 |  |  |
+| 37 | shot_14c | b12_alarm_635_ceiling_shock | pending | - / 0 |  |  |
+| 38 | shot_15a | b13_morning_wash_bitter_tears | pending | - / 0 |  |  |
+| 39 | shot_15b | b13_morning_wash_bitter_tears | pending | - / 0 |  |  |
+| 40 | shot_16a | b14_blurry_dream_bride_memory | pending | - / 0 |  |  |
+| 41 | shot_16b | b14_blurry_dream_bride_memory | pending | - / 0 |  |  |
+| 42 | shot_16c | b14_blurry_dream_bride_memory | pending | - / 0 |  |  |
+| 43 | shot_17a | b15_psa_to_all_brothers | pending | - / 0 |  |  |
+| 44 | shot_17b | b15_psa_to_all_brothers | pending | - / 0 |  |  |
+| 45 | shot_18a | b16_final_warning_and_accuracy_check | pending | - / 0 |  |  |
+| 46 | shot_18b | b16_final_warning_and_accuracy_check | pending | - / 0 |  |  |
 
 ## Beat & lời dẫn
 
-- **b01_hook** (hook) 🔊 Uhm, sắp trưa đang nghỉ rảnh rỗi, tự nhiên nhớ lại quả giấc mơ vô tri đêm qua làm sáng dậy tao lú mất năm phút, vừa cay vừa buồn cười không chịu được nên phải kể ngay cho bọn mày nghe!
-- **b02_rooftop_reunion** (need) 🔊 Đêm qua tao mơ thấy cả hội mình gặp lại nhau sau bao lâu ra trường ở một quán cà phê rooftop quen quen. Tao hí hửng đẩy cửa bước vào, thấy nguyên bàn dài toàn mặt chúng mày đang ngồi cười nói rôm rả như chưa hề có cuộc chia ly.
-- **b03_mystery_bride** (senses) 🔊 Tao phi lại gần định vỗ vai chào từng thằng thì đập ngay vào mắt là cu Vũ Tấn ngồi chễm chệ giữa bàn, bên cạnh là một em gái nhìn dịu dàng, ngoan hiền cực kỳ. Mơ nên ảo lắm, chỉ còn nhớ cảm giác tóc đen dài, cười nhẹ nhàng thôi.
-- **b04_tease_and_silence** (target) 🔊 Tao mới trêu: uầy khá nhỉ, thấy Việt Đức, Nguyễn Phong, Quang Bình tiên phong rồi, tới Hoàng Anh, Việt Đường, Phi Hùng, Nhật Anh cũng khởi sắc nên nay Tấn cũng gia nhập đường đua, giấu kỹ thế nay mới ra mắt à? Ngay sau câu đấy cả bọn im phăng phắc, nhìn tao như người từ hành tinh khác rơi xuống!
-- **b05_wife_bombshell** (escalation) 🔊 Hoàng Anh với Việt Đường ngồi cạnh phì cười vừa đấm vừa xoa vai tao: Người yêu cái đầu mày! Vợ nó đấy, hai đứa vừa đi tuần trăng mật về tuần trước, ngơ vãi Đạt đụt! Tao đứng hình luôn, còn Vũ Tấn phởn phơ gật đầu cái rụp, vợ nó thì cười ngại ngại như chuyện bình thường lắm rồi!
-- **b06_clone_acc_and_missing_card** (escalation) 🔊 Xong cả bọn dí điện thoại vào mặt tao cho xem tài khoản phụ của Tấn đăng cả bộ sưu tập ảnh cưới mà tao không hề biết. Tao quay ra hỏi: ủa thế thiệp cưới tao đâu? Cả lũ cười khẩy kiểu: ơ em không được mời à, hẹ hẹ!
-- **b07_sulking_paparazzi** (climax) 🔊 Tao giãy nảy lên ăn vạ bất lực, vợ chồng Tấn rối rít dỗ dành đáng yêu cực, còn Nguyễn Phong với Duy Khiêm giơ máy quay cảnh tao ngồi dỗi đập bàn cười hô hố!
-- **b08_alarm_and_psa** (resolution) 🔊 Đang định chốt kèo bù thì tíng tình tình tính ting, báo thức sáu giờ ba mươi lăm réo vang, mở mắt ra là cái trần nhà hụt hẫng! Qua giấc mơ này tao cảnh báo toàn thể anh em: sau này đứa nào cưới nhớ gửi tao tấm thiệp hồng để xác nhận tình anh em còn tồn tại nhé!
-
-## Đầu ra gần nhất
-
-- `output/final_video.mp4` (2026-10-20 16:17)
+- **b01_noon_break_hook** (hook) 🔊 Uhm, sắp trưa đang nghỉ ngơi rảnh rỗi, tự nhiên nhớ ra chuyện này nên phải lên mic kể ngay cho bọn mày nghe mấy cái vô tri. Thề luôn, đêm qua tao nằm mơ một quả giấc mơ vô tri đến mức sáng dậy tao ngồi lú mất đúng năm phút đồng hồ, cảm giác vừa cay vừa buồn cười không tài nào chịu nổi!
+- **b02_post_grad_busy_life** (need) 🔊 Chuyện là đêm qua tao mơ thấy cả hội anh em mình gặp lại nhau sau một thời gian dài ra trường. Bình thường đứa nào đứa nấy đều bận tối mắt tối mũi với công việc riêng, lâu lắm rồi cả lũ chưa có dịp tụ tập đông đủ. Trong mơ tao nhớ mang máng có thằng nào đấy đứng ra hú cả hội đi cà phê, mà chẳng hiểu sao địa điểm lại là một cái quán rooftop nhìn quen cực kỳ, đúng kiểu giấc mơ đan xen lẫn lộn thật giả.
+- **b03_rooftop_arrival_full_table** (senses) 🔊 Tao hí hửng đẩy cửa kính bước vào quán, giữa không gian quán xá đông đúc náo nhiệt thì thấy ngay nguyên một bàn dài toàn mặt chúng mày đang ngồi ăn uống cười nói rôm rả. Có đủ cả Hoàng Anh, Việt Đường, Lưu Văn Việt Đức, Nguyễn Phong, Quang Bình, Hà Phi Hùng, Nhật Anh với Duy Khiêm, cảm giác nhộn nhịp y hệt như chưa hề có cuộc chia ly nào sau ngày tốt nghiệp. Tao phi lại gần, đang định giơ tay vỗ vai chào từng thằng một thì cảnh tượng trước mắt làm tao khựng lại.
+- **b04_tan_and_gentle_girl** (senses) 🔊 Đập ngay vào mắt tao là cu Vũ Tấn đang ngồi chễm chệ ngay chính giữa bàn, mà ngồi sát bên cạnh nó lại là một em gái nhìn dịu dàng, ngoan hiền cực kỳ, gọi tạm là Linh nhé. Cảm giác trong mơ lúc đấy nó ảo ma thật sự, giờ tỉnh dậy tao quên gần hết chi tiết rồi, chỉ còn đọng lại đúng cái cảm giác mái tóc đen dài mượt mà và nụ cười hiền lành ngồi sát bên cạnh thằng Vũ Tấn giữa bàn tiệc.
+- **b05_teasing_the_pioneers** (target) 🔊 Thấy thế tao mới cười nham nhở trêu nó: Uầy, Vũ Tấn dạo này khá nhỉ! Thấy mấy anh em Lưu Văn Việt Đức, Nguyễn Phong, Quang Bình tiên phong dẫn đầu rồi, tiếp đến Hoàng Anh, Việt Đường, Hà Phi Hùng với Nhật Anh cũng đang khởi sắc rực rỡ với mấy mối tình, nên nay chú em cũng chính thức gia nhập đường đua đấy à? Giấu kỹ thế, hôm nay mới chịu dắt người yêu ra mắt anh em cơ đấy!
+- **b06_dead_silence_alien_stare** (escalation) 🔊 Và thề luôn, ngay sau khi tao vừa dứt câu trêu đấy thì nguyên cả bàn dài đang ồn ào bỗng nhiên im phăng phắc. Từng thằng một từ Lưu Văn Việt Đức, Nguyễn Phong, Quang Bình, Hoàng Anh, Việt Đường, Hà Phi Hùng cho tới Nhật Anh, Duy Khiêm đều quay phắt lại nhìn tao bằng ánh mắt hết sức khó hiểu. Cái ánh mắt kiểu như đang nhìn một sinh vật lạ vừa từ hành tinh khác rơi xuống, từ trong rừng rậm bước ra, hay mới từ bản xa xuống phố vậy!
+- **b07_hoang_anh_viet_duong_bombshell** (escalation) 🔊 Đúng lúc tao còn đang ngơ ngác thì Hoàng Anh với Việt Đường ngồi ngay bên cạnh mới phì cười, hai thằng vừa đấm thùm thụp vừa xoa vai tao mà bảo: Người yêu cái đầu mày ấy! Vợ hợp pháp của thằng Vũ Tấn đấy ông tướng ạ! Hai đứa nó vừa mới dắt nhau đi hưởng tuần trăng mật về hồi tuần trước xong, đúng là ngơ vãi cả Đạt đụt, tối cổ hết phần thiên hạ!
+- **b08_tan_nods_bride_smiles** (escalation) 🔊 Nghe xong câu đấy tao đứng hình mất năm giây, trong bụng vẫn đinh ninh là lũ quỷ này đang hợp sức bày trò trêu tao nên mới lắp bắp hỏi lại như thằng ngốc. Thế mà nhìn sang giữa bàn, cu Vũ Tấn mặt cứ phởn phơ tự đắc, gật đầu cái rụp xác nhận luôn, còn cô vợ Linh bên cạnh thì ngồi che miệng cười ngại ngùng như thể chuyện cưới xin này đã bình thường từ tám đời nào rồi! Bình thường cái đầu chúng mày ấy, sao lúc đấy tao không sốc quá mà tỉnh dậy luôn cho rồi!
+- **b09_secret_wedding_album_reveal** (escalation) 🔊 Chưa dừng lại ở đấy đâu, cả lũ bắt đầu rút điện thoại ra dí sát vào tận mắt kính của tao cho xem bằng chứng. Hóa ra thằng Vũ Tấn lập hẳn một cái tài khoản mạng xã hội phụ khác, đăng không biết bao nhiêu là ảnh cưới với kỷ niệm ngọt ngào như một bộ sưu tập khổng lồ mà một mình tao hoàn toàn mù tịt. Cả bàn từ Hoàng Anh, Việt Đường tới Nguyễn Phong, Quang Bình cứ thay nhau vuốt màn hình dí vào mặt tao khoe từng bức ảnh một!
+- **b10_where_is_my_invitation** (climax) 🔊 Tức nước vỡ bờ, tao mới quay phắt ra giữa bàn đập tay hỏi lớn: Ủa thế thiệp cưới của tao đâu? Sao đám cưới bạn thân mà tao không biết một chữ bẻ đôi nào? Nghe tao hỏi xong, cả lũ ngồi quanh bàn từ Vũ Tấn, Lưu Văn Việt Đức, Hà Phi Hùng tới Nhật Anh, Duy Khiêm đồng loạt nở nụ cười khẩy đầy đểu cáng kiểu: Ơ thế hóa ra em không được mời à, hẹ hẹ! Ai nấy đều đi ăn cưới chụp choẹt check-in ầm ầm, chỉ có mỗi mình tao bị bỏ rơi ở thời kỳ đồ đá!
+- **b11_tantrum_and_paparazzi** (climax) 🔊 Lúc đấy tao giãy nảy lên ăn vạ ngay tại bàn, cảm giác vừa bất lực vừa tủi thân không để đâu cho hết. Thấy tao dỗi, vợ chồng Vũ Tấn với Linh mới bắt đầu quay sang bàn luận rối rít giải thích rồi dỗ dành tao, đã đang bực mình mà nhìn hai đứa nó cuống quýt bên nhau vẫn thấy đáng yêu cực kỳ. Trong khi hai vợ chồng ra sức an ủi tao thì cả lũ xung quanh ngồi xem kịch hay đập bàn đập ghế cười hô hố, đặc biệt là thằng Nguyễn Phong với Duy Khiêm còn rút máy điện thoại giơ lên quay cận cảnh tao đang ngồi dỗi hờn ăn vạ nữa chứ!
+- **b12_alarm_635_ceiling_shock** (resolution) 🔊 Đang tới đúng cái đoạn gay cấn nhất là hội anh em chuẩn bị chốt phương án đền bù kèo nhậu cho tao, chưa kịp nghe rõ trong mơ thỏa thuận được cái gì thì bỗng nhiên: tíng tình tình tính ting! Tiếng chuông báo thức sáu giờ ba mươi lăm phút sáng réo vang inh ỏi! Tao giật bắn mình mở choàng mắt ra thì trước mặt chỉ là cái trần nhà quen thuộc, cảm giác hụt hẫng rơi từ trên mây xuống đất, thật giả lẫn lộn đến mức phải vớ lấy điện thoại ngồi lướt Tóp Tóp một lúc lâu não mới chịu thông lại!
+- **b13_morning_wash_bitter_tears** (resolution) 🔊 Bước xuống giường đi vào góc gương rửa mặt và tắm rửa buổi sáng mà khóe mắt tao vẫn còn cay xè, nỗi đau bị bỏ quên tấm thiệp hồng trong mơ nó cứ thấm thía tận tâm can. Tao thực sự không hiểu thằng Vũ Tấn nó làm cái trò trống gì trong tiềm thức của tao mà tự nhiên lại nằm mơ ra quả kịch bản éo le đến thế, không biết là điềm báo mộng cái gì đây!
+- **b14_blurry_dream_bride_memory** (resolution) 🔊 Mà nghĩ lại mới thấy buồn cười, lúc ở trong mơ tao còn đang bận sốc nặng vụ không được mời cưới nên chẳng kịp lưu kỹ khuôn mặt cô dâu Linh vào bộ nhớ não. Giờ cố vắt óc nhớ lại cũng chỉ thấy mang máng một bóng hình tóc đen dài thẳng mượt, làn da trắng trẻo, đôi mắt trong veo có hồn và nụ cười nhẹ nhàng dịu dàng chứ không phải nét sắc sảo. Nhưng khuôn mặt trong mơ cứ mờ mờ ảo ảo dưới ánh đèn vàng, giờ mà bắt tao cầm bút vẽ lại chắc tao vẽ ra người ngoài hành tinh mất!
+- **b15_psa_to_all_brothers** (resolution) 🔊 Qua giấc mơ vô tri đêm qua, tao xin phát thông báo cảnh báo khẩn cấp tới toàn thể anh em trong nhóm: từ Vũ Tấn, Hoàng Anh, Việt Đường, Lưu Văn Việt Đức, Nguyễn Phong, Quang Bình cho tới Hà Phi Hùng, Nhật Anh, Duy Khiêm! Anh em mình ra trường có thể ít gặp nhau, mỗi đứa một guồng quay cuộc sống riêng, nhưng sau này đứa nào cưới vợ thì nhớ gửi thiệp mời tao cho đầy đủ! Tao không cần phong bì hoàn lại đâu, tao chỉ cần đúng một tấm thiệp hồng trao tay để xác nhận tình anh em mình vẫn còn tồn tại, đừng để tao phải biết tin qua tài khoản phụ hay báo mạng nhé!
+- **b16_final_warning_and_accuracy_check** (resolution) 🔊 Các anh em nghe rõ rồi thì nhớ xác nhận giúp tao một tiếng nhé, đừng có mà bỏ rơi thằng bạn này đấy! Còn bạn gái hay vợ tương lai của đứa nào tình cờ nghe được quả podcast giấc mơ vô tri này của tao thì cũng nhớ nhắc chồng gửi thiệp cho tao nha! Phần còn lại thì để tao ghim sẵn ở đây, đợi hôm nào thằng Vũ Tấn cưới vợ thật, tao sẽ mang đúng cái video này ra đối chiếu với cô dâu Linh ngoài đời xem giấc mơ báo mộng của tao có độ chính xác bao nhiêu phần trăm!
 
 ## Media trên máy này
 
-⚠ Máy **user** thiếu 21/94 file — chạy `media-pull` (hoặc tải lại take từ Flow).
+⚠ Máy **user** thiếu 46/152 file — chạy `media-pull` (hoặc tải lại take từ Flow).
 
-- `assets/characters/CHAR_VIET_DUONG_front.png` — ảnh tham chiếu CHAR_VIET_DUONG
-- `assets/characters/CHAR_VIET_DUONG_three_quarter.png` — ảnh tham chiếu CHAR_VIET_DUONG
-- `assets/characters/CHAR_VIET_DUONG_expressions.png` — ảnh tham chiếu CHAR_VIET_DUONG
-- `assets/characters/CHAR_NGUYEN_PHONG_front.png` — ảnh tham chiếu CHAR_NGUYEN_PHONG
-- `assets/characters/CHAR_NGUYEN_PHONG_three_quarter.png` — ảnh tham chiếu CHAR_NGUYEN_PHONG
-- `assets/characters/CHAR_NGUYEN_PHONG_expressions.png` — ảnh tham chiếu CHAR_NGUYEN_PHONG
-- `assets/characters/CHAR_DUY_KHIEM_front.png` — ảnh tham chiếu CHAR_DUY_KHIEM
-- `assets/characters/CHAR_DUY_KHIEM_three_quarter.png` — ảnh tham chiếu CHAR_DUY_KHIEM
-- `assets/characters/CHAR_DUY_KHIEM_expressions.png` — ảnh tham chiếu CHAR_DUY_KHIEM
-- `assets/characters/CHAR_VIET_DUC_front.png` — ảnh tham chiếu CHAR_VIET_DUC
-- `assets/characters/CHAR_VIET_DUC_three_quarter.png` — ảnh tham chiếu CHAR_VIET_DUC
-- `assets/characters/CHAR_VIET_DUC_expressions.png` — ảnh tham chiếu CHAR_VIET_DUC
-- `assets/characters/CHAR_QUANG_BINH_front.png` — ảnh tham chiếu CHAR_QUANG_BINH
-- `assets/characters/CHAR_QUANG_BINH_three_quarter.png` — ảnh tham chiếu CHAR_QUANG_BINH
-- `assets/characters/CHAR_QUANG_BINH_expressions.png` — ảnh tham chiếu CHAR_QUANG_BINH
-- `assets/characters/CHAR_PHI_HUNG_front.png` — ảnh tham chiếu CHAR_PHI_HUNG
-- `assets/characters/CHAR_PHI_HUNG_three_quarter.png` — ảnh tham chiếu CHAR_PHI_HUNG
-- `assets/characters/CHAR_PHI_HUNG_expressions.png` — ảnh tham chiếu CHAR_PHI_HUNG
-- `assets/characters/CHAR_NHAT_ANH_front.png` — ảnh tham chiếu CHAR_NHAT_ANH
-- `assets/characters/CHAR_NHAT_ANH_three_quarter.png` — ảnh tham chiếu CHAR_NHAT_ANH
-- `assets/characters/CHAR_NHAT_ANH_expressions.png` — ảnh tham chiếu CHAR_NHAT_ANH
-
-## Quyết định & ghi chú bàn giao
-
-- 2026-10-20 15:43 · user · decision: Hoàn tất kết xuất final_video.mp4 (98.38s, 1920x1080, -14.0 LUFS, 3 lớp âm thanh + phụ đề in cứng) bằng quy trình 100% Keyframe-First (30 START/END frames) + Daisy-Chain bảo toàn biên nối + Hybrid Audio.
+- `assets/clips/shot_01a.mp4` — shot_01a clip dựng
+- `assets/clips/shot_01b.mp4` — shot_01b clip dựng
+- `assets/clips/shot_02a.mp4` — shot_02a clip dựng
+- `assets/clips/shot_02b.mp4` — shot_02b clip dựng
+- `assets/clips/shot_02c.mp4` — shot_02c clip dựng
+- `assets/clips/shot_03a.mp4` — shot_03a clip dựng
+- `assets/clips/shot_03b.mp4` — shot_03b clip dựng
+- `assets/clips/shot_04a.mp4` — shot_04a clip dựng
+- `assets/clips/shot_04b.mp4` — shot_04b clip dựng
+- `assets/clips/shot_05a.mp4` — shot_05a clip dựng
+- `assets/clips/shot_05b.mp4` — shot_05b clip dựng
+- `assets/clips/shot_06a.mp4` — shot_06a clip dựng
+- `assets/clips/shot_06b.mp4` — shot_06b clip dựng
+- `assets/clips/shot_07a.mp4` — shot_07a clip dựng
+- `assets/clips/shot_07b.mp4` — shot_07b clip dựng
+- `assets/clips/shot_07c.mp4` — shot_07c clip dựng
+- `assets/clips/shot_08a.mp4` — shot_08a clip dựng
+- `assets/clips/shot_08b.mp4` — shot_08b clip dựng
+- `assets/clips/shot_08c.mp4` — shot_08c clip dựng
+- `assets/clips/shot_09a.mp4` — shot_09a clip dựng
+- `assets/clips/shot_09b.mp4` — shot_09b clip dựng
+- `assets/clips/shot_09c.mp4` — shot_09c clip dựng
+- `assets/clips/shot_10a.mp4` — shot_10a clip dựng
+- `assets/clips/shot_10b.mp4` — shot_10b clip dựng
+- `assets/clips/shot_10c.mp4` — shot_10c clip dựng
+- … và 21 file khác
 
 ## Nhật ký lệnh (mới nhất trước)
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-20 17:13 | user | `storyboard-approve --by user` | ok |
-| 10-20 17:13 | user | `storyboard ` | ok |
-| 10-20 17:13 | user | `lint-prompts ` | ok |
-| 10-20 17:13 | user | `build-prompts ` | ok |
-| 10-20 17:13 | user | `storyboard-approve --by user` | ok |
-| 10-20 17:13 | user | `storyboard ` | ok |
-| 10-20 17:13 | user | `lint-prompts ` | ok |
-| 10-20 17:13 | user | `build-prompts ` | ok |
-| 10-20 17:12 | user | `storyboard-approve --by user` | ok |
-| 10-20 17:12 | user | `storyboard ` | ok |
-| 10-20 17:12 | user | `lint-prompts ` | ok |
-| 10-20 17:12 | user | `build-prompts ` | ok |
-| 10-20 17:10 | user | `lint-prompts ` | ok |
-| 10-20 16:17 | user | `assemble --burn-subs` | ok |
-| 10-20 16:16 | user | `score ` | ok |
+| 10-20 18:32 | user | `storyboard ` | ok |
+| 10-20 18:32 | user | `voiceover ` | ok |
+| 10-20 18:31 | user | `voiceover ` | ok |
+| 10-20 18:21 | user | `voiceover ` | ok |
+| 10-20 18:21 | user | `storyboard ` | ok |
+| 10-20 18:20 | user | `flow-harvest --kind image --wait --wait-timeout 180 --shots shot_10c,shot_11b,shot_11c,shot_12b,shot_12c,shot_13b,shot_13c,shot_14b,shot_14c,shot_15b,shot_16b,shot_16c,shot_` | ok |
+| 10-20 18:20 | user | `flow-harvest --kind image --wait --wait-timeout 600 --shots shot_10c,shot_11b,shot_11c,shot_12b,shot_12c,shot_13b,shot_13c,shot_14b,shot_14c,shot_15b,shot_16b,shot_16c,shot_` | ok |
+| 10-20 18:19 | user | `flow-generate --kind frames --count 2 --new-project --shots shot_10c,shot_11b,shot_11c,shot_12b,shot_12c,shot_13b,shot_13c,shot_14b,shot_14c,shot_15b,shot_16b,shot_16c,shot_1` | ok |
+| 10-20 18:15 | user | `flow-harvest --kind image --wait --wait-timeout 180 --shots shot_01b,shot_02a,shot_02b,shot_02c,shot_03b,shot_04b,shot_05b,shot_06b,shot_07b,shot_07c,shot_08b,shot_08c,shot_` | ok |
+| 10-20 18:15 | user | `flow-harvest --kind image --wait --wait-timeout 600 --shots shot_01b,shot_02a,shot_02b,shot_02c,shot_03b,shot_04b,shot_05b,shot_06b,shot_07b,shot_07c,shot_08b,shot_08c,shot_` | ok |
+| 10-20 18:14 | user | `flow-generate --kind frames --count 2 --new-project --shots shot_01b,shot_02a,shot_02b,shot_02c,shot_03b,shot_04b,shot_05b,shot_06b,shot_07b,shot_07c,shot_08b,shot_08c,shot_0` | ok |
+| 10-20 18:11 | user | `flow-harvest --kind image --wait --wait-timeout 180 --shots shot_02a` | ok |
+| 10-20 18:10 | user | `flow-generate --kind frames --count 2 --new-project --shots shot_02a` | ok |
+| 10-20 18:06 | user | `storyboard ` | ok |
+| 10-20 18:05 | user | `qa-frames ` | ❌ [ERROR] Không có clip nào để QA. |

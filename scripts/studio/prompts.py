@@ -167,10 +167,12 @@ def _build_motion_arc(shot: dict) -> str:
     start_act = _clean_kinematic_action(shot.get("start_action") or "")
     act = _clean_kinematic_action(shot.get("action") or "")
     end_act = _clean_kinematic_action(shot.get("end_action") or "")
+    if re.search(r"\bthen smoothly transition(?:s|ing)\b", act, flags=re.I):
+        return _sentence(act)
     if shot.get("generation_mode") == "first_last" and end_act:
-        if start_act and start_act.lower() != act.lower() and end_act.lower() != act.lower():
+        if start_act and start_act.lower() != act.lower() and end_act.lower() != act.lower() and start_act.lower() not in act.lower():
             return _sentence(f"Starting from {start_act}, {act}, then smoothly settling into the final state where {end_act}")
-        if end_act.lower() != act.lower():
+        if end_act.lower() != act.lower() and end_act.lower() not in act.lower():
             return _sentence(f"{act}, then smoothly transitioning so {end_act}")
     return _sentence(act or start_act or end_act)
 
@@ -467,16 +469,16 @@ def _strip_accents(text: str) -> str:
 
 _NON_PERSON_PROPER = {
     "viet nam", "ha noi", "sai gon", "da nang", "trung quoc", "han quoc", "nhat ban",
-    "dai loan", "thai lan", "google flow", "youtube", "tiktok", "facebook", "instagram",
+    "dai loan", "thai lan", "google flow", "youtube", "tiktok", "top top", "facebook", "instagram",
 }
 
 _VN_CAP_WORD = (
     r"[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]"
     r"[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+"
 )
-_TWO_WORD_NAME_RE = re.compile(rf"\b({_VN_CAP_WORD}\s+{_VN_CAP_WORD})\b")
+_MULTI_WORD_NAME_RE = re.compile(rf"\b({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD}){{1,3}})\b")
 _HONORIFIC_NAME_RE = re.compile(
-    rf"\b(?:cu|thằng|anh|chị|em|bạn|ông|bà|cô|chú|vợ chồng|nhà)\s+({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD})?)\b"
+    rf"\b(?:cu|thằng|anh|chị|em|bạn|ông|bà|cô|chú|vợ chồng|nhà)\s+({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD}){{0,3}})\b"
 )
 _GROUP_KEYWORDS_RE = re.compile(
     r"\b(cả hội|nguyên bàn|cả bọn|cả lũ|mọi người|từng thằng|toàn mặt chúng mày|"
@@ -497,6 +499,8 @@ def _char_name_keys(c: dict, cid: str = "") -> set:
             parts = norm.split()
             if len(parts) >= 2:
                 keys.add(parts[-1])
+                keys.add(" ".join(parts[-2:]))
+                keys.add(" ".join(parts[:2]))
     if cid:
         clean_id = re.sub(r"^char_", "", _strip_accents(cid).lower()).replace("_", " ").strip()
         if clean_id:
@@ -508,29 +512,34 @@ def _mentioned_char_ids_in_text(text: str, chars: dict) -> list:
     """Tìm tất cả ID nhân vật đã khai báo trong `chars` được gọi tên trực tiếp (viết hoa chữ cái đầu) trong `text`."""
     if not text or not chars:
         return []
-    # Tìm mọi từ/cụm từ viết hoa trong text (bỏ qua từ đầu câu nếu là từ thông thường không khớp tên)
     cap_tokens = set()
-    for m in re.finditer(rf"\b({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD})?)\b", text):
+    for m in re.finditer(rf"\b({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD}){{0,3}})\b", text):
         phrase = _strip_accents(m.group(1)).lower()
         cap_tokens.add(phrase)
-        for w in phrase.split():
+        words = phrase.split()
+        for w in words:
             cap_tokens.add(w)
+        if len(words) >= 2:
+            cap_tokens.add(" ".join(words[-2:]))
 
     matched = []
+    tail_text = re.sub(r"(?:^|[.!?]\s+)\S+", "", text)
+    tail_caps = {_strip_accents(m.group(1)).lower() for m in re.finditer(rf"\b({_VN_CAP_WORD})\b", tail_text)}
     for cid, c in chars.items():
-        full_names = {
+        primary_names = {
             _strip_accents(str(x)).strip().lower()
-            for x in [c.get("name"), c.get("short_name"), *(c.get("aliases") or [])]
+            for x in [c.get("name"), c.get("short_name")]
             if x
         }
-        # Khớp tên đầy đủ 2 từ trước, hoặc khớp tên đơn nếu từ viết hoa xuất hiện sau đại từ/danh xưng hoặc giữa câu
-        if any(fn in cap_tokens for fn in full_names if " " in fn):
+        all_names = primary_names | {
+            _strip_accents(str(x)).strip().lower()
+            for x in (c.get("aliases") or [])
+            if x
+        }
+        if any(fn in cap_tokens for fn in all_names if " " in fn):
             matched.append(cid)
             continue
-        # Kiểm tra tên đơn viết hoa (không nằm ở vị trí chữ đầu tiên của câu để tránh trùng từ đầu câu)
-        tail_text = re.sub(r"(?:^|[.!?]\s+)\S+", "", text)
-        tail_caps = {_strip_accents(m.group(1)).lower() for m in re.finditer(rf"\b({_VN_CAP_WORD})\b", tail_text)}
-        for fn in full_names:
+        for fn in primary_names:
             last_tok = fn.split()[-1]
             if fn in tail_caps or last_tok in tail_caps:
                 matched.append(cid)
@@ -553,7 +562,7 @@ def _find_undeclared_proper_names(project: dict, chars: dict) -> list:
     for t in texts:
         if not t:
             continue
-        candidates = [m.group(1) for m in _TWO_WORD_NAME_RE.finditer(t)]
+        candidates = [m.group(1) for m in _MULTI_WORD_NAME_RE.finditer(t)]
         candidates += [m.group(1) for m in _HONORIFIC_NAME_RE.finditer(t)]
         for cand in candidates:
             norm = _strip_accents(cand).strip().lower()
@@ -637,7 +646,8 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     beat_nar = next((b.get("narration", "") for b in project.get("beats", []) if b.get("beat_id") == beat_id), "")
     combined_context = f"{shot.get('action', '')} {shot.get('end_action', '')} {beat_nar}"
     cam_lower = (shot.get("camera") or shot.get("camera_shot") or "").lower()
-    is_wide_or_table = bool(re.search(r"\b(wide|group|table|two-shot|medium shot)\b", f"{cam_lower} {shot.get('action', '')}", re.I))
+    is_solo_studio = "podcast_studio" in (shot.get("environment") or "").lower() or "bedroom" in (shot.get("environment") or "").lower()
+    is_wide_or_table = bool(re.search(r"\b(wide|group|table|two-shot|rooftop|cafe)\b", f"{cam_lower} {shot.get('action', '')}", re.I)) and not is_solo_studio
     if len(chars) >= 4 and len(all_cast) <= 2 and is_wide_or_table and _GROUP_KEYWORDS_RE.search(combined_context):
         add("warn", "GROUP_SCENE_UNDERPOPULATED",
             f"Nội dung cảnh/beat nói về cả nhóm/bàn đông người nhưng shot chỉ khai báo {len(all_cast)} nhân vật ({all_cast}). "

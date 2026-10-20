@@ -362,27 +362,25 @@ def build_group_reference_sheet(manifest: dict, char_ids: list, proj_dir: Path) 
     cell_h = max(270, min(540, 1080 // rows))
 
     cells = []
-    for _, label, img_path, _ in entries:
+    for _, _, img_path, _ in entries:
         im = cv2.imread(str(img_path))
         if im is None:
             continue
         h, w = im.shape[:2]
-        scale = min(cell_w / max(w, 1), (cell_h - 40) / max(h, 1))
+        scale = min(cell_w / max(w, 1), cell_h / max(h, 1))
         nw, nh = max(1, int(w * scale)), max(1, int(h * scale))
         resized = cv2.resize(im, (nw, nh), interpolation=cv2.INTER_AREA)
-        canvas = np.full((cell_h, cell_w, 3), 235, dtype=np.uint8)
-        y0 = (cell_h - 40 - nh) // 2
+        border_color = [int(x) for x in im[0, 0]] if h > 0 and w > 0 else [165, 165, 165]
+        canvas = np.full((cell_h, cell_w, 3), border_color, dtype=np.uint8)
+        y0 = (cell_h - nh) // 2
         x0 = (cell_w - nw) // 2
         canvas[y0:y0 + nh, x0:x0 + nw] = resized
-        cv2.rectangle(canvas, (0, cell_h - 40), (cell_w, cell_h), (28, 28, 32), -1)
-        ascii_label = label.encode("ascii", "ignore").decode("ascii").strip() or label[:24]
-        cv2.putText(canvas, ascii_label[:26], (10, cell_h - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.62, (0, 235, 255), 2)
         cells.append(canvas)
 
     if len(cells) < 2:
         return ""
     while len(cells) % cols != 0:
-        cells.append(np.full((cell_h, cell_w, 3), 235, dtype=np.uint8))
+        cells.append(np.full((cell_h, cell_w, 3), 165, dtype=np.uint8))
 
     grid = np.vstack([np.hstack(cells[r * cols:(r + 1) * cols]) for r in range(rows)])
     out_path.parent.mkdir(parents=True, exist_ok=True)
