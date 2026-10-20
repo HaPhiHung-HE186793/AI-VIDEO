@@ -118,8 +118,133 @@ def display_name(character: dict, fallback: str = "") -> str:
     return character.get("short_name") or character.get("name") or fallback
 
 
+def compact_identity(character: dict) -> str:
+    """Trích xuất mô tả ngoại hình cô đọng (tóc, kính, trang phục) để nhúng 4..20+ nhân vật vào cùng 1 cảnh mà không tràn prompt."""
+    if character.get("compact_identity"):
+        return character["compact_identity"].strip().rstrip(".")
+    raw = (character.get("identity_line") or "").strip().rstrip(".")
+    if not raw:
+        return ""
+    cleaned = re.sub(
+        r"^(?:a|an)?\s*(?:(?:\d+[- ]year[- ]old|young|lively|gentle|cheerful|handsome|pretty|"
+        r"tall|chubby|slim|nerdy|playful|calm|energetic|cool|shy|funny|sporty)\s+)*"
+        r"(?:vietnamese\s+|asian\s+)?(?:guy|man|woman|girl|boy|person|student|friend|cultivator|brain cell)\s+"
+        r"(?:with|in|wearing)\s+",
+        "",
+        raw,
+        flags=re.I,
+    )
+    cleaned = re.sub(r",?\s+and\s+(?:an?\s+)?", ", ", cleaned, flags=re.I)
+    cleaned = re.sub(r"\ban?\s+", "", cleaned, flags=re.I)
+    return cleaned.strip(" ,.") or raw
+
+
 def is_structured(shot: dict) -> bool:
     return bool(shot.get("action") and (shot.get("camera") or shot.get("camera_shot")))
+
+
+_ABSTRACT_CLAUSES = [
+    re.compile(r",?\s*\bas if\s+(?:starting|telling|recounting|trying|about|he|she|they)\b[^.,;]*", re.I),
+    re.compile(r",?\s*\bwhile recounting\s+(?:his|her|their)\s+[^.,;]*", re.I),
+    re.compile(r",?\s*\bas (?:he|she|they) recounts?\s+[^.,;]*", re.I),
+    re.compile(r",?\s*\bto tease\s+(?:him|her|them)\s+about\s+[^.,;]*", re.I),
+    re.compile(r",?\s*\bin order to\s+(?:tease|mock|convince|prove)\b[^.,;]*", re.I),
+]
+
+
+def _clean_kinematic_action(text: str) -> str:
+    """Lược bỏ mệnh đề tâm lý/kể chuyện trừu tượng, chỉ giữ lại động từ vật lý (kinematic action) cho AI."""
+    out = (text or "").strip()
+    if not out:
+        return ""
+    for pat in _ABSTRACT_CLAUSES:
+        out = pat.sub("", out)
+    return re.sub(r"\s{2,}", " ", out).strip(" ,.")
+
+
+def _build_motion_arc(shot: dict) -> str:
+    """Ghép câu quỹ đạo chuyển động 3 pha (Start Pose -> Motion Bridge -> End Pose) cho veo_prompt ở chế độ first_last."""
+    start_act = _clean_kinematic_action(shot.get("start_action") or "")
+    act = _clean_kinematic_action(shot.get("action") or "")
+    end_act = _clean_kinematic_action(shot.get("end_action") or "")
+    if shot.get("generation_mode") == "first_last" and end_act:
+        if start_act and start_act.lower() != act.lower() and end_act.lower() != act.lower():
+            return _sentence(f"Starting from {start_act}, {act}, then smoothly settling into the final state where {end_act}")
+        if end_act.lower() != act.lower():
+            return _sentence(f"{act}, then smoothly transitioning so {end_act}")
+    return _sentence(act or start_act or end_act)
+
+
+def _format_cast_lines(shot: dict, chars: dict) -> list:
+    """Định dạng danh sách nhân vật có tên (từ 1 đến 20+ người) đồng bộ tuyệt đối giữa Keyframe START, END và Veo Prompt.
+
+    - Khóa vị trí Trái/Giữa/Phải (`On the left / In the center / On the right`) cho các nhân vật tiêu điểm (`subjects`)
+      ở CẢ 3 TẦNG để Nano Banana không vẽ ngược bên với Veo.
+    - Khi cảnh có từ 4..20+ nhân vật (qua `subjects` hoặc `ensemble_cast` / `table_group`), tự động liệt kê đầy đủ
+      100% nhân vật được gọi tên kèm tạo hình rút gọn (`compact_identity`) theo sơ đồ chỗ ngồi quanh bàn/cảnh.
+    """
+    focal_ids = [cid for cid in (shot.get("subjects") or []) if cid in chars]
+    all_cast = [cid for cid in mf.shot_all_cast_ids(shot) if cid in chars]
+    lines = []
+
+    # Tầng 1: Nhân vật tiêu điểm (1..3 người đang thực hiện hành động chính) kèm full identity_line
+    primary_ids = focal_ids[:3] if len(focal_ids) <= 3 else focal_ids[:2]
+    pos_tags = (
+        ["On the left,", "In the center,", "On the right,"]
+        if len(primary_ids) == 3
+        else (["On the left,", "On the right,"] if len(primary_ids) == 2 else [])
+    )
+    use_pos = bool(shot.get("spatial_lock", True)) and len(primary_ids) in (2, 3)
+    for idx, cid in enumerate(primary_ids):
+        c = chars[cid]
+        if c.get("identity_line"):
+            prefix = f"{pos_tags[idx]} " if use_pos and idx < len(pos_tags) else ""
+            lines.append(_sentence(f"{prefix}{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+
+    # Tầng 2: Nếu cảnh có >= 4 nhân vật hoặc có khai báo `ensemble_cast` / `table_group` (4..20+ người),
+    # xuất sơ đồ chỗ ngồi đầy đủ 100% các nhân vật có tên trong cảnh để không sót bất kỳ ai.
+    has_ensemble = len(all_cast) >= 4 or len(all_cast) > len(primary_ids)
+    if has_ensemble:
+        context_str = f"{shot.get('action', '')} {shot.get('setting', '')} {shot.get('environment', '')}"
+        default_layout = (
+            "seated together around the main table from left to right"
+            if re.search(r"\b(table|cafe|restaurant|banquet|bar|dinner|lunch|party|rooftop)\b", context_str, re.I)
+            else "gathered in the scene from left to right"
+        )
+        layout = (shot.get("seating_layout") or default_layout).strip().rstrip(":")
+        primary_set = set(primary_ids)
+        roster = [
+            display_name(chars[cid], cid) if cid in primary_set else f"{display_name(chars[cid], cid)} ({compact_identity(chars[cid])})"
+            for cid in all_cast
+        ]
+        lines.append(_sentence(f"All {len(roster)} named characters {layout}: {', '.join(roster)}"))
+
+    return lines
+
+
+def _crowd_atmosphere_line(project: dict, shot: dict) -> str:
+    """Sinh câu mô tả tầng quần chúng không tên & các bàn xung quanh (nếu cảnh ở quán xá/không gian đông vui)."""
+    raw_shot_crowd = shot.get("background_crowd") if "background_crowd" in shot else shot.get("atmosphere")
+    if raw_shot_crowd is False or str(raw_shot_crowd or "").strip().lower() in ("none", "false", "empty"):
+        return ""
+    if isinstance(raw_shot_crowd, str) and raw_shot_crowd.strip():
+        return _sentence(raw_shot_crowd.strip())
+
+    envs = mf.environments_by_id(project)
+    env_obj = envs.get(shot.get("environment") or "", {})
+    env_crowd = env_obj.get("background_crowd") or env_obj.get("atmosphere") or ""
+    if isinstance(env_crowd, str) and env_crowd.strip():
+        return _sentence(env_crowd.strip())
+
+    # Tự động kích hoạt không khí quán đông vui nếu cảnh nhóm (>=4 nhân vật) diễn ra tại quán cafe/nhà hàng/bàn tiệc
+    all_cast = mf.shot_all_cast_ids(shot)
+    env_text = f"{env_obj.get('name', '')} {env_obj.get('identity_line', '')} {shot.get('setting', '')}"
+    if len(all_cast) >= 4 and re.search(r"\b(cafe|rooftop|restaurant|bar|pub|diner|banquet|party)\b", env_text, re.I):
+        return _sentence(
+            "In the background, several neighboring tables are occupied by lively unnamed cafe patrons chatting "
+            "and clinking drinks, creating a bustling, vibrant social atmosphere"
+        )
+    return ""
 
 
 def _cross_attribute_lock(subjects: list, chars: dict) -> str:
@@ -131,6 +256,11 @@ def _cross_attribute_lock(subjects: list, chars: dict) -> str:
         return ""
     with_glasses, bare_eyes = [], []
     long_hair, short_hair = [], []
+    short_hair_pat = re.compile(
+        r"\b(short|buzz|undercut|crew|fade|middle[- ]part|side[- ]part|parted|messy|cropped|spiky|slicked|curly|wavy)\b"
+        r"[^.,;]*\b(hair|haircut|cut)\b|\bbuzz\s+cut\b",
+        re.I,
+    )
     for cid in subjects:
         c = chars.get(cid, {})
         id_line = (c.get("identity_line") or "").lower()
@@ -143,17 +273,23 @@ def _cross_attribute_lock(subjects: list, chars: dict) -> str:
             bare_eyes.append(name)
         if re.search(r"\blong\b[^.,;]*\bhair\b", id_line):
             long_hair.append(name)
-        elif re.search(r"\b(short|buzz|undercut|crew)\b[^.,;]*\bhair\b", id_line):
+        elif short_hair_pat.search(id_line):
             short_hair.append(name)
     clauses = []
     if with_glasses and bare_eyes:
         g_verb = "wears" if len(with_glasses) == 1 else "wear"
-        b_verb = "keeps" if len(bare_eyes) == 1 else "keep"
-        clauses.append(f"Only {' and '.join(with_glasses)} {g_verb} glasses while {' and '.join(bare_eyes)} {b_verb} bare eyes")
+        if len(bare_eyes) <= 3:
+            b_verb = "keeps" if len(bare_eyes) == 1 else "keep"
+            clauses.append(f"Only {' and '.join(with_glasses)} {g_verb} glasses while {' and '.join(bare_eyes)} {b_verb} bare eyes")
+        else:
+            clauses.append(f"Only {' and '.join(with_glasses)} {g_verb} glasses while all other characters keep bare eyes")
     if long_hair and short_hair:
         l_verb = "has" if len(long_hair) == 1 else "have"
-        s_verb = "keeps" if len(short_hair) == 1 else "keep"
-        clauses.append(f"only {' and '.join(long_hair)} {l_verb} long hair while {' and '.join(short_hair)} {s_verb} short hair")
+        if len(short_hair) <= 3:
+            s_verb = "keeps" if len(short_hair) == 1 else "keep"
+            clauses.append(f"only {' and '.join(long_hair)} {l_verb} long hair while {' and '.join(short_hair)} {s_verb} short hair")
+        else:
+            clauses.append(f"only {' and '.join(long_hair)} {l_verb} long hair while all other characters keep short hair")
     if not clauses:
         return ""
     joined = "; ".join(clauses)
@@ -181,7 +317,7 @@ def _align_first_last_camera(camera_text: str, shot: dict) -> str:
 
 
 def build_prompt(project: dict, shot: dict) -> str:
-    """Ghép prompt Veo từ các trường có cấu trúc của shot."""
+    """Ghép prompt Veo 3.1 có cấu trúc: [Máy quay] + [Nhân vật & Sơ đồ chỗ ngồi 1..N] + [Quỹ đạo chuyển động 3 pha] + [Quần chúng nền & Ánh sáng] + [Âm thanh]."""
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
     lang = normalize_lang(project.get("language") or project.get("plan", {}).get("language_code", "vi"))
@@ -189,23 +325,17 @@ def build_prompt(project: dict, shot: dict) -> str:
     raw_cam = shot.get("camera") or shot.get("camera_shot")
     parts = [_sentence(_align_first_last_camera(raw_cam, shot))]
 
-    subject_lines = []
-    subjects = shot.get("subjects", [])
-    pos_tags = ["On the left,", "In the center,", "On the right,"] if len(subjects) == 3 else (
-        ["On the left,", "On the right,"] if len(subjects) == 2 else []
-    )
-    use_pos = bool(shot.get("spatial_lock", shot.get("generation_mode") == "first_last")) and len(subjects) in (2, 3)
-    for idx, cid in enumerate(subjects):
-        c = chars.get(cid, {})
-        if c.get("identity_line"):
-            prefix = f"{pos_tags[idx]} " if use_pos and idx < len(pos_tags) else ""
-            subject_lines.append(_sentence(f"{prefix}{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
-    parts += subject_lines
-    attr_lock = _cross_attribute_lock(subjects, chars)
+    all_cast = mf.shot_all_cast_ids(shot)
+    parts += _format_cast_lines(shot, chars)
+    attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
 
-    parts.append(_sentence(shot.get("action")))
+    parts.append(_build_motion_arc(shot))
+
+    crowd_line = _crowd_atmosphere_line(project, shot)
+    if crowd_line:
+        parts.append(crowd_line)
 
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
@@ -235,7 +365,7 @@ def build_prompt(project: dict, shot: dict) -> str:
 
 
 def build_first_frame_prompt(project: dict, shot: dict) -> str:
-    """Dựng prompt ảnh Keyframe mở đầu (`first_frame_prompt`) cho Nano Banana từ trường có cấu trúc."""
+    """Dựng prompt ảnh Keyframe mở đầu (`first_frame_prompt`) đồng bộ vị trí Trái/Phải, đủ 1..N nhân vật và quần chúng nền."""
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
     props = mf.props_by_id(project)
@@ -246,16 +376,13 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
         shot.get("camera") or shot.get("camera_shot") or "",
         flags=re.I,
     ).strip(" ,.")
-    pose = shot.get("start_action") or shot.get("action") or ""
+    pose = _clean_kinematic_action(shot.get("start_action") or shot.get("action") or "")
     cam_head = (cam or shot.get("camera") or shot.get("camera_shot") or "").rstrip(".")
     parts = [_sentence(f"{cam_head}: {pose}" if cam_head and pose else (cam_head or pose))]
 
-    subjects = shot.get("subjects", [])
-    for cid in subjects:
-        c = chars.get(cid, {})
-        if c.get("identity_line"):
-            parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
-    attr_lock = _cross_attribute_lock(subjects, chars)
+    all_cast = mf.shot_all_cast_ids(shot)
+    parts += _format_cast_lines(shot, chars)
+    attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
 
@@ -263,6 +390,10 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
         p = props.get(pid, {})
         if p.get("name"):
             parts.append(_sentence(f"Visible prop: {p['name']}"))
+
+    crowd_line = _crowd_atmosphere_line(project, shot)
+    if crowd_line:
+        parts.append(crowd_line)
 
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
@@ -274,22 +405,23 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
 
 
 def build_last_frame_prompt(project: dict, shot: dict) -> str:
-    """Dựng prompt ảnh Keyframe kết thúc (`last_frame_prompt`) khóa chặt góc máy và nền với Keyframe mở đầu."""
+    """Dựng prompt ảnh Keyframe kết thúc (`last_frame_prompt`) theo cấu trúc Surgical Pose Edit khóa chặt góc máy, vị trí 1..N nhân vật và nền."""
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
 
-    end_pose = shot.get("end_action") or shot.get("action") or ""
+    end_pose = _clean_kinematic_action(shot.get("end_action") or shot.get("action") or "")
     cam_raw = shot.get("camera") or shot.get("camera_shot") or ""
     if shot.get("dynamic_camera") and cam_raw:
         anchor_rule = (
-            f"Complete the camera trajectory ({cam_raw.rstrip('.')}) while preserving the exact same background "
-            "environment, lighting, and character identity from the start frame reference."
+            f"Surgical camera and pose edit from the attached start frame reference: complete the camera trajectory "
+            f"({cam_raw.rstrip('.')}) while preserving the exact same background environment, lighting, and left-to-right character positions."
         )
         tail_rule = "Single still keyframe at the final camera position, no text, no subtitles."
     else:
         anchor_rule = (
-            "Maintain the exact same camera angle, lens, background environment, lighting, and character identity "
-            "from the start frame reference."
+            "Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression "
+            "to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, "
+            "lighting, and left-to-right character positions."
         )
         tail_rule = "Single still keyframe, identical framing to start frame, no text, no subtitles."
     if shot.get("waypoint_subshot") and shot.get("waypoint_index", 1) < shot.get("waypoint_total", 1):
@@ -300,14 +432,15 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
         lead,
         anchor_rule,
     ]
-    subjects = shot.get("subjects", [])
-    for cid in subjects:
-        c = chars.get(cid, {})
-        if c.get("identity_line"):
-            parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
-    attr_lock = _cross_attribute_lock(subjects, chars)
+    all_cast = mf.shot_all_cast_ids(shot)
+    parts += _format_cast_lines(shot, chars)
+    attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
+
+    crowd_line = _crowd_atmosphere_line(project, shot)
+    if crowd_line:
+        parts.append(crowd_line)
 
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
@@ -323,6 +456,115 @@ def effective_negative_prompt(project: dict, shot: dict) -> str:
     if shot.get("generation_mode") == "first_last":
         items.append("cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping")
     return ", ".join(x.strip(" ,") for x in items if x and x.strip(" ,"))
+
+
+def _strip_accents(text: str) -> str:
+    import unicodedata
+
+    s = (text or "").replace("đ", "d").replace("Đ", "D")
+    return "".join(ch for ch in unicodedata.normalize("NFD", s) if unicodedata.category(ch) != "Mn")
+
+
+_NON_PERSON_PROPER = {
+    "viet nam", "ha noi", "sai gon", "da nang", "trung quoc", "han quoc", "nhat ban",
+    "dai loan", "thai lan", "google flow", "youtube", "tiktok", "facebook", "instagram",
+}
+
+_VN_CAP_WORD = (
+    r"[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]"
+    r"[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+"
+)
+_TWO_WORD_NAME_RE = re.compile(rf"\b({_VN_CAP_WORD}\s+{_VN_CAP_WORD})\b")
+_HONORIFIC_NAME_RE = re.compile(
+    rf"\b(?:cu|thằng|anh|chị|em|bạn|ông|bà|cô|chú|vợ chồng|nhà)\s+({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD})?)\b"
+)
+_GROUP_KEYWORDS_RE = re.compile(
+    r"\b(cả hội|nguyên bàn|cả bọn|cả lũ|mọi người|từng thằng|toàn mặt chúng mày|"
+    r"all friends|whole group|everyone at the table|friends are chatting)\b",
+    re.I,
+)
+
+
+def _char_name_keys(c: dict, cid: str = "") -> set:
+    """Tập khóa tên không dấu (họ tên đầy đủ, tên ngắn, tên gọi cuối) của 1 nhân vật để đối chiếu với kịch bản."""
+    keys = set()
+    for raw in [c.get("name"), c.get("short_name"), *(c.get("aliases") or [])]:
+        if not raw:
+            continue
+        norm = _strip_accents(str(raw)).strip().lower()
+        if norm:
+            keys.add(norm)
+            parts = norm.split()
+            if len(parts) >= 2:
+                keys.add(parts[-1])
+    if cid:
+        clean_id = re.sub(r"^char_", "", _strip_accents(cid).lower()).replace("_", " ").strip()
+        if clean_id:
+            keys.add(clean_id)
+    return keys
+
+
+def _mentioned_char_ids_in_text(text: str, chars: dict) -> list:
+    """Tìm tất cả ID nhân vật đã khai báo trong `chars` được gọi tên trực tiếp (viết hoa chữ cái đầu) trong `text`."""
+    if not text or not chars:
+        return []
+    # Tìm mọi từ/cụm từ viết hoa trong text (bỏ qua từ đầu câu nếu là từ thông thường không khớp tên)
+    cap_tokens = set()
+    for m in re.finditer(rf"\b({_VN_CAP_WORD}(?:\s+{_VN_CAP_WORD})?)\b", text):
+        phrase = _strip_accents(m.group(1)).lower()
+        cap_tokens.add(phrase)
+        for w in phrase.split():
+            cap_tokens.add(w)
+
+    matched = []
+    for cid, c in chars.items():
+        full_names = {
+            _strip_accents(str(x)).strip().lower()
+            for x in [c.get("name"), c.get("short_name"), *(c.get("aliases") or [])]
+            if x
+        }
+        # Khớp tên đầy đủ 2 từ trước, hoặc khớp tên đơn nếu từ viết hoa xuất hiện sau đại từ/danh xưng hoặc giữa câu
+        if any(fn in cap_tokens for fn in full_names if " " in fn):
+            matched.append(cid)
+            continue
+        # Kiểm tra tên đơn viết hoa (không nằm ở vị trí chữ đầu tiên của câu để tránh trùng từ đầu câu)
+        tail_text = re.sub(r"(?:^|[.!?]\s+)\S+", "", text)
+        tail_caps = {_strip_accents(m.group(1)).lower() for m in re.finditer(rf"\b({_VN_CAP_WORD})\b", tail_text)}
+        for fn in full_names:
+            last_tok = fn.split()[-1]
+            if fn in tail_caps or last_tok in tail_caps:
+                matched.append(cid)
+                break
+    return matched
+
+
+def _find_undeclared_proper_names(project: dict, chars: dict) -> list:
+    """Quét lời dẫn (`beats.narration`) và lời thoại (`shot.audio.line`) để tìm các tên người được nhắc tới nhưng chưa tạo `characters`."""
+    known_keys = set()
+    for cid, c in chars.items():
+        known_keys |= _char_name_keys(c, cid)
+
+    texts = [b.get("narration", "") for b in project.get("beats", [])]
+    for s in project.get("shots", []):
+        texts.append(mf.shot_audio(s).get("line", ""))
+
+    undeclared = []
+    seen_norm = set()
+    for t in texts:
+        if not t:
+            continue
+        candidates = [m.group(1) for m in _TWO_WORD_NAME_RE.finditer(t)]
+        candidates += [m.group(1) for m in _HONORIFIC_NAME_RE.finditer(t)]
+        for cand in candidates:
+            norm = _strip_accents(cand).strip().lower()
+            if not norm or norm in _NON_PERSON_PROPER or norm in seen_norm:
+                continue
+            parts = norm.split()
+            if norm in known_keys or (len(parts) == 1 and parts[0] in known_keys):
+                continue
+            seen_norm.add(norm)
+            undeclared.append(cand)
+    return undeclared
 
 
 def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
@@ -341,11 +583,22 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     if not prompt.strip():
         add("error", "EMPTY_PROMPT", "Chưa có veo_prompt (chạy build-prompts nếu đã điền trường có cấu trúc).")
         return out
+
+    all_cast = mf.shot_all_cast_ids(shot)
+    # Tự động nới trần độ dài prompt khi cảnh có đông nhân vật có tên (4..20+ người), cầu nối chuyển động hoặc quần chúng nền
+    extra_cast_allowance = (
+        max(0, (len(all_cast) - 1) * 95)
+        + (160 if _crowd_atmosphere_line(project, shot) else 0)
+        + (110 if shot.get("end_action") else 0)
+    )
+    max_chars_eff = pcfg["max_chars"] + extra_cast_allowance
+    warn_chars_eff = pcfg["warn_chars"] + extra_cast_allowance
+
     n = len(prompt)
-    if n > pcfg["max_chars"]:
-        add("warn", "PROMPT_TOO_LONG", f"{n} ký tự > {pcfg['max_chars']}. Prompt dài làm model bỏ qua chi tiết; giữ 1–2 hành động chính.")
-    elif n > pcfg["warn_chars"]:
-        add("info", "PROMPT_LONG", f"{n} ký tự — cân nhắc rút gọn (mục tiêu 400–{pcfg['warn_chars']}).")
+    if n > max_chars_eff:
+        add("warn", "PROMPT_TOO_LONG", f"{n} ký tự > {max_chars_eff}. Prompt dài làm model bỏ qua chi tiết; giữ 1–2 hành động chính.")
+    elif n > warn_chars_eff:
+        add("info", "PROMPT_LONG", f"{n} ký tự — cân nhắc rút gọn (mục tiêu 400–{warn_chars_eff}).")
     elif n < pcfg["min_chars"]:
         add("warn", "PROMPT_TOO_SHORT", f"{n} ký tự — thiếu máy quay/ánh sáng/âm thanh.")
 
@@ -360,17 +613,36 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
         add("warn", "TOO_MANY_PHASES", f"{len(phases)} pha có mốc giờ. Veo không bám mốc giờ chính xác; 1 clip nên có 1–2 hành động.")
 
     subjects = shot.get("subjects", [])
-    for cid in subjects:
+    primary_set = set(subjects[:3] if len(subjects) <= 3 else subjects[:2])
+    for cid in all_cast:
         c = chars.get(cid)
         if not c:
             add("error", "UNKNOWN_SUBJECT", f"Subject '{cid}' không có trong characters.")
             continue
         if not c.get("identity_line"):
             add("warn", "NO_IDENTITY_LINE", f"{cid} chưa có identity_line (mô tả chuẩn dán nguyên văn mọi shot).")
-        elif c["identity_line"].strip().rstrip(".") not in prompt:
-            add("warn", "IDENTITY_LINE_DRIFT", f"Prompt không chứa nguyên văn identity_line của {cid} → mô tả trôi giữa các shot.")
+        else:
+            full_id = c["identity_line"].strip().rstrip(".")
+            comp_id = compact_identity(c)
+            if cid in primary_set:
+                if full_id not in prompt and comp_id not in prompt:
+                    add("warn", "IDENTITY_LINE_DRIFT", f"Prompt không chứa nguyên văn identity_line của {cid} → mô tả trôi giữa các shot.")
+            elif comp_id not in prompt and full_id not in prompt:
+                add("warn", "IDENTITY_LINE_DRIFT", f"Nhân vật trong cảnh '{cid}' chưa có mô tả ngoại hình trong prompt.")
         if mode in ("text",) or (mode == "ingredients" and not (shot.get("reference_images") or c.get("reference_images"))):
             add("warn", "NO_IDENTITY_REFERENCE", f"{cid} xuất hiện nhưng shot không dùng ảnh tham chiếu (mode={mode}). Danh tính sẽ trôi giữa các clip.")
+
+    # Kiểm tra nếu cảnh mô tả cả bàn/cả nhóm nhưng chỉ khai báo lèo tèo 1-2 người
+    beat_id = shot.get("beat")
+    beat_nar = next((b.get("narration", "") for b in project.get("beats", []) if b.get("beat_id") == beat_id), "")
+    combined_context = f"{shot.get('action', '')} {shot.get('end_action', '')} {beat_nar}"
+    cam_lower = (shot.get("camera") or shot.get("camera_shot") or "").lower()
+    is_wide_or_table = bool(re.search(r"\b(wide|group|table|two-shot|medium shot)\b", f"{cam_lower} {shot.get('action', '')}", re.I))
+    if len(chars) >= 4 and len(all_cast) <= 2 and is_wide_or_table and _GROUP_KEYWORDS_RE.search(combined_context):
+        add("warn", "GROUP_SCENE_UNDERPOPULATED",
+            f"Nội dung cảnh/beat nói về cả nhóm/bàn đông người nhưng shot chỉ khai báo {len(all_cast)} nhân vật ({all_cast}). "
+            f"Dự án có {len(chars)} nhân vật có tên — hãy đưa đầy đủ các nhân vật phụ trong bàn vào `ensemble_cast` (hoặc `subjects`) "
+            "và thêm `background_crowd` nếu ở quán đông vui.")
 
     if mode in ("first_frame", "first_last") and not shot.get("first_frame_path"):
         add("error", "MISSING_FIRST_FRAME", f"mode={mode} nhưng chưa có first_frame_path.")
@@ -407,20 +679,49 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
                                              "Phim nhiều lời dẫn nên dùng voiceover_external (cùng tên giọng).")
     if voice and voice not in KNOWN_VOICES:
         add("info", "UNKNOWN_VOICE", f"Giọng '{voice}' không có trong danh sách đã biết — kiểm tra lại tên trên Flow.")
-    if len(subjects) >= 2 and mode == "ingredients":
-        add("info", "MULTI_SUBJECT_COMPOSITION", f"Cảnh có {len(subjects)} nhân vật dùng mode=ingredients: nếu cần kiểm soát "
+    if len(all_cast) >= 2 and mode == "ingredients":
+        add("info", "MULTI_SUBJECT_COMPOSITION", f"Cảnh có {len(all_cast)} nhân vật dùng mode=ingredients: nếu cần kiểm soát "
                                                  "chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước.")
     return out
 
 
 def lint_project(project: dict, cfg: dict) -> list:
-    """Kiểm tra cấu trúc tổng thể của dự án (nhịp truyện beat, liên kết đạo cụ/bối cảnh)."""
+    """Kiểm tra cấu trúc tổng thể của dự án (nhịp truyện beat, đầy đủ 1..N nhân vật được gọi tên, liên kết đạo cụ/bối cảnh)."""
     out = []
 
     def add(level, code, msg):
         out.append({"level": level, "code": code, "msg": msg})
 
     shots = [s for s in mf.ordered_shots(project) if not s.get("exclude_from_edit")]
+    chars = mf.characters_by_id(project)
+
+    # 1. Quét toàn bộ kịch bản xem có nhân vật nào được gọi tên riêng nhưng chưa tạo trong `manifest.characters`
+    undeclared_names = _find_undeclared_proper_names(project, chars)
+    if undeclared_names:
+        add("warn", "UNDECLARED_NAMED_CHARACTER",
+            f"Kịch bản/lời dẫn nhắc tên riêng {undeclared_names} nhưng chưa tạo trong `manifest.characters`. "
+            "Nguyên tắc bắt buộc: kêu tên ai trong truyện thì người đó phải có hồ sơ tạo hình riêng (không giới hạn 5 hay 10–20 người).")
+
+    # 2. Quét từng beat xem nhân vật đã tạo được gọi tên trong lời dẫn có mặt trong các shot của beat đó chưa
+    for b in project.get("beats", []):
+        bid = b.get("beat_id", "")
+        nar = b.get("narration", "")
+        mentioned_cids = _mentioned_char_ids_in_text(nar, chars)
+        if not mentioned_cids:
+            continue
+        beat_shots = [s for s in shots if s.get("beat") == bid]
+        if not beat_shots:
+            continue
+        present_cids = set()
+        for s in beat_shots:
+            present_cids.update(mf.shot_all_cast_ids(s))
+        missing_in_beat = [cid for cid in mentioned_cids if cid not in present_cids]
+        if missing_in_beat:
+            missing_labels = [f"{display_name(chars[c], c)} ({c})" for c in missing_in_beat]
+            add("warn", "NAMED_CHARACTER_MISSING_IN_SCENE",
+                f"Beat '{bid}' gọi tên {', '.join(missing_labels)} nhưng chưa có mặt trong `subjects` hoặc `ensemble_cast` "
+                f"của các shot {[s['shot_id'] for s in beat_shots]}. Kêu tên ai thì người đó phải xuất hiện trong cảnh!")
+
     if len(shots) >= 6 and project.get("audio_strategy") == "voiceover_external" and not project.get("beats"):
         add("warn", "NO_BEATS_DEFINED",
             f"Dự án có {len(shots)} shot dùng voiceover_external nhưng chưa định nghĩa `beats` — lời dẫn sẽ bị "

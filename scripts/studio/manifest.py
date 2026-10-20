@@ -304,17 +304,106 @@ def resolve_chained_keyframes(manifest: dict, proj_dir: Path = None) -> list:
     return linked
 
 
+def shot_all_cast_ids(shot: dict) -> list:
+    """Trả về toàn bộ danh sách ID nhân vật có tên xuất hiện trong shot (không giới hạn số lượng 1..N).
+
+    Gộp theo thứ tự ưu tiên:
+    1. `shot.subjects` (nhân vật tiêu điểm / hành động chính).
+    2. `shot.ensemble_cast` / `shot.table_group` / `shot.background_cast` (các nhân vật phụ có tên cùng ngồi bàn / cùng cảnh).
+    """
+    seen = []
+    for key in ("subjects", "ensemble_cast", "table_group", "background_cast"):
+        for cid in shot.get(key) or []:
+            if cid and cid not in seen:
+                seen.append(cid)
+    return seen
+
+
+def build_group_reference_sheet(manifest: dict, char_ids: list, proj_dir: Path) -> str:
+    """Ghép ảnh chính diện của N nhân vật (4..20+ người) thành 1 bảng tham chiếu nhóm có nhãn tên & vị trí.
+
+    Giúp vượt giới hạn 3–4 slot đính kèm ảnh của Google Flow: chỉ tốn 1 slot đính kèm nhưng Nano Banana / Veo
+    nhìn thấy tạo hình chính xác của toàn bộ 10–20 nhân vật có tên trong bàn tiệc/cảnh nhóm.
+    Trả về đường dẫn tương đối (`assets/characters/_composites/group_cast_<hash>.jpg`) hoặc chuỗi rỗng nếu thiếu ảnh.
+    """
+    if not proj_dir or len(char_ids) < 2:
+        return ""
+    chars = characters_by_id(manifest)
+    entries = []
+    for idx, cid in enumerate(char_ids, start=1):
+        c = chars.get(cid, {})
+        refs = [p for p in c.get("reference_images", []) if p and (Path(proj_dir) / p).exists()]
+        if refs:
+            label = c.get("short_name") or c.get("name") or cid
+            entries.append((cid, f"#{idx} {label}", Path(proj_dir) / refs[0], refs[0]))
+    if len(entries) < 2:
+        return ""
+
+    import hashlib
+    import math
+
+    sig = "|".join(f"{cid}:{rel}" for cid, _, _, rel in entries)
+    digest = hashlib.sha1(sig.encode("utf-8")).hexdigest()[:10]
+    rel_out = f"assets/characters/_composites/group_cast_{len(entries)}p_{digest}.jpg"
+    out_path = Path(proj_dir) / rel_out
+    if out_path.exists():
+        return rel_out
+
+    try:
+        import cv2
+        import numpy as np
+    except Exception:  # noqa: BLE001
+        return ""
+
+    n = len(entries)
+    cols = min(5, max(2, math.ceil(math.sqrt(n))))
+    rows = math.ceil(n / cols)
+    cell_w = max(240, min(480, 1920 // cols))
+    cell_h = max(270, min(540, 1080 // rows))
+
+    cells = []
+    for _, label, img_path, _ in entries:
+        im = cv2.imread(str(img_path))
+        if im is None:
+            continue
+        h, w = im.shape[:2]
+        scale = min(cell_w / max(w, 1), (cell_h - 40) / max(h, 1))
+        nw, nh = max(1, int(w * scale)), max(1, int(h * scale))
+        resized = cv2.resize(im, (nw, nh), interpolation=cv2.INTER_AREA)
+        canvas = np.full((cell_h, cell_w, 3), 235, dtype=np.uint8)
+        y0 = (cell_h - 40 - nh) // 2
+        x0 = (cell_w - nw) // 2
+        canvas[y0:y0 + nh, x0:x0 + nw] = resized
+        cv2.rectangle(canvas, (0, cell_h - 40), (cell_w, cell_h), (28, 28, 32), -1)
+        ascii_label = label.encode("ascii", "ignore").decode("ascii").strip() or label[:24]
+        cv2.putText(canvas, ascii_label[:26], (10, cell_h - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.62, (0, 235, 255), 2)
+        cells.append(canvas)
+
+    if len(cells) < 2:
+        return ""
+    while len(cells) % cols != 0:
+        cells.append(np.full((cell_h, cell_w, 3), 235, dtype=np.uint8))
+
+    grid = np.vstack([np.hstack(cells[r * cols:(r + 1) * cols]) for r in range(rows)])
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(out_path), grid, [int(cv2.IMWRITE_JPEG_QUALITY), 92])
+    return rel_out if out_path.exists() else ""
+
+
 def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limit: int = 3,
                          include_env: bool = True) -> list:
-    """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin) cho shot trong giới hạn slot của Flow/Veo.
+    """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin + Auto Group Composite) cho shot.
 
-    Thứ tự ưu tiên để không làm rớt nhân vật thứ 2 hoặc đạo cụ/bối cảnh:
+    Thứ tự ưu tiên để không làm rớt bất kỳ nhân vật nào dù cảnh có 2 hay 20 nhân vật:
     1. `shot.reference_images` (đạo diễn chỉ định cứng).
-    2. Ảnh chính diện (`refs[0]`) của TỪNG nhân vật trong `shot.subjects` (khóa danh tính mọi người trong khung).
-    3. Ảnh đạo cụ (`shot.props` hoặc đạo cụ khớp tên trong `action`).
-    4. Ảnh góc thứ hai (`refs[1]`, thường là 3/4) của từng nhân vật theo vòng tròn.
+    2. Nếu cảnh có nhiều nhân vật (>= 3 người có ảnh trên đĩa) khiến tổng số ảnh vượt `limit`:
+       - Giữ ảnh riêng cho nhân vật tiêu điểm đầu tiên (`subjects[0]`).
+       - Tự động ghép toàn bộ các nhân vật còn lại (hoặc cả nhóm 4..20+ người) thành 1 bảng `group_cast_<hash>.jpg`
+         để chỉ tốn 1 slot nhưng AI thấy đủ mặt tất cả mọi người.
+    3. Ảnh chính diện (`refs[0]`) của từng nhân vật trong `shot_all_cast_ids(shot)`.
+    4. Ảnh đạo cụ (`shot.props` hoặc đạo cụ khớp tên trong `action`).
     5. Ảnh bối cảnh sạch (`environment.path`) nếu `include_env=True`.
-    6. Các ảnh nhân vật còn lại (`refs[2:]`).
+    6. Ảnh góc thứ hai (`refs[1]`, thường là 3/4) và các góc còn lại của từng nhân vật.
     """
     chars = characters_by_id(manifest)
     envs = environments_by_id(manifest)
@@ -334,12 +423,24 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
     for p in shot.get("reference_images", []):
         push(p)
 
+    all_cast = shot_all_cast_ids(shot)
     subj_refs = []
-    for cid in shot.get("subjects", []):
+    valid_cast_ids = []
+    for cid in all_cast:
         c = chars.get(cid, {})
         valid = [p for p in c.get("reference_images", []) if ok(p)]
         if valid:
             subj_refs.append(valid)
+            valid_cast_ids.append(cid)
+
+    # Nếu số nhân vật có ảnh vượt quá slot cho phép (vd. cảnh nhóm 3..20 người), tự động ghép bảng Group Cast Sheet
+    env_slot = 1 if (include_env and shot.get("environment") in envs and ok(envs[shot["environment"]].get("path", ""))) else 0
+    if proj_dir is not None and limit and len(valid_cast_ids) + env_slot > limit and len(valid_cast_ids) >= 3:
+        # Giữ slot 1 cho nhân vật chính đầu tiên, ghép toàn bộ nhóm vào bảng tổng hợp ở slot 2
+        push(subj_refs[0][0])
+        sheet_rel = build_group_reference_sheet(manifest, valid_cast_ids, Path(proj_dir))
+        if sheet_rel:
+            push(sheet_rel)
 
     # Vòng 1: mỗi nhân vật xuất hiện trong cảnh đều có ít nhất 1 ảnh nhận dạng chính
     for refs in subj_refs:

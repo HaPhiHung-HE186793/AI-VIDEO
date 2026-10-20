@@ -86,7 +86,11 @@
       "turnaround_sheet_prompt": "Character turnaround design sheet of Tan: a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
       "recommended_image_model": "pro",
       "short_name": "Tan",
-      "voice": "Alnilam"
+      "voice": "Alnilam",
+      "aliases": [
+        "Vũ Tấn",
+        "Vu Tan"
+      ]
     },
     {
       "id": "CHAR_WIFE",
@@ -149,6 +153,223 @@
       "recommended_image_model": "pro",
       "short_name": "Hoang Anh",
       "voice": "Fenrir"
+    },
+    {
+      "id": "CHAR_VIET_DUONG",
+      "name": "Viet Duong",
+      "type": "cartoon",
+      "identity_line": "a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_VIET_DUONG_front.png",
+          "prompt": "Viet Duong: a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_VIET_DUONG_three_quarter.png",
+          "prompt": "Viet Duong: a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_VIET_DUONG_expressions.png",
+          "prompt": "Viet Duong: a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_VIET_DUONG_front.png",
+        "assets/characters/CHAR_VIET_DUONG_three_quarter.png",
+        "assets/characters/CHAR_VIET_DUONG_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Viet Duong: a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Viet Duong"
+    },
+    {
+      "id": "CHAR_NGUYEN_PHONG",
+      "name": "Nguyen Phong",
+      "type": "cartoon",
+      "identity_line": "a playful 23-year-old Vietnamese guy with wavy black hair, a mischievous smirk, and a mustard yellow polo shirt",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_NGUYEN_PHONG_front.png",
+          "prompt": "Nguyen Phong: a playful 23-year-old Vietnamese guy with wavy black hair, a mischievous smirk, and a mustard yellow polo shirt. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_NGUYEN_PHONG_three_quarter.png",
+          "prompt": "Nguyen Phong: a playful 23-year-old Vietnamese guy with wavy black hair, a mischievous smirk, and a mustard yellow polo shirt. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_NGUYEN_PHONG_expressions.png",
+          "prompt": "Nguyen Phong: a playful 23-year-old Vietnamese guy with wavy black hair, a mischievous smirk, and a mustard yellow polo shirt. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_NGUYEN_PHONG_front.png",
+        "assets/characters/CHAR_NGUYEN_PHONG_three_quarter.png",
+        "assets/characters/CHAR_NGUYEN_PHONG_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Nguyen Phong: a playful 23-year-old Vietnamese guy with wavy black hair, a mischievous smirk, and a mustard yellow polo shirt. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Nguyen Phong"
+    },
+    {
+      "id": "CHAR_DUY_KHIEM",
+      "name": "Duy Khiem",
+      "type": "cartoon",
+      "identity_line": "a lively 23-year-old Vietnamese guy with side-parted black hair and a maroon plaid button-up shirt",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_DUY_KHIEM_front.png",
+          "prompt": "Duy Khiem: a lively 23-year-old Vietnamese guy with side-parted black hair and a maroon plaid button-up shirt. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_DUY_KHIEM_three_quarter.png",
+          "prompt": "Duy Khiem: a lively 23-year-old Vietnamese guy with side-parted black hair and a maroon plaid button-up shirt. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_DUY_KHIEM_expressions.png",
+          "prompt": "Duy Khiem: a lively 23-year-old Vietnamese guy with side-parted black hair and a maroon plaid button-up shirt. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_DUY_KHIEM_front.png",
+        "assets/characters/CHAR_DUY_KHIEM_three_quarter.png",
+        "assets/characters/CHAR_DUY_KHIEM_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Duy Khiem: a lively 23-year-old Vietnamese guy with side-parted black hair and a maroon plaid button-up shirt. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Duy Khiem"
+    },
+    {
+      "id": "CHAR_VIET_DUC",
+      "name": "Viet Duc",
+      "type": "cartoon",
+      "identity_line": "a calm 23-year-old Vietnamese guy with neat short black hair, square glasses, and a navy crewneck sweater",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_VIET_DUC_front.png",
+          "prompt": "Viet Duc: a calm 23-year-old Vietnamese guy with neat short black hair, square glasses, and a navy crewneck sweater. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_VIET_DUC_three_quarter.png",
+          "prompt": "Viet Duc: a calm 23-year-old Vietnamese guy with neat short black hair, square glasses, and a navy crewneck sweater. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_VIET_DUC_expressions.png",
+          "prompt": "Viet Duc: a calm 23-year-old Vietnamese guy with neat short black hair, square glasses, and a navy crewneck sweater. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_VIET_DUC_front.png",
+        "assets/characters/CHAR_VIET_DUC_three_quarter.png",
+        "assets/characters/CHAR_VIET_DUC_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Viet Duc: a calm 23-year-old Vietnamese guy with neat short black hair, square glasses, and a navy crewneck sweater. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Viet Duc"
+    },
+    {
+      "id": "CHAR_QUANG_BINH",
+      "name": "Quang Binh",
+      "type": "cartoon",
+      "identity_line": "a sporty 23-year-old Vietnamese guy with spiky black hair and a heather grey zip-up hoodie",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_QUANG_BINH_front.png",
+          "prompt": "Quang Binh: a sporty 23-year-old Vietnamese guy with spiky black hair and a heather grey zip-up hoodie. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_QUANG_BINH_three_quarter.png",
+          "prompt": "Quang Binh: a sporty 23-year-old Vietnamese guy with spiky black hair and a heather grey zip-up hoodie. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_QUANG_BINH_expressions.png",
+          "prompt": "Quang Binh: a sporty 23-year-old Vietnamese guy with spiky black hair and a heather grey zip-up hoodie. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_QUANG_BINH_front.png",
+        "assets/characters/CHAR_QUANG_BINH_three_quarter.png",
+        "assets/characters/CHAR_QUANG_BINH_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Quang Binh: a sporty 23-year-old Vietnamese guy with spiky black hair and a heather grey zip-up hoodie. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Quang Binh"
+    },
+    {
+      "id": "CHAR_PHI_HUNG",
+      "name": "Phi Hung",
+      "type": "cartoon",
+      "identity_line": "an energetic 23-year-old Vietnamese guy with curly black hair and a black bomber jacket",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_PHI_HUNG_front.png",
+          "prompt": "Phi Hung: an energetic 23-year-old Vietnamese guy with curly black hair and a black bomber jacket. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_PHI_HUNG_three_quarter.png",
+          "prompt": "Phi Hung: an energetic 23-year-old Vietnamese guy with curly black hair and a black bomber jacket. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_PHI_HUNG_expressions.png",
+          "prompt": "Phi Hung: an energetic 23-year-old Vietnamese guy with curly black hair and a black bomber jacket. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_PHI_HUNG_front.png",
+        "assets/characters/CHAR_PHI_HUNG_three_quarter.png",
+        "assets/characters/CHAR_PHI_HUNG_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Phi Hung: an energetic 23-year-old Vietnamese guy with curly black hair and a black bomber jacket. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Phi Hung"
+    },
+    {
+      "id": "CHAR_NHAT_ANH",
+      "name": "Nhat Anh",
+      "type": "cartoon",
+      "identity_line": "a tall 23-year-old Vietnamese guy with an undercut hairstyle and a sage green linen shirt",
+      "reference_prompts": [
+        {
+          "view": "front",
+          "path": "assets/characters/CHAR_NHAT_ANH_front.png",
+          "prompt": "Nhat Anh: a tall 23-year-old Vietnamese guy with an undercut hairstyle and a sage green linen shirt. Full-body front view, neutral friendly expression, arms relaxed. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_NHAT_ANH_three_quarter.png",
+          "prompt": "Nhat Anh: a tall 23-year-old Vietnamese guy with an undercut hairstyle and a sage green linen shirt. Full-body three-quarter view. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "expressions",
+          "path": "assets/characters/CHAR_NHAT_ANH_expressions.png",
+          "prompt": "Nhat Anh: a tall 23-year-old Vietnamese guy with an undercut hairstyle and a sage green linen shirt. Expression sheet of the same character: neutral, talking, surprised, laughing. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_NHAT_ANH_front.png",
+        "assets/characters/CHAR_NHAT_ANH_three_quarter.png",
+        "assets/characters/CHAR_NHAT_ANH_expressions.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Nhat Anh: a tall 23-year-old Vietnamese guy with an undercut hairstyle and a sage green linen shirt. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro",
+      "short_name": "Nhat Anh"
     }
   ],
   "environments": [
@@ -166,7 +387,8 @@
       "identity_line": "a dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline",
       "clean_plate_prompt": "Dreamy Urban Rooftop Cafe: a dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline. Wide establishing view, 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Empty scene without people or animals, natural lighting, no text.",
       "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
-      "recommended_image_model": "standard"
+      "recommended_image_model": "standard",
+      "background_crowd": "In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere"
     },
     {
       "id": "ENV_BEDROOM_MORNING",
@@ -324,10 +546,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium close-up, 50mm lens, steady locked-off framing, single continuous take. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat sits at the wooden desk with studio headphones, rubbing his forehead with a bewildered half-laughing expression. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: soft studio room tone, gentle headphone click, chair creak. No subtitles, no on-screen text.",
+      "veo_prompt": "Medium close-up, 50mm lens, steady locked-off framing, single continuous take. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat sits at the wooden desk with studio headphones, rubbing his forehead with a bewildered half-laughing expression, then smoothly transitioning so Dat leans close to the boom condenser microphone with a cheeky grin and raised hands. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: soft studio room tone, gentle headphone click, chair creak. No subtitles, no on-screen text.",
       "first_frame_prompt": "Medium close-up, 50mm lens: Dat sits at the wooden desk with studio headphones, rubbing his forehead with a bewildered half-laughing expression. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S01_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat leans close to the boom condenser microphone with a cheeky grin and raised hands as if starting a ridiculous story. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat leans close to the boom condenser microphone with a cheeky grin and raised hands. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S01_END.jpg",
       "routing": {
         "complexity": 1,
@@ -460,8 +682,8 @@
           }
         }
       ],
-      "veo_prompt": "Medium close-up, 50mm lens, subtle handheld drift. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat gestures animatedly with both hands behind the microphone, shaking his head in amused disbelief while recounting his dream. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: warm podcast studio room tone, subtle dreamy harp whoosh transition. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium close-up, 50mm lens, subtle handheld drift: Dat gestures animatedly with both hands behind the microphone, shaking his head in amused disbelief while recounting his dream. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium close-up, 50mm lens, subtle handheld drift. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat gestures animatedly with both hands behind the microphone, shaking his head in amused disbelief, then smoothly transitioning so Dat gestures with both hands open behind the microphone with an amused half-smile. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: warm podcast studio room tone, subtle dreamy harp whoosh transition. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium close-up, 50mm lens, subtle handheld drift: Dat gestures animatedly with both hands behind the microphone, shaking his head in amused disbelief. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S01_END.jpg",
       "routing": {
         "complexity": 1,
@@ -481,7 +703,7 @@
         }
       ],
       "end_action": "Dat gestures with both hands open behind the microphone with an amused half-smile as he recounts his dream",
-      "last_frame_prompt": "Final state at the end of the shot: Dat gestures with both hands open behind the microphone with an amused half-smile as he recounts his dream. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat gestures with both hands open behind the microphone with an amused half-smile. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S02_END.jpg",
       "last_frame_candidates": [
         {
@@ -646,10 +868,10 @@
           }
         }
       ],
-      "veo_prompt": "Wide establishing shot, 35mm lens, smooth dolly forward. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Only Dat wears glasses while Hoang Anh keeps bare eyes. Dat pushes open the glass door of the rooftop cafe with an excited wide smile, looking toward the long wooden table where Hoang Anh and friends are chatting. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: warm cafe chatter, clinking iced coffee glasses, evening breeze. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Wide establishing shot, 35mm lens: Dat pushes open the glass door of the rooftop cafe with an excited wide smile, looking toward the long wooden table where Hoang Anh and friends are chatting. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Wide establishing shot, 35mm lens, smooth dolly forward. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. All 11 named characters seated together around the main table from left to right: Dat, Hoang Anh, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Dat pushes open the glass door of the rooftop cafe with an excited wide smile, looking toward the long wooden table where Hoang Anh and friends are chatting, then smoothly transitioning so Dat walks briskly toward the lively wooden table with one hand raised to greet Hoang Anh and the group under glowing string lights. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: warm cafe chatter, clinking iced coffee glasses, evening breeze. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Wide establishing shot, 35mm lens: Dat pushes open the glass door of the rooftop cafe with an excited wide smile, looking toward the long wooden table where Hoang Anh and friends are chatting. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. All 11 named characters seated together around the main table from left to right: Dat, Hoang Anh, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S03_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat walks briskly toward the lively wooden table with one hand raised to greet Hoang Anh and the group under glowing string lights. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat walks briskly toward the lively wooden table with one hand raised to greet Hoang Anh and the group under glowing string lights. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. All 11 named characters seated together around the main table from left to right: Dat, Hoang Anh, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S03_END.jpg",
       "routing": {
         "complexity": 8,
@@ -665,7 +887,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "867 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "2045 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -714,7 +936,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_TAN",
+        "CHAR_WIFE",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_04",
@@ -842,8 +1075,8 @@
           }
         }
       ],
-      "veo_prompt": "Medium wide shot, 35mm lens, gentle pan across the table. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Only Dat wears glasses while Hoang Anh keeps bare eyes. Dat approaches the long wooden table about to pat Hoang Anh on the shoulder while the group laughs and clinks iced coffee glasses. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: lively friends laughing, clinking glasses on wooden table. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium wide shot, 35mm lens: Dat approaches the long wooden table about to pat Hoang Anh on the shoulder while the group laughs and clinks iced coffee glasses. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium wide shot, 35mm lens, gentle pan across the table. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. All 11 named characters seated together around the main table from left to right: Dat, Hoang Anh, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Dat approaches the long wooden table about to pat Hoang Anh on the shoulder while the group laughs and clinks iced coffee glasses, then smoothly transitioning so Dat stands right beside the wooden table patting Hoang Anh warmly on the shoulder while Hoang Anh and the group smile. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: lively friends laughing, clinking glasses on wooden table. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium wide shot, 35mm lens: Dat approaches the long wooden table about to pat Hoang Anh on the shoulder while the group laughs and clinks iced coffee glasses. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. All 11 named characters seated together around the main table from left to right: Dat, Hoang Anh, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S03_END.jpg",
       "routing": {
         "complexity": 1,
@@ -859,7 +1092,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "835 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "2000 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -868,7 +1101,7 @@
         }
       ],
       "end_action": "Dat stands right beside the wooden table patting Hoang Anh warmly on the shoulder while Hoang Anh and the group smile",
-      "last_frame_prompt": "Final state at the end of the shot: Dat stands right beside the wooden table patting Hoang Anh warmly on the shoulder while Hoang Anh and the group smile. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat stands right beside the wooden table patting Hoang Anh warmly on the shoulder while Hoang Anh and the group smile. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. All 11 named characters seated together around the main table from left to right: Dat, Hoang Anh, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S04_END.jpg",
       "last_frame_candidates": [
         {
@@ -899,7 +1132,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_TAN",
+        "CHAR_WIFE",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_05",
@@ -1019,10 +1263,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium two-shot, 50mm lens, steady locked-off framing, single continuous take. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. Tan sits proudly at the center of the wooden table beside Linh, who sits gracefully with a gentle shy smile. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: soft dreamy chime, gentle evening rooftop ambiance. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium two-shot, 50mm lens: Tan sits proudly at the center of the wooden table beside Linh, who sits gracefully with a gentle shy smile. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium two-shot, 50mm lens, steady locked-off framing, single continuous take. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters seated together around the main table from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Tan sits proudly at the center of the wooden table beside Linh, who sits gracefully with a gentle shy smile, then smoothly transitioning so Tan leans back with a smug proud grin while Linh tucks a strand of long black hair behind her ear and smiles warmly. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: soft dreamy chime, gentle evening rooftop ambiance. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium two-shot, 50mm lens: Tan sits proudly at the center of the wooden table beside Linh, who sits gracefully with a gentle shy smile. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters seated together around the main table from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S05_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Tan leans back with a smug proud grin while Linh tucks a strand of long black hair behind her ear and smiles warmly. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Tan leans back with a smug proud grin while Linh tucks a strand of long black hair behind her ear and smiles warmly. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters seated together around the main table from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S05_END.jpg",
       "routing": {
         "complexity": 1,
@@ -1038,7 +1282,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "766 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "1975 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -1087,7 +1331,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_DAT",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_06",
@@ -1169,8 +1424,8 @@
           }
         }
       ],
-      "veo_prompt": "Medium two-shot, 50mm lens, steady locked-off framing, single continuous take. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. Tan leans back with a smug proud grin beside Linh, who tucks a strand of long black hair behind her ear and smiles warmly. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: curious comedic pluck sound, soft rooftop murmur. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium two-shot, 50mm lens: Tan leans back with a smug proud grin beside Linh, who tucks a strand of long black hair behind her ear and smiles warmly. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium two-shot, 50mm lens, steady locked-off framing, single continuous take. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters gathered in the scene from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Tan leans back with a smug proud grin beside Linh, who tucks a strand of long black hair behind her ear and smiles warmly, then smoothly transitioning so Tan rests his hand on the wooden table beside Linh with a proud grin while Linh looks at him with a warm gentle smile. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: curious comedic pluck sound, soft rooftop murmur. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium two-shot, 50mm lens: Tan leans back with a smug proud grin beside Linh, who tucks a strand of long black hair behind her ear and smiles warmly. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters gathered in the scene from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S05_END.jpg",
       "routing": {
         "complexity": 1,
@@ -1186,7 +1441,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "784 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "1979 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -1195,7 +1450,7 @@
         }
       ],
       "end_action": "Tan rests his hand on the wooden table beside Linh with a proud grin while Linh looks at him with a warm gentle smile",
-      "last_frame_prompt": "Final state at the end of the shot: Tan rests his hand on the wooden table beside Linh with a proud grin while Linh looks at him with a warm gentle smile. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Tan rests his hand on the wooden table beside Linh with a proud grin while Linh looks at him with a warm gentle smile. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters gathered in the scene from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S06_END.jpg",
       "last_frame_candidates": [
         {
@@ -1224,7 +1479,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_DAT",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_07",
@@ -1344,10 +1610,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium shot, 50mm lens, eye-level framing. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. Dat grins playfully and points two finger-guns toward Tan at the wooden table to tease him about having a new girlfriend. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: playful chuckle cutting abruptly into dead silence and cricket chirp. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium shot, 50mm lens, eye-level framing: Dat grins playfully and points two finger-guns toward Tan at the wooden table to tease him about having a new girlfriend. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium shot, 50mm lens, eye-level framing. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters seated together around the main table from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Dat grins playfully and points two finger-guns toward Tan at the wooden table, then smoothly transitioning so Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: playful chuckle cutting abruptly into dead silence and cricket chirp. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium shot, 50mm lens, eye-level framing: Dat grins playfully and points two finger-guns toward Tan at the wooden table. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters seated together around the main table from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S07_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters seated together around the main table from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S07_END.jpg",
       "routing": {
         "complexity": 3,
@@ -1361,11 +1627,6 @@
         "credits": 10
       },
       "lint": [
-        {
-          "level": "info",
-          "code": "PROMPT_LONG",
-          "msg": "805 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
-        },
         {
           "level": "info",
           "code": "FIRST_LAST_FRAMING",
@@ -1413,7 +1674,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_WIFE",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_08",
@@ -1487,8 +1759,8 @@
           }
         }
       ],
-      "veo_prompt": "Medium shot, 50mm lens, slow tension, steady locked-off framing, single continuous take. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, cool twilight shadows contrasting with warm string lights. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: awkward wind gust, single crow caw in dead silence. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium shot, 50mm lens, slow tension: Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, cool twilight shadows contrasting with warm string lights. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium shot, 50mm lens, slow tension, steady locked-off framing, single continuous take. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters gathered in the scene from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence, then smoothly transitioning so Dat slowly lowers his hands to the wooden table looking bewildered while Tan continues staring at him in complete deadpan silence. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, cool twilight shadows contrasting with warm string lights. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: awkward wind gust, single crow caw in dead silence. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium shot, 50mm lens, slow tension: Dat freezes mid-gesture with an awkward smile as Tan stares back in dead silence. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters gathered in the scene from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, cool twilight shadows contrasting with warm string lights. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S07_END.jpg",
       "routing": {
         "complexity": 1,
@@ -1503,17 +1775,12 @@
       "lint": [
         {
           "level": "info",
-          "code": "PROMPT_LONG",
-          "msg": "794 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
-        },
-        {
-          "level": "info",
           "code": "FIRST_LAST_FRAMING",
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
       "end_action": "Dat slowly lowers his hands to the wooden table looking bewildered while Tan continues staring at him in complete deadpan silence",
-      "last_frame_prompt": "Final state at the end of the shot: Dat slowly lowers his hands to the wooden table looking bewildered while Tan continues staring at him in complete deadpan silence. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, cool twilight shadows contrasting with warm string lights. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat slowly lowers his hands to the wooden table looking bewildered while Tan continues staring at him in complete deadpan silence. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters gathered in the scene from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, cool twilight shadows contrasting with warm string lights. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S08_END.jpg",
       "last_frame_candidates": [
         {
@@ -1542,7 +1809,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_WIFE",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_09",
@@ -1553,6 +1831,7 @@
       "camera": "Medium two-shot, 50mm lens, lively handheld framing",
       "subjects": [
         "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
         "CHAR_DAT"
       ],
       "action": "Hoang Anh bursts out laughing, playfully punching and rubbing Dat on the shoulder while Dat stands wide-eyed in total shock",
@@ -1666,8 +1945,8 @@
           }
         }
       ],
-      "veo_prompt": "Medium two-shot, 50mm lens, lively handheld framing. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Only Dat wears glasses while Hoang Anh keeps bare eyes. Hoang Anh bursts out laughing, playfully punching and rubbing Dat on the shoulder while Dat stands wide-eyed in total shock. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: boisterous friends laughing, playful shoulder pat. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium two-shot, 50mm lens, lively handheld framing: Hoang Anh bursts out laughing, playfully punching and rubbing Dat on the shoulder while Dat stands wide-eyed in total shock. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium two-shot, 50mm lens, lively handheld framing. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. In the center, Viet Duong is a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. All 11 named characters gathered in the scene from left to right: Hoang Anh, Viet Duong, Dat, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Hoang Anh bursts out laughing, playfully punching and rubbing Dat on the shoulder while Dat stands wide-eyed in total shock, then smoothly transitioning so Hoang Anh laughs heartily and points his thumb toward Tan while Dat stands with his jaw dropped in total disbelief. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: boisterous friends laughing, playful shoulder pat. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium two-shot, 50mm lens, lively handheld framing: Hoang Anh bursts out laughing, playfully punching and rubbing Dat on the shoulder while Dat stands wide-eyed in total shock. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. In the center, Viet Duong is a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. All 11 named characters gathered in the scene from left to right: Hoang Anh, Viet Duong, Dat, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S09_START.jpg",
       "routing": {
         "complexity": 1,
@@ -1683,7 +1962,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "816 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "2045 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -1704,7 +1983,7 @@
         }
       ],
       "end_action": "Hoang Anh laughs heartily and points his thumb toward Tan while Dat stands with his jaw dropped in total disbelief",
-      "last_frame_prompt": "Final state at the end of the shot: Hoang Anh laughs heartily and points his thumb toward Tan while Dat stands with his jaw dropped in total disbelief. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Hoang Anh laughs heartily and points his thumb toward Tan while Dat stands with his jaw dropped in total disbelief. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. In the center, Viet Duong is a cheerful 23-year-old Vietnamese guy with a short buzz cut, a bright grin, and a blue denim jacket over a white tee. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. All 11 named characters gathered in the scene from left to right: Hoang Anh, Viet Duong, Dat, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S09_END.jpg",
       "last_frame_candidates": [
         {
@@ -1735,7 +2014,17 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_TAN",
+        "CHAR_WIFE",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_10",
@@ -1871,10 +2160,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium two-shot, 50mm lens, steady locked-off framing, single continuous take. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. Tan sits smugly beside Linh at the rooftop wooden table with a proud grin. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: warm rooftop cafe ambiance, soft evening breeze. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium two-shot, 50mm lens: Tan sits smugly beside Linh at the rooftop wooden table with a proud grin. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium two-shot, 50mm lens, steady locked-off framing, single continuous take. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters seated together around the main table from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Tan sits smugly beside Linh at the rooftop wooden table with a proud grin, then smoothly transitioning so Tan nods his head firmly with a triumphant grin while Linh covers her mouth in a shy gentle laugh. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: warm rooftop cafe ambiance, soft evening breeze. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium two-shot, 50mm lens: Tan sits smugly beside Linh at the rooftop wooden table with a proud grin. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters seated together around the main table from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S10_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Tan nods his head firmly with a triumphant grin while Linh covers her mouth in a shy gentle laugh. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Tan nods his head firmly with a triumphant grin while Linh covers her mouth in a shy gentle laugh. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters seated together around the main table from left to right: Tan, Linh, Dat (messy black hair, round glasses, oversized olive hoodie), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights with soft romantic bokeh. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S10_END.jpg",
       "routing": {
         "complexity": 1,
@@ -1932,7 +2221,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_DAT",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_11",
@@ -2009,10 +2309,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium close-up, 50mm lens, dynamic, steady locked-off framing, single continuous take. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Only Dat wears glasses while Hoang Anh keeps bare eyes. Hoang Anh holds up a smartphone showing wedding photos right in front of Dat's round glasses while grinning mischievously. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights and bright smartphone screen glow on faces. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: phone swipe sounds, teasing snickers from friends. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium close-up, 50mm lens, dynamic: Hoang Anh holds up a smartphone showing wedding photos right in front of Dat's round glasses while grinning mischievously. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Only Dat wears glasses while Hoang Anh keeps bare eyes. Visible prop: smartphone showing wedding photos. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights and bright smartphone screen glow on faces. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium close-up, 50mm lens, dynamic, steady locked-off framing, single continuous take. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. All 11 named characters gathered in the scene from left to right: Hoang Anh, Dat, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Hoang Anh holds up a smartphone showing wedding photos right in front of Dat's round glasses while grinning mischievously, then smoothly transitioning so Dat leans back squinting in shock at the smartphone showing wedding photos while Hoang Anh laughs and points at the screen. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights and bright smartphone screen glow on faces. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: phone swipe sounds, teasing snickers from friends. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium close-up, 50mm lens, dynamic: Hoang Anh holds up a smartphone showing wedding photos right in front of Dat's round glasses while grinning mischievously. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. All 11 named characters gathered in the scene from left to right: Hoang Anh, Dat, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Visible prop: smartphone showing wedding photos. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights and bright smartphone screen glow on faces. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S11_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat leans back squinting in shock at the smartphone showing wedding photos while Hoang Anh laughs and points at the screen. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Only Dat wears glasses while Hoang Anh keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights and bright smartphone screen glow on faces. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat leans back squinting in shock at the smartphone showing wedding photos while Hoang Anh laughs and points at the screen. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Hoang Anh is a lively 23-year-old Vietnamese guy with a short fade haircut and a black-and-white varsity jacket. On the right, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. All 11 named characters gathered in the scene from left to right: Hoang Anh, Dat, Tan (middle-part black hair, smug grin, cream polo shirt), Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights and bright smartphone screen glow on faces. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S11_END.jpg",
       "routing": {
         "complexity": 1,
@@ -2028,7 +2328,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "861 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "2015 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -2075,7 +2375,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_TAN",
+        "CHAR_WIFE",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_12",
@@ -2202,8 +2513,8 @@
           }
         }
       ],
-      "veo_prompt": "Medium shot, 50mm lens, slight Dutch angle for comedic drama. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. Dat throws both hands palms-up across the wooden table in dramatic outrage looking at Tan, who smirks and chuckles. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: table slap, friends chuckling mischievously. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium shot, 50mm lens, slight Dutch angle for comedic drama: Dat throws both hands palms-up across the wooden table in dramatic outrage looking at Tan, who smirks and chuckles. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium shot, 50mm lens, slight Dutch angle for comedic drama. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters seated together around the main table from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Dat throws both hands palms-up across the wooden table in dramatic outrage looking at Tan, who smirks and chuckles, then smoothly transitioning so Dat points dramatically at his own chest demanding his wedding invitation while Tan leans back laughing and shrugging. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: table slap, friends chuckling mischievously. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium shot, 50mm lens, slight Dutch angle for comedic drama: Dat throws both hands palms-up across the wooden table in dramatic outrage looking at Tan, who smirks and chuckles. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters seated together around the main table from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S12_START.jpg",
       "routing": {
         "complexity": 10,
@@ -2217,11 +2528,6 @@
         "credits": 100
       },
       "lint": [
-        {
-          "level": "info",
-          "code": "PROMPT_LONG",
-          "msg": "793 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
-        },
         {
           "level": "info",
           "code": "FIRST_LAST_FRAMING",
@@ -2241,7 +2547,7 @@
         }
       ],
       "end_action": "Dat points dramatically at his own chest demanding his wedding invitation while Tan leans back laughing and shrugging",
-      "last_frame_prompt": "Final state at the end of the shot: Dat points dramatically at his own chest demanding his wedding invitation while Tan leans back laughing and shrugging. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Only Dat wears glasses while Tan keeps bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat points dramatically at his own chest demanding his wedding invitation while Tan leans back laughing and shrugging. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. On the right, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. All 11 named characters seated together around the main table from left to right: Dat, Tan, Linh (long straight black hair, fair skin, bright eyes, beige cardigan), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S12_END.jpg",
       "last_frame_candidates": [
         {
@@ -2272,7 +2578,18 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_WIFE",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_13",
@@ -2355,10 +2672,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium wide shot, 35mm lens, lively handheld motion. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. In the center, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. Only Dat wears glasses while Tan and Linh keep bare eyes. Dat slumps in his chair pouting with arms crossed while Tan and Linh lean in earnestly trying to comfort and explain to him. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: uproarious table-slapping laughter, comforting chatter, phone camera clicks. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium wide shot, 35mm lens, lively handheld motion: Dat slumps in his chair pouting with arms crossed while Tan and Linh lean in earnestly trying to comfort and explain to him. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. Only Dat wears glasses while Tan and Linh keep bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "veo_prompt": "Medium wide shot, 35mm lens, lively handheld motion. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. In the center, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters gathered in the scene from left to right: Dat, Tan, Linh, Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. Dat slumps in his chair pouting with arms crossed while Tan and Linh lean in earnestly trying to comfort and explain to him, then smoothly transitioning so Dat sulks dramatically at the wooden table while Tan and Linh gesture apologetically and friends in the background hold up phones filming and laughing. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: uproarious table-slapping laughter, comforting chatter, phone camera clicks. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Medium wide shot, 35mm lens, lively handheld motion: Dat slumps in his chair pouting with arms crossed while Tan and Linh lean in earnestly trying to comfort and explain to him. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. In the center, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters gathered in the scene from left to right: Dat, Tan, Linh, Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S13_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat sulks dramatically at the wooden table while Tan and Linh gesture apologetically and friends in the background hold up phones filming and laughing. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. Only Dat wears glasses while Tan and Linh keep bare eyes. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat sulks dramatically at the wooden table while Tan and Linh gesture apologetically and friends in the background hold up phones filming and laughing. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. In the center, Tan is a 23-year-old Vietnamese guy with middle-part black hair, a smug grin, and a cream polo shirt. On the right, Linh is a gentle young Vietnamese woman with long straight black hair, fair skin, bright eyes, and a beige cardigan. All 11 named characters gathered in the scene from left to right: Dat, Tan, Linh, Nguyen Phong (wavy black hair, mischievous smirk, mustard yellow polo shirt), Duy Khiem (side-parted black hair, maroon plaid button-up shirt), Hoang Anh (short fade haircut, black-and-white varsity jacket), Viet Duong (short buzz cut, bright grin, blue denim jacket over white tee), Viet Duc (neat short black hair, square glasses, navy crewneck sweater), Quang Binh (spiky black hair, heather grey zip-up hoodie), Phi Hung (curly black hair, black bomber jacket), Nhat Anh (undercut hairstyle, sage green linen shirt). Only Dat and Viet Duc wear glasses while all other characters keep bare eyes; only Linh has long hair while all other characters keep short hair. In the background, several neighboring wooden tables are occupied by lively unnamed cafe patrons chatting, clinking iced coffee glasses, and a waiter serving drinks under warm string lights, creating a bustling rooftop social atmosphere. A dreamy rooftop cafe at twilight with warm string lights, long wooden table, and city skyline, warm golden string lights against deep twilight blue sky. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S13_END.jpg",
       "routing": {
         "complexity": 1,
@@ -2374,7 +2691,7 @@
         {
           "level": "info",
           "code": "PROMPT_LONG",
-          "msg": "965 ký tự — cân nhắc rút gọn (mục tiêu 400–750)."
+          "msg": "2077 ký tự — cân nhắc rút gọn (mục tiêu 400–1970)."
         },
         {
           "level": "info",
@@ -2421,7 +2738,17 @@
           8.0
         ]
       },
-      "approved_at": "2026-10-20T16:16:39"
+      "approved_at": "2026-10-20T16:16:39",
+      "ensemble_cast": [
+        "CHAR_NGUYEN_PHONG",
+        "CHAR_DUY_KHIEM",
+        "CHAR_HOANG_ANH",
+        "CHAR_VIET_DUONG",
+        "CHAR_VIET_DUC",
+        "CHAR_QUANG_BINH",
+        "CHAR_PHI_HUNG",
+        "CHAR_NHAT_ANH"
+      ]
     },
     {
       "shot_id": "shot_14",
@@ -2548,10 +2875,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium shot, 35mm lens, abrupt wake-up framing. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat bolts upright on his rumpled bed under morning window blinds with messy hair and wide dazed eyes as his phone alarm rings. A messy bachelor bedroom at 6:35 AM with a rumpled bed, window blinds, and nightstand, cool early morning 6:35 AM blue-grey sunlight filtering through window blinds. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: digital smartphone alarm ringing at 6:35 AM, rustling bedsheets, heavy morning sigh. No subtitles, no on-screen text.",
+      "veo_prompt": "Medium shot, 35mm lens, abrupt wake-up framing. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat bolts upright on his rumpled bed under morning window blinds with messy hair and wide dazed eyes as his phone alarm rings, then smoothly transitioning so Dat sits on the edge of the rumpled bed holding his smartphone, staring blankly up at the ceiling in bittersweet disbelief. A messy bachelor bedroom at 6:35 AM with a rumpled bed, window blinds, and nightstand, cool early morning 6:35 AM blue-grey sunlight filtering through window blinds. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: digital smartphone alarm ringing at 6:35 AM, rustling bedsheets, heavy morning sigh. No subtitles, no on-screen text.",
       "first_frame_prompt": "Medium shot, 35mm lens, abrupt wake-up framing: Dat bolts upright on his rumpled bed under morning window blinds with messy hair and wide dazed eyes as his phone alarm rings. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A messy bachelor bedroom at 6:35 AM with a rumpled bed, window blinds, and nightstand, cool early morning 6:35 AM blue-grey sunlight filtering through window blinds. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S14_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat sits on the edge of the rumpled bed holding his smartphone, staring blankly up at the ceiling in bittersweet disbelief. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A messy bachelor bedroom at 6:35 AM with a rumpled bed, window blinds, and nightstand, cool early morning 6:35 AM blue-grey sunlight filtering through window blinds. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat sits on the edge of the rumpled bed holding his smartphone, staring blankly up at the ceiling in bittersweet disbelief. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A messy bachelor bedroom at 6:35 AM with a rumpled bed, window blinds, and nightstand, cool early morning 6:35 AM blue-grey sunlight filtering through window blinds. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S14_END.jpg",
       "routing": {
         "complexity": 1,
@@ -2733,10 +3060,10 @@
           }
         }
       ],
-      "veo_prompt": "Medium close-up, 50mm lens, steady locked-off framing, single continuous take. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat sits at the podcast studio desk looking directly into the camera with a serious yet humorous expression, holding up a red wedding invitation card. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: crisp paper card tap, warm podcast outro chime. No subtitles, no on-screen text.",
+      "veo_prompt": "Medium close-up, 50mm lens, steady locked-off framing, single continuous take. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Dat sits at the podcast studio desk looking directly into the camera with a serious yet humorous expression, holding up a red wedding invitation card, then smoothly transitioning so Dat points firmly at the red wedding invitation card in his hand and gives a warm, half-warning smile toward the camera. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Ambient sound only: crisp paper card tap, warm podcast outro chime. No subtitles, no on-screen text.",
       "first_frame_prompt": "Medium close-up, 50mm lens: Dat sits at the podcast studio desk looking directly into the camera with a serious yet humorous expression, holding up a red wedding invitation card. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. Visible prop: red wedding invitation card. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, exact composition and lighting, no text, no subtitles.",
       "first_frame_path": "assets/frames/KF_PGMTC_S15_START.jpg",
-      "last_frame_prompt": "Final state at the end of the shot: Dat points firmly at the red wedding invitation card in his hand and gives a warm, half-warning smile toward the camera. Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Dat points firmly at the red wedding invitation card in his hand and gives a warm, half-warning smile toward the camera. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Dat is a 23-year-old Vietnamese guy with messy black hair, round glasses, and an oversized olive hoodie. A cozy podcast studio with dark acoustic walls, boom mic on a wooden desk, and warm neon sign, warm amber desk lamp glow with soft purple neon rim light. 2D indie animated podcast cartoon, bold clean outlines, warm cel-shaded colors. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "last_frame_path": "assets/frames/KF_PGMTC_S15_END.jpg",
       "routing": {
         "complexity": 8,
@@ -2878,100 +3205,6 @@
     }
   ],
   "session_log": [
-    {
-      "at": "2026-10-20T14:35:43",
-      "machine": "user",
-      "command": "flow-generate",
-      "args": "--kind video --shots shot_01 --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T14:45:21",
-      "machine": "user",
-      "command": "flow-generate",
-      "args": "--kind video --shots shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,shot_14,shot_15 --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:10:28",
-      "machine": "user",
-      "command": "flow-harvest",
-      "args": "--kind video --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:13:31",
-      "machine": "user",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:13:31",
-      "machine": "user",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:13:31",
-      "machine": "user",
-      "command": "storyboard-approve",
-      "args": "--by user",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:13:43",
-      "machine": "user",
-      "command": "flow-generate",
-      "args": "--kind video --shots shot_10 --count 2",
-      "ok": false,
-      "error": "TimeoutError: Locator.wait_for: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"input[placeholder='Tìm kiếm thành phần']\").last to be visible\n"
-    },
-    {
-      "at": "2026-10-20T15:16:03",
-      "machine": "user",
-      "command": "flow-generate",
-      "args": "--kind video --shots shot_10 --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:19:21",
-      "machine": "user",
-      "command": "flow-harvest",
-      "args": "--kind video --shots shot_06,shot_08,shot_10 --all --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:20:16",
-      "machine": "user",
-      "command": "register-clip",
-      "args": "--shot shot_06 --clip projects/podcast-giac-mo-thiep-cuoi/assets/clips/_incoming/shot_06_take01.mp4",
-      "ok": false,
-      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'projects/podcast-giac-mo-thiep-cuoi/assets/clips/_incoming/shot_06_take01.mp4'"
-    },
-    {
-      "at": "2026-10-20T15:20:46",
-      "machine": "user",
-      "command": "qa-takes",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:20:52",
-      "machine": "user",
-      "command": "qa-vision",
-      "args": "--reviewer agent",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T15:22:12",
-      "machine": "user",
-      "command": "register-clip",
-      "args": "--shot shot_06 --clip projects/podcast-giac-mo-thiep-cuoi/assets/clips/_incoming/shot_06_take01.mp4 --mode first_last --model Veo 3.1 - Fast",
-      "ok": false,
-      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'projects/podcast-giac-mo-thiep-cuoi/assets/clips/_incoming/shot_06_take01.mp4'"
-    },
     {
       "at": "2026-10-20T15:25:34",
       "machine": "user",
@@ -3161,12 +3394,103 @@
       "command": "assemble",
       "args": "--burn-subs",
       "ok": true
+    },
+    {
+      "at": "2026-10-20T17:10:41",
+      "machine": "user",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:12:23",
+      "machine": "user",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:12:23",
+      "machine": "user",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:12:23",
+      "machine": "user",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:12:23",
+      "machine": "user",
+      "command": "storyboard-approve",
+      "args": "--by user",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:05",
+      "machine": "user",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:05",
+      "machine": "user",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:06",
+      "machine": "user",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:06",
+      "machine": "user",
+      "command": "storyboard-approve",
+      "args": "--by user",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:31",
+      "machine": "user",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:31",
+      "machine": "user",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:31",
+      "machine": "user",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T17:13:31",
+      "machine": "user",
+      "command": "storyboard-approve",
+      "args": "--by user",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-20T16:17:13",
+    "at": "2026-10-20T17:13:31",
     "machine": "user",
-    "command": "assemble"
+    "command": "storyboard-approve"
   },
   "project_code": "PGMTC",
   "flow_project_url": "https://flow.google.com/project/ae209c27-c53b-44e4-b736-245f059d3ba1",
@@ -3577,10 +3901,10 @@
   ],
   "storyboard": {
     "status": "approved",
-    "built_hash": "2ca588ba998c18d0",
-    "built_at": "2026-10-20T16:11:33",
-    "approved_hash": "2ca588ba998c18d0",
-    "approved_at": "2026-10-20T16:11:33",
+    "built_hash": "478a24d5f6585d26",
+    "built_at": "2026-10-20T17:13:31",
+    "approved_hash": "478a24d5f6585d26",
+    "approved_at": "2026-10-20T17:13:31",
     "approved_by": "user"
   },
   "music_path": "assets/audio/music/score_auto.wav",

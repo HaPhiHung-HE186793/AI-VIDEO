@@ -49,6 +49,7 @@ python scripts/studio_helper.py audit-assets --project <slug>
 ```
 - Tạo từng ảnh trong `reference_prompts` bằng **Nano Banana Pro**, lưu đúng `path`. Bối cảnh dùng Nano Banana 2.
 - Đặt `short_name` cho nhân vật (vd. "Rex") để hành động viết "Rex walks…".
+- **Nguyên tắc đủ vai (1..20+ nhân vật có tên):** Kịch bản/lời dẫn gọi tên riêng ai (dù chính hay phụ) thì người đó **bắt buộc** phải được khai báo trong `manifest.characters` (`lint-prompts` kiểm tra `UNDECLARED_NAMED_CHARACTER` và `NAMED_CHARACTER_MISSING_IN_SCENE`). Nhân vật quần chúng không tên không cần tạo thẻ riêng mà mô tả qua `background_crowd` / `atmosphere`.
 - `audit-assets` phải PASS (có `identity_line` + ảnh tham chiếu trên đĩa) trước khi tạo video.
 
 ## 3. Shot list có cấu trúc
@@ -59,14 +60,17 @@ Mỗi shot trong manifest:
 {
   "shot_id": "shot_03", "order": 3, "scene_id": "scene_02",
   "camera": "Extreme close-up on the head, 85mm macro lens, very slow push-in",
-  "subjects": ["CHAR_TREX"], "environment": "ENV_HELL_CREEK_DAWN",
+  "subjects": ["CHAR_TREX"], "ensemble_cast": [], "environment": "ENV_HELL_CREEK_DAWN",
   "action": "Rex turns its head toward camera as its amber pupils narrow",
-  "setting": "", "lighting": "warm golden rim light",
+  "end_action": "Rex lowers its head and exhales a warm mist",
+  "background_crowd": "", "setting": "", "lighting": "warm golden rim light",
   "audio": {"mode": "voiceover_external", "line": "Forget movie myths...", "sfx": "slow nasal breathing"},
-  "generation_mode": "first_frame", "first_frame_path": "assets/frames/S03_START.png",
+  "generation_mode": "first_last", "first_frame_path": "assets/frames/S03_START.png",
   "negative_prompt": "", "transition_to_next": "INTRA_SCENE_CONTINUE", "transition_out": "cut"
 }
 ```
+- **Cảnh đông người (4..20+ nhân vật có tên + quần chúng nền):** Đặt 1–3 nhân vật tiêu điểm vào `subjects` và toàn bộ các nhân vật phụ có tên trong bàn/cảnh vào `ensemble_cast` (hoặc đưa tất cả vào `subjects`). Bộ dựng prompt tự xuất sơ đồ chỗ ngồi (`All N named characters seated together...`) và `shot_reference_paths` tự ghép bảng ảnh `group_cast_<hash>.jpg` để vừa slot đính kèm của Flow. Đặt `background_crowd` trên `environment` hoặc `shot` để thêm các bàn phụ & khách quần chúng náo nhiệt phía sau.
+- **Cảnh hành động nhiều pha (`mid_actions`):** Đặt `"mid_actions": ["pha giữa 1", "pha giữa 2", ...]` trên shot `first_last` để `build-prompts` tự tách thành chuỗi `shot_XXa, shot_XXb...` khóa Star-Anchor vào `F0`.
 - `audio.mode`: `sfx_only` | `voiceover_external` | `veo_dialogue` (nhép miệng, có `speaker`, `delivery`) | `veo_narration` (không khuyến nghị).
 - Shot nối tiếp cùng cảnh: shot A đặt `transition_to_next: "INTRA_SCENE_CONTINUE"`, shot B `generation_mode: "extend"` + `extends: "<shot A>"`. Khi tải từ Flow, chỉ tải **đoạn mở rộng**.
 - `crop_focus_x` (0–1): vị trí chủ thể khi phải crop 16:9 → 9:16.

@@ -224,3 +224,121 @@ def test_multi_waypoint_expansion_and_star_anchoring(tmp_path, cfg):
         score, _ = prompts.complexity_score(s, idx, len(proj_data["shots"]))
         assert prompts.route_model(score, cfg)["tier"] == "fast"
     assert len(prefixes) == 4
+
+
+def test_large_ensemble_12_characters_and_crowd_staging(tmp_path, cfg):
+    import cv2
+    import numpy as np
+    from studio import manifest as mf
+
+    names = [
+        ("CHAR_DAT", "Dat", "a 23-year-old Vietnamese guy with messy black hair, round glasses, and an olive hoodie"),
+        ("CHAR_TAN", "Tan", "a 23-year-old Vietnamese guy with middle-part black hair and a cream polo shirt"),
+        ("CHAR_LINH", "Linh", "a gentle young Vietnamese woman with long straight black hair and a beige cardigan"),
+        ("CHAR_HOANG_ANH", "Hoang Anh", "a lively 23-year-old Vietnamese guy with a short fade haircut and a varsity jacket"),
+        ("CHAR_VIET_DUONG", "Viet Duong", "a cheerful 23-year-old Vietnamese guy with a buzz cut and a blue denim jacket"),
+        ("CHAR_NGUYEN_PHONG", "Nguyen Phong", "a funny 23-year-old Vietnamese guy with wavy black hair and a mustard yellow polo"),
+        ("CHAR_DUY_KHIEM", "Duy Khiem", "a cool 23-year-old Vietnamese guy with side-parted hair and a maroon plaid shirt"),
+        ("CHAR_VIET_DUC", "Viet Duc", "a calm 23-year-old Vietnamese guy with neat short hair, square glasses, and a navy sweater"),
+        ("CHAR_QUANG_BINH", "Quang Binh", "a sporty 23-year-old Vietnamese guy with spiky black hair and a grey zip hoodie"),
+        ("CHAR_PHI_HUNG", "Phi Hung", "an energetic 23-year-old Vietnamese guy with curly black hair and a black bomber jacket"),
+        ("CHAR_NHAT_ANH", "Nhat Anh", "a tall 23-year-old Vietnamese guy with undercut black hair and a white linen shirt"),
+        ("CHAR_MINH_QUAN", "Minh Quan", "a smiling 23-year-old Vietnamese guy with parted hair and a teal crewneck tee"),
+    ]
+    chars = []
+    for idx, (cid, name, id_line) in enumerate(names):
+        rel = f"assets/characters/{cid}_front.png"
+        p = tmp_path / rel
+        p.parent.mkdir(parents=True, exist_ok=True)
+        img = np.full((300, 240, 3), 40 + idx * 15, dtype=np.uint8)
+        cv2.imwrite(str(p), img)
+        chars.append({"id": cid, "name": name, "short_name": name, "identity_line": id_line, "reference_images": [rel]})
+
+    proj = {
+        "project_slug": "reunion-12",
+        "language": "vi",
+        "style_line": "2D indie animated cartoon, bold clean outlines",
+        "characters": chars,
+        "environments": [{"id": "ENV_CAFE", "name": "Rooftop Cafe", "identity_line": "a dreamy rooftop cafe with long wooden table"}],
+    }
+    shot = {
+        "shot_id": "shot_04",
+        "generation_mode": "first_last",
+        "first_frame_path": "assets/frames/KF_S04_START.jpg",
+        "last_frame_path": "assets/frames/KF_S04_END.jpg",
+        "camera": "Wide group shot, 35mm lens",
+        "subjects": ["CHAR_DAT", "CHAR_TAN", "CHAR_LINH"],
+        "ensemble_cast": [cid for cid, _, _ in names[3:]],
+        "action": "Dat raises his iced coffee glass to toast Tan and Linh as the whole table cheers",
+        "end_action": "Everyone around the long wooden table clinks glasses together laughing warmly",
+        "environment": "ENV_CAFE",
+        "lighting": "warm golden string lights",
+        "audio": {"mode": "voiceover_external", "sfx": "cheering and clinking glasses"},
+    }
+    ff_p = prompts.build_first_frame_prompt(proj, shot)
+    lf_p = prompts.build_last_frame_prompt(proj, shot)
+    veo_p = prompts.build_prompt(proj, shot)
+    shot["veo_prompt"] = veo_p
+
+    # Cả 12 nhân vật có tên đều phải xuất hiện đầy đủ trong cả 3 tầng prompt
+    for _, name, _ in names:
+        assert name in ff_p
+        assert name in lf_p
+        assert name in veo_p
+
+    # Nhãn vị trí Trái/Giữa/Phải đồng bộ cả 3 tầng + khóa thuộc tính tóc dài/ngắn + quần chúng nền đông vui
+    assert "On the left, Dat is" in ff_p and "On the left, Dat is" in veo_p
+    assert "All 12 named characters seated together around the main table from left to right:" in veo_p
+    assert "neighboring tables are occupied by lively unnamed cafe patrons" in veo_p
+    assert "then smoothly transitioning so Everyone around the long wooden table clinks glasses" in veo_p
+
+    # Tự động ghép bảng Group Cast Sheet cho 12 nhân vật vào 1 slot ảnh tham chiếu
+    refs = mf.shot_reference_paths(proj, shot, proj_dir=tmp_path, limit=3)
+    assert any("_composites/group_cast_12p_" in r for r in refs)
+    codes = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
+    assert "PROMPT_TOO_LONG" not in codes
+    assert "IDENTITY_LINE_DRIFT" not in codes
+
+
+def test_script_to_cast_linter_catches_missing_named_characters(cfg):
+    proj = {
+        "language": "vi",
+        "style_line": "2D cartoon",
+        "audio_strategy": "voiceover_external",
+        "characters": [
+            {"id": "CHAR_DAT", "name": "Đạt", "short_name": "Dat", "identity_line": "a guy with glasses",
+             "reference_images": ["a.png"]},
+            {"id": "CHAR_HOANG_ANH", "name": "Hoàng Anh", "short_name": "Hoang Anh", "identity_line": "a guy in varsity jacket",
+             "reference_images": ["b.png"]},
+            {"id": "CHAR_VIET_DUONG", "name": "Việt Đường", "short_name": "Viet Duong", "identity_line": "a guy in denim jacket",
+             "reference_images": ["c.png"]},
+        ],
+        "beats": [
+            {
+                "beat_id": "b05",
+                "order": 1,
+                "narration": "Hoàng Anh với Việt Đường ngồi cạnh phì cười, còn Nguyễn Phong với Duy Khiêm giơ máy quay cảnh Đạt ngồi dỗi!",
+            }
+        ],
+        "shots": [
+            {
+                "shot_id": "shot_09",
+                "beat": "b05",
+                "generation_mode": "first_last",
+                "first_frame_path": "f1.jpg",
+                "last_frame_path": "f2.jpg",
+                "camera": "Medium two-shot",
+                "subjects": ["CHAR_HOANG_ANH", "CHAR_DAT"],
+                "action": "Hoang Anh laughs at Dat",
+                "veo_prompt": "Medium two-shot. Hoang Anh is a guy in varsity jacket. Dat is a guy with glasses.",
+            }
+        ],
+    }
+    findings = prompts.lint_project(proj, cfg)
+    codes = {f["code"] for f in findings}
+    assert "UNDECLARED_NAMED_CHARACTER" in codes
+    assert "NAMED_CHARACTER_MISSING_IN_SCENE" in codes
+    undeclared_msg = next(f["msg"] for f in findings if f["code"] == "UNDECLARED_NAMED_CHARACTER")
+    assert "Nguyễn Phong" in undeclared_msg and "Duy Khiêm" in undeclared_msg
+    missing_scene_msg = next(f["msg"] for f in findings if f["code"] == "NAMED_CHARACTER_MISSING_IN_SCENE")
+    assert "CHAR_VIET_DUONG" in missing_scene_msg

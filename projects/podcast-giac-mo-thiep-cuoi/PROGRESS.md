@@ -21,8 +21,8 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `podcast-giac-mo-thiep-cuoi` — thư mục `projects/podcast-giac-mo-thiep-cuoi/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/ae209c27-c53b-44e4-b736-245f059d3ba1
 - **Ngôn ngữ / khung:** vi / 16:9; giọng dẫn `Charon`
-- **Cập nhật lần cuối:** 2026-10-20T16:17:13 trên máy **user** (lệnh `assemble`)
-- **Storyboard:** đã duyệt (2ca588ba998c18d0)
+- **Cập nhật lần cuối:** 2026-10-20T17:13:31 trên máy **user** (lệnh `storyboard-approve`)
+- **Storyboard:** đã duyệt (478a24d5f6585d26)
 
 ## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
 
@@ -75,7 +75,29 @@ python scripts/studio_helper.py flow-harvest --project podcast-giac-mo-thiep-cuo
 
 ## Media trên máy này
 
-Đủ 73/73 file media trên máy **user**.
+⚠ Máy **user** thiếu 21/94 file — chạy `media-pull` (hoặc tải lại take từ Flow).
+
+- `assets/characters/CHAR_VIET_DUONG_front.png` — ảnh tham chiếu CHAR_VIET_DUONG
+- `assets/characters/CHAR_VIET_DUONG_three_quarter.png` — ảnh tham chiếu CHAR_VIET_DUONG
+- `assets/characters/CHAR_VIET_DUONG_expressions.png` — ảnh tham chiếu CHAR_VIET_DUONG
+- `assets/characters/CHAR_NGUYEN_PHONG_front.png` — ảnh tham chiếu CHAR_NGUYEN_PHONG
+- `assets/characters/CHAR_NGUYEN_PHONG_three_quarter.png` — ảnh tham chiếu CHAR_NGUYEN_PHONG
+- `assets/characters/CHAR_NGUYEN_PHONG_expressions.png` — ảnh tham chiếu CHAR_NGUYEN_PHONG
+- `assets/characters/CHAR_DUY_KHIEM_front.png` — ảnh tham chiếu CHAR_DUY_KHIEM
+- `assets/characters/CHAR_DUY_KHIEM_three_quarter.png` — ảnh tham chiếu CHAR_DUY_KHIEM
+- `assets/characters/CHAR_DUY_KHIEM_expressions.png` — ảnh tham chiếu CHAR_DUY_KHIEM
+- `assets/characters/CHAR_VIET_DUC_front.png` — ảnh tham chiếu CHAR_VIET_DUC
+- `assets/characters/CHAR_VIET_DUC_three_quarter.png` — ảnh tham chiếu CHAR_VIET_DUC
+- `assets/characters/CHAR_VIET_DUC_expressions.png` — ảnh tham chiếu CHAR_VIET_DUC
+- `assets/characters/CHAR_QUANG_BINH_front.png` — ảnh tham chiếu CHAR_QUANG_BINH
+- `assets/characters/CHAR_QUANG_BINH_three_quarter.png` — ảnh tham chiếu CHAR_QUANG_BINH
+- `assets/characters/CHAR_QUANG_BINH_expressions.png` — ảnh tham chiếu CHAR_QUANG_BINH
+- `assets/characters/CHAR_PHI_HUNG_front.png` — ảnh tham chiếu CHAR_PHI_HUNG
+- `assets/characters/CHAR_PHI_HUNG_three_quarter.png` — ảnh tham chiếu CHAR_PHI_HUNG
+- `assets/characters/CHAR_PHI_HUNG_expressions.png` — ảnh tham chiếu CHAR_PHI_HUNG
+- `assets/characters/CHAR_NHAT_ANH_front.png` — ảnh tham chiếu CHAR_NHAT_ANH
+- `assets/characters/CHAR_NHAT_ANH_three_quarter.png` — ảnh tham chiếu CHAR_NHAT_ANH
+- `assets/characters/CHAR_NHAT_ANH_expressions.png` — ảnh tham chiếu CHAR_NHAT_ANH
 
 ## Quyết định & ghi chú bàn giao
 
@@ -85,18 +107,18 @@ python scripts/studio_helper.py flow-harvest --project podcast-giac-mo-thiep-cuo
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-20 17:13 | user | `storyboard-approve --by user` | ok |
+| 10-20 17:13 | user | `storyboard ` | ok |
+| 10-20 17:13 | user | `lint-prompts ` | ok |
+| 10-20 17:13 | user | `build-prompts ` | ok |
+| 10-20 17:13 | user | `storyboard-approve --by user` | ok |
+| 10-20 17:13 | user | `storyboard ` | ok |
+| 10-20 17:13 | user | `lint-prompts ` | ok |
+| 10-20 17:13 | user | `build-prompts ` | ok |
+| 10-20 17:12 | user | `storyboard-approve --by user` | ok |
+| 10-20 17:12 | user | `storyboard ` | ok |
+| 10-20 17:12 | user | `lint-prompts ` | ok |
+| 10-20 17:12 | user | `build-prompts ` | ok |
+| 10-20 17:10 | user | `lint-prompts ` | ok |
 | 10-20 16:17 | user | `assemble --burn-subs` | ok |
 | 10-20 16:16 | user | `score ` | ok |
-| 10-20 16:16 | user | `approve --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,shot_14,shot_15` | ok |
-| 10-20 16:16 | user | `auto-select ` | ok |
-| 10-20 16:12 | user | `assemble --burn-subs` | ok |
-| 10-20 16:11 | user | `score ` | ok |
-| 10-20 16:11 | user | `storyboard-approve ` | ok |
-| 10-20 16:11 | user | `storyboard ` | ok |
-| 10-20 16:11 | user | `storyboard-approve ` | ❌ [ERROR] Nội dung đã đổi từ lần xuất storyboard gần nhất — chạy `storyboard` và x |
-| 10-20 16:10 | user | `lint-prompts ` | ok |
-| 10-20 16:10 | user | `build-prompts ` | ok |
-| 10-20 15:43 | user | `note ` | ok |
-| 10-20 15:42 | user | `thumbnail --shot shot_15 --at 5.2 --title GIẤC MƠ VÔ TRI --subtitle VŨ TẤN CƯỚI VỢ & THIỆP HỒNG BỊ BỎ QUÊN` | ok |
-| 10-20 15:42 | user | `approve --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,shot_14,shot_15` | ok |
-| 10-20 15:42 | user | `assemble --burn-subs` | ok |
