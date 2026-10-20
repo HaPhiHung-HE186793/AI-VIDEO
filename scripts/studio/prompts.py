@@ -191,11 +191,26 @@ def _format_cast_lines(shot: dict, chars: dict) -> list:
 
     # Tầng 1: Nhân vật tiêu điểm (1..3 người đang thực hiện hành động chính) kèm full identity_line
     primary_ids = focal_ids[:3] if len(focal_ids) <= 3 else focal_ids[:2]
-    pos_tags = (
-        ["On the left,", "In the center,", "On the right,"]
-        if len(primary_ids) == 3
-        else (["On the left,", "On the right,"] if len(primary_ids) == 2 else [])
-    )
+    cam_lower = (shot.get("camera") or shot.get("camera_shot") or "").lower()
+    sp_mode = (shot.get("spatial_mode") or "").strip().lower()
+    if not sp_mode and len(primary_ids) == 2:
+        if "over-the-shoulder" in cam_lower or "ots" in cam_lower:
+            sp_mode = "ots_left"
+        elif "foreground" in cam_lower and "background" in cam_lower:
+            sp_mode = "depth_clash"
+    if len(primary_ids) == 3:
+        pos_tags = ["On the left,", "In the center,", "On the right,"]
+    elif len(primary_ids) == 2:
+        if sp_mode == "ots_left":
+            pos_tags = ["In the close foreground on the left,", "Looming in the midground on the right,"]
+        elif sp_mode == "ots_right":
+            pos_tags = ["Looming in the midground on the left,", "In the close foreground on the right,"]
+        elif sp_mode == "depth_clash":
+            pos_tags = ["Charging from the foreground left,", "Bracing in the midground right,"]
+        else:
+            pos_tags = ["On the left,", "On the right,"]
+    else:
+        pos_tags = []
     use_pos = bool(shot.get("spatial_lock", True)) and len(primary_ids) in (2, 3)
     for idx, cid in enumerate(primary_ids):
         c = chars[cid]
@@ -413,12 +428,27 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
 
     end_pose = _clean_kinematic_action(shot.get("end_action") or shot.get("action") or "")
     cam_raw = shot.get("camera") or shot.get("camera_shot") or ""
+    impact_re = re.compile(
+        r"\b(slam|slams|crash|crashes|shatter|shatters|collapse|collapses|knock|knocks|pin|pins|crush|crushes|"
+        r"hurl|hurls|throw|throws|erupt|erupts|explode|explodes|topple|topples|drag|drags|bowl|bowls)\b",
+        re.I,
+    )
+    is_displacement = bool(shot.get("physical_displacement")) or bool(
+        impact_re.search(f"{shot.get('action', '')} {shot.get('end_action', '')}")
+    )
     if shot.get("dynamic_camera") and cam_raw:
         anchor_rule = (
             f"Surgical camera and pose edit from the attached start frame reference: complete the camera trajectory "
             f"({cam_raw.rstrip('.')}) while preserving the exact same background environment, lighting, and left-to-right character positions."
         )
         tail_rule = "Single still keyframe at the final camera position, no text, no subtitles."
+    elif is_displacement:
+        anchor_rule = (
+            "Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, "
+            "knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, "
+            "while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities."
+        )
+        tail_rule = "Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles."
     else:
         anchor_rule = (
             "Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression "
@@ -768,6 +798,22 @@ def lint_project(project: dict, cfg: dict) -> list:
         if unused:
             add("info", "UNLINKED_PROPS",
                 f"Đạo cụ {unused} đã khai báo nhưng chưa gắn vào `shot.props` hoặc `shot.action` của shot nào.")
+
+    # Kiểm tra quy tắc 30 độ / chống trùng góc máy ngang (Flat Two-Shot Streak) cho phim hành động/nhiều shot
+    flat_streak = []
+    for s in shots:
+        cam_s = (s.get("camera") or s.get("camera_shot") or "").lower()
+        sp_m = (s.get("spatial_mode") or "").lower()
+        is_macro = bool(re.search(r"\b(extreme close-up|macro|insert|detail|eye|foot|claw|jaws)\b", cam_s))
+        is_ots_or_pov = bool(re.search(r"\b(over-the-shoulder|ots|pov|ground-level|ankle-level|bird|overhead)\b", cam_s)) or sp_m in ("ots_left", "ots_right", "depth_clash")
+        if len(s.get("subjects", [])) >= 2 and not is_macro and not is_ots_or_pov:
+            flat_streak.append(s["shot_id"])
+            if len(flat_streak) >= 3:
+                add("info", "MONOTONOUS_CAMERA_COVERAGE",
+                    f"Các shot {flat_streak[-3:]} liên tiếp đều dùng góc máy ngang 2 chủ thể (flat two-shot) -> dễ gây cảm giác nhảy hình (jump-cut) và đánh nhau tại chỗ. "
+                    "Hãy xen kẽ góc chụp qua vai theo chiều sâu (`Over-the-shoulder` / `spatial_mode: ots_left`), góc sát đất `1.2m Ground-level POV`, hoặc cú cắt đặc tả `Extreme close-up Macro` (1.2s–1.8s).")
+        else:
+            flat_streak = []
     return out
 
 
