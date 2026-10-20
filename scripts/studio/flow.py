@@ -523,27 +523,36 @@ class Flow:
                 before = {f for d in watch for f in d.iterdir()}
                 partial_hung = kind == "video" and bool(re.search(r"\b\d{1,3}%", txt)) and "play_arrow" in txt
                 got = None
+                files = []
                 if not partial_hung:
                     btn.click()
                     got = self._wait_new_file(watch, before, timeout)
-                if not got and kind == "video" and "play_arrow" in txt:
-                    try:
-                        self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], i, 0])
-                        self.page.wait_for_url(re.compile(r"/edit/"), timeout=15000)
-                        self.wait(1.5)
-                        got = self._download_from_editor("720", watch, timeout)
-                    except Exception:
-                        pass
-                    finally:
-                        if "/edit/" in self.page.url:
-                            self._filter(UI["filter_video"])
-                if not got:
+                    if got:
+                        files = _unpack(got, out_dir, kind)
+                if not files and kind == "video" and "play_arrow" in txt:
+                    n_tiles = max(1, int(self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], i, -1]) or 1))
+                    for ti in range(n_tiles):
+                        try:
+                            ri_cur = self._find_row(key) if ti > 0 else i
+                            if ri_cur is None:
+                                break
+                            self.page.evaluate(JS_ROW_TILES, [UI["bulk_download"], ri_cur, ti])
+                            self.page.wait_for_url(re.compile(r"/edit/"), timeout=15000)
+                            self.wait(1.5)
+                            single = self._download_from_editor("720", watch, timeout)
+                            if single:
+                                files.extend(_unpack(single, out_dir, kind))
+                        except Exception:
+                            pass
+                        finally:
+                            if "/edit/" in self.page.url:
+                                self._filter(UI["filter_video"])
+                if not files:
                     row = {"shot": sid, "error": "timeout", "row_text": txt[:120]}
                     results.append(row)
                     if on_row:
                         on_row(row)
                     continue
-                files = _unpack(got, out_dir, kind)
                 known = (known_sha or {}).get(sid)
                 if known and files and all(media.sha256_file(f) in known for f in files):
                     for f in files:
@@ -604,6 +613,11 @@ class Flow:
         watch = [d for d in (self.download_dir, Path.home() / "Downloads") if d and d.exists()]
         shots_needed = {w["shot"] for w in wanted.values()}
         pending, results, seen = dict(wanted), [], set()
+        if any(w.get("tile_index") is not None for w in pending.values()):
+            self.back_to_grid()
+            self._upscale_via_grid(prompts, pending, watch, match_fn, res, timeout, results, on_result)
+            if not pending:
+                return results
         self._open_any_video_editor()
         n = self.page.evaluate(JS_STRIP, -1)
         for i in range(n):

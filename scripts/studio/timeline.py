@@ -118,7 +118,10 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
                 seg["notes"].append("Không tách rõ thoại khỏi nền — nên đặt edit_in/edit_out thủ công.")
         elif s.get("beat") in bt.beats_by_id(project):
             share = bt.shot_need(proj_dir, project, s, cfg)
-            tin, tout = _fit_in_window(w0, w1, share)
+            if auto_edit and (float(s.get("edit_out", w1)) - float(s.get("edit_in", w0))) >= share - 0.02:
+                tin, tout = float(s.get("edit_in", w0)), float(s.get("edit_out", w1))
+            else:
+                tin, tout = _fit_in_window(w0, w1, share)
             source = "beat_share"
         elif auto_edit:
             tin, tout, source = float(s.get("edit_in", w0)), float(s.get("edit_out", w1)), "auto"
@@ -147,6 +150,8 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
         min_end = a["tin"] + ed["min_shot_sec"]
         if a["vo_path"]:
             min_end = max(min_end, a["tin"] + a["vo_offset"] + a["vo_duration"])
+        if a["source"] == "beat_share" or b["shot"].get("chain_from_prev"):
+            min_end = max(min_end, a["tout"] - 0.55)
         w1 = a.get("clean_window", (0.0, a["clip_duration"]))[1]
         if min_end >= w1 - 0.05:
             continue

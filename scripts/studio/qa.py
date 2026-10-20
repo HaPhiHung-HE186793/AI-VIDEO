@@ -65,6 +65,32 @@ def _runs(mask, fps, min_sec):
     return out
 
 
+def detect_mid_clip_dissolve(frames, fps: float, min_span_diff: float = 28.0, max_blend_ratio: float = 0.22) -> list:
+    """Phát hiện lỗi Veo tự chèn hiệu ứng chồng hình mờ (cross-dissolve / double exposure) ở giữa clip.
+
+    Khi xảy ra cross-dissolve tại frame i với bán kính d (~0.45s), hai frame F[i-d] và F[i+d] khác nhau lớn
+    (span_diff > min_span_diff), nhưng F[i] lại xấp xỉ trung bình cộng tuyến tính 0.5*(F[i-d] + F[i+d]).
+    Trả về danh sách khoảng thời gian (t_from, t_to) bị chồng mờ.
+    """
+    import numpy as np
+
+    d = max(4, int(0.45 * (fps or 24.0)))
+    if len(frames) < 2 * d + 2:
+        return []
+    mask = [False] * len(frames)
+    for i in range(d, len(frames) - d):
+        fa = frames[i - d].astype(np.float32)
+        fb = frames[i + d].astype(np.float32)
+        span_diff = float(np.mean(np.abs(fb - fa)))
+        if span_diff < min_span_diff:
+            continue
+        fm = frames[i].astype(np.float32)
+        blend_err = float(np.mean(np.abs(fm - 0.5 * (fa + fb))))
+        if blend_err / span_diff < max_blend_ratio:
+            mask[i] = True
+    return _runs(mask, fps or 24.0, 0.15)
+
+
 def technical_qa(clip: Path, cfg: dict) -> dict:
     import numpy as np
 
@@ -109,6 +135,11 @@ def technical_qa(clip: Path, cfg: dict) -> dict:
         blacks = _runs(means < q["black_luma"], fps, 0.4)
         if blacks:
             add("warn", "BLACK_FRAMES", f"Frame đen tại {blacks}.")
+        dissolves = detect_mid_clip_dissolve(frames, fps)
+        if dissolves:
+            add("warn", "MID_CLIP_DISSOLVE",
+                f"Phát hiện chồng hình mờ (double-exposure dissolve) giữa clip tại {dissolves} — "
+                "kiểm tra sự đồng bộ góc máy giữa Keyframe START/END và veo_prompt.")
 
     if not info["has_audio"]:
         add("warn", "NO_AUDIO", "Clip không có audio.")

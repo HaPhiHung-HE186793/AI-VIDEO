@@ -91,3 +91,79 @@ def test_normalize_lang():
     assert prompts.normalize_lang("Tiếng Việt") == "vi"
     assert prompts.normalize_lang("English") == "en"
     assert prompts.normalize_lang("ko") == "ko"
+
+
+def test_cross_attribute_lock_and_first_last_camera_alignment(cfg):
+    proj = {
+        "language": "vi",
+        "style_line": "2D anime style, clean line art",
+        "characters": [
+            {"id": "NAM", "name": "Nam", "identity_line": "a 24-year-old man with short black hair and round glasses in an olive hoodie",
+             "reference_images": ["assets/characters/NAM.png"]},
+            {"id": "TAN", "name": "Vu Tan", "identity_line": "a 24-year-old man with short parted black hair in a cream polo shirt",
+             "reference_images": ["assets/characters/TAN.png"]},
+            {"id": "LINH", "name": "Linh", "identity_line": "a 23-year-old woman with long dark hair in a beige cardigan",
+             "reference_images": ["assets/characters/LINH.png"]},
+        ],
+        "environments": [{"id": "CAFE", "name": "Rooftop Cafe", "identity_line": "a cozy rooftop cafe at twilight"}],
+    }
+    shot = {
+        "shot_id": "shot_13",
+        "generation_mode": "first_last",
+        "first_frame_path": "assets/frames/KF_S13_START.jpg",
+        "last_frame_path": "assets/frames/KF_S13_END.jpg",
+        "camera": "Medium three-shot, 35mm lens, gentle push-in",
+        "subjects": ["TAN", "NAM", "LINH"],
+        "action": "Vu Tan and Linh comfort pouting Nam across the table",
+        "environment": "CAFE",
+        "lighting": "warm golden string lights",
+        "audio": {"mode": "voiceover_external", "sfx": "laughter"},
+    }
+    veo_p = prompts.build_prompt(proj, shot)
+    assert "steady locked-off framing, single continuous take" in veo_p
+    assert "push-in" not in veo_p.lower()
+    assert "On the left, Vu Tan is" in veo_p
+    assert "In the center, Nam is" in veo_p
+    assert "On the right, Linh is" in veo_p
+    assert "Only Nam wears glasses while Vu Tan and Linh keep bare eyes" in veo_p
+    assert "only Linh has long hair while Vu Tan and Nam keep short hair" in veo_p
+    shot["veo_prompt"] = veo_p
+    codes = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
+    assert "TOO_MANY_NEGATIONS" not in codes
+    assert "FIRST_LAST_CAMERA_MISMATCH" not in codes
+    neg = prompts.effective_negative_prompt(proj, shot)
+    assert "cross-dissolve" in neg and "attribute swapping" in neg
+
+
+def test_detect_mid_clip_dissolve_and_daisy_chain_choose_take(cfg):
+    import numpy as np
+    from studio import qa, takes
+
+    fps = 24.0
+    fa = np.full((180, 320), 30, dtype=np.uint8)
+    fb = np.full((180, 320), 210, dtype=np.uint8)
+    frames = [fa.copy() for _ in range(40)]
+    for k in range(24):
+        alpha = (k + 1) / 25.0
+        frames.append(((1.0 - alpha) * fa + alpha * fb).astype(np.uint8))
+    frames.extend([fb.copy() for _ in range(40)])
+    dissolves = qa.detect_mid_clip_dissolve(frames, fps)
+    assert len(dissolves) == 1
+
+    shot_a = {
+        "shot_id": "shot_01",
+        "takes": [{"take": 1, "qa": {"duration": 8.0, "technical": {"verdict": "pass"},
+                                     "vision": {"verdict": "pass", "overall_score_1_10": 9,
+                                                "identity_score_1_10": 9, "prompt_adherence_1_10": 9, "defects": []}}}],
+    }
+    shot_b = {
+        "shot_id": "shot_02",
+        "chain_from_prev": True,
+        "takes": [{"take": 1, "qa": {"duration": 8.0, "technical": {"verdict": "pass"},
+                                     "vision": {"verdict": "pass", "overall_score_1_10": 9,
+                                                "identity_score_1_10": 9, "prompt_adherence_1_10": 9, "defects": []}}}],
+    }
+    res_a = takes.choose_take(shot_a, 4.5, cfg, pref=4.5, chain_next=True)
+    res_b = takes.choose_take(shot_b, 4.5, cfg, pref=4.5, chain_next=False)
+    assert res_a["edit_out"] == 8.0 and res_a["edit_in"] == 3.5
+    assert res_b["edit_in"] == 0.0 and res_b["edit_out"] == 4.5

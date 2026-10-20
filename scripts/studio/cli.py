@@ -1148,11 +1148,11 @@ def cmd_flow_generate(args, cfg):
                         row["skipped"] = f"vượt ngân sách --max-credits {args.max_credits}"
                         report.append(row)
                         continue
-                    refs = _ref_paths(proj, m, s)
+                    refs = _ref_paths(proj, m, s, limit=4)
                     if slot == "end" and s.get("first_frame_path") and (proj / s["first_frame_path"]).exists():
                         start_p = proj / s["first_frame_path"]
                         attach_list = [(start_p, mf.keyframe_uid(m, s["shot_id"], "start"))]
-                        attach_list += [(r, "") for r in refs if r.resolve() != start_p.resolve()][:2]
+                        attach_list += [(r, "") for r in refs if r.resolve() != start_p.resolve()][:4]
                     else:
                         attach_list = [(r, "") for r in refs]
                     cur_sig = ("image", tuple((str(p.resolve()), u) for p, u in attach_list))
@@ -1545,7 +1545,9 @@ def cmd_auto_select(args, cfg):
             continue
         need = takes.needed_seconds(proj, s, cfg, m)
         in_beat = s.get("beat") in bt.beats_by_id(m)
-        d = takes.choose_take(s, need, cfg, pref=round(need + 0.15, 2) if in_beat else None,
+        is_chained = bool(s.get("chain_from_prev")) or next_chained.get(s["shot_id"], False)
+        pad = 0.35 if is_chained else 0.15
+        d = takes.choose_take(s, need, cfg, pref=round(need + pad, 2) if in_beat else None,
                               chain_next=next_chained.get(s["shot_id"], False))
         if d.get("retake"):
             rounds = sum(1 for j in m.get("flow_jobs", []) if j["shot"] == s["shot_id"] and j["kind"] == "video")

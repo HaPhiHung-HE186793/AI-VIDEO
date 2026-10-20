@@ -122,20 +122,88 @@ def is_structured(shot: dict) -> bool:
     return bool(shot.get("action") and (shot.get("camera") or shot.get("camera_shot")))
 
 
+def _cross_attribute_lock(subjects: list, chars: dict) -> str:
+    """Sinh câu khóa phân tách thuộc tính (khẳng định 100%, không dùng từ phủ định) khi cảnh có >=2 nhân vật.
+
+    Ngăn lỗi Veo 3.1 ở chế độ `first_last` bị lây thuộc tính (kính mắt, tóc dài/ngắn) giữa các nhân vật ngồi cạnh nhau.
+    """
+    if len(subjects) < 2:
+        return ""
+    with_glasses, bare_eyes = [], []
+    long_hair, short_hair = [], []
+    for cid in subjects:
+        c = chars.get(cid, {})
+        id_line = (c.get("identity_line") or "").lower()
+        if not id_line:
+            continue
+        name = display_name(c, cid)
+        if re.search(r"\b(glasses|spectacles|eyeglasses)\b", id_line):
+            with_glasses.append(name)
+        else:
+            bare_eyes.append(name)
+        if re.search(r"\blong\b[^.,;]*\bhair\b", id_line):
+            long_hair.append(name)
+        elif re.search(r"\b(short|buzz|undercut|crew)\b[^.,;]*\bhair\b", id_line):
+            short_hair.append(name)
+    clauses = []
+    if with_glasses and bare_eyes:
+        g_verb = "wears" if len(with_glasses) == 1 else "wear"
+        b_verb = "keeps" if len(bare_eyes) == 1 else "keep"
+        clauses.append(f"Only {' and '.join(with_glasses)} {g_verb} glasses while {' and '.join(bare_eyes)} {b_verb} bare eyes")
+    if long_hair and short_hair:
+        l_verb = "has" if len(long_hair) == 1 else "have"
+        s_verb = "keeps" if len(short_hair) == 1 else "keep"
+        clauses.append(f"only {' and '.join(long_hair)} {l_verb} long hair while {' and '.join(short_hair)} {s_verb} short hair")
+    if not clauses:
+        return ""
+    joined = "; ".join(clauses)
+    return _sentence(joined[0].upper() + joined[1:])
+
+
+def _align_first_last_camera(camera_text: str, shot: dict) -> str:
+    """Đồng bộ mô tả máy quay trong veo_prompt với cặp Keyframe START/END để tránh lỗi chồng mờ (dissolve) cuối clip.
+
+    Nếu shot ở chế độ `first_last` mà không bật `dynamic_camera` (tức START và END có cùng cỡ cảnh Anchor-Locked),
+    loại bỏ lệnh push-in/pull-back/zoom gây mâu thuẫn tiêu cự với frame END.
+    """
+    cam = (camera_text or "").strip()
+    if shot.get("generation_mode") != "first_last" or shot.get("dynamic_camera"):
+        return cam
+    if re.search(r"\b(push[- ]in|pull[- ]back|zoom[- ]?(?:in|out)?)\b", cam, flags=re.I):
+        cleaned = re.sub(
+            r",?\s*\b(slow|very slow|gentle|subtle|smooth|dramatic)?\s*(push[- ]in|pull[- ]back|zoom[- ]?(?:in|out)?)[^,.]*",
+            "",
+            cam,
+            flags=re.I,
+        ).strip(" ,.")
+        return f"{cleaned}, steady locked-off framing, single continuous take" if cleaned else "Steady locked-off framing, single continuous take"
+    return cam
+
+
 def build_prompt(project: dict, shot: dict) -> str:
     """Ghép prompt Veo từ các trường có cấu trúc của shot."""
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
     lang = normalize_lang(project.get("language") or project.get("plan", {}).get("language_code", "vi"))
 
-    parts = [_sentence(shot.get("camera") or shot.get("camera_shot"))]
+    raw_cam = shot.get("camera") or shot.get("camera_shot")
+    parts = [_sentence(_align_first_last_camera(raw_cam, shot))]
 
     subject_lines = []
-    for cid in shot.get("subjects", []):
+    subjects = shot.get("subjects", [])
+    pos_tags = ["On the left,", "In the center,", "On the right,"] if len(subjects) == 3 else (
+        ["On the left,", "On the right,"] if len(subjects) == 2 else []
+    )
+    use_pos = bool(shot.get("spatial_lock", shot.get("generation_mode") == "first_last")) and len(subjects) in (2, 3)
+    for idx, cid in enumerate(subjects):
         c = chars.get(cid, {})
         if c.get("identity_line"):
-            subject_lines.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+            prefix = f"{pos_tags[idx]} " if use_pos and idx < len(pos_tags) else ""
+            subject_lines.append(_sentence(f"{prefix}{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
     parts += subject_lines
+    attr_lock = _cross_attribute_lock(subjects, chars)
+    if attr_lock:
+        parts.append(attr_lock)
 
     parts.append(_sentence(shot.get("action")))
 
@@ -182,10 +250,14 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
     cam_head = (cam or shot.get("camera") or shot.get("camera_shot") or "").rstrip(".")
     parts = [_sentence(f"{cam_head}: {pose}" if cam_head and pose else (cam_head or pose))]
 
-    for cid in shot.get("subjects", []):
+    subjects = shot.get("subjects", [])
+    for cid in subjects:
         c = chars.get(cid, {})
         if c.get("identity_line"):
             parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+    attr_lock = _cross_attribute_lock(subjects, chars)
+    if attr_lock:
+        parts.append(attr_lock)
 
     for pid in shot.get("props", []):
         p = props.get(pid, {})
@@ -207,26 +279,45 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
     envs = mf.environments_by_id(project)
 
     end_pose = shot.get("end_action") or shot.get("action") or ""
+    cam_raw = shot.get("camera") or shot.get("camera_shot") or ""
+    if shot.get("dynamic_camera") and cam_raw:
+        anchor_rule = (
+            f"Complete the camera trajectory ({cam_raw.rstrip('.')}) while preserving the exact same background "
+            "environment, lighting, and character identity from the start frame reference."
+        )
+        tail_rule = "Single still keyframe at the final camera position, no text, no subtitles."
+    else:
+        anchor_rule = (
+            "Maintain the exact same camera angle, lens, background environment, lighting, and character identity "
+            "from the start frame reference."
+        )
+        tail_rule = "Single still keyframe, identical framing to start frame, no text, no subtitles."
     parts = [
         _sentence(f"Final state at the end of the shot: {end_pose}"),
-        "Maintain the exact same camera angle, lens, background environment, lighting, and character identity from the start frame reference.",
+        anchor_rule,
     ]
-    for cid in shot.get("subjects", []):
+    subjects = shot.get("subjects", [])
+    for cid in subjects:
         c = chars.get(cid, {})
         if c.get("identity_line"):
             parts.append(_sentence(f"{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+    attr_lock = _cross_attribute_lock(subjects, chars)
+    if attr_lock:
+        parts.append(attr_lock)
 
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
         setting = envs[shot["environment"]].get("identity_line") or envs[shot["environment"]].get("name")
     parts.append(_sentence(", ".join(x for x in [setting, shot.get("lighting")] if x)))
     parts.append(_sentence(project.get("style_line") or project.get("visual_style")))
-    parts.append("Single still keyframe, identical framing to start frame, no text, no subtitles.")
+    parts.append(tail_rule)
     return re.sub(r"\s{2,}", " ", " ".join(p for p in parts if p)).strip()
 
 
 def effective_negative_prompt(project: dict, shot: dict) -> str:
     items = [project.get("negative_prompt", ""), shot.get("negative_prompt", "")]
+    if shot.get("generation_mode") == "first_last":
+        items.append("cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping")
     return ", ".join(x.strip(" ,") for x in items if x and x.strip(" ,"))
 
 
@@ -283,6 +374,10 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
         if not shot.get("last_frame_path"):
             add("error", "MISSING_LAST_FRAME", "mode=first_last nhưng chưa có last_frame_path.")
         add("info", "FIRST_LAST_FRAMING", "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình.")
+        if not shot.get("dynamic_camera") and re.search(r"\b(push[- ]in|pull[- ]back|zoom[- ]?(?:in|out)?)\b", prompt, flags=re.I):
+            add("warn", "FIRST_LAST_CAMERA_MISMATCH",
+                "veo_prompt có lệnh push-in/pull-back/zoom nhưng Keyframe START/END cùng cỡ cảnh (dynamic_camera=False) "
+                "→ dễ gây chồng mờ (dissolve) ở giây thứ 6. Chạy lại `build-prompts` để đồng bộ hoặc đặt `dynamic_camera: true`.")
     if mode == "extend" and not shot.get("extends"):
         add("error", "MISSING_EXTEND_PARENT", "mode=extend cần trường `extends` (shot_id clip gốc).")
 
