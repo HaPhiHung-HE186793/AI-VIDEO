@@ -171,17 +171,8 @@ Subjects cần kiểm tra danh tính: {subjects}."""
 
 
 def _reference_images(proj_dir: Path, project: dict, shot: dict) -> list:
-    chars = mf.characters_by_id(project)
-    paths = list(shot.get("reference_images", []))
-    for cid in shot.get("subjects", []):
-        paths += chars.get(cid, {}).get("reference_images", [])
-    seen, out = set(), []
-    for p in paths:
-        full = proj_dir / p
-        if p not in seen and full.exists():
-            seen.add(p)
-            out.append(full)
-    return out[:4]
+    rels = mf.shot_reference_paths(project, shot, proj_dir=proj_dir, limit=4, include_env=True)
+    return [proj_dir / p for p in rels]
 
 
 # Biến môi trường do các AI agent đặt khi chạy lệnh (Claude Code: CLAUDECODE / AI_AGENT).

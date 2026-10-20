@@ -18,8 +18,8 @@ from . import media
 CUT, DISSOLVE = "cut", "dissolve"
 
 
-def _find_seam(clip_a: Path, t_min: float, clip_b: Path, b_in: float = 0.0) -> tuple:
-    """Thời điểm trong A (≥ t_min) có frame giống frame đầu của B nhất. Trả về (t_cut, l1_diff)."""
+def _find_seam(clip_a: Path, t_min: float, clip_b: Path, b_in: float = 0.0, t_max: float = None) -> tuple:
+    """Thời điểm trong A (t_min ≤ t ≤ t_max) có frame giống frame đầu của B nhất. Trả về (t_cut, l1_diff)."""
     import numpy as np
 
     cv2 = media.cv2_module()
@@ -27,8 +27,11 @@ def _find_seam(clip_a: Path, t_min: float, clip_b: Path, b_in: float = 0.0) -> t
     gb = cv2.cvtColor(cv2.resize(fb, (320, 180)), cv2.COLOR_BGR2GRAY).astype(np.int16)
     fps, frames = media.read_gray_frames(clip_a)
     start = max(0, int(t_min * fps))
-    best_i, best_d = len(frames) - 1, 1e9
-    for i in range(start, len(frames)):
+    stop = min(len(frames), int(t_max * fps)) if t_max is not None else len(frames)
+    if stop <= start:
+        stop = len(frames)
+    best_i, best_d = stop - 1, 1e9
+    for i in range(start, stop):
         d = float(np.mean(np.abs(frames[i].astype(np.int16) - gb)))
         if d < best_d:
             best_i, best_d = i, d
@@ -40,6 +43,23 @@ def _is_continuation(prev: dict, cur: dict) -> bool:
     return prev.get("transition_to_next") == "INTRA_SCENE_CONTINUE" or (
         cur.get("generation_mode") == "extend" and cur.get("extends") == prev.get("shot_id")
     )
+
+
+def _is_auto_edit(s: dict) -> bool:
+    """True nếu edit_in/edit_out trên shot là kết quả tự động từ `auto-select` (chưa bị đạo diễn khóa/sửa tay)."""
+    if s.get("lock_edit"):
+        return False
+    auto = s.get("auto_selection")
+    if not isinstance(auto, dict) or ("edit_in" not in auto and "edit_out" not in auto):
+        return False
+    return s.get("edit_in") == auto.get("edit_in") and s.get("edit_out") == auto.get("edit_out")
+
+
+def _fit_in_window(w0: float, w1: float, need: float) -> tuple:
+    """Đặt đoạn dài `need` vào giữa cửa sổ sạch [w0, w1]."""
+    length = min(max(0.0, w1 - w0), need)
+    tin = round(w0 + (w1 - w0 - length) / 2, 2)
+    return tin, round(tin + length, 2)
 
 
 def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = False) -> list:
@@ -66,29 +86,42 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
             # Lời dẫn luôn được đặt lên shot, kể cả khi đạo diễn chỉnh tay cửa sổ hình (edit_in/edit_out).
             vo_dur = au.wav_duration(vo)
             seg.update(vo_path=vo, vo_offset=float(s.get("vo_offset", ed["vo_pre_roll_sec"])), vo_duration=vo_dur)
-        if "edit_in" in s or "edit_out" in s:
+
+        auto_edit = _is_auto_edit(s)
+        win = (s.get("auto_selection") or {}).get("window") if auto_edit else None
+        w0 = max(0.0, float(win[0])) if win else 0.0
+        w1 = min(dur, float(win[1])) if win else dur
+        seg["clean_window"] = (w0, w1)
+
+        if ("edit_in" in s or "edit_out" in s) and not auto_edit:
             tin, tout, source = float(s.get("edit_in", 0.0)), float(s.get("edit_out", dur)), "manual"
             if has_vo and seg["vo_offset"] + seg["vo_duration"] > tout - tin + 0.01:
                 seg["notes"].append(f"Lời dẫn ({seg['vo_duration']:.2f}s) dài hơn cửa sổ hình {tout - tin:.2f}s — lời sẽ tràn sang shot sau.")
         elif has_vo:
-            tin = 0.0
             need = seg["vo_offset"] + seg["vo_duration"] + ed["vo_post_roll_sec"]
-            tout = min(dur, tin + need)
-            if tin + need > dur + 0.01:
+            if auto_edit:
+                tin, tout = _fit_in_window(w0, w1, need)
+            else:
+                tin, tout = 0.0, min(dur, need)
+            if need > (w1 - w0 if auto_edit else dur) + 0.01:
                 seg["notes"].append(f"Lời dẫn ({seg['vo_duration']:.2f}s) dài hơn phần hình còn lại — rút gọn câu hoặc Extend clip.")
             source = "voiceover"
         elif audio["mode"] in ("veo_dialogue", "veo_narration"):
             sw = au.speech_window(clip)
             seg["speech"] = sw
-            tin = max(0.0, sw["start"] - ed["speech_pad_head_sec"]) if segs else 0.0
-            tout = min(dur, sw["end"] + ed["speech_pad_tail_sec"])
+            tin = max(w0, sw["start"] - ed["speech_pad_head_sec"]) if segs else w0
+            tout = min(w1, sw["end"] + ed["speech_pad_tail_sec"])
             source = "speech" if sw["reliable"] else "speech_unreliable"
             if not sw["reliable"]:
+                if auto_edit:
+                    tin, tout = float(s.get("edit_in", w0)), float(s.get("edit_out", w1))
                 seg["notes"].append("Không tách rõ thoại khỏi nền — nên đặt edit_in/edit_out thủ công.")
         elif s.get("beat") in bt.beats_by_id(project):
             share = bt.shot_need(proj_dir, project, s, cfg)
-            tin = max(0.0, (dur - share) / 2)
-            tout, source = min(dur, tin + share), "beat_share"
+            tin, tout = _fit_in_window(w0, w1, share)
+            source = "beat_share"
+        elif auto_edit:
+            tin, tout, source = float(s.get("edit_in", w0)), float(s.get("edit_out", w1)), "auto"
         else:
             tin, tout, source = float(s.get("edit_in", 0.0)), dur, "full"
 
@@ -102,16 +135,22 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
         seg["shot"] = s
         segs.append(seg)
 
-    # Nối liền cùng cảnh: cắt A tại frame khớp với frame đầu B.
+    # Nối liền cùng cảnh: cắt A tại frame khớp với frame đầu B (chỉ bỏ qua khi đạo diễn khóa manual).
     for a, b in zip(segs, segs[1:]):
         if not _is_continuation(a["shot"], b["shot"]):
             continue
         a["transition_out"] = CUT
-        if "edit_out" in a["shot"]:
+        if a["source"] == "manual":
             continue
-        b_in = b["tin"] if "edit_in" in b["shot"] else 0.0
+        b_in = b["tin"] if b["source"] in ("manual", "auto") else 0.0
         b["tin"] = b_in
-        t_cut, l1 = _find_seam(a["clip"], a["tin"] + ed["min_shot_sec"], b["clip"], b_in)
+        min_end = a["tin"] + ed["min_shot_sec"]
+        if a["vo_path"]:
+            min_end = max(min_end, a["tin"] + a["vo_offset"] + a["vo_duration"])
+        w1 = a.get("clean_window", (0.0, a["clip_duration"]))[1]
+        if min_end >= w1 - 0.05:
+            continue
+        t_cut, l1 = _find_seam(a["clip"], min_end, b["clip"], b_in, t_max=w1)
         a["tout"], a["seam_l1"] = t_cut, l1
         if l1 > ed["seam_max_l1"]:
             a["notes"].append(f"Điểm nối với {b['shot_id']} lệch (L1={l1} > {ed['seam_max_l1']}) — dùng Extend thay vì nối bằng 1 frame tĩnh.")

@@ -150,3 +150,29 @@ def test_manual_window_keeps_voiceover(project, cfg):
     seg = timeline.compute(project, m, cfg)[0]
     assert seg["source"] == "manual" and seg["vo_path"] is not None
     assert abs(seg["duration"] - 5.0) < 0.05
+
+
+def test_auto_select_does_not_block_seam_or_voiceover_fit(project, cfg):
+    clips = project / "assets" / "clips"
+    a = make_clip(clips / "shot_01.mp4", seconds=8)
+    media.run_ffmpeg(["-ss", "5.0", "-i", str(a), "-t", "3", "-c:v", "libx264", "-preset", "ultrafast",
+                      "-c:a", "aac", str(clips / "shot_02.mp4")])
+    # Shot 01 có edit_in/edit_out do auto-select đặt (khớp auto_selection) → không bị coi là manual khóa cứng
+    s1 = _shot(
+        "shot_01", 1, transition_to_next="INTRA_SCENE_CONTINUE",
+        edit_in=1.75, edit_out=6.25,
+        auto_selection={"take": 1, "edit_in": 1.75, "edit_out": 6.25, "window": [0.0, 8.0]},
+    )
+    s2 = _shot("shot_02", 2)
+    m = _save(project, [s1, s2])
+    segs = timeline.compute(project, m, cfg)
+    assert abs(segs[0]["tout"] - 5.0) <= 0.1  # _find_seam vẫn chạy để tìm frame khớp tại 5.0s
+
+
+def test_audio_clipping_sanitizer_in_filtergraph():
+    seg = {
+        "duration": 4.0, "has_audio": True, "tin": 0.5,
+        "shot": {"selected_take": 1, "takes": [{"take": 1, "qa": {"technical": {"findings": [{"code": "AUDIO_CLIPPING"}]}}}]},
+    }
+    chain = render._audio_chain(0, seg)
+    assert "volume=-4.5dB,lowpass=f=7500" in chain

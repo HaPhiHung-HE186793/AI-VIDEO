@@ -117,3 +117,14 @@ def test_storyboard_gate(project, cfg, capsys):
     assert not storyboard.approval_state(mf.load(project))["valid"]
     with pytest.raises(SystemExit):   # phải xuất lại storyboard trước khi duyệt lại
         cli.main(["storyboard-approve", "--project", str(project)])
+
+
+def test_storyboard_gate_blocks_even_without_beats(project, cfg):
+    import pytest
+    from studio import cli
+    m = mf.load(project)
+    m["beats"] = []
+    m["shots"] = [{"shot_id": "shot_01", "order": 1, "veo_prompt": "Wide shot of a studio."}]
+    mf.save(project, m)
+    with pytest.raises(SystemExit):
+        cli.main(["flow-generate", "--project", str(project), "--kind", "video"])

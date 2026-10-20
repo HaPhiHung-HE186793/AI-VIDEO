@@ -323,11 +323,8 @@ def cmd_build_prompts(args, cfg):
         if s.get("generation_mode") == "first_last" and s.get("last_frame_path"):
             inputs.append(f"Last frame: `{s['last_frame_path']}`")
         if s.get("generation_mode") == "ingredients":
-            chars = mf.characters_by_id(m)
-            refs = list(s.get("reference_images", []))
-            for cid in s.get("subjects", []):
-                refs += chars.get(cid, {}).get("reference_images", [])[:2]
-            inputs += [f"Ingredient: `{r}`" for r in dict.fromkeys(refs)][:3]
+            refs = mf.shot_reference_paths(m, s, proj_dir=proj if (proj / "assets").exists() else None, limit=3)
+            inputs += [f"Ingredient: `{r}`" for r in refs]
         if s.get("generation_mode") == "extend":
             inputs.append(f"Extend từ clip của `{s.get('extends')}`")
         voice = prompts.shot_voice(m, s)
@@ -370,9 +367,13 @@ def cmd_lint_prompts(args, cfg):
             totals[f["level"]] += 1
         report.append({"shot_id": s["shot_id"], "chars": len(s.get("veo_prompt", "")), "model": route["label"],
                        "complexity": score, "findings": [f"{f['level'].upper()} {f['code']}: {f['msg']}" for f in findings]})
+    proj_findings = prompts.lint_project(m, cfg)
+    for f in proj_findings:
+        totals[f["level"]] += 1
     mf.save(proj, m)
     out({"summary": {**totals, "shots": len(shots), "legacy_cleaned": fixed,
                      "estimated_credits_incl_takes": credits, "budget": cfg["credits"]["budget"]},
+         "project_findings": [f"{f['level'].upper()} {f['code']}: {f['msg']}" for f in proj_findings],
          "shots": report})
     if totals["error"] and args.strict:
         sys.exit(2)
@@ -388,10 +389,7 @@ def _default_inputs(proj: Path, m: dict, s: dict) -> list:
     if mode == "first_last":
         paths.append(s.get("last_frame_path"))
     if mode == "ingredients":
-        chars = mf.characters_by_id(m)
-        paths += s.get("reference_images", [])
-        for cid in s.get("subjects", []):
-            paths += chars.get(cid, {}).get("reference_images", [])
+        paths += mf.shot_reference_paths(m, s, proj_dir=proj, limit=3, include_env=True)
     return [p for p in dict.fromkeys(paths) if p]
 
 
@@ -842,10 +840,12 @@ def cmd_score(args, cfg):
     m = mf.load(proj)
     segs = timeline.compute(proj, m, cfg)
     secs = music.sections_from_timeline(segs, m)
+    mood = music.detect_mood(m, getattr(args, "mood", "auto"))
     rel = "assets/audio/music/score_auto.wav"
     res = music.synth_score(timeline.total_duration(segs), secs, proj / rel, seed=args.seed,
-                            cuts=music.cut_times(segs))
-    m["music_path"], m["music_source"] = rel, {"kind": "procedural", "seed": args.seed, "license": "tự tổng hợp, miễn bản quyền"}
+                            cuts=music.cut_times(segs), mood=mood)
+    m["music_path"] = rel
+    m["music_source"] = {"kind": "procedural", "mood": mood, "seed": args.seed, "license": "tự tổng hợp, miễn bản quyền"}
     mf.save(proj, m)
     out({"status": "ok", **res, "music_path": rel,
          "sections": [{"t0": round(a, 2), "t1": round(b, 2), "purpose": c} for a, b, c in secs],
@@ -1049,11 +1049,8 @@ def _flow_targets(m: dict, args) -> list:
 
 
 def _ref_paths(proj: Path, m: dict, s: dict, limit: int = 3) -> list:
-    chars = mf.characters_by_id(m)
-    paths = list(s.get("reference_images", []))
-    for cid in s.get("subjects", []):
-        paths += chars.get(cid, {}).get("reference_images", [])
-    return [proj / p for p in dict.fromkeys(paths) if (proj / p).exists()][:limit]
+    rels = mf.shot_reference_paths(m, s, proj_dir=proj, limit=limit, include_env=True)
+    return [proj / p for p in rels]
 
 
 def cmd_flow_generate(args, cfg):
@@ -1065,13 +1062,12 @@ def cmd_flow_generate(args, cfg):
     if not shots:
         sys.exit("[ERROR] Không có shot nào để tạo (kiểm tra --shots / prompt / --retakes).")
     kind = "image" if args.kind == "frames" else "video"
-    if kind == "video" and not args.retakes and not args.skip_approval and m.get("beats"):
+    if kind == "video" and not args.retakes and not args.skip_approval:
         st = storyboard.approval_state(m)
         if not st["valid"]:
             sys.exit("[ERROR] Storyboard chưa được duyệt (hoặc đã sửa sau khi duyệt): chạy `storyboard`, "
                      "người dùng xem và `storyboard-approve`, rồi mới tạo video. (--skip-approval để bỏ qua)")
-    model = args.model or (cfg["models"]["image"]["pro"] if kind == "image" else
-                           cfg["models"]["video"][args.tier]["label"])
+    fallback_model = cfg["models"]["image"]["pro"] if kind == "image" else cfg["models"]["video"][args.tier]["label"]
     aspect = args.aspect or m.get("aspect_ratio", "16:9")
     report, spent = [], 0
     with fl.Flow(cfg["browser"]["debug_port"], m.get("flow_project_url", "")) as f:
@@ -1082,11 +1078,14 @@ def cmd_flow_generate(args, cfg):
         for s in shots:
             mode = s.get("generation_mode", "text") if kind == "video" else "image"
             vmode = "frames" if mode in ("first_frame", "first_last") else "ingredients"
-            if (kind, vmode) != last_mode:
-                setting = f.configure(kind=kind, video_mode=vmode, aspect=aspect, model=model,
+            shot_model = args.model or (
+                (s.get("routing") or {}).get("label") if kind == "video" else None
+            ) or fallback_model
+            if (kind, vmode, shot_model) != last_mode:
+                setting = f.configure(kind=kind, video_mode=vmode, aspect=aspect, model=shot_model,
                                       duration=args.duration, count=args.count)
-                cost, last_mode = setting["credits_per_submit"], (kind, vmode)
-            row = {"shot": s["shot_id"], "mode": mode, "settings": setting.get("summary"), "credits": cost}
+                cost, last_mode = setting["credits_per_submit"], (kind, vmode, shot_model)
+            row = {"shot": s["shot_id"], "mode": mode, "model": shot_model, "settings": setting.get("summary"), "credits": cost}
             if args.max_credits and cost is not None and spent + cost > args.max_credits:
                 row["skipped"] = f"vượt ngân sách --max-credits {args.max_credits}"
                 report.append(row)
@@ -1118,7 +1117,7 @@ def cmd_flow_generate(args, cfg):
                 continue
             f.submit()
             spent += cost or 0
-            m.setdefault("flow_jobs", []).append({"shot": s["shot_id"], "kind": kind, "model": model, "count": args.count,
+            m.setdefault("flow_jobs", []).append({"shot": s["shot_id"], "kind": kind, "model": shot_model, "count": args.count,
                                                    "credits": cost, "at": datetime.now().isoformat(timespec="seconds")})
             if s.get("status") == "needs_retake":
                 s["status"] = "retake_submitted"
@@ -1331,7 +1330,7 @@ def cmd_qa_takes_submit(args, cfg):
     m = mf.load(proj)
     rv = qa.detect_reviewer(cfg, args.reviewer)
     reviewer = f"agent:{rv['agent']}" if rv["mode"] == "agent" and rv["agent"] else rv["mode"]
-    report = []
+    report, batch_results, pending_commits = [], [], []
     for s in takes.shots_with_takes(m, args.shots):
         for t in s["takes"]:
             rp = takes.take_paths(proj, s["shot_id"], t["take"])["result"]
@@ -1347,11 +1346,19 @@ def cmd_qa_takes_submit(args, cfg):
             if errs:
                 report.append({"shot": s["shot_id"], "take": t["take"], "error": errs})
                 continue
-            q["vision"] = {**res, "reviewer": reviewer, "checked_at": datetime.now().isoformat(timespec="seconds")}
-            report.append({"shot": s["shot_id"], "take": t["take"], "score": res["overall_score_1_10"],
-                           "defects": len(res.get("defects", []))})
+            batch_results.append(res)
+            pending_commits.append((s, t, q, res))
+    rubber_stamp = takes.detect_rubber_stamp(batch_results)
+    if rubber_stamp and not getattr(args, "allow_uniform_qa", False):
+        out({"reviewer": reviewer, "error": "RUBBER_STAMP_DETECTED", "issues": rubber_stamp,
+             "hint": "Chấm thực tế từng contact sheet (ghi rõ lỗi + mốc giờ). Dùng --allow-uniform-qa nếu chắc chắn."})
+        sys.exit(2)
+    for s, t, q, res in pending_commits:
+        q["vision"] = {**res, "reviewer": reviewer, "checked_at": datetime.now().isoformat(timespec="seconds")}
+        report.append({"shot": s["shot_id"], "take": t["take"], "score": res["overall_score_1_10"],
+                       "defects": len(res.get("defects", []))})
     mf.save(proj, m)
-    out({"reviewer": reviewer, "submitted": report})
+    out({"reviewer": reviewer, "submitted": report, **({"warnings": rubber_stamp} if rubber_stamp else {})})
 
 
 def cmd_auto_select(args, cfg):
@@ -1378,7 +1385,10 @@ def cmd_auto_select(args, cfg):
             s["edit_in"], s["edit_out"] = d["edit_in"], d["edit_out"]
         v = next(t for t in s["takes"] if t["take"] == d["take"])["qa"]["vision"]
         s["status"] = mf.STATUS_QA_PASS if v["verdict"] == "pass" else mf.STATUS_QA_WARN
-        s["auto_selection"] = {k: d[k] for k in ("take", "edit_in", "edit_out", "score", "reason", "alternatives")}
+        s["auto_selection"] = {
+            **{k: d[k] for k in ("take", "edit_in", "edit_out", "score", "reason", "alternatives")},
+            "window": list(d["window"]),
+        }
         s.pop("retake_reasons", None)
         report.append({"shot": s["shot_id"], "take": d["take"], "edit": [d["edit_in"], d["edit_out"]], "need_sec": need,
                        "score": d["score"], "status": s["status"], "other_rejects": d["rejected_reasons"]})
@@ -1427,6 +1437,25 @@ def cmd_browser(args, cfg):
         sys.exit(f"[ERROR] {type(e).__name__}: {str(e)[:500]}")
 
 
+def _find_chrome_exe(configured: str = "") -> str:
+    if configured and (Path(configured).exists() or shutil.which(configured)):
+        return shutil.which(configured) or configured
+    for cmd in ("google-chrome", "google-chrome-stable", "chromium", "chromium-browser"):
+        found = shutil.which(cmd)
+        if found:
+            return found
+    for p in (
+        "/usr/bin/google-chrome",
+        "/usr/bin/google-chrome-stable",
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    ):
+        if Path(p).exists():
+            return p
+    return ""
+
+
 def cmd_check_browser(args, cfg):
     b = cfg["browser"]
     port = b["debug_port"]
@@ -1437,17 +1466,16 @@ def cmd_check_browser(args, cfg):
     except Exception:  # noqa: BLE001
         ready = False
     if args.launch and not ready:
-        exe = b["chrome_exe"] or next((p for p in (
-            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-            "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-        ) if Path(p).exists()), "") or next((shutil.which(n) for n in (
-            "google-chrome", "google-chrome-stable", "chromium", "chromium-browser") if shutil.which(n)), "")
+        exe = _find_chrome_exe(b.get("chrome_exe", ""))
         if not exe:
             sys.exit("[ERROR] Không tìm thấy Chrome — đặt browser.chrome_exe trong studio_config.json")
         profile = str(Path(b["profile_dir"]).expanduser())
-        subprocess.Popen([exe, f"--remote-debugging-port={port}", f"--user-data-dir={profile}",
-                          "--no-first-run", "--no-default-browser-check", b["flow_url"]])
+        subprocess.Popen(
+            [exe, f"--remote-debugging-port={port}", f"--user-data-dir={profile}",
+             "--no-first-run", "--no-default-browser-check", b["flow_url"]],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
         for _ in range(20):  # chờ Chrome mở cổng debug
             time.sleep(0.5)
             try:
@@ -1613,6 +1641,8 @@ def build_parser() -> argparse.ArgumentParser:
     sp = add("score", cmd_score, "Nhạc nền tự tổng hợp theo beat (miễn bản quyền, 0 credit) → music_path")
     project_arg(sp)
     sp.add_argument("--seed", type=int, default=7)
+    sp.add_argument("--mood", default="auto", choices=["auto", "tension", "podcast_lofi", "wonder"],
+                    help="Bảng màu nhạc: auto (tự nhận diện theo dự án) | tension | podcast_lofi | wonder")
 
     sp = add("thumbnail", cmd_thumbnail, "Thumbnail 16:9 + 9:16: frame đẹp nhất + tiêu đề")
     project_arg(sp)
@@ -1695,6 +1725,8 @@ def build_parser() -> argparse.ArgumentParser:
     project_arg(sp)
     sp.add_argument("--shots", default="")
     sp.add_argument("--reviewer", choices=list(qa.REVIEWER_MODES))
+    sp.add_argument("--allow-uniform-qa", action="store_true",
+                    help="Bỏ qua chốt chặn phát hiện chấm điểm hàng loạt (rubber-stamping)")
 
     sp = add("auto-select", cmd_auto_select, "Tự chọn take tốt nhất + cửa sổ cắt tránh lỗi; đánh dấu needs_retake")
     project_arg(sp)

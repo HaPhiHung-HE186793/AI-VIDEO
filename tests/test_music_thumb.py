@@ -16,6 +16,16 @@ def test_synth_score_writes_stereo_wav(tmp_path):
         assert w.getnchannels() == 2 and abs(w.getnframes() / w.getframerate() - 6.0) < 0.01
 
 
+def test_detect_mood_and_synth_podcast_lofi(tmp_path):
+    assert music.detect_mood({"project_name": "podcast-giac-mo-thiep-cuoi", "visual_style": "2D indie animated podcast cartoon"}) == "podcast_lofi"
+    assert music.detect_mood({"project_name": "t-rex-24h-in-hell-creek", "visual_style": "Photorealistic nature documentary"}) == "tension"
+    assert music.detect_mood({"title": "Deep Space Discovery"}) == "wonder"
+    res = music.synth_score(5.0, [(0, 2.5, "hook"), (2.5, 5.0, "resolution")], tmp_path / "lofi.wav", sr=16000, mood="podcast_lofi")
+    assert res["mood"] == "podcast_lofi"
+    with wave.open(res["path"]) as w:
+        assert w.getnchannels() == 2 and abs(w.getnframes() / w.getframerate() - 5.0) < 0.01
+
+
 def test_thumbnail_picks_frame_and_writes_both_sizes(tmp_path):
     clip = make_clip(tmp_path / "a.mp4", seconds=3)
     segs = [{"shot_id": "a", "clip": clip, "tin": 0.0, "tout": 3.0, "shot": {}}]

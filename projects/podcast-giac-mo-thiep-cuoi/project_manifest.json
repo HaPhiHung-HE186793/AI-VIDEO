@@ -249,8 +249,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -292,20 +292,25 @@
       },
       "lint": [],
       "selected_take": 1,
-      "edit_in": 0.0,
-      "edit_out": 7.8,
+      "edit_in": 1.75,
+      "edit_out": 6.25,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.75,
         "edit_out": 6.25,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.0,
-        "out_sec": 7.8
-      }
+        "in_sec": 1.75,
+        "out_sec": 6.25
+      },
+      "beat": "b01_hook"
     },
     {
       "shot_id": "shot_02",
@@ -356,8 +361,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -398,20 +403,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_02.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.72,
+      "edit_out": 7.28,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.72,
         "edit_out": 7.28,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.72,
+        "out_sec": 7.28
+      },
+      "beat": "b01_hook"
     },
     {
       "shot_id": "shot_03",
@@ -462,8 +472,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -504,20 +514,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_03.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.07,
+      "edit_out": 6.93,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.07,
         "edit_out": 6.93,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.07,
+        "out_sec": 6.93
+      },
+      "beat": "b02_reunion"
     },
     {
       "shot_id": "shot_04",
@@ -568,8 +583,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -610,20 +625,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_04.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.52,
+      "edit_out": 7.47,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.52,
         "edit_out": 7.47,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.52,
+        "out_sec": 7.47
+      },
+      "beat": "b02_reunion"
     },
     {
       "shot_id": "shot_05",
@@ -674,8 +694,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -716,20 +736,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_05.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.81,
+      "edit_out": 7.19,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.81,
         "edit_out": 7.19,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.81,
+        "out_sec": 7.19
+      },
+      "beat": "b02_reunion"
     },
     {
       "shot_id": "shot_06",
@@ -777,24 +802,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_HOANG_ANH_front.png",
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -833,23 +846,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_06.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.76,
+      "edit_out": 7.24,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.76,
         "edit_out": 7.24,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.76,
+        "out_sec": 7.24
+      },
+      "beat": "b02_reunion"
     },
     {
       "shot_id": "shot_07",
@@ -900,8 +924,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -942,20 +966,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_07.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.3,
+      "edit_out": 6.7,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.3,
         "edit_out": 6.7,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.3,
+        "out_sec": 6.7
+      },
+      "beat": "b03_spot_bride"
     },
     {
       "shot_id": "shot_08",
@@ -1003,24 +1032,12 @@
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
-            },
-            {
               "path": "assets/characters/CHAR_WIFE_front.png",
               "sha256": "263f975bf0568f5ead7a3837175c70cb8f64a1b0e564805d487d7c8ab6d8e849"
             },
             {
-              "path": "assets/characters/CHAR_WIFE_three_quarter.png",
-              "sha256": "ea58c258f8c778244bcffb7323df3006023e72ad09e51a1b7198bcd66960325f"
-            },
-            {
-              "path": "assets/characters/CHAR_WIFE_expressions.png",
-              "sha256": "94bc095df2add09979661edf6842e9d03360d9499135c486e570e3897258ece5"
+              "path": "assets/characters/CHAR_TAN_three_quarter.png",
+              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
             }
           ],
           "qa": {
@@ -1058,23 +1075,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_08.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.08,
+      "edit_out": 6.91,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.08,
         "edit_out": 6.91,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.08,
+        "out_sec": 6.91
+      },
+      "beat": "b03_spot_bride"
     },
     {
       "shot_id": "shot_09",
@@ -1125,8 +1153,8 @@
               "sha256": "ea58c258f8c778244bcffb7323df3006023e72ad09e51a1b7198bcd66960325f"
             },
             {
-              "path": "assets/characters/CHAR_WIFE_expressions.png",
-              "sha256": "94bc095df2add09979661edf6842e9d03360d9499135c486e570e3897258ece5"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -1167,20 +1195,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_09.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.63,
+      "edit_out": 7.36,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.63,
         "edit_out": 7.36,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.63,
+        "out_sec": 7.36
+      },
+      "beat": "b03_spot_bride"
     },
     {
       "shot_id": "shot_10",
@@ -1231,8 +1264,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -1273,20 +1306,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_10.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.87,
+      "edit_out": 7.13,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.87,
         "edit_out": 7.13,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.87,
+        "out_sec": 7.13
+      },
+      "beat": "b03_spot_bride"
     },
     {
       "shot_id": "shot_11",
@@ -1334,24 +1372,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_TAN_front.png",
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -1390,23 +1416,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_11.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.8,
+      "edit_out": 7.2,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.8,
         "edit_out": 7.2,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.8,
+        "out_sec": 7.2
+      },
+      "beat": "b04_teasing"
     },
     {
       "shot_id": "shot_12",
@@ -1454,24 +1491,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_HOANG_ANH_front.png",
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -1509,23 +1534,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_12.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.67,
+      "edit_out": 7.34,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.67,
         "edit_out": 7.34,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.67,
+        "out_sec": 7.34
+      },
+      "beat": "b04_teasing"
     },
     {
       "shot_id": "shot_13",
@@ -1578,8 +1614,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -1624,20 +1660,25 @@
       },
       "lint": [],
       "selected_take": 1,
-      "edit_in": 0.0,
-      "edit_out": 7.8,
+      "edit_in": 1.75,
+      "edit_out": 6.25,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.75,
         "edit_out": 6.25,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.0,
-        "out_sec": 7.8
-      }
+        "in_sec": 1.75,
+        "out_sec": 6.25
+      },
+      "beat": "b04_teasing"
     },
     {
       "shot_id": "shot_14",
@@ -1685,24 +1726,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_HOANG_ANH_front.png",
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -1740,23 +1769,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_14.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.62,
+      "edit_out": 6.37,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.62,
         "edit_out": 6.37,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.62,
+        "out_sec": 6.37
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_15",
@@ -1804,24 +1844,12 @@
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
-            },
-            {
               "path": "assets/characters/CHAR_TAN_front.png",
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
+              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
+              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
             }
           ],
           "qa": {
@@ -1860,23 +1888,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_15.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.79,
+      "edit_out": 7.21,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.79,
         "edit_out": 7.21,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.79,
+        "out_sec": 7.21
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_16",
@@ -1924,24 +1963,12 @@
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
-            },
-            {
               "path": "assets/characters/CHAR_DAT_front.png",
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
+              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
             }
           ],
           "qa": {
@@ -1979,23 +2006,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_16.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.62,
+      "edit_out": 6.39,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.62,
         "edit_out": 6.39,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.62,
+        "out_sec": 6.39
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_17",
@@ -2048,8 +2086,8 @@
               "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -2090,20 +2128,25 @@
       },
       "lint": [],
       "selected_take": 1,
-      "edit_in": 0.0,
-      "edit_out": 7.8,
+      "edit_in": 1.75,
+      "edit_out": 6.25,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.75,
         "edit_out": 6.25,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.0,
-        "out_sec": 7.8
-      }
+        "in_sec": 1.75,
+        "out_sec": 6.25
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_18",
@@ -2154,8 +2197,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -2196,20 +2239,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_18.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.01,
+      "edit_out": 6.99,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.01,
         "edit_out": 6.99,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.01,
+        "out_sec": 6.99
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_19",
@@ -2257,24 +2305,12 @@
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
-            },
-            {
               "path": "assets/characters/CHAR_WIFE_front.png",
               "sha256": "263f975bf0568f5ead7a3837175c70cb8f64a1b0e564805d487d7c8ab6d8e849"
             },
             {
-              "path": "assets/characters/CHAR_WIFE_three_quarter.png",
-              "sha256": "ea58c258f8c778244bcffb7323df3006023e72ad09e51a1b7198bcd66960325f"
-            },
-            {
-              "path": "assets/characters/CHAR_WIFE_expressions.png",
-              "sha256": "94bc095df2add09979661edf6842e9d03360d9499135c486e570e3897258ece5"
+              "path": "assets/characters/CHAR_TAN_three_quarter.png",
+              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
             }
           ],
           "qa": {
@@ -2312,23 +2348,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_19.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.06,
+      "edit_out": 6.94,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.06,
         "edit_out": 6.94,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.06,
+        "out_sec": 6.94
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_20",
@@ -2379,8 +2426,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -2421,20 +2468,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_20.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.04,
+      "edit_out": 6.96,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.04,
         "edit_out": 6.96,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.04,
+        "out_sec": 6.96
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_21",
@@ -2485,8 +2537,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -2527,20 +2579,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_21.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.94,
+      "edit_out": 7.05,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.94,
         "edit_out": 7.05,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.94,
+        "out_sec": 7.05
+      },
+      "beat": "b05_shock_reveal"
     },
     {
       "shot_id": "shot_22",
@@ -2588,24 +2645,12 @@
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
-            },
-            {
               "path": "assets/characters/CHAR_DAT_front.png",
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/props/PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS.png",
+              "sha256": "c8dd788c414eb0aa8538517cd9b893a7dc43c38b26e13a5fbf9d33b368e56e8b"
             }
           ],
           "qa": {
@@ -2644,23 +2689,37 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_22.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.65,
+      "edit_out": 6.34,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.65,
         "edit_out": 6.34,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.65,
+        "out_sec": 6.34
+      },
+      "props": [
+        "PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS"
+      ],
+      "beat": "b06_wedding_photos"
     },
     {
       "shot_id": "shot_23",
@@ -2708,24 +2767,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_TAN_front.png",
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
+              "path": "assets/props/PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS.png",
+              "sha256": "c8dd788c414eb0aa8538517cd9b893a7dc43c38b26e13a5fbf9d33b368e56e8b"
             }
           ],
           "qa": {
@@ -2764,23 +2811,37 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_23.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.87,
+      "edit_out": 7.13,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.87,
         "edit_out": 7.13,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.87,
+        "out_sec": 7.13
+      },
+      "props": [
+        "PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS"
+      ],
+      "beat": "b06_wedding_photos"
     },
     {
       "shot_id": "shot_24",
@@ -2833,8 +2894,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -2880,20 +2941,25 @@
       },
       "lint": [],
       "selected_take": 1,
-      "edit_in": 0.0,
-      "edit_out": 7.8,
+      "edit_in": 1.75,
+      "edit_out": 6.25,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.75,
         "edit_out": 6.25,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.0,
-        "out_sec": 7.8
-      }
+        "in_sec": 1.75,
+        "out_sec": 6.25
+      },
+      "beat": "b06_wedding_photos"
     },
     {
       "shot_id": "shot_25",
@@ -2941,24 +3007,12 @@
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
-            },
-            {
               "path": "assets/characters/CHAR_TAN_front.png",
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
+              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
+              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
             }
           ],
           "qa": {
@@ -2997,23 +3051,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_25.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.45,
+      "edit_out": 6.55,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.45,
         "edit_out": 6.55,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.45,
+        "out_sec": 6.55
+      },
+      "beat": "b06_wedding_photos"
     },
     {
       "shot_id": "shot_26",
@@ -3061,24 +3126,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_HOANG_ANH_front.png",
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
+              "path": "assets/props/PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS.png",
+              "sha256": "c8dd788c414eb0aa8538517cd9b893a7dc43c38b26e13a5fbf9d33b368e56e8b"
             }
           ],
           "qa": {
@@ -3117,23 +3170,37 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_26.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.83,
+      "edit_out": 7.16,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.83,
         "edit_out": 7.16,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.83,
+        "out_sec": 7.16
+      },
+      "props": [
+        "PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS"
+      ],
+      "beat": "b06_wedding_photos"
     },
     {
       "shot_id": "shot_27",
@@ -3184,8 +3251,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_ROOFTOP_CAFE.png",
+              "sha256": "2ae3558be756af88da579bb8fe2195296fdc16a2014cbbf5552880a342c248f5"
             }
           ],
           "qa": {
@@ -3227,20 +3294,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_27.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.29,
+      "edit_out": 6.7,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.29,
         "edit_out": 6.7,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.29,
+        "out_sec": 6.7
+      },
+      "beat": "b07_forgotten_card"
     },
     {
       "shot_id": "shot_28",
@@ -3288,24 +3360,12 @@
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
-            },
-            {
               "path": "assets/characters/CHAR_WIFE_front.png",
               "sha256": "263f975bf0568f5ead7a3837175c70cb8f64a1b0e564805d487d7c8ab6d8e849"
             },
             {
-              "path": "assets/characters/CHAR_WIFE_three_quarter.png",
-              "sha256": "ea58c258f8c778244bcffb7323df3006023e72ad09e51a1b7198bcd66960325f"
-            },
-            {
-              "path": "assets/characters/CHAR_WIFE_expressions.png",
-              "sha256": "94bc095df2add09979661edf6842e9d03360d9499135c486e570e3897258ece5"
+              "path": "assets/characters/CHAR_TAN_three_quarter.png",
+              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
             }
           ],
           "qa": {
@@ -3343,23 +3403,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_28.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.81,
+      "edit_out": 7.19,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.81,
         "edit_out": 7.19,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.81,
+        "out_sec": 7.19
+      },
+      "beat": "b07_forgotten_card"
     },
     {
       "shot_id": "shot_29",
@@ -3407,24 +3478,12 @@
               "sha256": "e12bf2c5254e1b414a5e839653f1a56a24158e05afdbd4245a9a0df6b40eee34"
             },
             {
-              "path": "assets/characters/CHAR_HOANG_ANH_three_quarter.png",
-              "sha256": "85c2dc50470a9aeb2b8db229439068f2fed94e16293a03b2f75dcdb18618e0ba"
-            },
-            {
-              "path": "assets/characters/CHAR_HOANG_ANH_expressions.png",
-              "sha256": "ae581820a0c5c78f04a102683098e0896c40867eb68a5eb2178d994f4849ea27"
-            },
-            {
               "path": "assets/characters/CHAR_DAT_front.png",
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/props/PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS.png",
+              "sha256": "c8dd788c414eb0aa8538517cd9b893a7dc43c38b26e13a5fbf9d33b368e56e8b"
             }
           ],
           "qa": {
@@ -3463,23 +3522,37 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_29.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.52,
+      "edit_out": 7.48,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.52,
         "edit_out": 7.48,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.52,
+        "out_sec": 7.48
+      },
+      "props": [
+        "PROP_SMARTPHONE_SHOWING_WEDDING_PHOTOS"
+      ],
+      "beat": "b07_forgotten_card"
     },
     {
       "shot_id": "shot_30",
@@ -3527,24 +3600,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_TAN_front.png",
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -3584,23 +3645,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_30.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.14,
+      "edit_out": 6.86,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.14,
         "edit_out": 6.86,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.14,
+        "out_sec": 6.86
+      },
+      "beat": "b07_forgotten_card"
     },
     {
       "shot_id": "shot_31",
@@ -3651,8 +3723,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_BEDROOM_MORNING.png",
+              "sha256": "5293d0c2e716cebda53cad34348fed67b1aa73321dc6f042235ec0d12a0cbd9d"
             }
           ],
           "qa": {
@@ -3693,20 +3765,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_31.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.09,
+      "edit_out": 6.91,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.09,
         "edit_out": 6.91,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.09,
+        "out_sec": 6.91
+      },
+      "beat": "b08_alarm_wakeup"
     },
     {
       "shot_id": "shot_32",
@@ -3757,8 +3834,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_BEDROOM_MORNING.png",
+              "sha256": "5293d0c2e716cebda53cad34348fed67b1aa73321dc6f042235ec0d12a0cbd9d"
             }
           ],
           "qa": {
@@ -3799,20 +3876,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_32.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.94,
+      "edit_out": 7.07,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.94,
         "edit_out": 7.07,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.94,
+        "out_sec": 7.07
+      },
+      "beat": "b08_alarm_wakeup"
     },
     {
       "shot_id": "shot_33",
@@ -3863,8 +3945,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_BEDROOM_MORNING.png",
+              "sha256": "5293d0c2e716cebda53cad34348fed67b1aa73321dc6f042235ec0d12a0cbd9d"
             }
           ],
           "qa": {
@@ -3905,20 +3987,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_33.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.15,
+      "edit_out": 6.86,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.15,
         "edit_out": 6.86,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.15,
+        "out_sec": 6.86
+      },
+      "beat": "b08_alarm_wakeup"
     },
     {
       "shot_id": "shot_34",
@@ -3969,8 +4056,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_BEDROOM_MORNING.png",
+              "sha256": "5293d0c2e716cebda53cad34348fed67b1aa73321dc6f042235ec0d12a0cbd9d"
             }
           ],
           "qa": {
@@ -4016,20 +4103,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_34.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.69,
+      "edit_out": 6.3,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.69,
         "edit_out": 6.3,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.69,
+        "out_sec": 6.3
+      },
+      "beat": "b08_alarm_wakeup"
     },
     {
       "shot_id": "shot_35",
@@ -4080,8 +4172,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -4123,20 +4215,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_35.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.46,
+      "edit_out": 6.55,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.46,
         "edit_out": 6.55,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.46,
+        "out_sec": 6.55
+      },
+      "beat": "b09_podcast_warning"
     },
     {
       "shot_id": "shot_36",
@@ -4187,8 +4284,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -4229,20 +4326,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_36.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.81,
+      "edit_out": 7.18,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.81,
         "edit_out": 7.18,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.81,
+        "out_sec": 7.18
+      },
+      "beat": "b09_podcast_warning"
     },
     {
       "shot_id": "shot_37",
@@ -4289,12 +4391,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
+              "path": "assets/props/PROP_RED_WEDDING_INVITATION_CARD.png",
+              "sha256": "260c3a831a8ed47f42e493cb5e56997a80b436970f71694a309415d3d1f788eb"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -4335,20 +4437,28 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_37.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 1.24,
+      "edit_out": 6.76,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.24,
         "edit_out": 6.76,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 1.24,
+        "out_sec": 6.76
+      },
+      "props": [
+        "PROP_RED_WEDDING_INVITATION_CARD"
+      ],
+      "beat": "b09_podcast_warning"
     },
     {
       "shot_id": "shot_38",
@@ -4399,8 +4509,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -4442,20 +4552,25 @@
       "lint": [],
       "voiceover_path": "assets/audio/vo/shot_38.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.92,
+      "edit_out": 7.09,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.92,
         "edit_out": 7.09,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.92,
+        "out_sec": 7.09
+      },
+      "beat": "b09_podcast_warning"
     },
     {
       "shot_id": "shot_39",
@@ -4503,24 +4618,12 @@
               "sha256": "417f0bd5c60bcbfa2aa1086fd6b84f3c3425d6b72f675f2ae2754282122f4f2a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_three_quarter.png",
-              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
-            },
-            {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
-            },
-            {
               "path": "assets/characters/CHAR_TAN_front.png",
               "sha256": "dc6c3af81dc38d3631dab34bc1dab7bb994ae5ce12352174b4dea5f2db22943a"
             },
             {
-              "path": "assets/characters/CHAR_TAN_three_quarter.png",
-              "sha256": "3ff40a2af1476f9cbe540cd070fc7291a46eba7c6ce82613c5f6efece488cb35"
-            },
-            {
-              "path": "assets/characters/CHAR_TAN_expressions.png",
-              "sha256": "efcdb7b26e9fd2bf925e53da6c270212ec5e2ff6442086294b57c5f5152fb6f1"
+              "path": "assets/characters/CHAR_DAT_three_quarter.png",
+              "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             }
           ],
           "qa": {
@@ -4559,23 +4662,34 @@
         "label": "Veo 3.1 - Quality",
         "credits": 100
       },
-      "lint": [],
+      "lint": [
+        {
+          "level": "info",
+          "code": "MULTI_SUBJECT_COMPOSITION",
+          "msg": "Cảnh có 2 nhân vật dùng mode=ingredients: nếu cần kiểm soát chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước."
+        }
+      ],
       "voiceover_path": "assets/audio/vo/shot_39.wav",
       "selected_take": 1,
-      "edit_in": 0.15,
-      "edit_out": 7.75,
+      "edit_in": 0.82,
+      "edit_out": 7.18,
       "auto_selection": {
         "take": 1,
         "edit_in": 0.82,
         "edit_out": 7.18,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.15,
-        "out_sec": 7.75
-      }
+        "in_sec": 0.82,
+        "out_sec": 7.18
+      },
+      "beat": "b10_outro"
     },
     {
       "shot_id": "shot_40",
@@ -4628,8 +4742,8 @@
               "sha256": "3eb7bfb87b71be8cd99f78bbb3791371e23e46d2e6d8855e31cd14c23895658a"
             },
             {
-              "path": "assets/characters/CHAR_DAT_expressions.png",
-              "sha256": "44044970431ae23ffd8ff24d5b9890620b30cb627acd350966cdf4a5b8f5b4ea"
+              "path": "assets/environments/ENV_PODCAST_STUDIO.png",
+              "sha256": "72e708b81d58f99cd8d7b390d29d75d9a58f1d915103a0acc6ae73cc39ca584c"
             }
           ],
           "qa": {
@@ -4671,23 +4785,101 @@
       },
       "lint": [],
       "selected_take": 1,
-      "edit_in": 0.0,
-      "edit_out": 7.2,
+      "edit_in": 1.75,
+      "edit_out": 6.25,
       "auto_selection": {
         "take": 1,
         "edit_in": 1.75,
         "edit_out": 6.25,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 1 take đạt)",
-        "alternatives": []
+        "alternatives": [],
+        "window": [
+          0.0,
+          8.0
+        ]
       },
       "edit": {
-        "in_sec": 0.0,
-        "out_sec": 7.2
-      }
+        "in_sec": 1.75,
+        "out_sec": 6.25
+      },
+      "beat": "b10_outro"
     }
   ],
   "title": "Podcast Tâm Sự: Giấc Mơ Vô Tri & Tấm Thiệp Cưới Bị Bỏ Quên",
   "narrator_voice": "Charon",
-  "voiceover_direction": "Say in a warm, natural, humorous Vietnamese podcast storytelling tone"
+  "voiceover_direction": "Say in a warm, natural, humorous Vietnamese podcast storytelling tone",
+  "music_mood": "podcast_lofi",
+  "beats": [
+    {
+      "beat_id": "b01_hook",
+      "order": 1,
+      "purpose": "hook",
+      "narration": "Sắp trưa đang nghỉ ngơi rảnh rỗi, tự nhiên nhớ lại mà vừa cay vừa buồn cười không chịu được, nên phải lên sóng kể ngay cho bọn mày nghe.",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b02_reunion",
+      "order": 2,
+      "purpose": "need",
+      "narration": "Chuyện là đêm qua tao mơ thấy cả hội mình gặp lại nhau sau một thời gian dài ra trường, khi đứa nào đứa nấy đều bận việc riêng. Lâu lắm chưa tụ tập đông đủ, tự nhiên có thằng nào đấy rủ cả hội đi cà phê, mà địa điểm lại là một quán rooftop nhìn quen cực kỳ. Nói chung là mơ nên cảnh vật cứ đan xen lẫn lộn lắm, tao hí hửng đẩy cửa bước vào với tâm trạng háo hức gặp lại anh em. Trước mắt tao là nguyên một bàn dài toàn gương mặt thân quen đang cười nói rôm rả, cảm giác như chưa hề có cuộc chia ly sau ngày tốt nghiệp.",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b03_spot_bride",
+      "order": 3,
+      "purpose": "senses",
+      "narration": "Nhộn phết! Tao phi lại gần, đang định vỗ vai chào từng thằng thì một cảnh tượng bất ngờ đập ngay vào mắt. Cu Vũ Tấn đang ngồi chễm chệ ngay giữa bàn, bên cạnh là một em gái nhìn vibe dịu dàng, ngoan hiền cực kỳ. Trong mơ tao chỉ nhớ mang máng kiểu tóc đen dài, da trắng, mắt trong veo có hồn, cười nhẹ dịu dàng chứ không phải nét sắc sảo. Mặt trong mơ nó cứ mờ mờ ảo ảo, còn mỗi cảm giác thôi, giờ mà bắt tao vẽ lại chắc tao vẽ ra người ngoài hành tinh mất.",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b04_teasing",
+      "order": 4,
+      "purpose": "target",
+      "narration": "Lúc đấy tao mới trêu kiểu: uầy khá nhỉ, thấy mấy anh em Việt Đức, Nguyễn Phong, Quang Bình tiên phong hết cả rồi. Rồi tới Hoàng Anh, Việt Đường, Hà Phi Hùng, Nhật Anh cũng đang khởi sắc với mấy mối, nên nay Tấn cũng gia nhập đường đua à?",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b05_shock_reveal",
+      "order": 5,
+      "purpose": "escalation",
+      "narration": "Và ngay sau câu nói đấy của tao, cả bàn tự nhiên im phăng phắc, không một tiếng động. Mấy thằng nhìn tao bằng ánh mắt cực kỳ khó hiểu, kiểu nhìn một thằng vừa từ hành tinh khác rơi xuống, từ trên núi mới xuống phố. Xong thằng Hoàng Anh với thằng Việt Đường ngồi bên cạnh mới phì cười, vừa đấm vừa xoa vai tao. Ngơ vãi Đạt đụt! Tao đứng hình tại chỗ, tưởng chúng nó đang hợp sức diễn kịch trêu mình nên lắp bắp hỏi lại. Thằng Vũ Tấn thì mặt phởn phơ gật đầu cái rụp xác nhận, còn vợ nó ngồi cười ngại ngùng như chuyện này bình thường lắm rồi. Bình thường cái đéo gì hả trời? Một thằng bạn thân đùng cái có vợ đi trăng mật về mà tao hoàn toàn mù tịt thông tin! Giờ nghĩ lại tao vẫn thắc mắc sao lúc đó không sốc quá mà tỉnh dậy luôn đi, thế quái nào não vẫn cố mơ tiếp mới tài.",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b06_wedding_photos",
+      "order": 6,
+      "purpose": "escalation",
+      "narration": "Xong cả bọn mới lôi điện thoại ra dí thẳng vào mặt tao cho xem bằng chứng không thể chối cãi. Thế quái nào thằng Tấn lại có hẳn một tài khoản mạng xã hội phụ, đăng bao nhiêu hình cưới như một bộ sưu tập mà tao không hề biết. Cả lũ quay sang nhìn nhau cười khẩy kiểu: ơ kìa, thế em không được mời à, hẹ hẹ! Hóa ra ai cũng đi ăn cưới chụp choẹt check-in ầm ầm, mỗi mình tao tối cổ giờ mới biết thằng bạn thân đã tiến thêm bước nữa.",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b07_forgotten_card",
+      "order": 7,
+      "purpose": "climax",
+      "narration": "Lúc đấy tao giãy nảy lên ăn vạ luôn, cái cảm giác vừa bất lực vừa buồn tủi như bị cả thế giới bỏ rơi. Rồi thằng Tấn với vợ nó bắt đầu quay sang bàn luận, rối rít giải thích dỗ dành tao, nhìn hai đứa vừa bực mình mà vừa đáng yêu. Trong khi hai vợ chồng nó an ủi tao thì cả lũ ngồi xem kịch hay, đập bàn đập ghế cười hô hố, còn Nguyễn Phong với Duy Khiêm giơ máy quay lại. Tao vừa dỗi vừa đứng ra chốt kèo bắt anh em phải đền bù chầu lớn, đang tới đúng đoạn thỏa thuận căng thẳng nhất thì...",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b08_alarm_wakeup",
+      "order": 8,
+      "purpose": "cliffhanger",
+      "narration": "Tíng tình tình tính ting! Con báo thức sáu giờ ba mươi lăm phút sáng réo vang, kéo tao về thực tại phũ phàng. Mở mắt ra là cái trần nhà quen thuộc, cảm giác hụt hẫng vô cùng, thật giả lẫn lộn đến mức nằm đơ ra mất năm phút. Phải ngồi lướt điện thoại một lúc lâu não mới thông lại được, mà khóe mắt vẫn cay xè vì cái độ chân thật của giấc mơ. Lúc đi rửa mặt với tắm buổi sáng mà nỗi đau không có thiệp cưới vẫn còn thấu tận tâm can.",
+      "j_cut_sec": 0.4
+    },
+    {
+      "beat_id": "b09_podcast_warning",
+      "order": 9,
+      "purpose": "resolution",
+      "narration": "Nên qua tập podcast hôm nay, tao xin gửi lời cảnh báo nghiêm túc tới toàn thể anh em trong nhóm. Anh em mình ra trường có thể ít gặp nhau, mỗi đứa một guồng quay cuộc sống, nhưng sau này đứa nào cưới thì nhớ mời tao đầy đủ. Tao không cần phong bì hoàn lại đâu, chỉ cần đúng một tấm thiệp hồng để xác nhận tình anh em mình vẫn còn tồn tại. Đừng có thằng nào bỏ rơi tao rồi để tao phải biết tin hỷ qua tài khoản phụ hay báo mạng đấy, nhớ lâu lâu rủ đi cà phê nhé!",
+      "j_cut_sec": 0.0
+    },
+    {
+      "beat_id": "b10_outro",
+      "order": 10,
+      "purpose": "resolution",
+      "narration": "Còn riêng thằng Vũ Tấn, để hôm nào mày cưới thật tao mang giấc mơ này ra đối chiếu xem cô dâu dịu dàng kia chuẩn bao nhiêu phần trăm!",
+      "j_cut_sec": 0.0
+    }
+  ]
 }

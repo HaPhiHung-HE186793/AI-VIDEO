@@ -110,6 +110,52 @@ def validate_take_result(data: dict, duration: float = None) -> list:
     return errs
 
 
+def detect_rubber_stamp(vision_results: list, min_batch: int = 5) -> list:
+    """Phát hiện gian lận QA thị giác (rubber-stamping): chấm hàng loạt cùng bộ điểm, 0 lỗi và câu notes rập khuôn.
+
+    vision_results: danh sách dict kết quả vision QA. Trả về danh sách cảnh báo/lỗi (rỗng nếu bình thường).
+    """
+    import difflib
+    import re
+    from collections import Counter
+
+    if len(vision_results) < min_batch:
+        return []
+    issues = []
+    n = len(vision_results)
+
+    tuples = [
+        (
+            v.get("identity_score_1_10"),
+            v.get("prompt_adherence_1_10"),
+            v.get("aesthetic_1_10"),
+            v.get("overall_score_1_10"),
+            len(v.get("defects") or []),
+        )
+        for v in vision_results
+    ]
+    top_tuple, top_count = Counter(tuples).most_common(1)[0]
+    if top_count / n >= 0.80 and top_tuple[4] == 0:
+        issues.append(
+            f"RUBBER_STAMP_SCORES: {top_count}/{n} take có cùng bộ điểm {top_tuple[:4]} và 0 lỗi (defects=[]) — "
+            "dấu hiệu điền điểm tự động không qua kiểm tra từng contact sheet."
+        )
+
+    def _norm_note(s: str) -> str:
+        s = re.sub(r"\b(shot[_\s]*\d+|take[_\s]*\d+|c\d+[_\s]*\d+)\b", "<ID>", (s or "").lower())
+        return re.sub(r"\s+", " ", s).strip()
+
+    notes = [_norm_note(v.get("notes", "")) for v in vision_results if v.get("notes")]
+    if len(notes) >= min_batch:
+        anchor = Counter(notes).most_common(1)[0][0]
+        similar = sum(1 for x in notes if x == anchor or difflib.SequenceMatcher(None, anchor, x).ratio() >= 0.85)
+        if similar / len(notes) >= 0.75:
+            issues.append(
+                f"RUBBER_STAMP_NOTES: {similar}/{len(notes)} take có nhận xét (notes) rập khuôn theo cùng 1 mẫu câu."
+            )
+    return issues
+
+
 def clean_windows(duration: float, defects: list, severities=("major",), pad: float = 0.25) -> list:
     """Các khoảng [a, b] không giao với lỗi thuộc `severities` (nới mỗi lỗi thêm `pad` giây hai phía)."""
     bad = sorted((max(0.0, float(d["t_from"]) - pad), min(duration, float(d["t_to"]) + pad))
@@ -129,12 +175,12 @@ def needed_seconds(proj: Path, shot: dict, cfg: dict, project: dict = None) -> f
     from . import beats as bt
 
     ed = cfg["editorial"]
-    if project and shot.get("beat") in bt.beats_by_id(project):
-        return bt.shot_need(proj, project, shot, cfg)
     vo = shot.get("voiceover_path")
     if vo and (Path(proj) / vo).exists():
         return round(float(shot.get("vo_offset", ed["vo_pre_roll_sec"])) + au.wav_duration(Path(proj) / vo)
                      + ed["vo_post_roll_sec"], 2)
+    if project and shot.get("beat") in bt.beats_by_id(project):
+        return bt.shot_need(proj, project, shot, cfg)
     return float(ed.get("preferred_shot_sec", 4.0))
 
 

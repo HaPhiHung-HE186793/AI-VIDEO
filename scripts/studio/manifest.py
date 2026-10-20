@@ -66,6 +66,78 @@ def environments_by_id(manifest: dict) -> dict:
     return {e["id"]: e for e in manifest.get("environments", []) if e.get("id")}
 
 
+def props_by_id(manifest: dict) -> dict:
+    return {p["id"]: p for p in manifest.get("props", []) if p.get("id")}
+
+
+def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limit: int = 3,
+                         include_env: bool = True) -> list:
+    """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin) cho shot trong giới hạn slot của Flow/Veo.
+
+    Thứ tự ưu tiên để không làm rớt nhân vật thứ 2 hoặc đạo cụ/bối cảnh:
+    1. `shot.reference_images` (đạo diễn chỉ định cứng).
+    2. Ảnh chính diện (`refs[0]`) của TỪNG nhân vật trong `shot.subjects` (khóa danh tính mọi người trong khung).
+    3. Ảnh đạo cụ (`shot.props` hoặc đạo cụ khớp tên trong `action`).
+    4. Ảnh góc thứ hai (`refs[1]`, thường là 3/4) của từng nhân vật theo vòng tròn.
+    5. Ảnh bối cảnh sạch (`environment.path`) nếu `include_env=True`.
+    6. Các ảnh nhân vật còn lại (`refs[2:]`).
+    """
+    chars = characters_by_id(manifest)
+    envs = environments_by_id(manifest)
+    props = props_by_id(manifest)
+
+    def ok(rel_path: str) -> bool:
+        if not rel_path:
+            return False
+        return True if proj_dir is None else (Path(proj_dir) / rel_path).exists()
+
+    ordered = []
+
+    def push(rel_path: str) -> None:
+        if ok(rel_path) and rel_path not in ordered:
+            ordered.append(rel_path)
+
+    for p in shot.get("reference_images", []):
+        push(p)
+
+    subj_refs = []
+    for cid in shot.get("subjects", []):
+        c = chars.get(cid, {})
+        valid = [p for p in c.get("reference_images", []) if ok(p)]
+        if valid:
+            subj_refs.append(valid)
+
+    # Vòng 1: mỗi nhân vật xuất hiện trong cảnh đều có ít nhất 1 ảnh nhận dạng chính
+    for refs in subj_refs:
+        push(refs[0])
+
+    # Vòng 2: đạo cụ khai báo trong shot.props hoặc khớp tên trong action
+    shot_props = list(shot.get("props", []))
+    action_lower = (shot.get("action") or "").lower()
+    for pid, p_obj in props.items():
+        pname = (p_obj.get("name") or "").lower()
+        if pid in shot_props or (pname and pname in action_lower):
+            push(p_obj.get("path", ""))
+
+    # Vòng 3: góc thứ hai (three_quarter) của từng nhân vật
+    for refs in subj_refs:
+        if len(refs) > 1:
+            push(refs[1])
+
+    # Vòng 4: ảnh bối cảnh sạch (clean plate) để giữ liên tục không gian giữa các shot
+    if include_env and shot.get("environment") in envs:
+        push(envs[shot["environment"]].get("path", ""))
+
+    # Vòng 5: các ảnh nhân vật còn lại (vd. expressions / profile)
+    max_len = max((len(r) for r in subj_refs), default=0)
+    for idx in range(2, max_len):
+        for refs in subj_refs:
+            if len(refs) > idx:
+                push(refs[idx])
+
+    return ordered[:limit] if limit else ordered
+
+
 def shot_audio(shot: dict) -> dict:
     """Chuẩn hóa khối audio của shot (hỗ trợ cả trường cũ `dialogue_text`)."""
     audio = dict(shot.get("audio") or {})

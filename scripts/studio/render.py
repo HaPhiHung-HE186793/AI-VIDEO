@@ -93,12 +93,29 @@ def _video_chain(i: int, seg: dict, w: int, h: int, fps: int, fit: str) -> str:
     return f"{head}{body},setsar=1,format=yuv420p[v{i}]"
 
 
+def _shot_has_clipping(shot: dict) -> bool:
+    """True nếu QA kỹ thuật phát hiện AUDIO_CLIPPING trên shot hoặc trên take đã chọn."""
+    if not isinstance(shot, dict):
+        return False
+    findings = list((shot.get("qa") or {}).get("technical", {}).get("findings", []))
+    sel = shot.get("selected_take")
+    for t in shot.get("takes", []):
+        if sel is None or t.get("take") == sel:
+            findings += (t.get("qa") or {}).get("technical", {}).get("findings", [])
+    return any(f.get("code") == "AUDIO_CLIPPING" for f in findings)
+
+
 def _audio_chain(i: int, seg: dict) -> str:
     d = seg["duration"]
     if not seg["has_audio"]:
         return f"anullsrc=r=48000:cl=stereo,atrim=0:{d:.4f}[a{i}]"
+    shot = seg.get("shot") or {}
+    sanitize = ""
+    if _shot_has_clipping(shot):
+        # Giảm đỉnh rè (0 dBFS) của audio Veo và lọc bớt hài cao gắt trước khi trộn.
+        sanitize = ",volume=-4.5dB,lowpass=f=7500"
     return (f"[{i}:a]atrim=start={seg['tin']:.4f},asetpts=PTS-STARTPTS,"
-            f"aformat=sample_rates=48000:channel_layouts=stereo,apad,atrim=0:{d:.4f}[a{i}]")
+            f"aformat=sample_rates=48000:channel_layouts=stereo{sanitize},apad,atrim=0:{d:.4f}[a{i}]")
 
 
 def _join(segs: list, filters: list, fps: int) -> tuple:

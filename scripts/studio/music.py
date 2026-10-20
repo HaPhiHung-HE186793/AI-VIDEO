@@ -12,6 +12,26 @@ from pathlib import Path
 INTENSITY = {"hook": 0.30, "need": 0.40, "senses": 0.45, "target": 0.50, "escalation": 0.72,
              "climax": 1.00, "cliffhanger": 0.20, "resolution": 0.25}
 
+MOODS = ("auto", "tension", "podcast_lofi", "wonder")
+
+
+def detect_mood(project: dict, requested: str = "auto") -> str:
+    """Tự chọn bảng màu âm nhạc (mood) hợp với thể loại dự án nếu người dùng để `auto`."""
+    req = (requested or "auto").strip().lower()
+    if req in ("tension", "podcast_lofi", "wonder"):
+        return req
+    explicit = (project.get("music_mood") or "").strip().lower()
+    if explicit in ("tension", "podcast_lofi", "wonder"):
+        return explicit
+    blob = " ".join(
+        str(project.get(k) or "") for k in ("project_name", "project_slug", "title", "visual_style", "style_line")
+    ).lower()
+    if any(w in blob for w in ("podcast", "cartoon", "sitcom", "cafe", "comedy", "tâm sự", "indie animated")):
+        return "podcast_lofi"
+    if any(w in blob for w in ("wonder", "cosmos", "space", "discovery", "khám phá", "vũ trụ")):
+        return "wonder"
+    return "tension"
+
 
 def _smooth(x, n):
     import numpy as np
@@ -104,8 +124,72 @@ def drum_times(duration: float, ctrl, cuts: list = ()) -> list:
     return times
 
 
+def _synth_podcast_lofi(t, inten, ctrl, duration: float, sr: int, rng):
+    """Bảng màu Lo-fi Chill / Warm Podcast: hợp âm 7 Rhodes ấm (Fmaj7 - Em7 - Dm7 - C6) + sub-bass + nhịp chill 74 BPM."""
+    import numpy as np
+
+    n = len(t)
+    chords = [
+        (87.31, (174.61, 220.00, 261.63, 329.63)),   # Fmaj7
+        (82.41, (164.81, 196.00, 246.94, 293.66)),   # Em7
+        (73.42, (146.83, 174.61, 220.00, 261.63)),   # Dm7
+        (65.41, (130.81, 164.81, 196.00, 220.00)),   # C6/G
+    ]
+    bar_sec = 3.2  # ~75 BPM (4 phách / ô nhịp)
+    bar_idx = (t // bar_sec).astype(int) % len(chords)
+    bar_phase = (t % bar_sec) / bar_sec
+    env_chord = np.exp(-bar_phase * 1.4) * (1.0 - np.exp(-bar_phase * 35.0))
+    tremolo = 0.88 + 0.12 * np.sin(2 * np.pi * 3.8 * t)
+
+    keys = np.zeros(n)
+    bass = np.zeros(n)
+    for idx, (root, notes) in enumerate(chords):
+        mask = bar_idx == idx
+        if not np.any(mask):
+            continue
+        tm = t[mask]
+        chord_sig = sum(_tone(f, tm, harmonics=3, detune=d, rolloff=2.4) for f in notes for d in (-0.001, 0.001)) * 0.09
+        keys[mask] = chord_sig
+        bass[mask] = _tone(root, tm, harmonics=2, rolloff=2.6) * 0.22
+
+    keys = keys * env_chord * tremolo * (0.65 + 0.35 * inten)
+    bass = bass * np.exp(-bar_phase * 1.8) * (0.6 + 0.4 * inten)
+
+    # Nhịp trống lo-fi mềm (kick ấm + snare chổi quét nhẹ)
+    drums = np.zeros(n)
+    kick = _hit(sr, length=0.45, f0=92.0, f1=42.0, decay=9.0) * 0.45
+    beat_sec = bar_sec / 4.0
+    pos = 0.0
+    step = 0
+    while pos < duration - 0.3:
+        i = int(pos * 100)
+        level = ctrl[min(i, len(ctrl) - 1)]
+        if level >= 0.32:
+            k = int(pos * sr)
+            if step % 2 == 0:
+                seg = kick[: n - k] * (0.4 + 0.6 * level)
+                drums[k:k + len(seg)] += seg
+        pos += beat_sec
+        step += 1
+
+    vinyl = _lowpass_noise(n, sr, 650, rng) * 0.025 * (0.7 + 0.3 * inten)
+    return keys + bass + drums + vinyl
+
+
+def _synth_wonder(t, inten, ctrl, duration: float, sr: int, rng):
+    """Bảng màu Cinematic Wonder / Khám phá: C Lydian sáng, dây ngân rộng và chuông celesta."""
+    import numpy as np
+
+    n = len(t)
+    pad = sum(_tone(f, t, 4, d, 2.2) for f in (130.81, 196.00, 246.94, 329.63) for d in (-0.0018, 0.0018)) * 0.11
+    lydian = _tone(369.99, t, 3, 0.001, 2.5) * 0.06 * np.clip((inten - 0.35) / 0.65, 0, 1)
+    swell = 0.55 + 0.45 * np.sin(2 * np.pi * t / 6.0 - np.pi / 2)
+    air = _lowpass_noise(n, sr, 1100, rng) * 0.025 * (0.5 + 0.5 * inten)
+    return (pad * swell + lydian) * (0.6 + 0.6 * inten) + air
+
+
 def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000, seed: int = 7,
-                cuts: list = ()) -> dict:
+                cuts: list = (), mood: str = "tension") -> dict:
     import numpy as np
 
     rng = np.random.default_rng(seed)
@@ -113,44 +197,51 @@ def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000
     t = np.arange(n) / sr
     ctrl = intensity_curve(sections, duration)
     inten = np.interp(t, np.arange(len(ctrl)) / 100, ctrl)
-
-    # 1. Drone D2 + A2 (quãng 5), hai giọng lệch nhẹ tạo độ dày
-    drone = sum(_tone(f, t, 7, d) for f in (73.42, 110.0) for d in (-0.0015, 0.0015)) * 0.18
-    drone *= 0.55 + 0.45 * inten
-    # 2. Dây dâng: D3 F3 A3 (D thứ), thêm Bb3 khi căng để tạo nghịch tai
-    strings = sum(_tone(f, t, 5, d, 2.0) for f in (146.83, 174.61, 220.0) for d in (-0.002, 0.002)) * 0.10
-    tension = _tone(233.08, t, 4, 0.001, 2.2) * 0.08 * np.clip((inten - 0.6) / 0.4, 0, 1)
-    swell = 0.5 + 0.5 * np.sin(2 * np.pi * t / 7.0 - np.pi / 2)  # thở chậm 7 s
-    strings = (strings * swell + tension) * np.clip(inten - 0.25, 0, 1) * 1.6
-    # 3. Trống trầm: chỉ khi cường độ ≥ 0.45, nhịp 50 → 115 BPM theo cường độ
-    drums = np.zeros(n)
-    hit = _hit(sr)
-    hits = drum_times(duration, ctrl, cuts)
+    hits = []
     cut_set = {round(c, 3) for c in cuts}
-    for pos in hits:
-        level = ctrl[min(int(pos * 100), len(ctrl) - 1)]
-        k = int(pos * sr)
-        accent = 1.35 if round(pos, 3) in cut_set else 1.0  # nhấn mạnh hơn khi trùng điểm cắt
-        seg = hit[: n - k] * (0.35 + 0.65 * level) * accent
-        drums[k:k + len(seg)] += seg
-    # 4. Không khí: nhiễu lọc thấp, rất nhỏ
-    air = _lowpass_noise(n, sr, 900, rng) * 0.035 * (0.6 + 0.4 * inten)
-    mix = drone + strings + drums * 0.55 + air
-    # 5. Riser 1.8 s dẫn vào cao trào + cú nhấn lớn đúng điểm vào
-    for t0, _, purpose in sections:
-        if purpose == "climax" and t0 > 2.0:
-            r = _riser(sr, 1.8, rng) * 0.22
-            k = int(t0 * sr) - len(r)
-            mix[k:k + len(r)] += r
-            big = _hit(sr, 2.5, 60.0, 30.0, 2.5) * 0.8
-            k = int(t0 * sr)
-            mix[k:k + len(big)] += big[: n - k]
-    # 6. Câu hỏi treo: một cú boom ở đầu đoạn
-    for t0, _, purpose in sections:
-        if purpose == "cliffhanger":
-            k = int(t0 * sr)
-            boom = _hit(sr, 4.0, 48.0, 26.0, 1.4) * 0.9
-            mix[k:k + len(boom)] += boom[: n - k]
+
+    if mood == "podcast_lofi":
+        mix = _synth_podcast_lofi(t, inten, ctrl, duration, sr, rng)
+    elif mood == "wonder":
+        mix = _synth_wonder(t, inten, ctrl, duration, sr, rng)
+    else:
+        mood = "tension"
+        # 1. Drone D2 + A2 (quãng 5), hai giọng lệch nhẹ tạo độ dày
+        drone = sum(_tone(f, t, 7, d) for f in (73.42, 110.0) for d in (-0.0015, 0.0015)) * 0.18
+        drone *= 0.55 + 0.45 * inten
+        # 2. Dây dâng: D3 F3 A3 (D thứ), thêm Bb3 khi căng để tạo nghịch tai
+        strings = sum(_tone(f, t, 5, d, 2.0) for f in (146.83, 174.61, 220.0) for d in (-0.002, 0.002)) * 0.10
+        tension = _tone(233.08, t, 4, 0.001, 2.2) * 0.08 * np.clip((inten - 0.6) / 0.4, 0, 1)
+        swell = 0.5 + 0.5 * np.sin(2 * np.pi * t / 7.0 - np.pi / 2)  # thở chậm 7 s
+        strings = (strings * swell + tension) * np.clip(inten - 0.25, 0, 1) * 1.6
+        # 3. Trống trầm: chỉ khi cường độ ≥ 0.45, nhịp 50 → 115 BPM theo cường độ
+        drums = np.zeros(n)
+        hit = _hit(sr)
+        hits = drum_times(duration, ctrl, cuts)
+        for pos in hits:
+            level = ctrl[min(int(pos * 100), len(ctrl) - 1)]
+            k = int(pos * sr)
+            accent = 1.35 if round(pos, 3) in cut_set else 1.0  # nhấn mạnh hơn khi trùng điểm cắt
+            seg = hit[: n - k] * (0.35 + 0.65 * level) * accent
+            drums[k:k + len(seg)] += seg
+        # 4. Không khí: nhiễu lọc thấp, rất nhỏ
+        air = _lowpass_noise(n, sr, 900, rng) * 0.035 * (0.6 + 0.4 * inten)
+        mix = drone + strings + drums * 0.55 + air
+        # 5. Riser 1.8 s dẫn vào cao trào + cú nhấn lớn đúng điểm vào
+        for t0, _, purpose in sections:
+            if purpose == "climax" and t0 > 2.0:
+                r = _riser(sr, 1.8, rng) * 0.22
+                k = int(t0 * sr) - len(r)
+                mix[k:k + len(r)] += r
+                big = _hit(sr, 2.5, 60.0, 30.0, 2.5) * 0.8
+                k = int(t0 * sr)
+                mix[k:k + len(big)] += big[: n - k]
+        # 6. Câu hỏi treo: một cú boom ở đầu đoạn
+        for t0, _, purpose in sections:
+            if purpose == "cliffhanger":
+                k = int(t0 * sr)
+                boom = _hit(sr, 4.0, 48.0, 26.0, 1.4) * 0.9
+                mix[k:k + len(boom)] += boom[: n - k]
     # Reverb: tích chập với đáp ứng xung tắt dần 2.2 s (FFT)
     ir_t = np.arange(int(sr * 2.2)) / sr
     ir = rng.standard_normal(len(ir_t)) * np.exp(-ir_t * 3.2)
@@ -160,9 +251,11 @@ def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000
     out = 0.7 * mix + 0.3 * wet
     # Fade đầu/cuối, chuẩn hóa đỉnh −1 dBFS, stereo rộng nhẹ (trễ kênh phải 11 ms)
     fade = np.ones(n)
-    fi, fo = int(1.5 * sr), int(2.5 * sr)
-    fade[:fi] = np.linspace(0, 1, fi)
-    fade[-fo:] = np.linspace(1, 0, fo)
+    fi, fo = int(min(1.5, duration * 0.2) * sr), int(min(2.5, duration * 0.25) * sr)
+    if fi > 0:
+        fade[:fi] = np.linspace(0, 1, fi)
+    if fo > 0:
+        fade[-fo:] = np.linspace(1, 0, fo)
     out *= fade
     out /= np.abs(out).max() + 1e-9
     out *= 10 ** (-1 / 20)
@@ -177,7 +270,7 @@ def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000
         w.setsampwidth(2)
         w.setframerate(sr)
         w.writeframes(pcm.tobytes())
-    return {"path": str(out_path), "duration": round(duration, 2), "sections": len(sections),
+    return {"path": str(out_path), "duration": round(duration, 2), "sections": len(sections), "mood": mood,
             "drum_hits": len(hits), "hits_on_cuts": sum(1 for h in hits if round(h, 3) in cut_set)}
 
 

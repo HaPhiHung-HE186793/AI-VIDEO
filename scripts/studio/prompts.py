@@ -249,6 +249,41 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
                                              "Phim nhiều lời dẫn nên dùng voiceover_external (cùng tên giọng).")
     if voice and voice not in KNOWN_VOICES:
         add("info", "UNKNOWN_VOICE", f"Giọng '{voice}' không có trong danh sách đã biết — kiểm tra lại tên trên Flow.")
+    if len(subjects) >= 2 and mode == "ingredients":
+        add("info", "MULTI_SUBJECT_COMPOSITION", f"Cảnh có {len(subjects)} nhân vật dùng mode=ingredients: nếu cần kiểm soát "
+                                                 "chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước.")
+    return out
+
+
+def lint_project(project: dict, cfg: dict) -> list:
+    """Kiểm tra cấu trúc tổng thể của dự án (nhịp truyện beat, liên kết đạo cụ/bối cảnh)."""
+    out = []
+
+    def add(level, code, msg):
+        out.append({"level": level, "code": code, "msg": msg})
+
+    shots = [s for s in mf.ordered_shots(project) if not s.get("exclude_from_edit")]
+    if len(shots) >= 6 and project.get("audio_strategy") == "voiceover_external" and not project.get("beats"):
+        add("warn", "NO_BEATS_DEFINED",
+            f"Dự án có {len(shots)} shot dùng voiceover_external nhưng chưa định nghĩa `beats` — lời dẫn sẽ bị "
+            "đóng khung theo từng shot (không có L-cut/J-cut trải qua nhiều góc máy).")
+
+    props = mf.props_by_id(project)
+    if props:
+        used_props = set()
+        for s in shots:
+            for pid in s.get("props", []):
+                if pid in props:
+                    used_props.add(pid)
+            act = (s.get("action") or "").lower()
+            for pid, p_obj in props.items():
+                pname = (p_obj.get("name") or "").lower()
+                if pname and pname in act:
+                    used_props.add(pid)
+        unused = [pid for pid in props if pid not in used_props]
+        if unused:
+            add("info", "UNLINKED_PROPS",
+                f"Đạo cụ {unused} đã khai báo nhưng chưa gắn vào `shot.props` hoặc `shot.action` của shot nào.")
     return out
 
 
