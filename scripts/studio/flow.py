@@ -27,6 +27,7 @@ UI = {
     "ingredient_search": "input[placeholder*='Tìm kiếm']",
     "group_mode": "Chế độ",
     "group_aspect": "Tỷ lệ khung hình",
+    "group_resolution": "Độ phân giải video",
     "group_duration": "Thời lượng video",
     "group_count": "Số lượng kết quả đầu ra",
     "model_trigger": ".model-select-trigger-content",
@@ -259,25 +260,28 @@ class Flow:
             self.page.locator(UI["settings"]).click()
         mode_toggle.wait_for(timeout=8000)
         self._toggle(UI["group_mode"], UI["kind_video"] if kind == "video" else UI["kind_image"])
-        if kind == "video":
-            mode_label = UI["mode_frames"] if video_mode in ("frames", "first_frame", "first_last") else UI["mode_ingredients"]
-            self.page.get_by_role("radio", name=mode_label).first.click()
-            self.wait(0.5)
-            self._toggle(UI["group_duration"], f"{duration} giây")
-        self._toggle(UI["group_aspect"], aspect)
-        self._toggle(UI["group_count"], f"x{count}")
         if model:
             current = self.page.locator(UI["model_trigger"]).first.inner_text()
             if model not in current:
                 self.page.locator(UI["model_trigger"]).first.click()
                 self.wait(0.8)
-                pat = re.compile(rf"(?:^|\s){re.escape(model)}(?:\.1)?\s*$", re.I)
+                pat = re.compile(rf"(?:^|\s){re.escape(model)}(?:\.1)?(?:\s+Flash)?\s*$", re.I)
                 opt = self.page.locator("[role=menuitem], [role=option], button, li").filter(has_text=pat)
                 if opt.count():
                     opt.last.click()
                 else:
                     self.page.get_by_text(model, exact=False).last.click()
                 self.wait(0.8)
+        if kind == "video":
+            mode_label = UI["mode_frames"] if video_mode in ("frames", "first_frame", "first_last") else UI["mode_ingredients"]
+            self.page.get_by_role("radio", name=mode_label).first.click()
+            self.wait(0.5)
+            res_toggle = self.page.locator(f"flow-toggles[aria-label='{UI['group_resolution']}']")
+            if res_toggle.count() and res_toggle.first.is_visible():
+                self._toggle(UI["group_resolution"], "720p")
+            self._toggle(UI["group_duration"], f"{duration} giây")
+        self._toggle(UI["group_aspect"], aspect)
+        self._toggle(UI["group_count"], f"x{count}")
         cost_txt = self.page.locator(UI["credit_label"]).first.inner_text()
         m = re.search(r"(\d[\d.,]*)\s*tín dụng", cost_txt)
         cost = int(re.sub(r"[.,]", "", m.group(1))) if m else None

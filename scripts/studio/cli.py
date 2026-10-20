@@ -1335,6 +1335,7 @@ def cmd_flow_harvest(args, cfg):
                 canonical = proj / mf.keyframe_rel_path(m, s["shot_id"], slot, Path(chosen_rel).suffix)
                 canonical.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(proj / chosen_rel, canonical)
+                qa.strip_image_letterbox(canonical, cfg["qa"]["letterbox_luma"])
                 s[path_key] = rel(proj, canonical)
                 mf.resolve_chained_keyframes(m, proj)
             report.append({"shot": s["shot_id"], "slot": slot, "uid": uid_prefix, "candidates": [c["path"] for c in cands]})
@@ -1543,7 +1544,7 @@ def cmd_auto_select(args, cfg):
         is_chained = bool(s.get("chain_from_prev")) or next_chained.get(s["shot_id"], False)
         pad = 0.35 if is_chained else 0.15
         d = takes.choose_take(s, need, cfg, pref=round(need + pad, 2) if in_beat else None,
-                              chain_next=next_chained.get(s["shot_id"], False))
+                              chain_next=next_chained.get(s["shot_id"], False), proj_dir=proj)
         if d.get("retake"):
             rounds = sum(1 for j in m.get("flow_jobs", []) if j["shot"] == s["shot_id"] and j["kind"] == "video")
             cap = cfg["credits"].get("max_retakes_per_shot", 2)
@@ -1814,7 +1815,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp = add("score", cmd_score, "Nhạc nền tự tổng hợp theo beat (miễn bản quyền, 0 credit) → music_path")
     project_arg(sp)
     sp.add_argument("--seed", type=int, default=7)
-    sp.add_argument("--mood", default="auto", choices=["auto", "tension", "podcast_lofi", "wonder"],
+    sp.add_argument("--mood", default="auto", choices=["auto", "tension", "combat", "podcast_lofi", "wonder"],
                     help="Bảng màu nhạc: auto (tự nhận diện theo dự án) | tension | podcast_lofi | wonder")
 
     sp = add("thumbnail", cmd_thumbnail, "Thumbnail 16:9 + 9:16: frame đẹp nhất + tiêu đề")
@@ -1844,7 +1845,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = add("make-lut", cmd_make_lut, "Tạo LUT màu .cube bằng code (0 đồng) + ảnh so sánh trước/sau")
     project_arg(sp)
-    sp.add_argument("--preset", choices=["documentary", "warm_dawn"], default="documentary")
+    sp.add_argument("--preset", choices=["documentary", "warm_dawn", "blockbuster"], default="documentary")
     sp.add_argument("--strength", type=float, default=1.0)
     sp.add_argument("--no-apply", action="store_true", help="Chỉ tạo file, không đặt vào manifest")
 
@@ -1867,7 +1868,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--tier", choices=["quality", "fast"], default="quality")
     sp.add_argument("--model", default="")
     sp.add_argument("--aspect", default="", help="16:9 | 9:16 (mặc định theo dự án)")
-    sp.add_argument("--duration", type=int, default=8, choices=[4, 6, 8])
+    sp.add_argument("--duration", type=int, default=8, choices=[4, 6, 8, 10])
     sp.add_argument("--max-credits", type=int, default=0, help="Dừng gửi khi vượt ngân sách lượt này")
     sp.add_argument("--new-project", action="store_true")
     sp.add_argument("--dry-run", action="store_true", help="Soạn và chụp màn hình, không bấm tạo")

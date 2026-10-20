@@ -8,12 +8,12 @@
   "models": {
     "video": {
       "quality": {
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "fast": {
-        "label": "Veo 3.1 - Fast",
-        "credits": 10
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       }
     },
     "image": {

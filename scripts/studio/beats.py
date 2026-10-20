@@ -49,7 +49,9 @@ def beat_total_need(proj: Path, beat: dict, cfg: dict) -> float:
 
 
 def shot_need(proj: Path, project: dict, shot: dict, cfg: dict) -> float:
-    """Thời lượng hình tối thiểu cho một shot trong beat: chia đều nhu cầu của beat, không dưới min_beat_shot_sec."""
+    """Thời lượng hình tối thiểu cho một shot trong beat: ưu tiên target_duration riêng của shot, hoặc chia đều nhu cầu của beat."""
+    if shot.get("target_duration"):
+        return round(float(shot["target_duration"]), 2)
     ed = cfg["editorial"]
     beat = beats_by_id(project).get(shot.get("beat"))
     b_shots = shots_in_beat(project, shot["beat"]) if beat else []

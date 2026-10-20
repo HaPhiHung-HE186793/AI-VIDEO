@@ -215,9 +215,11 @@ def clean_windows(duration: float, defects: list, severities=("major",), pad: fl
 
 
 def needed_seconds(proj: Path, shot: dict, cfg: dict, project: dict = None) -> float:
-    """Độ dài hình tối thiểu shot cần: phần chia của beat / đủ cho lời dẫn riêng / độ dài shot ưa thích."""
+    """Độ dài hình tối thiểu shot cần: target_duration riêng / phần chia của beat / đủ cho lời dẫn / độ dài ưa thích."""
     from . import beats as bt
 
+    if shot.get("target_duration"):
+        return round(float(shot["target_duration"]), 2)
     ed = cfg["editorial"]
     vo = shot.get("voiceover_path")
     if vo and (Path(proj) / vo).exists():
@@ -228,13 +230,47 @@ def needed_seconds(proj: Path, shot: dict, cfg: dict, project: dict = None) -> f
     return float(ed.get("preferred_shot_sec", 4.0))
 
 
+def motion_peak_window(clip: Path, w0: float, w1: float, length: float, lead_ratio: float = 0.42) -> tuple:
+    """Tìm cửa sổ [a, b] dài `length` bên trong [w0, w1] sao cho đỉnh chuyển động (impact peak) nằm tại ~42% cửa sổ."""
+    import numpy as np
+
+    if not clip or not Path(clip).exists() or w1 - w0 <= length + 0.15:
+        a = round(w0 + (w1 - w0 - length) / 2, 2)
+        return a, round(a + length, 2)
+    try:
+        fps, frames = media.read_gray_frames(clip, size=(160, 90))
+        if len(frames) < 8 or not fps:
+            raise ValueError("not enough frames")
+        diffs = np.array([0.0] + [
+            float(np.mean(np.abs(frames[i].astype(np.float32) - frames[i - 1].astype(np.float32))))
+            for i in range(1, len(frames))
+        ])
+        # Làm mượt đường cong động năng trong khoảng ~0.35s để bắt đúng cụm va chạm chính
+        k = max(3, int(round(0.35 * fps)))
+        kernel = np.ones(k) / k
+        smooth = np.convolve(diffs, kernel, mode="same")
+        margin = min(0.45, (w1 - w0 - length) * 0.35)
+        i0 = max(1, int(round((w0 + margin) * fps)))
+        i1 = min(len(smooth) - 1, int(round((w1 - margin) * fps)))
+        if i1 <= i0:
+            i0, i1 = max(1, int(round(w0 * fps))), min(len(smooth) - 1, int(round(w1 * fps)))
+        peak_i = i0 + int(np.argmax(smooth[i0:i1 + 1]))
+        t_peak = peak_i / fps
+        a = max(w0, min(w1 - length, t_peak - lead_ratio * length))
+        return round(a, 2), round(a + length, 2)
+    except Exception:  # noqa: BLE001
+        a = round(w0 + (w1 - w0 - length) / 2, 2)
+        return a, round(a + length, 2)
+
+
 def score_take(q: dict) -> float:
     minors = sum(1 for d in q.get("defects", []) if d.get("severity") == "minor")
     return (q["overall_score_1_10"] + 0.5 * q["identity_score_1_10"] + 0.3 * q["prompt_adherence_1_10"]
             + 0.2 * q.get("aesthetic_1_10", q["overall_score_1_10"]) - 0.7 * minors)
 
 
-def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chain_next: bool = False) -> dict:
+def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chain_next: bool = False,
+                proj_dir: Path = None) -> dict:
     """Quyết định take + cửa sổ cắt. Trả về {take, edit_in, edit_out, score, reason} hoặc {retake: True, reasons}.
 
     pref: độ dài cắt mong muốn (mặc định preferred_shot_sec; shot trong beat dùng đúng phần chia của beat).
@@ -273,9 +309,9 @@ def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chai
             a = round(best[0], 2)
             b = round(min(best[1], a + length), 2)
         else:
-            # Đặt cửa sổ ở giữa đoạn sạch: tránh khựng đầu clip và đoạn "đỗ" cuối clip của Veo.
-            a = round(best[0] + (best[1] - best[0] - length) / 2, 2)
-            b = round(a + length, 2)
+            # Đặt cửa sổ bám theo đỉnh chuyển động (impact peak) nếu có file clip, tránh đầu/cuối tĩnh.
+            clip_p = (Path(proj_dir) / t["path"]) if proj_dir and t.get("path") else None
+            a, b = motion_peak_window(clip_p, best[0], best[1], length)
         score = score_take(v) + (0.5 if v.get("verdict") == "pass" else -2.0)
         candidates.append({"take": t["take"], "edit_in": a, "edit_out": b, "score": round(score, 2),
                            "window": best})

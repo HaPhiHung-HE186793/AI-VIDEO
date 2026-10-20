@@ -73,23 +73,46 @@ def write_srt(segs: list, out_path: Path, cfg: dict, fmt: str = "landscape") -> 
     return n
 
 
+def _shake_And_grain_suffix(seg: dict, w: int, h: int) -> str:
+    """Hiệu ứng rung máy vật lý tại điểm va chạm (Impact Camera Shake) + hạt phim 35mm IMAX cho cảnh hành động."""
+    shot = seg.get("shot") or {}
+    shake = shot.get("camera_shake")
+    grain = shot.get("film_grain")
+    fx = ""
+    if shake:
+        cfg_s = shake if isinstance(shake, dict) else {}
+        amp = float(cfg_s.get("amp", 14.0))
+        t_imp = float(cfg_s.get("at", round(seg["duration"] * 0.42, 2)))
+        sw = int(round(w * 1.045))
+        sh = int(round(h * 1.045))
+        # Dao động tắt dần tại t_imp + rung bước chân nhẹ
+        dx = f"({amp:.1f}*sin(2*PI*19*t)*exp(-6.0*abs(t-{t_imp:.2f}))+2.5*sin(2*PI*1.3*t))"
+        dy = f"({amp * 1.25:.1f}*cos(2*PI*23*t)*exp(-6.0*abs(t-{t_imp:.2f}))+2.5*cos(2*PI*1.7*t))"
+        fx += f",scale={sw}:{sh}:flags=lanczos,crop={w}:{h}:'(iw-ow)/2+{dx}':'(ih-oh)/2+{dy}'"
+    if grain:
+        strength = int(grain) if isinstance(grain, (int, float)) and not isinstance(grain, bool) else 3
+        fx += f",unsharp=5:5:0.35:5:5:0.0,noise=alls={strength}:allf=t+u"
+    return fx
+
+
 def _video_chain(i: int, seg: dict, w: int, h: int, fps: int, fit: str) -> str:
     d = seg["duration"]
     head = (f"[{i}:v]trim=start={seg['tin']:.4f},setpts=PTS-STARTPTS,fps={fps},"
             f"tpad=stop_mode=clone:stop_duration=0.5,trim=duration={d:.4f},setpts=PTS-STARTPTS,fps={fps}")
+    post_fx = _shake_And_grain_suffix(seg, w, h)
     if fit == "crop":
         # crop_focus_x: 0 = giữ mép trái, 0.5 = giữa, 1 = mép phải (đặt theo vị trí chủ thể từng shot)
         fx = min(1.0, max(0.0, float(seg.get("shot", {}).get("crop_focus_x", 0.5))))
         body = (f",scale={w}:{h}:force_original_aspect_ratio=increase:flags=lanczos,"
-                f"crop={w}:{h}:(iw-{w})*{fx:.3f}:(ih-{h})/2")
+                f"crop={w}:{h}:(iw-{w})*{fx:.3f}:(ih-{h})/2{post_fx}")
         return f"{head}{body},setsar=1,format=yuv420p[v{i}]"
     if fit == "blur":
         return (f"{head},split=2[bg{i}][fg{i}];"
                 f"[bg{i}]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},boxblur=20:2[bgb{i}];"
                 f"[fg{i}]scale={w}:{h}:force_original_aspect_ratio=decrease:flags=lanczos[fgs{i}];"
-                f"[bgb{i}][fgs{i}]overlay=(W-w)/2:(H-h)/2,setsar=1,format=yuv420p[v{i}]")
+                f"[bgb{i}][fgs{i}]overlay=(W-w)/2:(H-h)/2{post_fx},setsar=1,format=yuv420p[v{i}]")
     body = (f",scale={w}:{h}:force_original_aspect_ratio=decrease:flags=lanczos,"
-            f"pad={w}:{h}:(ow-iw)/2:(oh-ih)/2:color=black")
+            f"pad={w}:{h}:(ow-iw)/2:(oh-ih)/2:color=black{post_fx}")
     return f"{head}{body},setsar=1,format=yuv420p[v{i}]"
 
 

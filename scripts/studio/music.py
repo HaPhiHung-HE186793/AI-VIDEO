@@ -12,20 +12,37 @@ from pathlib import Path
 INTENSITY = {"hook": 0.30, "need": 0.40, "senses": 0.45, "target": 0.50, "escalation": 0.72,
              "climax": 1.00, "cliffhanger": 0.20, "resolution": 0.25}
 
-MOODS = ("auto", "tension", "podcast_lofi", "wonder")
+MOODS = ("auto", "tension", "combat", "podcast_lofi", "wonder")
+
+
+def _purpose_intensity(purpose: str) -> float:
+    p = (purpose or "").strip().lower()
+    if p in INTENSITY:
+        return INTENSITY[p]
+    if any(w in p for w in ("climax", "finisher", "finale", "victory", "cao trào", "kết liễu")):
+        return 1.00
+    if any(w in p for w in ("escalation", "counter", "clash", "collision", "leo thang", "va chạm", "phản công")):
+        return 0.78
+    if any(w in p for w in ("hook", "standoff", "ambush", "mở đầu", "đối đầu")):
+        return 0.55
+    if any(w in p for w in ("cliffhanger", "resolution", "kết")):
+        return 0.30
+    return 0.52
 
 
 def detect_mood(project: dict, requested: str = "auto") -> str:
     """Tự chọn bảng màu âm nhạc (mood) hợp với thể loại dự án nếu người dùng để `auto`."""
     req = (requested or "auto").strip().lower()
-    if req in ("tension", "podcast_lofi", "wonder"):
+    if req in ("tension", "combat", "podcast_lofi", "wonder"):
         return req
     explicit = (project.get("music_mood") or "").strip().lower()
-    if explicit in ("tension", "podcast_lofi", "wonder"):
+    if explicit in ("tension", "combat", "podcast_lofi", "wonder"):
         return explicit
     blob = " ".join(
         str(project.get(k) or "") for k in ("project_name", "project_slug", "title", "visual_style", "style_line")
     ).lower()
+    if any(w in blob for w in ("battle", "combat", "fight", "clash", "showdown", "vs", "đại chiến")):
+        return "combat"
     if any(w in blob for w in ("podcast", "cartoon", "sitcom", "cafe", "comedy", "tâm sự", "indie animated")):
         return "podcast_lofi"
     if any(w in blob for w in ("wonder", "cosmos", "space", "discovery", "khám phá", "vũ trụ")):
@@ -86,7 +103,7 @@ def intensity_curve(sections: list, duration: float, sr_ctrl: int = 100):
     n = int(duration * sr_ctrl) + 1
     curve = np.full(n, 0.3)
     for t0, t1, purpose in sections:
-        curve[int(t0 * sr_ctrl):int(t1 * sr_ctrl) + 1] = INTENSITY.get(purpose, 0.4)
+        curve[int(t0 * sr_ctrl):int(t1 * sr_ctrl) + 1] = _purpose_intensity(purpose)
     return _smooth(curve, int(1.2 * sr_ctrl))
 
 
@@ -188,6 +205,64 @@ def _synth_wonder(t, inten, ctrl, duration: float, sr: int, rng):
     return (pad * swell + lydian) * (0.6 + 0.6 * inten) + air
 
 
+def _synth_combat(t, inten, ctrl, duration: float, sr: int, rng, cuts: list, sections: list) -> tuple:
+    """Bảng màu Blockbuster Combat (ILM / Zimmer): kèn đồng trầm D Phrygian, trống trận Taiko dồn dập và Sub-Bass Drop đúng điểm cắt."""
+    import numpy as np
+
+    n = len(t)
+    # 1. Sub-drone & Low Brass Braaam (D1=36.71Hz, D2=73.42Hz, A2=110.0Hz, Eb2=77.78Hz Phrygian tension)
+    sub_drone = _tone(36.71, t, harmonics=4, detune=0.001, rolloff=1.8) * 0.24 * (0.65 + 0.35 * inten)
+    brass = sum(_tone(f, t, harmonics=9, detune=d, rolloff=1.35) for f in (73.42, 110.0, 146.83) for d in (-0.0025, 0.0025)) * 0.12
+    phrygian = sum(_tone(f, t, harmonics=8, detune=d, rolloff=1.4) for f in (77.78, 155.56, 233.08) for d in (-0.002, 0.002)) * 0.10
+    pulse = 0.6 + 0.4 * np.sin(2 * np.pi * 2.2 * t)
+    brass_layer = (brass * pulse + phrygian * np.clip((inten - 0.5) / 0.5, 0, 1)) * (0.5 + 0.7 * inten)
+
+    # 2. Trống trận Taiko + Sub-Bass Drop khóa cứng vào mọi điểm cắt (cuts) và đỉnh va chạm
+    drums = np.zeros(n)
+    taiko = _hit(sr, length=1.1, f0=68.0, f1=30.0, decay=5.8)
+    sub_drop = _hit(sr, length=1.8, f0=58.0, f1=24.0, decay=3.2)
+    # Thêm tiếng đậptransient sắc ở 25ms đầu của trống trận
+    crack_n = min(len(taiko), int(0.035 * sr))
+    taiko[:crack_n] += rng.standard_normal(crack_n) * np.exp(-np.linspace(0, 5, crack_n)) * 0.45
+
+    hits = drum_times(duration, ctrl, cuts)
+    cut_set = {round(c, 3) for c in cuts if 0 < c < duration - 0.2}
+    for c in sorted(cut_set):
+        if not any(abs(h - c) < 0.04 for h in hits):
+            hits.append(c)
+    hits = sorted(set(round(float(h), 3) for h in hits if 0 <= h < duration - 0.15))
+
+    for pos in hits:
+        level = ctrl[min(int(pos * 100), len(ctrl) - 1)]
+        k = int(pos * sr)
+        is_cut = any(abs(pos - c) < 0.04 for c in cut_set)
+        accent = 1.45 if is_cut else 0.95
+        seg = taiko[: n - k] * (0.45 + 0.55 * level) * accent
+        drums[k:k + len(seg)] += seg
+        if is_cut:
+            sd = sub_drop[: n - k] * 0.65
+            drums[k:k + len(sd)] += sd
+            # Cú dậm thứ hai ngay tại đỉnh va chạm bên trong shot (~0.85s sau điểm cắt)
+            imp_k = k + int(0.85 * sr)
+            if imp_k < n - int(0.4 * sr):
+                imp_seg = sub_drop[: n - imp_k] * 0.55
+                drums[imp_k:imp_k + len(imp_seg)] += imp_seg
+
+    # 3. Riser + Braaam khổng lồ dẫn vào các đoạn cao trào / va chạm lớn
+    for t0, _, purpose in sections:
+        if _purpose_intensity(purpose) >= 0.75 and t0 > 1.8:
+            r = _riser(sr, 1.5, rng) * 0.28
+            k = max(0, int(t0 * sr) - len(r))
+            drums[k:k + len(r)] += r[: n - k]
+            k_hit = int(t0 * sr)
+            if k_hit < n:
+                boom = _hit(sr, 2.4, 62.0, 25.0, 2.4) * 0.95
+                drums[k_hit:k_hit + len(boom)] += boom[: n - k_hit]
+
+    air = _lowpass_noise(n, sr, 1100, rng) * 0.04 * (0.5 + 0.5 * inten)
+    return sub_drone + brass_layer + drums * 0.72 + air, hits
+
+
 def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000, seed: int = 7,
                 cuts: list = (), mood: str = "tension") -> dict:
     import numpy as np
@@ -204,6 +279,8 @@ def synth_score(duration: float, sections: list, out_path: Path, sr: int = 48000
         mix = _synth_podcast_lofi(t, inten, ctrl, duration, sr, rng)
     elif mood == "wonder":
         mix = _synth_wonder(t, inten, ctrl, duration, sr, rng)
+    elif mood == "combat":
+        mix, hits = _synth_combat(t, inten, ctrl, duration, sr, rng, cuts, sections)
     else:
         mood = "tension"
         # 1. Drone D2 + A2 (quãng 5), hai giọng lệch nhẹ tạo độ dày

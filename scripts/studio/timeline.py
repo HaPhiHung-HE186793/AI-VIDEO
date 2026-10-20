@@ -146,17 +146,25 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
         if a["source"] == "manual":
             continue
         b_in = b["tin"] if b["source"] in ("manual", "auto") else 0.0
-        b["tin"] = b_in
         min_end = a["tin"] + ed["min_shot_sec"]
         if a["vo_path"]:
             min_end = max(min_end, a["tin"] + a["vo_offset"] + a["vo_duration"])
         if a["source"] == "beat_share" or b["shot"].get("chain_from_prev"):
-            min_end = max(min_end, a["tout"] - 0.55)
+            min_end = max(min_end, a["tout"] - 0.65)
         w1 = a.get("clean_window", (0.0, a["clip_duration"]))[1]
         if min_end >= w1 - 0.05:
             continue
-        t_cut, l1 = _find_seam(a["clip"], min_end, b["clip"], b_in, t_max=w1)
-        a["tout"], a["seam_l1"] = t_cut, l1
+        best_cut, best_bin, best_l1 = a["tout"], b_in, 1e9
+        b_candidates = [b_in] if b["source"] == "manual" else [0.0, 0.12, 0.24, 0.36]
+        for cand_bin in b_candidates:
+            if b["tout"] - cand_bin < ed["min_shot_sec"]:
+                continue
+            tc, l1_val = _find_seam(a["clip"], min_end, b["clip"], cand_bin, t_max=w1)
+            if l1_val < best_l1:
+                best_cut, best_bin, best_l1 = tc, cand_bin, l1_val
+        b["tin"] = best_bin
+        t_cut, l1 = best_cut, best_l1
+        a["tout"], a["seam_l1"] = best_cut, best_l1
         if l1 > ed["seam_max_l1"]:
             a["notes"].append(f"Điểm nối với {b['shot_id']} lệch (L1={l1} > {ed['seam_max_l1']}) — dùng Extend thay vì nối bằng 1 frame tĩnh.")
         if a["speech"] and t_cut < a["speech"]["end"] - 0.1:

@@ -11,6 +11,8 @@ PRESETS = {
                     "sat": 0.94, "green_sat": 0.85},
     "warm_dawn": {"contrast": 0.14, "shadow_tint": (0.000, -0.004, 0.012), "high_tint": (0.030, 0.012, -0.022),
                   "sat": 1.0, "green_sat": 0.9},
+    "blockbuster": {"contrast": 0.26, "shadow_tint": (-0.018, -0.004, 0.028), "high_tint": (0.032, 0.010, -0.024),
+                    "sat": 0.96, "green_sat": 0.72},
 }
 
 

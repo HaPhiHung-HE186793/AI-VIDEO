@@ -68,6 +68,38 @@ def _runs(mask, fps, min_sec):
     return out
 
 
+def strip_image_letterbox(image_path: Path, thr: float = 20.0, min_ratio: float = 0.03) -> bool:
+    """Tự động cắt bỏ dải đen letterbox/pillarbox trên ảnh Keyframe và phóng lại đúng kích thước gốc."""
+    import numpy as np
+
+    cv2 = media.cv2_module()
+    img = cv2.imread(str(image_path))
+    if img is None:
+        return False
+    h, w = img.shape[:2]
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY).astype(np.float32)
+    bars = detect_bars([gray], thr)
+    lb = max(bars["top"], bars["bottom"])
+    pb = max(bars["left"], bars["right"])
+    if lb < min_ratio and pb < min_ratio:
+        return False
+    if lb >= pb:
+        cut_top = int(round(max(bars["top"], bars["bottom"]) * h)) + 2
+        nh = max(16, h - 2 * cut_top)
+        nw = min(w, int(round(nh * (w / h))))
+        x0 = (w - nw) // 2
+        cropped = img[cut_top:cut_top + nh, x0:x0 + nw]
+    else:
+        cut_left = int(round(max(bars["left"], bars["right"]) * w)) + 2
+        nw = max(16, w - 2 * cut_left)
+        nh = min(h, int(round(nw * (h / w))))
+        y0 = (h - nh) // 2
+        cropped = img[y0:y0 + nh, cut_left:cut_left + nw]
+    resized = cv2.resize(cropped, (w, h), interpolation=cv2.INTER_LANCZOS4)
+    cv2.imwrite(str(image_path), resized)
+    return True
+
+
 def detect_mid_clip_dissolve(frames, fps: float, min_span_diff: float = 28.0, max_blend_ratio: float = 0.22) -> list:
     """Phát hiện lỗi Veo tự chèn hiệu ứng chồng hình mờ (cross-dissolve / double exposure) ở giữa clip.
 

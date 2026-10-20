@@ -291,15 +291,9 @@
         }
       ],
       "routing": {
-        "complexity": 10,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "cận chi tiết giải phẫu",
-          "hook / cảnh kết"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -338,12 +332,12 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 1.13,
+      "edit_out": 4.88,
       "auto_selection": {
         "take": 2,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 1.13,
+        "edit_out": 4.88,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -354,14 +348,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_01_qa_grid.jpg"
-      }
+      "target_duration": 3.6,
+      "camera_shake": {
+        "amp": 12.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_02",
@@ -500,13 +491,9 @@
         }
       ],
       "routing": {
-        "complexity": 5,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -545,12 +532,12 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 1.3,
+      "edit_out": 4.65,
       "auto_selection": {
         "take": 2,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 1.3,
+        "edit_out": 4.65,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -561,14 +548,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_02_qa_grid.jpg"
-      }
+      "target_duration": 3.2,
+      "camera_shake": {
+        "amp": 14.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_03",
@@ -708,14 +692,9 @@
         }
       ],
       "routing": {
-        "complexity": 8,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "nhiều chủ thể trong khung"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -754,12 +733,12 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 3.84,
+      "edit_out": 6.79,
       "auto_selection": {
         "take": 2,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 3.84,
+        "edit_out": 6.79,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -770,14 +749,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_03_qa_grid.jpg"
-      }
+      "target_duration": 2.8,
+      "camera_shake": {
+        "amp": 18.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_04",
@@ -917,14 +893,9 @@
         }
       ],
       "routing": {
-        "complexity": 8,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "nhiều chủ thể trong khung"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -963,12 +934,12 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 2.14,
+      "edit_out": 4.49,
       "auto_selection": {
         "take": 2,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 2.14,
+        "edit_out": 4.49,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -979,14 +950,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_04_qa_grid.jpg"
-      }
+      "target_duration": 2.2,
+      "camera_shake": {
+        "amp": 16.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_05",
@@ -1129,14 +1097,9 @@
         }
       ],
       "routing": {
-        "complexity": 8,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "nhiều chủ thể trong khung"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -1175,12 +1138,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 3.01,
+      "edit_out": 5.96,
       "auto_selection": {
         "take": 1,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 3.01,
+        "edit_out": 5.96,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -1191,14 +1154,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_05_qa_grid.jpg"
-      }
+      "target_duration": 2.8,
+      "camera_shake": {
+        "amp": 18.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_06a",
@@ -1241,16 +1201,9 @@
       "anchor_frame_shot": "shot_06a",
       "chain_from_prev": false,
       "routing": {
-        "complexity": 6,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "nhiều chủ thể trong khung",
-          "cận chi tiết giải phẫu",
-          "đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -1407,11 +1360,11 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 3.15,
+      "edit_in": 5.25,
       "edit_out": 8.0,
       "auto_selection": {
         "take": 1,
-        "edit_in": 3.15,
+        "edit_in": 5.25,
         "edit_out": 8.0,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
@@ -1423,14 +1376,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_06a_qa_grid.jpg"
-      }
+      "target_duration": 2.4,
+      "camera_shake": {
+        "amp": 11.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_06b",
@@ -1473,16 +1423,9 @@
       "anchor_frame_shot": "shot_06a",
       "chain_from_prev": true,
       "routing": {
-        "complexity": 6,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "nhiều chủ thể trong khung",
-          "cận chi tiết giải phẫu",
-          "đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -1618,11 +1561,11 @@
       ],
       "selected_take": 2,
       "edit_in": 0.0,
-      "edit_out": 4.85,
+      "edit_out": 2.75,
       "auto_selection": {
         "take": 2,
         "edit_in": 0.0,
-        "edit_out": 4.85,
+        "edit_out": 2.75,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -1633,14 +1576,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_06b_qa_grid.jpg"
-      }
+      "target_duration": 2.4,
+      "camera_shake": {
+        "amp": 16.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_07",
@@ -1780,14 +1720,9 @@
         }
       ],
       "routing": {
-        "complexity": 8,
-        "reasons": [
-          "tương tác vật lý / tay cầm nắm",
-          "nhiều chủ thể trong khung"
-        ],
         "tier": "quality",
-        "label": "Veo 3.1 - Quality",
-        "credits": 100
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -1826,12 +1761,12 @@
         }
       ],
       "selected_take": 1,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 0.88,
+      "edit_out": 4.43,
       "auto_selection": {
         "take": 1,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 0.88,
+        "edit_out": 4.43,
         "score": 18.5,
         "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -1842,14 +1777,11 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_07_qa_grid.jpg"
-      }
+      "target_duration": 3.4,
+      "camera_shake": {
+        "amp": 20.0
+      },
+      "film_grain": 3
     },
     {
       "shot_id": "shot_08",
@@ -1999,14 +1931,9 @@
         }
       ],
       "routing": {
-        "complexity": 1,
-        "reasons": [
-          "hook / cảnh kết",
-          "đã khóa bố cục bằng keyframe (in-betweening)"
-        ],
-        "tier": "fast",
-        "label": "Veo 3.1 - Fast",
-        "credits": 10
+        "tier": "quality",
+        "label": "Omni 1.1 Flash",
+        "credits": 12
       },
       "lint": [
         {
@@ -2045,12 +1972,12 @@
         }
       ],
       "selected_take": 2,
-      "edit_in": 1.67,
-      "edit_out": 6.32,
+      "edit_in": 3.42,
+      "edit_out": 7.37,
       "auto_selection": {
         "take": 2,
-        "edit_in": 1.67,
-        "edit_out": 6.32,
+        "edit_in": 3.42,
+        "edit_out": 7.37,
         "score": 17.8,
         "reason": "điểm 17.8 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -2061,80 +1988,14 @@
           8.0
         ]
       },
-      "qa": {
-        "technical": {
-          "verdict": "pass",
-          "findings": [],
-          "checked_at": "2026-10-20T22:06:45"
-        },
-        "contact_sheet": "assets/qa/shot_08_qa_grid.jpg"
-      }
+      "target_duration": 3.8,
+      "camera_shake": {
+        "amp": 12.0
+      },
+      "film_grain": 3
     }
   ],
   "session_log": [
-    {
-      "at": "2026-10-20T21:05:18",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:05:57",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --wait --wait-timeout 420",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:07:50",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:08:39",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --wait --wait-timeout 420",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:08:40",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:09:33",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_07,shot_08 --wait --wait-timeout 180",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:10:36",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2 --shots shot_06a,shot_06b,shot_07,shot_08",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:11:22",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_06a,shot_06b,shot_07,shot_08 --wait --wait-timeout 300",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T21:11:23",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
     {
       "at": "2026-10-20T21:11:56",
       "machine": "DESKTOP-HUP72C4",
@@ -2357,12 +2218,78 @@
       "args": "",
       "ok": false,
       "error": "ManifestError: Chưa đặt thư mục chung: thêm STUDIO_MEDIA_DIR=rclone:gdrive:AI-video-media vào .env của máy này (xem docs/SYNC_SETUP.md)."
+    },
+    {
+      "at": "2026-10-20T22:33:43",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "auto-select",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:33:44",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "make-lut",
+      "args": "--preset blockbuster",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:33:57",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "score",
+      "args": "--mood combat",
+      "ok": false,
+      "error": "NameError: name 'l1' is not defined"
+    },
+    {
+      "at": "2026-10-20T22:35:02",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "auto-select",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:35:13",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "score",
+      "args": "--mood combat",
+      "ok": false,
+      "error": "NameError: name 'l1' is not defined"
+    },
+    {
+      "at": "2026-10-20T22:35:24",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "assemble",
+      "args": "--format landscape --out final_video_v2_blockbuster.mp4",
+      "ok": false,
+      "error": "NameError: name 'l1' is not defined"
+    },
+    {
+      "at": "2026-10-20T22:36:12",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "auto-select",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:36:32",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "score",
+      "args": "--mood combat",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T22:37:23",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "assemble",
+      "args": "--format landscape --out final_video_v2_blockbuster.mp4",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-20T22:10:29",
+    "at": "2026-10-20T22:37:23",
     "machine": "DESKTOP-HUP72C4",
-    "command": "media-push"
+    "command": "assemble"
   },
   "flow_project_url": "https://flow.google.com/project/6d4a0c22-1a61-47bc-aac8-d2224a0dcbc2",
   "flow_jobs": [
@@ -2667,11 +2594,11 @@
   "music_path": "assets/audio/music/score_auto.wav",
   "music_source": {
     "kind": "procedural",
-    "mood": "tension",
+    "mood": "combat",
     "seed": 7,
     "license": "tự tổng hợp, miễn bản quyền"
   },
-  "lut_path": "assets/grade/documentary_100.cube",
+  "lut_path": "assets/grade/blockbuster_100.cube",
   "publish": {
     "title": "T-Rex vs Spinosaurus: 3D Storm Swamp Battle (4K AI Creature Feature)",
     "description": "A cinematic 3D CGI clash between two apex prehistoric titans — Tyrannosaurus rex and Spinosaurus — in a flooded cypress swamp during a violent night thunderstorm. Built end-to-end with reference-locked character anatomy, Star-Anchored keyframes, Veo 3.1 3D water/ember physics, and 3-layer sound design at -14 LUFS.",
@@ -2689,5 +2616,6 @@
       "Jurassic",
       "VFX"
     ]
-  }
+  },
+  "music_mood": "combat"
 }

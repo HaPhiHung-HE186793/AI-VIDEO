@@ -19,8 +19,8 @@ DEFAULT_CONFIG = {
     "models": {
         # Nhãn và đơn giá credit thay đổi theo thời gian — cập nhật trong studio_config.json.
         "video": {
-            "quality": {"label": "Veo 3.1 - Quality", "credits": 100},
-            "fast": {"label": "Veo 3.1 - Fast", "credits": 10},
+            "quality": {"label": "Omni 1.1 Flash", "credits": 12},
+            "fast": {"label": "Omni 1.1 Flash", "credits": 12},
         },
         "image": {"pro": "Nano Banana Pro", "standard": "Nano Banana 2"},
         # Model ID của Gemini API (khác tên gói/tên thương mại). Kiểm tra bằng `list-models`.
