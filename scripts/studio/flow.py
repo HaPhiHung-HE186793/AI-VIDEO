@@ -130,7 +130,7 @@ def norm_text(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").lower()).strip()
 
 
-def match_row_to_shot(row_text: str, prompts: dict, prefix_len: int = 90, min_len: int = 40) -> str:
+def match_row_to_shot(row_text: str, prompts: dict, prefix_len: int = 240, min_len: int = 40) -> str:
     """Hàng hiển thị prompt (bị cắt bớt) → shot có prompt bắt đầu khớp nhất. prompts: {shot_id: prompt}.
 
     Phải truyền prompt của MỌI shot (không chỉ shot cần tải): nhiều prompt chung phần mở đầu

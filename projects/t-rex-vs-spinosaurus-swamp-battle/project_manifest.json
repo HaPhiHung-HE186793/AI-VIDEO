@@ -1,0 +1,1263 @@
+{
+  "schema_version": 2,
+  "project_name": "T-Rex vs Spinosaurus Swamp Battle",
+  "project_slug": "t-rex-vs-spinosaurus-swamp-battle",
+  "project_code": "TRVSSB",
+  "created_at": "2026-10-20T20:48:56",
+  "language": "en",
+  "aspect_ratio": "16:9",
+  "delivery_formats": [
+    "landscape"
+  ],
+  "visual_style": "Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens",
+  "style_line": "Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens",
+  "negative_prompt": "cartoon look, toy plastic texture, extra limbs, duplicate dinosaurs, fused heads, dorsal sail on Tyrannosaurus, short snout on Spinosaurus, text, watermark, black letterbox bars",
+  "audio_strategy": "sfx_only",
+  "qa_rubric": [
+    {
+      "id": "distinct_species_anatomy",
+      "description": "Rex (left) must keep a broad heavy snout and smooth back without a sail; Spino (right) must keep a towering crimson-streaked dorsal sail and long narrow crocodilian snout."
+    },
+    {
+      "id": "left_right_combat_continuity",
+      "description": "In two-shots, Rex remains on the left side facing right and Spino remains on the right side facing left (180-degree rule)."
+    },
+    {
+      "id": "3d_vfx_impact",
+      "description": "Water splashes, rain, lightning reflections, and wood splinters move with realistic 3D physics without freezing mid-clip."
+    }
+  ],
+  "beats": [
+    {
+      "beat_id": "beat_01",
+      "order": 1,
+      "purpose": "Hook & Standoff: Spinosaurus erupts from the storm swamp and T. rex answers with a shockwave roar",
+      "narration": ""
+    },
+    {
+      "beat_id": "beat_02",
+      "order": 2,
+      "purpose": "First Clash: Full-speed swamp collision and Spinosaurus forelimb claw slash",
+      "narration": ""
+    },
+    {
+      "beat_id": "beat_03",
+      "order": 3,
+      "purpose": "Escalation & Counter: Spinosaurus shatters a burning cypress trunk; T. rex ducks and clamps Spinosaurus's neck",
+      "narration": ""
+    },
+    {
+      "beat_id": "beat_04",
+      "order": 4,
+      "purpose": "Climax & Finisher: T. rex slams Spinosaurus into a massive 3D water geyser and roars in victory",
+      "narration": ""
+    }
+  ],
+  "plan": {
+    "target_duration_sec": 36,
+    "avg_edited_shot_sec": 4.0,
+    "clips_to_generate": 9,
+    "takes_per_clip": 2,
+    "estimated_credits": 1152,
+    "credit_budget": 85000,
+    "budget_ok": true,
+    "language_code": "en",
+    "max_speech_units_per_8s_clip": 18,
+    "speech_unit": "words",
+    "note": "Mỗi clip Veo 8s được dựng còn ~avg_edited_shot_sec giây. Lời dẫn dài → dùng voiceover_external."
+  },
+  "characters": [
+    {
+      "id": "CHAR_TREX",
+      "name": "Rex",
+      "short_name": "Rex",
+      "type": "creature",
+      "identity_line": "a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes",
+      "reference_prompts": [
+        {
+          "view": "head",
+          "path": "assets/characters/CHAR_TREX_head.png",
+          "prompt": "Rex: a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Three-quarter close-up of the head, mouth closed. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_TREX_three_quarter.png",
+          "prompt": "Rex: a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Full-body three-quarter view in a natural standing pose. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "profile",
+          "path": "assets/characters/CHAR_TREX_profile.png",
+          "prompt": "Rex: a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Full-body side profile view showing head-to-tail proportions. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_TREX_head.png",
+        "assets/characters/CHAR_TREX_three_quarter.png",
+        "assets/characters/CHAR_TREX_profile.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Rex: a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro"
+    },
+    {
+      "id": "CHAR_SPINO",
+      "name": "Spino",
+      "short_name": "Spino",
+      "type": "creature",
+      "identity_line": "a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws",
+      "reference_prompts": [
+        {
+          "view": "head",
+          "path": "assets/characters/CHAR_SPINO_head.png",
+          "prompt": "Spino: a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Three-quarter close-up of the head, mouth closed. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "three_quarter",
+          "path": "assets/characters/CHAR_SPINO_three_quarter.png",
+          "prompt": "Spino: a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Full-body three-quarter view in a natural standing pose. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        },
+        {
+          "view": "profile",
+          "path": "assets/characters/CHAR_SPINO_profile.png",
+          "prompt": "Spino: a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Full-body side profile view showing head-to-tail proportions. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Plain neutral grey studio background, soft even lighting, single subject, no text."
+        }
+      ],
+      "reference_images": [
+        "assets/characters/CHAR_SPINO_head.png",
+        "assets/characters/CHAR_SPINO_three_quarter.png",
+        "assets/characters/CHAR_SPINO_profile.png"
+      ],
+      "turnaround_sheet_prompt": "Character turnaround design sheet of Spino: a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Front, back, left profile and right profile views of the exact same design side by side on a plain grey background, identical proportions and colors in every view, no text.",
+      "recommended_image_model": "pro"
+    }
+  ],
+  "environments": [
+    {
+      "id": "ENV_STORM_SWAMP",
+      "name": "Stormy Prehistoric Cypress Swamp",
+      "identity_line": "a flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning",
+      "clean_plate_prompt": "Stormy Prehistoric Cypress Swamp: a flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning. Wide establishing view, Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Empty scene without people or animals, natural lighting, no text.",
+      "path": "assets/environments/ENV_STORM_SWAMP.png",
+      "recommended_image_model": "standard"
+    }
+  ],
+  "props": [
+    {
+      "id": "PROP_SPLINTERED_LIGHTNING_STRUCK_CYPRESS_TRUNK",
+      "name": "splintered lightning-struck cypress trunk",
+      "prop_prompt": "Product-style reference of splintered lightning-struck cypress trunk, real size 6 meters, Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Front, side and three-quarter views on a plain grey studio background, soft contact shadows, no hands, no text.",
+      "path": "assets/props/PROP_SPLINTERED_LIGHTNING_STRUCK_CYPRESS_TRUNK.png",
+      "recommended_image_model": "pro"
+    }
+  ],
+  "shots": [
+    {
+      "shot_id": "shot_01",
+      "scene_id": "scene_01",
+      "beat": "beat_01",
+      "order": 1,
+      "is_hook": true,
+      "camera": "Low-angle wide shot at water level, 28mm anamorphic lens",
+      "subjects": [
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Spino's dorsal sail slices through the churning black swamp water",
+      "action": "Spino erupts upward in an explosive 3D splash curtain with jaws wide open",
+      "end_action": "Spino towers above the waves with water cascading off its sail",
+      "lighting": "blinding blue-violet lightning backlight",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "deafening thunderclap, massive water explosion, guttural Spinosaurus bellow"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Low-angle wide shot at water level, 28mm anamorphic lens: Spino's dorsal sail slices through the churning black swamp water. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S01_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Spino towers above the waves with water cascading off its sail. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S01_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Low-angle wide shot at water level, 28mm anamorphic lens. Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino's dorsal sail slices through the churning black swamp water, Spino erupts upward in an explosive 3D splash curtain with jaws wide open, then smoothly settling into the final state where Spino towers above the waves with water cascading off its sail. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, blinding blue-violet lightning backlight. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: deafening thunderclap, massive water explosion, guttural Spinosaurus bellow. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_01.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 10,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "cận chi tiết giải phẫu",
+          "hook / cảnh kết"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "899 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S01_START_c01.jpg",
+          "sha256": "257300e728d1fd5e5d4b0b2056d6a6c5b06e141f9ba1044912b2286eb15cb907",
+          "uid": "KF_TRVSSB_S01_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S01_START_c02.jpg",
+          "sha256": "aac76477ec07ae64011c380bc3db6c472650db98a4b56f5f8bf909b48db296a9",
+          "uid": "KF_TRVSSB_S01_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S01_END_c01.jpg",
+          "sha256": "14cf943dc4f196483e6346ae318953eb5d73ea9e3f937b58acc3561988e8f07c",
+          "uid": "KF_TRVSSB_S01_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S01_END_c02.jpg",
+          "sha256": "3dba3c3ed37a6fa2ccaf55e6b669665f9333f6c559d92397f377b7b45a3b491c",
+          "uid": "KF_TRVSSB_S01_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_02",
+      "scene_id": "scene_01",
+      "beat": "beat_01",
+      "order": 2,
+      "camera": "Low-angle medium close-up, 50mm lens",
+      "subjects": [
+        "CHAR_TREX"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex stands on the left in knee-deep water facing right in heavy rain",
+      "action": "Rex stomps a heavy foot splashing mud upward and unleashes a shockwave roar",
+      "end_action": "Rex holds a low combat stance facing right with warm mist from its jaws",
+      "lighting": "cold storm rim light and glowing amber eye reflections",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "earth-shaking footfall, deep sub-bass Tyrannosaurus roar, heavy rain"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Low-angle medium close-up, 50mm lens: Rex stands on the left in knee-deep water facing right in heavy rain. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S02_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex holds a low combat stance facing right with warm mist from its jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S02_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Low-angle medium close-up, 50mm lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex stands on the left in knee-deep water facing right in heavy rain, Rex stomps a heavy foot splashing mud upward and unleashes a shockwave roar, then smoothly settling into the final state where Rex holds a low combat stance facing right with warm mist from its jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, cold storm rim light and glowing amber eye reflections. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: earth-shaking footfall, deep sub-bass Tyrannosaurus roar, heavy rain. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_02.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 5,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "882 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02_START_c01.jpg",
+          "sha256": "e5286ef88fd1719bba6f28b7260da8314176d720b055f7d176e73f9816511f15",
+          "uid": "KF_TRVSSB_S02_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02_START_c02.jpg",
+          "sha256": "243c20a207380fd7a6236de10799575f562dfe0c42c0a77996cec2499ce4ebbc",
+          "uid": "KF_TRVSSB_S02_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02_END_c01.jpg",
+          "sha256": "00b3e7be9842894d0832532e87214bfaf8acc6b10f1c0251a96769964bcfbe64",
+          "uid": "KF_TRVSSB_S02_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02_END_c02.jpg",
+          "sha256": "e1e589a7899e5d324916aca6590e6f7089fa28fbb6c3aceb46d29e1ffc2119b1",
+          "uid": "KF_TRVSSB_S02_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_03",
+      "scene_id": "scene_02",
+      "beat": "beat_02",
+      "order": 3,
+      "camera": "Wide side-profile tracking shot, 35mm anamorphic lens",
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex on the left and Spino on the right charge toward each other",
+      "action": "Rex and Spino collide chest-to-chest, blasting a huge 3D shockwave ring of water",
+      "end_action": "Rex on the left and Spino on the right press together with snapping jaws",
+      "lighting": "overhead lightning flash illuminating flying water droplets",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "rapid heavy splashes, bone-crushing collision impact, twin monster snarls"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Wide side-profile, 35mm anamorphic lens: Rex on the left and Spino on the right charge toward each other. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S03_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left and Spino on the right press together with snapping jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S03_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Wide side-profile tracking shot, 35mm anamorphic lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left and Spino on the right charge toward each other, Rex and Spino collide chest-to-chest, blasting a huge 3D shockwave ring of water, then smoothly settling into the final state where Rex on the left and Spino on the right press together with snapping jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, overhead lightning flash illuminating flying water droplets. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: rapid heavy splashes, bone-crushing collision impact, twin monster snarls. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_03.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1095 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S03_START_c01.jpg",
+          "sha256": "b5d5b7671d235952b1c3c4459cc60300f67b8bb62607c3475b98eb19d687b54d",
+          "uid": "KF_TRVSSB_S03_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S03_START_c02.jpg",
+          "sha256": "307643868acd1deea4c0a5421b0f138e971c2552309a63d8fa0b1e0c6e84e0dd",
+          "uid": "KF_TRVSSB_S03_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S03_END_c01.jpg",
+          "sha256": "d37c77f9988cf9b6c89f8a7ad16e38b93ab4ee543d1213e1a784ffdd81f11b75",
+          "uid": "KF_TRVSSB_S03_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S03_END_c02.jpg",
+          "sha256": "958ae37d72a9c08a5e068a131cfe7d29e574b0c0b338c3afbd4ceb3dc15bd578",
+          "uid": "KF_TRVSSB_S03_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_04",
+      "scene_id": "scene_02",
+      "beat": "beat_02",
+      "order": 4,
+      "camera": "Medium close-up two-shot, 65mm lens",
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Spino on the right raises its curved forelimb claws while Rex braces on the left",
+      "action": "Spino slashes its claws across Rex's shoulder, splashing a 3D arc of mud and water",
+      "end_action": "Rex on the left recoils with bared teeth as Spino presses forward on the right",
+      "lighting": "sharp lightning rim light on wet scales and water spray",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "whoosh of heavy claws, sharp tearing impact, splashing mud, pained roar"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Medium close-up two-shot, 65mm lens: Spino on the right raises its curved forelimb claws while Rex braces on the left. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S04_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left recoils with bared teeth as Spino presses forward on the right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S04_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Medium close-up two-shot, 65mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino on the right raises its curved forelimb claws while Rex braces on the left, Spino slashes its claws across Rex's shoulder, splashing a 3D arc of mud and water, then smoothly settling into the final state where Rex on the left recoils with bared teeth as Spino presses forward on the right. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, sharp lightning rim light on wet scales and water spray. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: whoosh of heavy claws, sharp tearing impact, splashing mud, pained roar. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_04.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1096 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04_START_c01.jpg",
+          "sha256": "fad7cc1beb70fa7cca39ccaa9914d690175d088695c6d239a8a2df84d222514c",
+          "uid": "KF_TRVSSB_S04_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04_START_c02.jpg",
+          "sha256": "7f86192e238bb6a86afa9fe24d986013e24346f6f5840162130c1cedb5ac90d2",
+          "uid": "KF_TRVSSB_S04_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04_END_c01.jpg",
+          "sha256": "9ea52af06c507233bdafe4b721e59a6ed26a7d2fef20f1582e319a86fa03608a",
+          "uid": "KF_TRVSSB_S04_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04_END_c02.jpg",
+          "sha256": "9f6be0ca4b07a66488907439d0a9d4d13ab34708e5d6db1a7fae8abd12b729d8",
+          "uid": "KF_TRVSSB_S04_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_05",
+      "scene_id": "scene_03",
+      "beat": "beat_03",
+      "order": 5,
+      "camera": "Wide low-angle action shot, 35mm lens",
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "props": [
+        "PROP_SPLINTERED_LIGHTNING_STRUCK_CYPRESS_TRUNK"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Spino on the right pivots beside a burning cypress trunk as Rex advances on the left",
+      "action": "Spino whips its tail to crash through the splintered lightning-struck cypress trunk, blasting 3D embers",
+      "end_action": "Rex on the left lowers its head amidst flying orange embers and shattered wood",
+      "lighting": "fiery orange ember glow against cold blue storm lightning",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "whipping tail splash, explosive cracking timber, sizzling embers hitting water"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Wide low-angle action shot, 35mm lens: Spino on the right pivots beside a burning cypress trunk as Rex advances on the left. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S05_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left lowers its head amidst flying orange embers and shattered wood. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S05_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Wide low-angle action shot, 35mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Spino on the right pivots beside a burning cypress trunk as Rex advances on the left, Spino whips its tail to crash through the splintered lightning-struck cypress trunk, blasting 3D embers, then smoothly settling into the final state where Rex on the left lowers its head amidst flying orange embers and shattered wood. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, fiery orange ember glow against cold blue storm lightning. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: whipping tail splash, explosive cracking timber, sizzling embers hitting water. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_05.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1132 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S05_START_c01.jpg",
+          "sha256": "7cc8ed63e60ce0a0d4043dd2a1546fbc6ce8e87a27f9984212fafaa60818097e",
+          "uid": "KF_TRVSSB_S05_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S05_START_c02.jpg",
+          "sha256": "007bff05523edc27c0b091b05d51b4403a457c2b8d5b73c83e1dde473744cbd9",
+          "uid": "KF_TRVSSB_S05_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S05_END_c01.jpg",
+          "sha256": "9552aa722e22b6553a1284edecb68ac23e7eaade2bcf56485c4a629d9289088f",
+          "uid": "KF_TRVSSB_S05_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S05_END_c02.jpg",
+          "sha256": "91494e0d9e4a4d5b9e1fa3345381574493471f4e291d32d0b1df34a146f89f02",
+          "uid": "KF_TRVSSB_S05_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_06a",
+      "scene_id": "scene_03",
+      "beat": "beat_03",
+      "order": 6,
+      "camera": "Medium two-shot at eye level, 50mm lens",
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex on the left crouches low under embers while Spino lunges from the right",
+      "end_action": "Rex on the left ducks under Spino's snout and surges up with open jaws",
+      "lighting": "storm lightning and warm ember reflections on wet scales",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Medium two-shot at eye level, 50mm lens: Rex on the left crouches low under embers while Spino lunges from the right. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S06A_START.jpg",
+      "last_frame_prompt": "Intermediate waypoint 1 (shot_06a): Rex on the left ducks under Spino's snout and surges up with open jaws. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S06A_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTRA_SCENE_CONTINUE",
+      "transition_out": "cut",
+      "veo_prompt": "Medium two-shot at eye level, 50mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left crouches low under embers while Spino lunges from the right, Rex ducks beneath Spino's snapping jaws and surges up splashing swamp water, then smoothly settling into the final state where Rex on the left ducks under Spino's snout and surges up with open jaws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_06a.mp4",
+      "status": "pending",
+      "action": "Rex ducks beneath Spino's snapping jaws and surges up splashing swamp water",
+      "waypoint_parent": "shot_06",
+      "waypoint_index": 1,
+      "waypoint_total": 2,
+      "waypoint_subshot": true,
+      "anchor_frame_shot": "shot_06a",
+      "chain_from_prev": false,
+      "routing": {
+        "complexity": 6,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung",
+          "cận chi tiết giải phẫu",
+          "đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1089 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_START_c01.jpg",
+          "sha256": "90350a74e7b2ff1fa1843005bbce11264feb1bdd6d322522bcd0a9e14e73a17c",
+          "uid": "KF_TRVSSB_S06A_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_START_c02.jpg",
+          "sha256": "fc0e867c22b3fd0131a82697be9d05f58abb6a519e4035942d15c30777334647",
+          "uid": "KF_TRVSSB_S06A_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_START_c03.jpg",
+          "sha256": "afd55a6933f47a76849e971a5f7fd2c4d2f52c094c74cf3a5d0159d37fa88c29",
+          "uid": "KF_TRVSSB_S06A_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_START_c04.jpg",
+          "sha256": "32fb7bc21804287edd0a7934448c157660bfcf86e79c8bd614a633f16cd15784",
+          "uid": "KF_TRVSSB_S06A_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_END_c01.jpg",
+          "sha256": "5039f1afc9d1dcfc81d7c1c5fed160b86df569d28b5512fc9a01e5ae232e27ac",
+          "uid": "KF_TRVSSB_S06A_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_END_c02.jpg",
+          "sha256": "21ce8131d88925cfaf92bdaef97ad89a414abcc793e7bc3cc8132fbeac424f92",
+          "uid": "KF_TRVSSB_S06A_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_06b",
+      "scene_id": "scene_03",
+      "beat": "beat_03",
+      "order": 7,
+      "camera": "Medium two-shot at eye level, 50mm lens",
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex on the left ducks under Spino's snout and surges up with open jaws",
+      "end_action": "Rex on the left bites and clamps firmly onto Spino's neck on the right",
+      "lighting": "storm lightning and warm ember reflections on wet scales",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Medium two-shot at eye level, 50mm lens: Rex on the left ducks under Spino's snout and surges up with open jaws. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S06A_END.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex on the left bites and clamps firmly onto Spino's neck on the right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S06B_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Medium two-shot at eye level, 50mm lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Rex on the left ducks under Spino's snout and surges up with open jaws then smoothly transitions to: Rex on the left bites and clamps firmly onto Spino's neck on the right. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, storm lightning and warm ember reflections on wet scales. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: snapping jaws, surging water splash, powerful jaw clamp impact, screeching roar. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_06b.mp4",
+      "status": "pending",
+      "action": "Rex on the left ducks under Spino's snout and surges up with open jaws then smoothly transitions to: Rex on the left bites and clamps firmly onto Spino's neck on the right",
+      "waypoint_parent": "shot_06",
+      "waypoint_index": 2,
+      "waypoint_total": 2,
+      "waypoint_subshot": true,
+      "anchor_frame_shot": "shot_06a",
+      "chain_from_prev": true,
+      "routing": {
+        "complexity": 6,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung",
+          "cận chi tiết giải phẫu",
+          "đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "972 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06B_END_c01.jpg",
+          "sha256": "a7c001adc72ff9bd26448c51038394bdb08593acdd04f66594f20391715a5ce6",
+          "uid": "KF_TRVSSB_S06B_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06B_END_c02.jpg",
+          "sha256": "2f0b371dc1e522d01b111877b1bbf06e5e1a804ee88c1f06938ce51359721fa8",
+          "uid": "KF_TRVSSB_S06B_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_07",
+      "scene_id": "scene_04",
+      "beat": "beat_04",
+      "order": 8,
+      "camera": "Wide low-angle two-shot, 28mm anamorphic lens",
+      "subjects": [
+        "CHAR_TREX",
+        "CHAR_SPINO"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex on the left grips Spino's neck in its jaws and plants its feet in the mud",
+      "action": "Rex wrenches its neck to throw and crash Spino into a colossal 3D water geyser",
+      "end_action": "Rex stands tall on the left as Spino lies in a towering wall of white water spray",
+      "lighting": "intense blue-violet lightning flash illuminating the water geyser",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "straining muscle growl, earth-shattering body slam into water, tidal wave splash"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Wide low-angle two-shot, 28mm anamorphic lens: Rex on the left grips Spino's neck in its jaws and plants its feet in the mud. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S07_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex stands tall on the left as Spino lies in a towering wall of white water spray. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S07_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "cut",
+      "veo_prompt": "Wide low-angle two-shot, 28mm anamorphic lens. On the left, Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. On the right, Spino is a colossal adult Spinosaurus with slate-green crocodile hide, a towering crimson-streaked dorsal sail, long narrow snout, and curved forelimb claws. Starting from Rex on the left grips Spino's neck in its jaws and plants its feet in the mud, Rex wrenches its neck to throw and crash Spino into a colossal 3D water geyser, then smoothly settling into the final state where Rex stands tall on the left as Spino lies in a towering wall of white water spray. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, intense blue-violet lightning flash illuminating the water geyser. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: straining muscle growl, earth-shattering body slam into water, tidal wave splash. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_07.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 8,
+        "reasons": [
+          "tương tác vật lý / tay cầm nắm",
+          "nhiều chủ thể trong khung"
+        ],
+        "tier": "quality",
+        "label": "Veo 3.1 - Quality",
+        "credits": 100
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "1121 ký tự — cân nhắc rút gọn (mục tiêu 400–955)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S07_START_c01.jpg",
+          "sha256": "3f6f3c8ceb708c8f3f4d62179fecfe932f2adb6d3cf9d4ff8ef7c266a84a1920",
+          "uid": "KF_TRVSSB_S07_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S07_START_c02.jpg",
+          "sha256": "8e18bf714a9aff03975ff48e7aaea32f316675b2fa42d981cc6319f6b949e1ac",
+          "uid": "KF_TRVSSB_S07_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S07_END_c01.jpg",
+          "sha256": "4aac88f70f240d754d1dcf170975943ab3dfef5285d09fb23d110645803a86ec",
+          "uid": "KF_TRVSSB_S07_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S07_END_c02.jpg",
+          "sha256": "28ea01f3f149e277e6b3f727a05a98534903df5bce2494b271ed0b8113d6e749",
+          "uid": "KF_TRVSSB_S07_END"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot_08",
+      "scene_id": "scene_04",
+      "beat": "beat_04",
+      "order": 9,
+      "camera": "Heroic low-angle wide shot, 35mm anamorphic lens",
+      "subjects": [
+        "CHAR_TREX"
+      ],
+      "props": [
+        "PROP_SPLINTERED_LIGHTNING_STRUCK_CYPRESS_TRUNK"
+      ],
+      "environment": "ENV_STORM_SWAMP",
+      "start_action": "Rex plants one heavy foot atop the splintered lightning-struck cypress trunk",
+      "action": "Rex grips the splintered trunk with its claws and unleashes a triumphant roar",
+      "end_action": "Rex holds its roaring pose silhouetted against bright lightning and heavy rain",
+      "lighting": "twin blue-violet lightning bolts behind subject with warm ember glow",
+      "audio": {
+        "mode": "sfx_only",
+        "line": "",
+        "speaker": "",
+        "delivery": "",
+        "sfx": "triumphant echoing Tyrannosaurus roar, twin lightning strikes, rolling thunder"
+      },
+      "generation_mode": "first_last",
+      "first_frame_prompt": "Heroic low-angle wide shot, 35mm anamorphic lens: Rex plants one heavy foot atop the splintered lightning-struck cypress trunk. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Visible prop: splintered lightning-struck cypress trunk. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_path": "assets/frames/KF_TRVSSB_S08_START.jpg",
+      "last_frame_prompt": "Final state at the end of the shot: Rex holds its roaring pose silhouetted against bright lightning and heavy rain. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_path": "assets/frames/KF_TRVSSB_S08_END.jpg",
+      "reference_images": [],
+      "negative_prompt": "",
+      "transition_to_next": "INTER_SCENE_CUT",
+      "transition_out": "dissolve",
+      "veo_prompt": "Heroic low-angle wide shot, 35mm anamorphic lens. Rex is a massive adult Tyrannosaurus rex with dark charcoal armoured scales, ochre underbelly, scarred broad snout, and glowing amber eyes. Starting from Rex plants one heavy foot atop the splintered lightning-struck cypress trunk, Rex grips the splintered trunk with its claws and unleashes a triumphant roar, then smoothly settling into the final state where Rex holds its roaring pose silhouetted against bright lightning and heavy rain. A flooded prehistoric cypress swamp at night in a thunderstorm, knee-deep black water, twisted trunks, and blue-violet lightning, twin blue-violet lightning bolts behind subject with warm ember glow. Dark 3D CGI creature feature, volumetric storm rain, 3D water and mud splash particles, anamorphic cinema lens. Ambient sound only: triumphant echoing Tyrannosaurus roar, twin lightning strikes, rolling thunder. No subtitles, no on-screen text.",
+      "clip_output_path": "assets/clips/shot_08.mp4",
+      "status": "pending",
+      "takes": [],
+      "routing": {
+        "complexity": 1,
+        "reasons": [
+          "hook / cảnh kết",
+          "đã khóa bố cục bằng keyframe (in-betweening)"
+        ],
+        "tier": "fast",
+        "label": "Veo 3.1 - Fast",
+        "credits": 10
+      },
+      "lint": [
+        {
+          "level": "info",
+          "code": "PROMPT_LONG",
+          "msg": "935 ký tự — cân nhắc rút gọn (mục tiêu 400–860)."
+        },
+        {
+          "level": "info",
+          "code": "FIRST_LAST_FRAMING",
+          "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
+        }
+      ],
+      "frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S08_START_c01.jpg",
+          "sha256": "2c4c30d178cea2e5ace4c79bc53682f5ede2803ed57e1a023a40f85d9d7e5e05",
+          "uid": "KF_TRVSSB_S08_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S08_START_c02.jpg",
+          "sha256": "faf4917979b9de099cd75e97d686f8dfe6464b4e01a810fdc654ce3518db135d",
+          "uid": "KF_TRVSSB_S08_START"
+        }
+      ],
+      "last_frame_candidates": [
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S08_END_c01.jpg",
+          "sha256": "4bcaf9505396086d90fdc44c3d677f75af1303ecea3e39c1a3792a11799e58d6",
+          "uid": "KF_TRVSSB_S08_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S08_END_c02.jpg",
+          "sha256": "755931eae4fd8e00397c6ff67a69479253cf87038745365f0f21d6ef2f3dd1df",
+          "uid": "KF_TRVSSB_S08_END"
+        }
+      ]
+    }
+  ],
+  "session_log": [
+    {
+      "at": "2026-10-20T20:54:14",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T20:54:15",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "--strict",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T20:55:40",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T20:55:41",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "--strict",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T20:56:09",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --count 2 --dry-run",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:01:21",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "audit-assets",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:02:26",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "audit-assets",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:05:18",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --count 2",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:05:57",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --wait --wait-timeout 420",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:07:50",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --count 2",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:08:39",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --wait --wait-timeout 420",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:08:40",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:09:33",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_07,shot_08 --wait --wait-timeout 180",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:10:36",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --count 2 --shots shot_06a,shot_06b,shot_07,shot_08",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:11:22",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_06a,shot_06b,shot_07,shot_08 --wait --wait-timeout 300",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:11:23",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:11:56",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_07,shot_08 --wait --wait-timeout 180",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:11:57",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:16:03",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_01 --all",
+      "ok": true
+    },
+    {
+      "at": "2026-10-20T21:16:04",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    }
+  ],
+  "last_activity": {
+    "at": "2026-10-20T21:16:04",
+    "machine": "DESKTOP-HUP72C4",
+    "command": "storyboard"
+  },
+  "flow_project_url": "https://flow.google.com/project/6d4a0c22-1a61-47bc-aac8-d2224a0dcbc2",
+  "flow_jobs": [
+    {
+      "shot": "shot_01",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:03:40",
+      "harvested": "2026-10-20T21:05:47"
+    },
+    {
+      "shot": "shot_02",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:04:09",
+      "harvested": "2026-10-20T21:05:42"
+    },
+    {
+      "shot": "shot_03",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:04:18",
+      "harvested": "2026-10-20T21:05:37"
+    },
+    {
+      "shot": "shot_04",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:04:28",
+      "harvested": "2026-10-20T21:05:33"
+    },
+    {
+      "shot": "shot_05",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:04:47",
+      "harvested": "2026-10-20T21:05:28"
+    },
+    {
+      "shot": "shot_06a",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:04:57",
+      "harvested": "2026-10-20T21:08:27"
+    },
+    {
+      "shot": "shot_07",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:05:07",
+      "harvested": "2026-10-20T21:09:12"
+    },
+    {
+      "shot": "shot_08",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:05:17",
+      "harvested": "2026-10-20T21:09:17"
+    },
+    {
+      "shot": "shot_01",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:06:16",
+      "harvested": "2026-10-20T21:08:20"
+    },
+    {
+      "shot": "shot_02",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:06:32",
+      "harvested": "2026-10-20T21:08:16"
+    },
+    {
+      "shot": "shot_03",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:06:48",
+      "harvested": "2026-10-20T21:08:10"
+    },
+    {
+      "shot": "shot_04",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:07:06",
+      "harvested": "2026-10-20T21:08:04"
+    },
+    {
+      "shot": "shot_05",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:07:22",
+      "harvested": "2026-10-20T21:07:59"
+    },
+    {
+      "shot": "shot_06a",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:07:32",
+      "harvested": "2026-10-20T21:11:05"
+    },
+    {
+      "shot": "shot_07",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:07:41",
+      "harvested": "2026-10-20T21:10:59"
+    },
+    {
+      "shot": "shot_08",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:07:50",
+      "harvested": "2026-10-20T21:10:55"
+    },
+    {
+      "shot": "shot_06a",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:09:54",
+      "harvested": "2026-10-20T21:10:50"
+    },
+    {
+      "shot": "shot_06b",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:10:01",
+      "harvested": "2026-10-20T21:10:46"
+    },
+    {
+      "shot": "shot_07",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:10:18",
+      "harvested": "2026-10-20T21:11:49"
+    },
+    {
+      "shot": "shot_08",
+      "slot": "end",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-20T21:10:36",
+      "harvested": "2026-10-20T21:11:55"
+    }
+  ],
+  "storyboard": {
+    "status": "pending",
+    "built_hash": "19f65ca1104f15fc",
+    "built_at": "2026-10-20T21:16:04"
+  }
+}
