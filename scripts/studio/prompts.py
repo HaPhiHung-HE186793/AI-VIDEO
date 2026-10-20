@@ -140,7 +140,7 @@ def compact_identity(character: dict) -> str:
 
 
 def is_structured(shot: dict) -> bool:
-    return bool(shot.get("action") and (shot.get("camera") or shot.get("camera_shot")))
+    return bool((shot.get("action") or shot.get("timeline_phases")) and (shot.get("camera") or shot.get("camera_shot")))
 
 
 _ABSTRACT_CLAUSES = [
@@ -162,8 +162,99 @@ def _clean_kinematic_action(text: str) -> str:
     return re.sub(r"\s{2,}", " ", out).strip(" ,.")
 
 
-def _build_motion_arc(shot: dict) -> str:
-    """Ghép câu quỹ đạo chuyển động 3 pha (Start Pose -> Motion Bridge -> End Pose) cho veo_prompt ở chế độ first_last."""
+def _build_director_timeline(shot: dict, chars: dict = None) -> str:
+    """Biên dịch bảng phân cảnh theo từng mốc giây (`timeline_phases`) chuẩn Đạo diễn Hình ảnh & VFX.
+
+    Mỗi pha gồm:
+    - `time`: mốc giây (vd. '0.0s-2.2s')
+    - `phase_name`: tên nhịp hành động (vd. 'Wind-Up & Charge')
+    - `camera`: chuyển động ống kính / tiêu cự trong mốc giây đó
+    - `subjects`: dict {CHAR_ID: hành động cơ sinh học cụ thể của từng nhân vật} hoặc chuỗi mô tả
+    - `vfx`: tương tác vật lý / hiệu ứng 3D / môi trường trong mốc giây đó
+    - `sfx`: điểm nổ âm thanh đồng bộ (tùy chọn)
+    """
+    phases = shot.get("timeline_phases")
+    if not isinstance(phases, list) or not phases:
+        return ""
+    chars = chars or {}
+    blocks = []
+    for idx, ph in enumerate(phases, 1):
+        if not isinstance(ph, dict):
+            continue
+        t_window = (ph.get("time") or f"Phase {idx}").strip(" []")
+        p_label = (ph.get("phase_name") or ph.get("label") or "").strip()
+        header = f"[{t_window} {p_label}]" if p_label else f"[{t_window}]"
+        segs = [header]
+        cam = _clean_kinematic_action(ph.get("camera") or "")
+        if cam:
+            segs.append(_sentence(f"Camera: {cam}"))
+        subj = ph.get("subjects")
+        if isinstance(subj, dict) and subj:
+            s_clauses = []
+            for cid, s_act in subj.items():
+                clean_s = _clean_kinematic_action(str(s_act or ""))
+                if not clean_s:
+                    continue
+                c_name = display_name(chars.get(cid, {}), cid)
+                if clean_s.lower().startswith(c_name.lower()):
+                    s_clauses.append(clean_s)
+                else:
+                    s_clauses.append(f"{c_name}: {clean_s}")
+            if s_clauses:
+                segs.append(_sentence(f"Action: {'; '.join(s_clauses)}"))
+        elif isinstance(subj, str) and subj.strip():
+            segs.append(_sentence(f"Action: {_clean_kinematic_action(subj)}"))
+        elif ph.get("action"):
+            segs.append(_sentence(f"Action: {_clean_kinematic_action(ph['action'])}"))
+        vfx = _clean_kinematic_action(ph.get("vfx") or ph.get("environment") or "")
+        if vfx:
+            segs.append(_sentence(f"VFX/Env: {vfx}"))
+        sfx = (ph.get("sfx") or "").strip(" .")
+        if sfx:
+            segs.append(_sentence(f"SFX: {sfx}"))
+        blocks.append(" ".join(segs))
+    if not blocks:
+        return ""
+    return "Choreography timeline: " + " ".join(blocks)
+
+
+def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
+    """Biên dịch chỉ dẫn dàn dựng chi tiết cho từng ảnh Keyframe (`start_staging` / `end_staging`)."""
+    key = "start_staging" if slot == "start" else "end_staging"
+    stg = shot.get(key)
+    if not isinstance(stg, dict) or not stg:
+        return ""
+    chars = chars or {}
+    parts = []
+    cam_block = (stg.get("camera_blocking") or "").strip(" .")
+    if cam_block:
+        parts.append(_sentence(f"Camera & Optics: {cam_block}"))
+    subj_poses = stg.get("subject_poses")
+    if isinstance(subj_poses, dict) and subj_poses:
+        p_list = []
+        for cid, pose_txt in subj_poses.items():
+            clean_p = (str(pose_txt or "")).strip(" .")
+            if not clean_p:
+                continue
+            c_name = display_name(chars.get(cid, {}), cid)
+            if clean_p.lower().startswith(c_name.lower()):
+                p_list.append(clean_p)
+            else:
+                p_list.append(f"{c_name}: {clean_p}")
+        if p_list:
+            parts.append(_sentence(f"Character Staging & Anatomy: {' | '.join(p_list)}"))
+    vfx_env = (stg.get("vfx_environment") or stg.get("vfx") or "").strip(" .")
+    if vfx_env:
+        parts.append(_sentence(f"Environment & 3D VFX State: {vfx_env}"))
+    return " ".join(parts)
+
+
+def _build_motion_arc(shot: dict, chars: dict = None) -> str:
+    """Ghép câu quỹ đạo chuyển động: ưu tiên `timeline_phases` chi tiết theo từng giây, dự phòng 3 pha (Start -> Bridge -> End)."""
+    if shot.get("timeline_phases"):
+        tl_str = _build_director_timeline(shot, chars)
+        if tl_str:
+            return tl_str
     start_act = _clean_kinematic_action(shot.get("start_action") or "")
     act = _clean_kinematic_action(shot.get("action") or "")
     end_act = _clean_kinematic_action(shot.get("end_action") or "")
@@ -348,7 +439,7 @@ def build_prompt(project: dict, shot: dict) -> str:
     if attr_lock:
         parts.append(attr_lock)
 
-    parts.append(_build_motion_arc(shot))
+    parts.append(_build_motion_arc(shot, chars))
 
     crowd_line = _crowd_atmosphere_line(project, shot)
     if crowd_line:
@@ -402,6 +493,9 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
     attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
+    start_stg_line = _build_keyframe_staging(shot, chars, "start")
+    if start_stg_line:
+        parts.append(start_stg_line)
 
     for pid in shot.get("props", []):
         p = props.get(pid, {})
@@ -430,7 +524,8 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
     cam_raw = shot.get("camera") or shot.get("camera_shot") or ""
     impact_re = re.compile(
         r"\b(slam|slams|crash|crashes|shatter|shatters|collapse|collapses|knock|knocks|pin|pins|crush|crushes|"
-        r"hurl|hurls|throw|throws|erupt|erupts|explode|explodes|topple|topples|drag|drags|bowl|bowls)\b",
+        r"hurl|hurls|throw|throws|erupt|erupts|explode|explodes|topple|topples|drag|drags|bowl|bowls|"
+        r"collide|collides|slash|slashes|clamp|clamps|wrench|wrenches|stomp|stomps|lunge|lunges|recoil|recoils)\b",
         re.I,
     )
     is_displacement = bool(shot.get("physical_displacement")) or bool(
@@ -469,6 +564,9 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
     attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
+    end_stg_line = _build_keyframe_staging(shot, chars, "end")
+    if end_stg_line:
+        parts.append(end_stg_line)
 
     crowd_line = _crowd_atmosphere_line(project, shot)
     if crowd_line:
@@ -625,10 +723,12 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
 
     all_cast = mf.shot_all_cast_ids(shot)
     # Tự động nới trần độ dài prompt khi cảnh có đông nhân vật có tên (4..20+ người), cầu nối chuyển động hoặc quần chúng nền
+    tl_phases = shot.get("timeline_phases") if isinstance(shot.get("timeline_phases"), list) else []
     extra_cast_allowance = (
         max(0, (len(all_cast) - 1) * 95)
         + (160 if _crowd_atmosphere_line(project, shot) else 0)
         + (110 if shot.get("end_action") else 0)
+        + (1600 + len(tl_phases) * 350 if tl_phases else 0)
     )
     max_chars_eff = pcfg["max_chars"] + extra_cast_allowance
     warn_chars_eff = pcfg["warn_chars"] + extra_cast_allowance
@@ -648,8 +748,29 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     if len(negs) >= 3:
         add("warn", "TOO_MANY_NEGATIONS", f"{len(negs)} cụm phủ định ({', '.join(negs[:5])}…). Chuyển sang negative_prompt và mô tả điều MUỐN thấy.")
     phases = TIMECODE.findall(prompt)
-    if len(phases) > pcfg["max_timecoded_phases"]:
+    max_phases_eff = max(pcfg["max_timecoded_phases"], len(tl_phases) + 2) if tl_phases else pcfg["max_timecoded_phases"]
+    if len(phases) > max_phases_eff:
         add("warn", "TOO_MANY_PHASES", f"{len(phases)} pha có mốc giờ. Veo không bám mốc giờ chính xác; 1 clip nên có 1–2 hành động.")
+
+    if tl_phases:
+        focal_subjs = [cid for cid in (shot.get("subjects") or []) if cid in chars]
+        for p_idx, ph in enumerate(tl_phases, 1):
+            if not isinstance(ph, dict):
+                continue
+            t_lbl = ph.get("time") or f"#{p_idx}"
+            if not ph.get("camera"):
+                add("warn", "MISSING_PHASE_CAMERA", f"Pha [{t_lbl}] thiếu trường 'camera' (chuyển động ống kính/tiêu cự tại mốc giây đó).")
+            if not (ph.get("vfx") or ph.get("environment")):
+                add("warn", "MISSING_PHASE_VFX", f"Pha [{t_lbl}] thiếu trường 'vfx' (hiệu ứng vật lý/môi trường 3D tại mốc giây đó).")
+            ph_sub = ph.get("subjects")
+            if len(focal_subjs) >= 2 and isinstance(ph_sub, dict):
+                missing_s = [cid for cid in focal_subjs if not (ph_sub.get(cid) or "").strip()]
+                if missing_s:
+                    add("warn", "PASSIVE_SUBJECT_IN_PHASE",
+                        f"Pha [{t_lbl}] thiếu mô tả hành động riêng cho {missing_s} — mọi nhân vật trong khung hình phải có hành động/phản ứng rõ ràng theo từng giây.")
+        if mode == "first_last" and (not shot.get("start_staging") or not shot.get("end_staging")):
+            add("info", "MISSING_KEYFRAME_STAGING",
+                "Shot có timeline_phases chi tiết nhưng chưa khai báo đầy đủ start_staging/end_staging cho ảnh Keyframe START/END.")
 
     subjects = shot.get("subjects", [])
     primary_set = set(subjects[:3] if len(subjects) <= 3 else subjects[:2])
@@ -690,7 +811,8 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
         if not shot.get("last_frame_path"):
             add("error", "MISSING_LAST_FRAME", "mode=first_last nhưng chưa có last_frame_path.")
         add("info", "FIRST_LAST_FRAMING", "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình.")
-        if not shot.get("dynamic_camera") and re.search(r"\b(push[- ]in|pull[- ]back|zoom[- ]?(?:in|out)?)\b", prompt, flags=re.I):
+        raw_cam_check = (shot.get("camera") or shot.get("camera_shot") or "") if tl_phases else prompt
+        if not shot.get("dynamic_camera") and re.search(r"\b(push[- ]in|pull[- ]back|zoom[- ]?(?:in|out)?)\b", raw_cam_check, flags=re.I):
             add("warn", "FIRST_LAST_CAMERA_MISMATCH",
                 "veo_prompt có lệnh push-in/pull-back/zoom nhưng Keyframe START/END cùng cỡ cảnh (dynamic_camera=False) "
                 "→ dễ gây chồng mờ (dissolve) ở giây thứ 6. Chạy lại `build-prompts` để đồng bộ hoặc đặt `dynamic_camera: true`.")

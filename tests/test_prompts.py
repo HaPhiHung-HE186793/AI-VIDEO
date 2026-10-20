@@ -342,3 +342,107 @@ def test_script_to_cast_linter_catches_missing_named_characters(cfg):
     assert "Nguyễn Phong" in undeclared_msg and "Duy Khiêm" in undeclared_msg
     missing_scene_msg = next(f["msg"] for f in findings if f["code"] == "NAMED_CHARACTER_MISSING_IN_SCENE")
     assert "CHAR_VIET_DUONG" in missing_scene_msg
+
+
+def test_director_timeline_and_keyframe_staging_choreography(cfg):
+    proj = {
+        "language": "vi",
+        "style_line": "Live-action creature feature, IMAX 70mm Panavision Anamorphic lens",
+        "characters": [
+            {"id": "CHAR_TREX", "name": "Rex", "short_name": "Rex",
+             "identity_line": "a massive adult Tyrannosaurus rex with dark charcoal scales",
+             "reference_images": ["assets/characters/rex.png"]},
+            {"id": "CHAR_SPINO", "name": "Spino", "short_name": "Spino",
+             "identity_line": "a colossal adult Spinosaurus with a crimson-streaked dorsal sail",
+             "reference_images": ["assets/characters/spino.png"]},
+        ],
+        "environments": [{"id": "ENV_SWAMP", "name": "Storm Swamp", "identity_line": "a flooded cypress swamp at night"}],
+    }
+    shot = {
+        "shot_id": "shot_03",
+        "generation_mode": "first_last",
+        "first_frame_path": "f1.jpg",
+        "last_frame_path": "f2.jpg",
+        "camera": "Wide tracking shot, 35mm Anamorphic lens",
+        "subjects": ["CHAR_TREX", "CHAR_SPINO"],
+        "environment": "ENV_SWAMP",
+        "lighting": "lightning backlight",
+        "start_action": "Rex and Spino charge toward each other",
+        "action": "Rex and Spino collide chest-to-chest",
+        "end_action": "Rex and Spino grapple in churning water",
+        "start_staging": {
+            "camera_blocking": "1.1m low-angle 35mm Anamorphic lens at f/2.8",
+            "subject_poses": {
+                "CHAR_TREX": "Left frame charging right with lowered skull",
+                "CHAR_SPINO": "Right frame charging left with raised claws",
+            },
+            "vfx_environment": "Dual V-shaped bow waves of black swamp water",
+        },
+        "end_staging": {
+            "camera_blocking": "1.1m low-angle 35mm framing misted with spray",
+            "subject_poses": {
+                "CHAR_TREX": "Center-left wedged against Spino's flank",
+                "CHAR_SPINO": "Center-right shoved half a step backward",
+            },
+            "vfx_environment": "4-meter radial shockwave curtain collapsing into the swamp",
+        },
+        "timeline_phases": [
+            {
+                "time": "0.0s-2.4s",
+                "phase_name": "Swamp Charge",
+                "camera": "35mm dolly tracks inward at water level",
+                "subjects": {
+                    "CHAR_TREX": "Rex sprints from the left with booming strides",
+                    "CHAR_SPINO": "Spino charges from the right raising its claws",
+                },
+                "vfx": "Dual V-shaped bow waves surge toward center",
+                "sfx": "rapid splashes",
+            },
+            {
+                "time": "2.4s-5.2s",
+                "phase_name": "Chest Collision",
+                "camera": "Camera absorbs a heavy handheld impact jolt",
+                "subjects": {
+                    "CHAR_TREX": "Rex slams its chest into Spino's torso",
+                    "CHAR_SPINO": "Spino buckles backward raking its claws across Rex",
+                },
+                "vfx": "3D radial shockwave ring of water explodes 4 meters high",
+                "sfx": "bone-crushing collision",
+            },
+            {
+                "time": "5.2s-8.0s",
+                "phase_name": "Grappling Settle",
+                "camera": "Camera holds tight on the grappling pair",
+                "subjects": {
+                    "CHAR_TREX": "Rex digs its hind talons into the mud",
+                    "CHAR_SPINO": "Spino braces its hind legs snapping its jaws",
+                },
+                "vfx": "Airborne water curtain crashes back into the swamp",
+                "sfx": "cascading water",
+            },
+        ],
+        "audio": {"mode": "sfx_only", "sfx": "collision impact"},
+    }
+    ff_p = prompts.build_first_frame_prompt(proj, shot)
+    lf_p = prompts.build_last_frame_prompt(proj, shot)
+    veo_p = prompts.build_prompt(proj, shot)
+    shot["veo_prompt"] = veo_p
+
+    assert "Camera & Optics: 1.1m low-angle 35mm Anamorphic lens" in ff_p
+    assert "Character Staging & Anatomy: Rex: Left frame charging right" in ff_p
+    assert "Environment & 3D VFX State: Dual V-shaped bow waves" in ff_p
+    assert "Surgical action-impact edit" in lf_p
+    assert "Character Staging & Anatomy: Rex: Center-left wedged" in lf_p
+    assert "Choreography timeline: [0.0s-2.4s Swamp Charge]" in veo_p
+    assert "[2.4s-5.2s Chest Collision]" in veo_p
+    assert "[5.2s-8.0s Grappling Settle]" in veo_p
+
+    codes = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
+    assert "TOO_MANY_PHASES" not in codes
+    assert "PROMPT_TOO_LONG" not in codes
+    assert "PASSIVE_SUBJECT_IN_PHASE" not in codes
+
+    # Nếu 1 nhân vật bị bỏ quên trong 1 pha -> cảnh báo PASSIVE_SUBJECT_IN_PHASE
+    shot["timeline_phases"][1]["subjects"].pop("CHAR_SPINO")
+    codes_missing = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
+    assert "PASSIVE_SUBJECT_IN_PHASE" in codes_missing
