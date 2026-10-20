@@ -21,12 +21,12 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `t-rex-vs-spinosaurus-swamp-battle` — thư mục `projects/t-rex-vs-spinosaurus-swamp-battle/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/6d4a0c22-1a61-47bc-aac8-d2224a0dcbc2
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-20T22:37:23 trên máy **DESKTOP-HUP72C4** (lệnh `assemble`)
-- **Storyboard:** đã duyệt (19f65ca1104f15fc)
+- **Cập nhật lần cuối:** 2026-10-20T23:16:46 trên máy **DESKTOP-HUP72C4** (lệnh `assemble`)
+- **Storyboard:** đã duyệt (df2f92ee7430f075)
 
 ## ▶ Bước tiếp theo: 11. Xong — chờ người dùng đăng / yêu cầu mới
 
-Bản cuối: output/final_video_v2_blockbuster.mp4
+Bản cuối: output/final_video.mp4
 
 ```powershell
 python scripts/studio_helper.py publish-kit --project t-rex-vs-spinosaurus-swamp-battle
@@ -38,13 +38,16 @@ python scripts/studio_helper.py publish-kit --project t-rex-vs-spinosaurus-swamp
 |---|---|---|---|---|---|---|
 | 1 | shot_01 | beat_01 | qa_pass | 2 / 2 | ✓ | 1.13–4.88 |
 | 2 | shot_02 | beat_01 | qa_pass | 2 / 2 | ✓ | 1.30–4.65 |
-| 3 | shot_03 | beat_02 | qa_pass | 2 / 2 | ✓ | 3.84–6.79 |
-| 4 | shot_04 | beat_02 | qa_pass | 2 / 2 | ✓ | 2.14–4.49 |
-| 5 | shot_05 | beat_03 | qa_pass | 1 / 2 | ✓ | 3.01–5.96 |
-| 6 | shot_06a | beat_03 | qa_pass | 1 / 2 | ✓ | 5.25–8.00 |
-| 7 | shot_06b | beat_03 | qa_pass | 2 / 2 | ✓ | 0.00–2.75 |
-| 8 | shot_07 | beat_04 | qa_pass | 1 / 2 | ✓ | 0.88–4.43 |
-| 9 | shot_08 | beat_04 | qa_pass | 2 / 2 | ✓ | 3.42–7.37 |
+| 3 | shot_02b | beat_01 | qa_pass | 1 / 2 | ✓ | 3.56–5.31 |
+| 4 | shot_03 | beat_02 | qa_pass | 2 / 2 | ✓ | 3.84–6.79 |
+| 5 | shot_04 | beat_02 | qa_pass | 2 / 2 | ✓ | 2.14–4.49 |
+| 6 | shot_04b | beat_02 | qa_pass | 2 / 2 | ✓ | 3.72–5.67 |
+| 7 | shot_05 | beat_03 | qa_pass | 1 / 2 | ✓ | 3.01–5.96 |
+| 8 | shot_06a | beat_03 | qa_pass | 1 / 2 | ✓ | 5.25–8.00 |
+| 9 | shot_06b | beat_03 | qa_pass | 2 / 2 | ✓ | 0.00–2.75 |
+| 10 | shot_06c | beat_03 | qa_warn | 2 / 2 | ✓ | 0.01–1.86 |
+| 11 | shot_07 | beat_04 | qa_pass | 1 / 2 | ✓ | 0.88–4.43 |
+| 12 | shot_08 | beat_04 | qa_pass | 2 / 2 | ✓ | 3.42–7.37 |
 
 ## Beat & lời dẫn
 
@@ -55,12 +58,12 @@ python scripts/studio_helper.py publish-kit --project t-rex-vs-spinosaurus-swamp
 
 ## Đầu ra gần nhất
 
+- `output/final_video.mp4` (2026-10-20 23:16)
 - `output/final_video_v2_blockbuster.mp4` (2026-10-20 22:37)
-- `output/final_video.mp4` (2026-10-20 22:07)
 
 ## Media trên máy này
 
-Đủ 52/52 file media trên máy **DESKTOP-HUP72C4**.
+Đủ 67/67 file media trên máy **DESKTOP-HUP72C4**.
 
 ## Quyết định & ghi chú bàn giao
 
@@ -70,18 +73,18 @@ python scripts/studio_helper.py publish-kit --project t-rex-vs-spinosaurus-swamp
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-20 22:37 | DESKTOP-HUP72C4 | `assemble --format landscape --out final_video_v2_blockbuster.mp4` | ok |
-| 10-20 22:36 | DESKTOP-HUP72C4 | `score --mood combat` | ok |
-| 10-20 22:36 | DESKTOP-HUP72C4 | `auto-select ` | ok |
-| 10-20 22:35 | DESKTOP-HUP72C4 | `assemble --format landscape --out final_video_v2_blockbuster.mp4` | ❌ NameError: name 'l1' is not defined |
-| 10-20 22:35 | DESKTOP-HUP72C4 | `score --mood combat` | ❌ NameError: name 'l1' is not defined |
-| 10-20 22:35 | DESKTOP-HUP72C4 | `auto-select ` | ok |
-| 10-20 22:33 | DESKTOP-HUP72C4 | `score --mood combat` | ❌ NameError: name 'l1' is not defined |
-| 10-20 22:33 | DESKTOP-HUP72C4 | `make-lut --preset blockbuster` | ok |
-| 10-20 22:33 | DESKTOP-HUP72C4 | `auto-select ` | ok |
-| 10-20 22:10 | DESKTOP-HUP72C4 | `media-push ` | ❌ ManifestError: Chưa đặt thư mục chung: thêm STUDIO_MEDIA_DIR=rclone:gdrive:AI-vi |
-| 10-20 22:07 | DESKTOP-HUP72C4 | `assemble --format landscape` | ok |
-| 10-20 22:06 | DESKTOP-HUP72C4 | `qa ` | ok |
-| 10-20 22:05 | DESKTOP-HUP72C4 | `flow-upscale ` | ok |
-| 10-20 21:51 | DESKTOP-HUP72C4 | `thumbnail --title T-REX VS SPINOSAURUS --subtitle 3D SWAMP BATTLE` | ok |
-| 10-20 21:51 | DESKTOP-HUP72C4 | `make-lut --preset documentary` | ok |
+| 10-20 23:16 | DESKTOP-HUP72C4 | `assemble --format landscape` | ok |
+| 10-20 23:15 | DESKTOP-HUP72C4 | `score --mood combat` | ok |
+| 10-20 23:13 | DESKTOP-HUP72C4 | `qa ` | ok |
+| 10-20 23:12 | DESKTOP-HUP72C4 | `qa ` | ok |
+| 10-20 23:11 | DESKTOP-HUP72C4 | `flow-upscale --shots shot_02b,shot_04b,shot_06c` | ok |
+| 10-20 23:06 | DESKTOP-HUP72C4 | `auto-select --shots shot_02b,shot_04b,shot_06c` | ok |
+| 10-20 23:06 | DESKTOP-HUP72C4 | `qa-takes-submit --shots shot_02b,shot_04b,shot_06c` | ok |
+| 10-20 23:05 | DESKTOP-HUP72C4 | `auto-select --shots shot_02b,shot_04b,shot_06c` | ok |
+| 10-20 23:05 | DESKTOP-HUP72C4 | `qa-takes-submit --shots shot_02b,shot_04b,shot_06c` | ok |
+| 10-20 23:03 | DESKTOP-HUP72C4 | `qa-takes --shots shot_02b,shot_04b,shot_06c --reviewer agent` | ok |
+| 10-20 23:02 | DESKTOP-HUP72C4 | `flow-harvest --kind video --shots shot_04b,shot_06c --wait` | ok |
+| 10-20 23:02 | DESKTOP-HUP72C4 | `flow-harvest --kind video --shots shot_02b,shot_04b,shot_06c --wait` | ok |
+| 10-20 23:01 | DESKTOP-HUP72C4 | `flow-generate --kind video --shots shot_02b,shot_04b,shot_06c` | ok |
+| 10-20 23:00 | DESKTOP-HUP72C4 | `storyboard-approve --by user` | ok |
+| 10-20 23:00 | DESKTOP-HUP72C4 | `storyboard ` | ok |
