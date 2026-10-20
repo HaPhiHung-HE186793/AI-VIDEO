@@ -15,3 +15,8 @@ __pycache__/
 *.json.tmp
 .browser/
 **/.studio.lock
+# File trung gian khi tải từ Flow (zip, thư mục tạm) — không phải sản phẩm
+*.zip
+**/_incoming/
+**/_downloading/
+**/_flow_v2/
