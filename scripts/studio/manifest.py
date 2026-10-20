@@ -89,13 +89,22 @@ def project_code(manifest: dict) -> str:
 
 
 def keyframe_uid(manifest: dict, shot_id: str, slot: str = "start") -> str:
-    """ID duy nhất cho Keyframe đầu/cuối của shot (vd: KF_PGMT_S01_START, KF_PGMT_S01_END)."""
+    """ID duy nhất cho Keyframe đầu/giữa/cuối của shot (vd: KF_PGMT_S01_START, KF_PGMT_S03A_END)."""
     import re
 
     pcode = project_code(manifest)
-    m = re.search(r"(\d+)$", shot_id)
-    scode = f"S{int(m.group(1)):02d}" if m else re.sub(r"[^A-Z0-9]", "", shot_id.upper())[:6]
-    tag = "END" if str(slot).lower() in ("end", "last") else "START"
+    m = re.search(r"(\d+)([a-zA-Z]*)$", str(shot_id))
+    if m:
+        scode = f"S{int(m.group(1)):02d}{m.group(2).upper()}"
+    else:
+        scode = re.sub(r"[^A-Z0-9]", "", str(shot_id).upper())[:6]
+    s_lower = str(slot).lower()
+    if s_lower in ("start", "first"):
+        tag = "START"
+    elif s_lower in ("end", "last"):
+        tag = "END"
+    else:
+        tag = re.sub(r"[^A-Z0-9_]", "", str(slot).upper()) or "MID"
     return f"KF_{pcode}_{scode}_{tag}"
 
 
@@ -103,6 +112,149 @@ def keyframe_rel_path(manifest: dict, shot_id: str, slot: str = "start", ext: st
     """Đường dẫn tương đối chuẩn có gắn Unique ID cho Keyframe của shot."""
     ext = ext if ext.startswith(".") else f".{ext}"
     return f"assets/frames/{keyframe_uid(manifest, shot_id, slot)}{ext}"
+
+
+def expand_shot_waypoints(manifest: dict) -> list:
+    """Mở rộng các shot có khai báo `mid_action` / `mid_actions` (1 hoặc N frame trung gian) thành chuỗi Sub-Shots.
+
+    - Một shot có `start_action`, `mid_actions: [M1, M2, ..., Mn]` và `end_action` sẽ có N+2 trạng thái Keyframe
+      (F0 -> F1 -> F2 -> ... -> Fn+1) và được tách thành N+1 sub-shots (`shot_XXa`, `shot_XXb`, ...) nối Daisy-Chain.
+    - Tất cả sub-shots đều đặt `anchor_frame_shot` trỏ về sub-shot đầu tiên (`shot_XXa`), giúp toàn bộ frame
+      trung gian F1..Fn và frame cuối Fn+1 đều neo trực tiếp vào F0 (Star-Anchored) và tạo song song trong 1 đợt.
+    """
+    import copy
+
+    shots = ordered_shots(manifest)
+    if not any(s.get("mid_actions") or s.get("mid_action") for s in shots):
+        return []
+
+    expanded_log = []
+    new_shots = []
+    for s in shots:
+        raw_mids = s.get("mid_actions")
+        if not raw_mids and s.get("mid_action"):
+            raw_mids = [s["mid_action"]]
+        if not isinstance(raw_mids, list) or not raw_mids:
+            new_shots.append(s)
+            continue
+
+        mids = []
+        for item in raw_mids:
+            if isinstance(item, dict) and (item.get("pose") or item.get("end_action") or item.get("action")):
+                mids.append({
+                    "pose": (item.get("pose") or item.get("end_action") or item.get("action")).strip(),
+                    "action": (item.get("action") or "").strip(),
+                    "props": item.get("props"),
+                })
+            elif isinstance(item, str) and item.strip():
+                mids.append({"pose": item.strip(), "action": "", "props": None})
+        if not mids:
+            new_shots.append(s)
+            continue
+
+        base_id = s["shot_id"]
+        start_pose = (s.get("start_action") or s.get("action") or "").strip()
+        end_pose = (s.get("end_action") or s.get("action") or "").strip()
+        states = [start_pose] + [m["pose"] for m in mids] + [end_pose]
+        n_bridges = len(states) - 1
+        root_sub_id = f"{base_id}a"
+        sub_ids = []
+
+        for idx in range(n_bridges):
+            suffix = chr(ord("a") + idx) if idx < 26 else f"_{idx + 1}"
+            sub_id = f"{base_id}{suffix}"
+            sub_ids.append(sub_id)
+            sub = copy.deepcopy(s)
+            sub.pop("mid_actions", None)
+            sub.pop("mid_action", None)
+            sub.pop("takes", None)
+            sub.pop("selected_take", None)
+            sub.pop("auto_selection", None)
+            sub.pop("edit_in", None)
+            sub.pop("edit_out", None)
+            sub.pop("qa", None)
+
+            pose_a, pose_b = states[idx], states[idx + 1]
+            custom_act = mids[idx]["action"] if idx < len(mids) and mids[idx]["action"] else ""
+            bridge_action = custom_act or f"{pose_a.rstrip('.')} then smoothly transitions to: {pose_b.rstrip('.')}"
+
+            sub["shot_id"] = sub_id
+            sub["generation_mode"] = "first_last"
+            sub["start_action"] = pose_a
+            sub["end_action"] = pose_b
+            sub["action"] = bridge_action
+            sub["waypoint_parent"] = base_id
+            sub["waypoint_index"] = idx + 1
+            sub["waypoint_total"] = n_bridges
+            sub["waypoint_subshot"] = True
+            sub["anchor_frame_shot"] = root_sub_id
+            sub["clip_output_path"] = f"assets/clips/{sub_id}.mp4"
+            sub["status"] = STATUS_PENDING
+
+            if idx < len(mids) and mids[idx].get("props"):
+                sub["props"] = list(dict.fromkeys((sub.get("props") or []) + list(mids[idx]["props"])))
+
+            if idx == 0:
+                sub["chain_from_prev"] = bool(s.get("chain_from_prev"))
+                sub["first_frame_path"] = s.get("first_frame_path") or keyframe_rel_path(manifest, sub_id, "start")
+            else:
+                sub["chain_from_prev"] = True
+                prev_sub_id = sub_ids[idx - 1]
+                sub["first_frame_path"] = keyframe_rel_path(manifest, prev_sub_id, "end")
+
+            sub["last_frame_path"] = keyframe_rel_path(manifest, sub_id, "end")
+
+            if idx < n_bridges - 1:
+                sub["transition_to_next"] = "INTRA_SCENE_CONTINUE"
+                sub["transition_out"] = "cut"
+            else:
+                if s.get("transition_to_next"):
+                    sub["transition_to_next"] = s["transition_to_next"]
+                else:
+                    sub.pop("transition_to_next", None)
+                sub["transition_out"] = s.get("transition_out", "cut")
+
+            new_shots.append(sub)
+
+        expanded_log.append({"parent": base_id, "waypoints": len(mids), "sub_shots": sub_ids})
+
+    for order_idx, sh in enumerate(new_shots, start=1):
+        sh["order"] = order_idx
+    manifest["shots"] = new_shots
+    return expanded_log
+
+
+def root_anchor_frame_path(manifest: dict, shot: dict, proj_dir: Path = None) -> Path:
+    """Tìm đường dẫn file ảnh Keyframe gốc (F0 - Star-Anchor) của một shot hoặc chuỗi Daisy-Chain / Waypoints.
+
+    Giúp toàn bộ các frame trung gian (MID_01..MID_N) và frame END trong chuỗi nhiều shot đều lấy trực tiếp F0
+    làm ảnh tham chiếu mỏ neo (tạo song song trong 1 đợt và không bị trôi nhân vật/bối cảnh).
+    """
+    shots = ordered_shots(manifest)
+    by_id = {s["shot_id"]: s for s in shots}
+    anchor_sid = shot.get("anchor_frame_shot")
+    if anchor_sid and anchor_sid in by_id:
+        rel = by_id[anchor_sid].get("first_frame_path") or ""
+        if rel:
+            return (Path(proj_dir) / rel) if proj_dir else Path(rel)
+
+    # Nếu shot nối tiếp từ shot trước (chain_from_prev), lùi về đầu chuỗi để lấy F0 nếu first_frame_path chưa có.
+    if shot.get("first_frame_path"):
+        p = (Path(proj_dir) / shot["first_frame_path"]) if proj_dir else Path(shot["first_frame_path"])
+        if proj_dir is None or p.exists():
+            return p
+
+    idx = next((i for i, x in enumerate(shots) if x["shot_id"] == shot.get("shot_id")), None)
+    while idx is not None and idx > 0 and (shots[idx].get("chain_from_prev") or shots[idx - 1].get("transition_to_next") == "INTRA_SCENE_CONTINUE"):
+        idx -= 1
+        cand = shots[idx].get("first_frame_path") or ""
+        if cand:
+            cp = (Path(proj_dir) / cand) if proj_dir else Path(cand)
+            if proj_dir is None or cp.exists():
+                return cp
+    if shot.get("first_frame_path"):
+        return (Path(proj_dir) / shot["first_frame_path"]) if proj_dir else Path(shot["first_frame_path"])
+    return None
 
 
 def asset_uid(manifest: dict, asset_id: str, view: str = "") -> str:

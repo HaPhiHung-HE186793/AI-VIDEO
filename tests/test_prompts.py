@@ -167,3 +167,60 @@ def test_detect_mid_clip_dissolve_and_daisy_chain_choose_take(cfg):
     res_b = takes.choose_take(shot_b, 4.5, cfg, pref=4.5, chain_next=False)
     assert res_a["edit_out"] == 8.0 and res_a["edit_in"] == 3.5
     assert res_b["edit_in"] == 0.0 and res_b["edit_out"] == 4.5
+
+
+def test_multi_waypoint_expansion_and_star_anchoring(tmp_path, cfg):
+    from studio import manifest as mf
+
+    proj_data = {
+        "project_slug": "test-xianxia-fight",
+        "language": "vi",
+        "style_line": "3D cel-shaded anime style",
+        "characters": [
+            {"id": "HERO", "name": "Han Li", "identity_line": "a young cultivator in azure robes with short black hair",
+             "reference_images": ["assets/characters/HERO.png"]},
+        ],
+        "environments": [{"id": "PEAK", "name": "Cloud Peak", "identity_line": "a misty mountain peak at dawn"}],
+        "shots": [
+            {
+                "shot_id": "shot_03",
+                "order": 1,
+                "beat": "b01",
+                "generation_mode": "first_last",
+                "camera": "Medium wide shot, 35mm lens",
+                "subjects": ["HERO"],
+                "environment": "PEAK",
+                "lighting": "golden dawn rim light",
+                "start_action": "Han Li stands calm on the stone platform with hands behind his back",
+                "mid_actions": [
+                    "Han Li raises his right hand forming a glowing golden sword seal",
+                    "Seventy-two emerald flying swords materialize in a lotus formation around Han Li",
+                    "Han Li points forward launching the emerald sword array in a golden shockwave",
+                ],
+                "end_action": "Han Li lowers his hand as the sword array streaks into the distant clouds",
+                "action": "Han Li summons and launches the emerald sword formation",
+                "audio": {"mode": "voiceover_external", "sfx": "sword hum and thunder"},
+            }
+        ],
+    }
+    expanded = mf.expand_shot_waypoints(proj_data)
+    assert len(expanded) == 1
+    assert expanded[0]["waypoints"] == 3
+    assert expanded[0]["sub_shots"] == ["shot_03a", "shot_03b", "shot_03c", "shot_03d"]
+    assert len(proj_data["shots"]) == 4
+
+    f0_rel = proj_data["shots"][0]["first_frame_path"]
+    f0_file = tmp_path / f0_rel
+    f0_file.parent.mkdir(parents=True, exist_ok=True)
+    f0_file.write_bytes(b"fake_f0")
+
+    prefixes = set()
+    for idx, s in enumerate(proj_data["shots"]):
+        assert s["anchor_frame_shot"] == "shot_03a"
+        assert mf.root_anchor_frame_path(proj_data, s, tmp_path) == f0_file
+        s["veo_prompt"] = prompts.build_prompt(proj_data, s)
+        s["last_frame_prompt"] = prompts.build_last_frame_prompt(proj_data, s)
+        prefixes.add(s["last_frame_prompt"][:60])
+        score, _ = prompts.complexity_score(s, idx, len(proj_data["shots"]))
+        assert prompts.route_model(score, cfg)["tier"] == "fast"
+    assert len(prefixes) == 4

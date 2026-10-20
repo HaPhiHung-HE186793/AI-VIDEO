@@ -303,6 +303,7 @@ def cmd_audit_assets(args, cfg):
 def cmd_build_prompts(args, cfg):
     proj = proj_dir_of(args)
     m = mf.load(proj)
+    expanded_waypoints = mf.expand_shot_waypoints(m)
     built, built_frames, skipped = [], [], []
     sheet = [f"# Bảng prompt cho Google Flow — {m.get('project_name', proj.name)}", "",
              f"Tạo lúc {datetime.now():%Y-%m-%d %H:%M}. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.", ""]
@@ -359,7 +360,7 @@ def cmd_build_prompts(args, cfg):
     (proj / "prompts_for_flow.md").write_text("\n".join(sheet), encoding="utf-8")
     mf.save(proj, m)
     out({"status": "ok", "built_from_structured_fields": built, "built_keyframe_prompts": built_frames,
-         "chained_keyframes": chained, "skipped_no_prompt": skipped,
+         "expanded_waypoints": expanded_waypoints, "chained_keyframes": chained, "skipped_no_prompt": skipped,
          "flow_sheet": str(proj / "prompts_for_flow.md")})
 
 
@@ -1140,8 +1141,9 @@ def cmd_flow_generate(args, cfg):
                 for slot, text in slots:
                     row = {"shot": s["shot_id"], "slot": slot, "mode": "image", "model": shot_model,
                            "uid": mf.keyframe_uid(m, s["shot_id"], slot), "settings": setting.get("summary"), "credits": cost}
-                    if slot == "end" and (not s.get("first_frame_path") or not (proj / s["first_frame_path"]).exists()):
-                        row["skipped"] = "chờ tải first_frame_path trước khi tạo last_frame_path (Anchor-Locked)"
+                    anchor_p = mf.root_anchor_frame_path(m, s, proj) if slot == "end" else None
+                    if slot == "end" and (not anchor_p or not anchor_p.exists()):
+                        row["skipped"] = "chờ tải frame gốc F0 (first_frame_path) trước khi tạo MID/END (Star-Anchored)"
                         report.append(row)
                         continue
                     if args.max_credits and cost is not None and spent + cost > args.max_credits:
@@ -1149,10 +1151,10 @@ def cmd_flow_generate(args, cfg):
                         report.append(row)
                         continue
                     refs = _ref_paths(proj, m, s, limit=4)
-                    if slot == "end" and s.get("first_frame_path") and (proj / s["first_frame_path"]).exists():
-                        start_p = proj / s["first_frame_path"]
-                        attach_list = [(start_p, mf.keyframe_uid(m, s["shot_id"], "start"))]
-                        attach_list += [(r, "") for r in refs if r.resolve() != start_p.resolve()][:4]
+                    if slot == "end" and anchor_p and anchor_p.exists():
+                        anchor_sid = s.get("anchor_frame_shot") or s["shot_id"]
+                        attach_list = [(anchor_p, mf.keyframe_uid(m, anchor_sid, "start"))]
+                        attach_list += [(r, "") for r in refs if r.resolve() != anchor_p.resolve()][:4]
                     else:
                         attach_list = [(r, "") for r in refs]
                     cur_sig = ("image", tuple((str(p.resolve()), u) for p, u in attach_list))
@@ -1323,11 +1325,12 @@ def cmd_flow_harvest(args, cfg):
                 cands.append({"path": rel(proj, dst), "sha256": sha, "uid": uid_prefix})
             if cands and (not s.get(path_key) or not (proj / s[path_key]).exists()):
                 chosen_rel = cands[0]["path"]
-                if slot == "end" and len(cands) > 1 and s.get("first_frame_path") and (proj / s["first_frame_path"]).exists():
+                anchor_p = mf.root_anchor_frame_path(m, s, proj) if slot == "end" else None
+                if slot == "end" and len(cands) > 1 and anchor_p and anchor_p.exists():
                     try:
                         import numpy as np
                         cv2 = media.cv2_module()
-                        ref_im = cv2.resize(cv2.imread(str(proj / s["first_frame_path"])), (160, 90)).astype(np.float32)
+                        ref_im = cv2.resize(cv2.imread(str(anchor_p)), (160, 90)).astype(np.float32)
                         scored = []
                         for c in cands:
                             cim = cv2.imread(str(proj / c["path"]))
@@ -1343,6 +1346,7 @@ def cmd_flow_harvest(args, cfg):
                 canonical.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(proj / chosen_rel, canonical)
                 s[path_key] = rel(proj, canonical)
+                mf.resolve_chained_keyframes(m, proj)
             report.append({"shot": s["shot_id"], "slot": slot, "uid": uid_prefix, "candidates": [c["path"] for c in cands]})
         mf.save(proj, m)  # Lưu ngay sau từng hàng tải xong (Streaming Harvest)
 

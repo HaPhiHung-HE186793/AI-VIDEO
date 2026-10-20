@@ -292,8 +292,12 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
             "from the start frame reference."
         )
         tail_rule = "Single still keyframe, identical framing to start frame, no text, no subtitles."
+    if shot.get("waypoint_subshot") and shot.get("waypoint_index", 1) < shot.get("waypoint_total", 1):
+        lead = _sentence(f"Intermediate waypoint {shot['waypoint_index']} ({shot.get('shot_id', '')}): {end_pose}")
+    else:
+        lead = _sentence(f"Final state at the end of the shot: {end_pose}")
     parts = [
-        _sentence(f"Final state at the end of the shot: {end_pose}"),
+        lead,
         anchor_rule,
     ]
     subjects = shot.get("subjects", [])
@@ -479,7 +483,10 @@ def complexity_score(shot: dict, index: int, total: int) -> tuple:
     if (mf.shot_audio(shot)["mode"]) == "veo_dialogue":
         score += 2
         reasons.append("nhép miệng")
-    if (
+    if shot.get("waypoint_subshot") and mf.shot_audio(shot)["mode"] != "veo_dialogue":
+        score = max(1, score - 4)
+        reasons.append("đã chia nhỏ bằng waypoint trung gian (1 vi chuyển động)")
+    elif (
         shot.get("generation_mode") in ("first_frame", "first_last")
         and mf.shot_audio(shot)["mode"] != "veo_dialogue"
         and not INTERACTION_WORDS.search(act_clean)
