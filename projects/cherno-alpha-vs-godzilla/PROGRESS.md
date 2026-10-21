@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `cherno-alpha-vs-godzilla` — thư mục `projects/cherno-alpha-vs-godzilla/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/eba75017-1af5-48e6-b95b-1b0d6294c221
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T18:51:19 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
+- **Cập nhật lần cuối:** 2026-10-21T20:20:41 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
@@ -152,18 +152,18 @@ python scripts/studio_helper.py storyboard-approve --project cherno-alpha-vs-god
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-21 18:51 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-21 18:51 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60 --wait` | ok |
-| 10-21 18:49 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60` | ok |
-| 10-21 18:46 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_37,shot_38,shot_39,shot_40,shot_41,shot_42,shot_43,shot_44,shot_45,shot_46,shot_47,shot_48 --wait` | ok |
-| 10-21 18:45 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_37,shot_38,shot_39,shot_40,shot_41,shot_42,shot_43,shot_44,shot_45,shot_46,shot_47,shot_48` | ok |
-| 10-21 18:42 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36 --wait` | ok |
-| 10-21 18:40 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36` | ok |
-| 10-21 18:36 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_13,shot_14,shot_15,shot_16,shot_17,shot_18,shot_19,shot_20,shot_21,shot_22,shot_23,shot_24 --wait` | ok |
-| 10-21 18:33 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_13,shot_14,shot_15,shot_16,shot_17,shot_18,shot_19,shot_20,shot_21,shot_22,shot_23,shot_24` | ok |
-| 10-21 18:29 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12 --wait` | ok |
-| 10-21 18:27 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12` | ok |
-| 10-21 18:22 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
-| 10-21 18:22 | DESKTOP-HUP72C4 | `flow-generate --kind assets --new-project --count 2` | ok |
-| 10-21 18:18 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
-| 10-21 18:18 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
+| 10-21 20:20 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 20:19 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_04 --wait` | ok |
+| 10-21 20:18 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_04` | ok |
+| 10-21 20:15 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_03,shot_04 --wait` | ok |
+| 10-21 20:14 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_01,shot_02,shot_03,shot_04` | ok |
+| 10-21 20:13 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
+| 10-21 20:13 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
+| 10-21 20:00 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 19:58 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_24,shot_41,shot_47,shot_57,shot_59,shot_60 --wait` | ok |
+| 10-21 19:52 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_44,shot_46,shot_47,shot_50,shot_57,shot_59,shot_60 --wait` | ok |
+| 10-21 19:51 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_44,shot_46,shot_47,shot_50,shot_57,shot_59,shot_60` | ok |
+| 10-21 19:50 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_05,shot_24,shot_25,shot_26,shot_29,shot_31,shot_32,shot_41 --wait` | ok |
+| 10-21 19:49 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_05,shot_24,shot_25,shot_26,shot_29,shot_31,shot_32,shot_41` | ok |
+| 10-21 19:46 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_05,shot_24,shot_25,shot_26,shot_29,shot_31,shot_32,shot_41 --wait` | ok |
+| 10-21 19:46 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_05,shot_24,shot_25,shot_26,shot_29,shot_31,shot_32,shot_41 --retakes` | ❌ [ERROR] Không có shot nào để tạo (kiểm tra --shots / prompt / --retakes). |

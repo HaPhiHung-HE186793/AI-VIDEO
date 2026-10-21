@@ -1667,7 +1667,12 @@ def cmd_flow_harvest(args, cfg):
         mf.save(proj, m)  # Lưu ngay sau từng hàng tải xong (Streaming Harvest)
 
     with fl.Flow(cfg["browser"]["debug_port"], m.get("flow_project_url", ""), download_dir=incoming) as f:
-        all_known = {tk["sha256"] for s in m["shots"] for tk in s.get("takes", []) if tk.get("sha256")}
+        all_known = {
+            tk["sha256"]
+            for s in m["shots"]
+            for tk in (s.get("takes", []) + s.get("frame_candidates", []) + s.get("last_frame_candidates", []))
+            if tk.get("sha256")
+        }
         known = {s["shot_id"]: set(all_known) for s in m["shots"]}
         f.harvest_rows(kind, prompt_map, incoming, only_shots=only, quota=quota, known_sha=known,
                        wait_done=bool(args.wait), wait_timeout=args.wait_timeout, on_row=_handle_harvest_row)
