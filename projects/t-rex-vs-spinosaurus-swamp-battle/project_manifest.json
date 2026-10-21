@@ -216,6 +216,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S01_START_c02.jpg",
           "sha256": "e213e3145282fd509cae2d7c7f6209d0734bb9797ddd03b5174f0c8d100c847d",
           "uid": "KF_TRVSSB_S01_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S01_START_grid_p01.jpg",
+          "sha256": "905381178ed4c5ce7c32a95096d9fca4707791120cb1cea6bfccfa1569bff75c",
+          "uid": "KF_TRVSSB_S01_START",
+          "from_storyboard_grid": 1
         }
       ],
       "last_frame_candidates": [
@@ -228,6 +234,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S01_END_c02.jpg",
           "sha256": "b0be27749d02990673429ee53905e5d808d34e2caf68aa020319703dc83a1906",
           "uid": "KF_TRVSSB_S01_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S01_END_grid_p02.jpg",
+          "sha256": "bb0a443039bb23ca50573f5a4cc790fbfe2cc699dea4c8a4c6066ca42b4508a6",
+          "uid": "KF_TRVSSB_S01_END",
+          "from_storyboard_grid": 2
         }
       ],
       "edit_in": 1.84,
@@ -450,6 +462,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S02_START_c02.jpg",
           "sha256": "29c8c776ed20fa152c8930d893e0c59e8044dd5893883e5c83fd123f114bcd30",
           "uid": "KF_TRVSSB_S02_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02_START_grid_p03.jpg",
+          "sha256": "f5895eb6a415d351ebaa1ac4fb23e074a4c37367b8d394016139bc310016ed29",
+          "uid": "KF_TRVSSB_S02_START",
+          "from_storyboard_grid": 3
         }
       ],
       "last_frame_candidates": [
@@ -462,6 +480,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S02_END_c02.jpg",
           "sha256": "07af414a7a295e156c5652eaa9171229f7b38780db3f20f3163a650941d9d56a",
           "uid": "KF_TRVSSB_S02_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02_END_grid_p04.jpg",
+          "sha256": "a3d0a3951e1b7b2f92fa77ccb133807f45eb5df5983efe4a66bf4bfabf995265",
+          "uid": "KF_TRVSSB_S02_END",
+          "from_storyboard_grid": 4
         }
       ],
       "edit_in": 2.76,
@@ -692,6 +716,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S02B_START_c02.jpg",
           "sha256": "28365726eb8cdd5a2bb228806c1def479b74306504939645545891ad24fdb349",
           "uid": "KF_TRVSSB_S02B_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02B_START_grid_p03.jpg",
+          "sha256": "f5895eb6a415d351ebaa1ac4fb23e074a4c37367b8d394016139bc310016ed29",
+          "uid": "KF_TRVSSB_S02B_START",
+          "from_storyboard_grid": 3
         }
       ],
       "last_frame_candidates": [
@@ -704,6 +734,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S02B_END_c02.jpg",
           "sha256": "d6a2c704e5dd2aa494cf03c09cc95ff1e50c7b5028aea9710cf87ab5159e31d3",
           "uid": "KF_TRVSSB_S02B_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S02B_END_grid_p04.jpg",
+          "sha256": "a3d0a3951e1b7b2f92fa77ccb133807f45eb5df5983efe4a66bf4bfabf995265",
+          "uid": "KF_TRVSSB_S02B_END",
+          "from_storyboard_grid": 4
         }
       ],
       "takes": [],
@@ -931,6 +967,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S03_START_c02.jpg",
           "sha256": "33925425e33a4210684cf2c8881afca67459885418054bc78c8cd7c2cdcb6e92",
           "uid": "KF_TRVSSB_S03_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S03_START_grid_p04.jpg",
+          "sha256": "a3d0a3951e1b7b2f92fa77ccb133807f45eb5df5983efe4a66bf4bfabf995265",
+          "uid": "KF_TRVSSB_S03_START",
+          "from_storyboard_grid": 4
         }
       ],
       "last_frame_candidates": [
@@ -943,6 +985,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S03_END_c02.jpg",
           "sha256": "53f0a142c6189d6436fef18541586319e2fa271812a5225d3bcedcd75c8eb550",
           "uid": "KF_TRVSSB_S03_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S03_END_grid_p05.jpg",
+          "sha256": "014b343ef4b394bcd0fa02344e81ec374bf5d050c0cc402b68f0371394ae856a",
+          "uid": "KF_TRVSSB_S03_END",
+          "from_storyboard_grid": 5
         }
       ],
       "edit_in": 1.51,
@@ -1173,6 +1221,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S04_START_c02.jpg",
           "sha256": "da7f7a3d464e51a75a7ca7bfafdba0afa3374bdfe6f0582ddd70f417cdc1b502",
           "uid": "KF_TRVSSB_S04_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04_START_grid_p05.jpg",
+          "sha256": "014b343ef4b394bcd0fa02344e81ec374bf5d050c0cc402b68f0371394ae856a",
+          "uid": "KF_TRVSSB_S04_START",
+          "from_storyboard_grid": 5
         }
       ],
       "last_frame_candidates": [
@@ -1185,6 +1239,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S04_END_c02.jpg",
           "sha256": "8b00deb897cb25cd2a76afcb794fb8329525ecdd08e72dbc6f566052f935640e",
           "uid": "KF_TRVSSB_S04_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04_END_grid_p06.jpg",
+          "sha256": "fe0da44695c677d0173fc275db85b20d710cf83789e8346d15799380f01ae380",
+          "uid": "KF_TRVSSB_S04_END",
+          "from_storyboard_grid": 6
         }
       ],
       "edit_in": 1.14,
@@ -1422,6 +1482,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S04B_START_c02.jpg",
           "sha256": "3a32b84ed7d2b5785e5a602a204fdf8798281794f1f0a0d94600cd153634f179",
           "uid": "KF_TRVSSB_S04B_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04B_START_grid_p06.jpg",
+          "sha256": "fe0da44695c677d0173fc275db85b20d710cf83789e8346d15799380f01ae380",
+          "uid": "KF_TRVSSB_S04B_START",
+          "from_storyboard_grid": 6
         }
       ],
       "last_frame_candidates": [
@@ -1434,6 +1500,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S04B_END_c02.jpg",
           "sha256": "addb99514db055a83734b684c104d188b41ce06cbcc7dc663643224df50fc0f8",
           "uid": "KF_TRVSSB_S04B_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S04B_END_grid_p07.jpg",
+          "sha256": "5f84c08d1e47680a59460a1f1fc1877594bd852c2fe21b00dc0d4e29fd1fa36c",
+          "uid": "KF_TRVSSB_S04B_END",
+          "from_storyboard_grid": 7
         }
       ],
       "takes": [],
@@ -1677,6 +1749,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S05_START_c02.jpg",
           "sha256": "9520618ba92c3160485e1c6945033e1f12c7e86ed9419f73152133a8a0828738",
           "uid": "KF_TRVSSB_S05_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S05_START_grid_p07.jpg",
+          "sha256": "5f84c08d1e47680a59460a1f1fc1877594bd852c2fe21b00dc0d4e29fd1fa36c",
+          "uid": "KF_TRVSSB_S05_START",
+          "from_storyboard_grid": 7
         }
       ],
       "last_frame_candidates": [
@@ -1689,6 +1767,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S05_END_c02.jpg",
           "sha256": "bfaecd42d97037068f39d1fe085ab862ba02f85ef12bbf8ab5558af87743704d",
           "uid": "KF_TRVSSB_S05_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S05_END_grid_p07.jpg",
+          "sha256": "5f84c08d1e47680a59460a1f1fc1877594bd852c2fe21b00dc0d4e29fd1fa36c",
+          "uid": "KF_TRVSSB_S05_END",
+          "from_storyboard_grid": 7
         }
       ],
       "edit_in": 3.18,
@@ -1926,6 +2010,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S06A_START_c02.jpg",
           "sha256": "eecb5a783635a1a5212d52f83bb879af9ff8c872c62626964aa93f0499848d65",
           "uid": "KF_TRVSSB_S06A_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_START_grid_p08.jpg",
+          "sha256": "5d6fc752eb7eb69060a2422e76a552662afab5e15ee18d74b4e0d07456fc7cde",
+          "uid": "KF_TRVSSB_S06A_START",
+          "from_storyboard_grid": 8
         }
       ],
       "last_frame_candidates": [
@@ -1938,6 +2028,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S06A_END_c02.jpg",
           "sha256": "c9bd6d0ccd57505d2f8eaa4398eac6ee265f7077d05d6b392e5ba3e2b12e37b9",
           "uid": "KF_TRVSSB_S06A_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06A_END_grid_p08.jpg",
+          "sha256": "5d6fc752eb7eb69060a2422e76a552662afab5e15ee18d74b4e0d07456fc7cde",
+          "uid": "KF_TRVSSB_S06A_END",
+          "from_storyboard_grid": 8
         }
       ],
       "takes": [],
@@ -2182,6 +2278,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S06B_END_c02.jpg",
           "sha256": "50b7e5a9e5af3a138a3c33db356f91c8a793495e9e56660b539b5fa624b7c969",
           "uid": "KF_TRVSSB_S06B_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06B_END_grid_p08.jpg",
+          "sha256": "5d6fc752eb7eb69060a2422e76a552662afab5e15ee18d74b4e0d07456fc7cde",
+          "uid": "KF_TRVSSB_S06B_END",
+          "from_storyboard_grid": 8
         }
       ],
       "takes": [],
@@ -2427,6 +2529,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S06C_START_c02.jpg",
           "sha256": "9b96bf02479b16feef2569d6fae63f0d1a026ae309419b29c45e4f822e456712",
           "uid": "KF_TRVSSB_S06C_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06C_START_grid_p08.jpg",
+          "sha256": "5d6fc752eb7eb69060a2422e76a552662afab5e15ee18d74b4e0d07456fc7cde",
+          "uid": "KF_TRVSSB_S06C_START",
+          "from_storyboard_grid": 8
         }
       ],
       "last_frame_candidates": [
@@ -2439,6 +2547,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S06C_END_c02.jpg",
           "sha256": "105b405c35ae37ecb3af03d563929ed57a4f759f89b2e886b06b5190fe2d55fa",
           "uid": "KF_TRVSSB_S06C_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S06C_END_grid_p08.jpg",
+          "sha256": "5d6fc752eb7eb69060a2422e76a552662afab5e15ee18d74b4e0d07456fc7cde",
+          "uid": "KF_TRVSSB_S06C_END",
+          "from_storyboard_grid": 8
         }
       ],
       "takes": [],
@@ -2691,6 +2805,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S07_START_c02.jpg",
           "sha256": "2d177ec8678507392de6981a696ffffb6954036ad98040a1f858808c48d5ae3c",
           "uid": "KF_TRVSSB_S07_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S07_START_grid_p08.jpg",
+          "sha256": "5d6fc752eb7eb69060a2422e76a552662afab5e15ee18d74b4e0d07456fc7cde",
+          "uid": "KF_TRVSSB_S07_START",
+          "from_storyboard_grid": 8
         }
       ],
       "last_frame_candidates": [
@@ -2703,6 +2823,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S07_END_c02.jpg",
           "sha256": "df70bcee5c6513997b60e9cdf3e5c74a1b0b291a7ed5a127fdc613fe84bd5421",
           "uid": "KF_TRVSSB_S07_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S07_END_grid_p09.jpg",
+          "sha256": "ede1932d2bea556eaeae80b8733f461dc861c2d26d8f665dad5f41857c63568a",
+          "uid": "KF_TRVSSB_S07_END",
+          "from_storyboard_grid": 9
         }
       ],
       "edit_in": 0.88,
@@ -2936,6 +3062,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S08_START_c02.jpg",
           "sha256": "bd4e1b3f664687605dad1720e46ab99f65c620acc8bcb8308a48a8d3624545c7",
           "uid": "KF_TRVSSB_S08_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S08_START_grid_p09.jpg",
+          "sha256": "ede1932d2bea556eaeae80b8733f461dc861c2d26d8f665dad5f41857c63568a",
+          "uid": "KF_TRVSSB_S08_START",
+          "from_storyboard_grid": 9
         }
       ],
       "last_frame_candidates": [
@@ -2948,6 +3080,12 @@
           "path": "assets/frames/candidates/KF_TRVSSB_S08_END_c02.jpg",
           "sha256": "43224ac4faf31530f7aafd20cf0700086a21d7f77bb22007faab9bd543292e75",
           "uid": "KF_TRVSSB_S08_END"
+        },
+        {
+          "path": "assets/frames/candidates/KF_TRVSSB_S08_END_grid_p09.jpg",
+          "sha256": "ede1932d2bea556eaeae80b8733f461dc861c2d26d8f665dad5f41857c63568a",
+          "uid": "KF_TRVSSB_S08_END",
+          "from_storyboard_grid": 9
         }
       ],
       "edit_in": 3.42,
@@ -3119,41 +3257,6 @@
     }
   ],
   "session_log": [
-    {
-      "at": "2026-10-20T23:47:03",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T23:47:04",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T23:48:06",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T23:48:06",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T23:53:34",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
     {
       "at": "2026-10-20T23:53:35",
       "machine": "DESKTOP-HUP72C4",
@@ -3398,12 +3501,50 @@
       "command": "storyboard",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-21T08:39:49",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-storyboard",
+      "args": "--grid 3x3 --count 2",
+      "ok": false,
+      "error": "AttributeError: module 'studio.manifest' has no attribute 'project_prefix'"
+    },
+    {
+      "at": "2026-10-21T08:40:16",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-storyboard",
+      "args": "--grid 3x3 --count 2",
+      "ok": false,
+      "error": "AttributeError: module 'studio.manifest' has no attribute '_project_prefix'"
+    },
+    {
+      "at": "2026-10-21T08:42:53",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-storyboard",
+      "args": "--grid 3x3 --count 2",
+      "ok": false,
+      "error": "[ERROR] Ch?a c? ?nh Storyboard Grid t?i D:\\myProject\\AI-video\\projects\\t-rex-vs-spinosaurus-swamp-battle\\assets\\frames\\KF_TRVSSB_STORYBOARD_3X3.jpg ?? c?t (slice)."
+    },
+    {
+      "at": "2026-10-21T08:46:07",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-storyboard",
+      "args": "--grid 3x3 --harvest-only",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T08:48:38",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-storyboard",
+      "args": "--grid 3x3 --slice-only",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-21T02:27:37",
+    "at": "2026-10-21T08:48:38",
     "machine": "DESKTOP-HUP72C4",
-    "command": "storyboard"
+    "command": "flow-storyboard"
   },
   "flow_project_url": "https://flow.google.com/project/5e06c00b-e4b1-4460-b012-4454fd94fa25",
   "flow_jobs": [
@@ -4184,7 +4325,7 @@
   "storyboard": {
     "status": "pending",
     "built_hash": "4104a924f329a648",
-    "built_at": "2026-10-21T02:27:37",
+    "built_at": "2026-10-21T08:48:38",
     "approved_hash": "c960d6053b92ff50",
     "approved_at": "2026-10-20T23:53:35",
     "approved_by": "user"
@@ -4223,5 +4364,305 @@
       "VFX"
     ]
   },
-  "music_mood": "combat"
+  "music_mood": "combat",
+  "storyboard_grid": {
+    "rows": 3,
+    "cols": 3,
+    "panels": [
+      {
+        "index": 1,
+        "row": 1,
+        "col": 1,
+        "title": "shot_01 START - Spino Sail Wake",
+        "description": "1.5m water-level low-angle 3/4 shot past blurred foreground cypress roots; Spino's weathered 2-meter dorsal sail slices diagonally through black swamp water toward camera, burning log glow in background mist",
+        "targets": [
+          {
+            "shot": "shot_01",
+            "slot": "start"
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "row": 1,
+        "col": 2,
+        "title": "shot_01 END - Swamp Breach",
+        "description": "1.5m low-angle 3/4 shot; Spino erupts upward out of the churning black water, crocodile jaws wide open in a guttural roar as sheets of water cascade off its chest under steel-teal rain",
+        "targets": [
+          {
+            "shot": "shot_01",
+            "slot": "end"
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "row": 1,
+        "col": 3,
+        "title": "shot_02 - Rex Stalks & Log Stomp",
+        "description": "1.6m low-angle 3/4 medium close-up past foreground cypress trunk; Rex stalks forward through knee-deep mud, heavy wet foot crushing a burning fallen redwood log casting warm 2700K amber firelight on its underbelly",
+        "targets": [
+          {
+            "shot": "shot_02",
+            "slot": "start"
+          },
+          {
+            "shot": "shot_02b",
+            "slot": "start"
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "row": 2,
+        "col": 1,
+        "title": "shot_03 START - Predators Charge",
+        "description": "1.4m low-angle 3D depth shot; Rex on the left and Spino on the right charge toward each other across the flooded cypress clearing with jaws wide open as orange embers swirl over the black water",
+        "targets": [
+          {
+            "shot": "shot_02",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_02b",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_03",
+            "slot": "start"
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "row": 2,
+        "col": 2,
+        "title": "shot_03 END / shot_04 - Chest Clash",
+        "description": "1.4m low-angle 3D depth clash; Rex on the left and Spino on the right slam chest-to-chest in center clearing, sending a massive geyser of muddy black water exploding into the rain",
+        "targets": [
+          {
+            "shot": "shot_03",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_04",
+            "slot": "start"
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "row": 2,
+        "col": 3,
+        "title": "shot_04 END / shot_04b - OTS Claw Grapple",
+        "description": "1.6m Over-The-Shoulder 3D close-up behind Spino on the right; Spino clamps its long jaws over Rex's upper skull ridge on the left and raises its mud-caked hooked claws to slash Rex's snout",
+        "targets": [
+          {
+            "shot": "shot_04",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_04b",
+            "slot": "start"
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "row": 3,
+        "col": 1,
+        "title": "shot_05 - Burning Cypress Slam",
+        "description": "1.5m low-angle 3/4 impact shot; Spino on the right slashes Rex's snout and slams Rex's heavy flank into a burning cypress trunk on the left in a violent shower of glowing orange embers and bark splinters",
+        "targets": [
+          {
+            "shot": "shot_04b",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_05",
+            "slot": "start"
+          },
+          {
+            "shot": "shot_05",
+            "slot": "end"
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "row": 3,
+        "col": 2,
+        "title": "shot_06a/b/c - Neck Jaw Clamp",
+        "description": "1.6m close-up 3/4 jaw-clamp shot; Rex on the left ducks Spino's claw and clamps its massive serrated jaws deep into the side of Spino's wet slate-olive neck on the right, wrinkling the thick hide",
+        "targets": [
+          {
+            "shot": "shot_06a",
+            "slot": "start"
+          },
+          {
+            "shot": "shot_06a",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_06b",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_06c",
+            "slot": "start"
+          },
+          {
+            "shot": "shot_06c",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_07",
+            "slot": "start"
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "row": 3,
+        "col": 3,
+        "title": "shot_07/08 - Takedown & Victory Roar",
+        "description": "1.4m low-angle finale; Spino lies thrashing defeated in the churning black water on the right while Rex towers dominant on the left with its foot planted on a burning log, roaring victoriously into the night rain",
+        "targets": [
+          {
+            "shot": "shot_07",
+            "slot": "end"
+          },
+          {
+            "shot": "shot_08",
+            "slot": "start"
+          },
+          {
+            "shot": "shot_08",
+            "slot": "end"
+          }
+        ]
+      }
+    ],
+    "prompt": "Seamless edge-to-edge 3x3 cinematic storyboard contact sheet (9 equal 16:9 widescreen panels arranged in 3 rows of 3 columns, reading left-to-right from top row to bottom row, separated by thin 2px solid black divider lines, zero outer margin, no text, no numbers, no labels). Shared Cast across all 9 panels: Rex (reference 1: a massive 9-ton adult Tyrannosaurus rex with battle-scarred dark charcoal-brown pebbly hide, mud-splattered ochre underbelly, heavy muscular neck, broad bone-crushing snout, and deep-set wet dark amber reptile eyes catching warm firelight reflections); Spino (reference 2: a colossal 11-ton adult Spinosaurus with wet slate-olive crocodilian hide, a weathered 2-meter dark rust-and-charcoal dorsal sail, long narrow interlocking-toothed snout, and heavy three-clawed muscular forelimbs caked in swamp mud). Shared World & Lighting: a flooded prehistoric cypress forest sanctuary at night in a torrential downpour, knee-deep churning black mud water, fallen burning redwood trunks casting warm 2700K amber firelight on the mud, and cold 6500K steel-teal rain sheets falling through dark volumetric mist. Photorealistic ILM Jurassic World Dominion live-action creature cinematography, Panavision C-Series 35mm Anamorphic lens at f/2.0, low-key Chiaroscuro night rain lighting (warm 2700K amber ground firelight bounce vs cold 6500K steel-teal overhead rain rim light), wet subsurface-scattered reptile hide caked with mud, 180-degree shutter motion blur, raindrops on lens, 35mm Kodak Vision3 500T film grain. Panel 1 (Row 1 Left): 1.5m water-level low-angle 3/4 shot past blurred foreground cypress roots; Spino's weathered 2-meter dorsal sail slices diagonally through black swamp water toward camera, burning log glow in background mist. Panel 2 (Row 1 Center): 1.5m low-angle 3/4 shot; Spino erupts upward out of the churning black water, crocodile jaws wide open in a guttural roar as sheets of water cascade off its chest under steel-teal rain. Panel 3 (Row 1 Right): 1.6m low-angle 3/4 medium close-up past foreground cypress trunk; Rex stalks forward through knee-deep mud, heavy wet foot crushing a burning fallen redwood log casting warm 2700K amber firelight on its underbelly. Panel 4 (Row 2 Left): 1.4m low-angle 3D depth shot; Rex on the left and Spino on the right charge toward each other across the flooded cypress clearing with jaws wide open as orange embers swirl over the black water. Panel 5 (Row 2 Center): 1.4m low-angle 3D depth clash; Rex on the left and Spino on the right slam chest-to-chest in center clearing, sending a massive geyser of muddy black water exploding into the rain. Panel 6 (Row 2 Right): 1.6m Over-The-Shoulder 3D close-up behind Spino on the right; Spino clamps its long jaws over Rex's upper skull ridge on the left and raises its mud-caked hooked claws to slash Rex's snout. Panel 7 (Row 3 Left): 1.5m low-angle 3/4 impact shot; Spino on the right slashes Rex's snout and slams Rex's heavy flank into a burning cypress trunk on the left in a violent shower of glowing orange embers and bark splinters. Panel 8 (Row 3 Center): 1.6m close-up 3/4 jaw-clamp shot; Rex on the left ducks Spino's claw and clamps its massive serrated jaws deep into the side of Spino's wet slate-olive neck on the right, wrinkling the thick hide. Panel 9 (Row 3 Right): 1.4m low-angle finale; Spino lies thrashing defeated in the churning black water on the right while Rex towers dominant on the left with its foot planted on a burning log, roaring victoriously into the night rain. 100% consistent character anatomy, scale, and Chiaroscuro lighting across all 9 panels. Strictly 9 clean 16:9 frames in a 3x3 grid; no text, no captions, no numbers, no watermarks.",
+    "candidates": [
+      {
+        "path": "assets/frames/candidates/KF_TRVSSB_STORYBOARD_3X3_c01.jpg",
+        "sha256": "8292fb2fa3ebda08c4bdd7bd452bb7fe87d6ceae8235fc6e3c25b3c4d82a8201",
+        "uid": "KF_TRVSSB_STORYBOARD_3X3"
+      },
+      {
+        "path": "assets/frames/candidates/KF_TRVSSB_STORYBOARD_3X3_c02.jpg",
+        "sha256": "7119001b121af7119410e72fd24700540b60b63897bbf0019b02ebfd2761ad24",
+        "uid": "KF_TRVSSB_STORYBOARD_3X3"
+      }
+    ],
+    "raw_grid_path": "assets/frames/KF_TRVSSB_STORYBOARD_3X3.jpg",
+    "annotated_sheet_path": "output/storyboard_sheet.jpg",
+    "sliced_panels": [
+      {
+        "panel": 1,
+        "row": 1,
+        "col": 1,
+        "title": "shot_01 START - Spino Sail Wake",
+        "path": "assets/frames/grid_panels/PANEL_01.jpg",
+        "applied_to": [
+          "shot_01:start"
+        ]
+      },
+      {
+        "panel": 2,
+        "row": 1,
+        "col": 2,
+        "title": "shot_01 END - Swamp Breach",
+        "path": "assets/frames/grid_panels/PANEL_02.jpg",
+        "applied_to": [
+          "shot_01:end"
+        ]
+      },
+      {
+        "panel": 3,
+        "row": 1,
+        "col": 3,
+        "title": "shot_02 - Rex Stalks & Log Stomp",
+        "path": "assets/frames/grid_panels/PANEL_03.jpg",
+        "applied_to": [
+          "shot_02:start",
+          "shot_02b:start"
+        ]
+      },
+      {
+        "panel": 4,
+        "row": 2,
+        "col": 1,
+        "title": "shot_03 START - Predators Charge",
+        "path": "assets/frames/grid_panels/PANEL_04.jpg",
+        "applied_to": [
+          "shot_02:end",
+          "shot_02b:end",
+          "shot_03:start"
+        ]
+      },
+      {
+        "panel": 5,
+        "row": 2,
+        "col": 2,
+        "title": "shot_03 END / shot_04 - Chest Clash",
+        "path": "assets/frames/grid_panels/PANEL_05.jpg",
+        "applied_to": [
+          "shot_03:end",
+          "shot_04:start"
+        ]
+      },
+      {
+        "panel": 6,
+        "row": 2,
+        "col": 3,
+        "title": "shot_04 END / shot_04b - OTS Claw Grapple",
+        "path": "assets/frames/grid_panels/PANEL_06.jpg",
+        "applied_to": [
+          "shot_04:end",
+          "shot_04b:start"
+        ]
+      },
+      {
+        "panel": 7,
+        "row": 3,
+        "col": 1,
+        "title": "shot_05 - Burning Cypress Slam",
+        "path": "assets/frames/grid_panels/PANEL_07.jpg",
+        "applied_to": [
+          "shot_04b:end",
+          "shot_05:start",
+          "shot_05:end"
+        ]
+      },
+      {
+        "panel": 8,
+        "row": 3,
+        "col": 2,
+        "title": "shot_06a/b/c - Neck Jaw Clamp",
+        "path": "assets/frames/grid_panels/PANEL_08.jpg",
+        "applied_to": [
+          "shot_06a:start",
+          "shot_06a:end",
+          "shot_06b:end",
+          "shot_06c:start",
+          "shot_06c:end",
+          "shot_07:start"
+        ]
+      },
+      {
+        "panel": 9,
+        "row": 3,
+        "col": 3,
+        "title": "shot_07/08 - Takedown & Victory Roar",
+        "path": "assets/frames/grid_panels/PANEL_09.jpg",
+        "applied_to": [
+          "shot_07:end",
+          "shot_08:start",
+          "shot_08:end"
+        ]
+      }
+    ]
+  }
 }

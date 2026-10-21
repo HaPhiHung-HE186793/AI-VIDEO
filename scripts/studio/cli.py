@@ -1045,6 +1045,114 @@ def cmd_storyboard(args, cfg):
     out(res)
 
 
+def cmd_flow_storyboard(args, cfg):
+    """T?o 1 ?nh Storyboard Grid t?ng h?p (3x3 ho?c 2x2) tr?n Google Flow (0 credit) r?i t? ??ng c?t th?nh frame l? 16:9/9:16."""
+    from . import flow as fl
+
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    dims = (args.grid or "3x3").lower().split("x")
+    cols, rows = (int(dims[0]), int(dims[1])) if len(dims) == 2 and dims[0].isdigit() and dims[1].isdigit() else (3, 3)
+
+    panels = storyboard.default_grid_panels(m, rows=rows, cols=cols)
+    grid_prompt = prompts.build_storyboard_grid_prompt(m, rows=rows, cols=cols, panels=panels)
+    sb_grid = m.setdefault("storyboard_grid", {})
+    sb_grid["rows"] = rows
+    sb_grid["cols"] = cols
+    sb_grid["prompt"] = grid_prompt
+    sb_grid["panels"] = panels
+    mf.save(proj, m)
+
+    prefix = mf.project_code(m)
+    uid = f"KF_{prefix}_STORYBOARD_{cols}X{rows}"
+    canonical = proj / "assets" / "frames" / f"{uid}.jpg"
+    cand_dir = proj / "assets" / "frames" / "candidates"
+    cand_dir.mkdir(parents=True, exist_ok=True)
+    incoming = proj / "assets" / "frames" / "_incoming"
+
+    if not args.slice_only:
+        aspect = m.get("aspect_ratio", "16:9")
+        model = args.model or cfg["models"]["image"]["pro"]
+        stage_dir = proj / ".flow" / "staged"
+        ref_files = []
+        for c in m.get("characters", []):
+            for rp in c.get("reference_images", [])[:2]:
+                fp = proj / rp
+                if fp.exists() and fp not in ref_files:
+                    ref_files.append(fp)
+        ref_files = ref_files[:4]
+
+        harvested_files = []
+
+        def _on_grid_row(r):
+            if "files" not in r:
+                return
+            cands = sb_grid.setdefault("candidates", [])
+            for fpath in r["files"]:
+                sha = media.sha256_file(fpath)
+                dst = cand_dir / f"{uid}_c{len(cands) + 1:02d}{Path(fpath).suffix}"
+                Path(fpath).replace(dst)
+                cands.append({"path": rel(proj, dst), "sha256": sha, "uid": uid})
+                harvested_files.append(dst)
+            if harvested_files:
+                shutil.copy2(harvested_files[0], canonical)
+                qa.strip_image_letterbox(canonical, cfg["qa"]["letterbox_luma"])
+                sb_grid["raw_grid_path"] = rel(proj, canonical)
+            mf.save(proj, m)
+
+        with fl.Flow(cfg["browser"]["debug_port"], m.get("flow_project_url", ""), download_dir=incoming) as f:
+            if not getattr(args, "harvest_only", False):
+                if not m.get("flow_project_url"):
+                    m["flow_project_url"] = f.new_project()
+                    mf.save(proj, m)
+                f.configure(kind="image", aspect=aspect, model=model, count=args.count)
+                f.clear_prompt()
+                for rf in ref_files:
+                    f.attach_file(rf, stage_dir=stage_dir)
+                f.type_prompt(grid_prompt)
+                composed_shot = f.screenshot(proj / ".flow" / "storyboard_grid_compose.png")
+                if args.dry_run:
+                    out({"dry_run": True, "uid": uid, "grid": f"{cols}x{rows}", "prompt": grid_prompt, "composed": composed_shot})
+                    return
+                f.submit()
+                f.wait(4.0)
+            f.harvest_rows(
+                "image",
+                {"__storyboard_grid__": grid_prompt},
+                incoming,
+                only_shots={"__storyboard_grid__"},
+                quota={"__storyboard_grid__": 1},
+                wait_done=True,
+                wait_timeout=args.wait_timeout,
+                on_row=_on_grid_row,
+            )
+
+    if not canonical.exists():
+        sys.exit(f"[ERROR] Ch?a c? ?nh Storyboard Grid t?i {canonical} ?? c?t (slice).")
+
+    slice_res = storyboard.slice_storyboard_grid(
+        canonical,
+        proj,
+        m,
+        rows=rows,
+        cols=cols,
+        apply_to_shots=not args.no_apply_to_shots,
+        letterbox_luma=cfg["qa"]["letterbox_luma"],
+    )
+    sb_res = storyboard.build(proj, m, cfg, credits_per_shot=cfg["credits"].get("per_shot_estimate", 20))
+    mf.save(proj, m)
+    out({
+        "uid": uid,
+        "grid": f"{cols}x{rows}",
+        "raw_grid": slice_res["raw_grid"],
+        "annotated_sheet": slice_res["annotated_sheet"],
+        "candidates": [c["path"] for c in sb_grid.get("candidates", [])],
+        "sliced_panels": slice_res["panels"],
+        "storyboard_html": sb_res["html"],
+        "next": "Ng??i d?ng xem output/storyboard_sheet.jpg (1 ?nh t?ng h?p) ? storyboard-approve ? flow-generate --kind video",
+    })
+
+
 def cmd_storyboard_approve(args, cfg):
     proj = proj_dir_of(args)
     m = mf.load(proj)
@@ -1859,6 +1967,17 @@ def build_parser() -> argparse.ArgumentParser:
     sp = add("storyboard-approve", cmd_storyboard_approve, "Người dùng duyệt storyboard hiện tại (mở khóa tạo video)")
     project_arg(sp)
     sp.add_argument("--by", default="user")
+
+    sp = add("flow-storyboard", cmd_flow_storyboard, "T?o 1 ?nh Storyboard Grid t?ng h?p (3x3/2x2) tr?n Flow (0 credit) v? t? c?t th?nh frame l?")
+    project_arg(sp)
+    sp.add_argument("--grid", default="3x3", help="K?ch th??c l??i Storyboard trong 1 ?nh, vd: 3x3 (9 ?) ho?c 2x2 (4 ?)")
+    sp.add_argument("--count", type=int, default=2, help="S? ph??ng ?n ?nh Storyboard t?o tr?n Flow (x1-x4)")
+    sp.add_argument("--model", default="")
+    sp.add_argument("--slice-only", action="store_true", help="Ch? c?t l?i t? ?nh Storyboard Grid ?? t?i s?n")
+    sp.add_argument("--harvest-only", action="store_true", help="Ch? t?i ?nh Storyboard Grid ?? t?o tr?n Flow r?i c?t")
+    sp.add_argument("--no-apply-to-shots", action="store_true", help="Ch? xu?t ra grid_panels/, kh?ng ghi ?? first_frame_path/last_frame_path")
+    sp.add_argument("--dry-run", action="store_true")
+    sp.add_argument("--wait-timeout", type=int, default=600)
 
     sp = add("flow-generate", cmd_flow_generate, "Tự tạo frame (Nano Banana) hoặc video (Veo) trên Google Flow")
     project_arg(sp)

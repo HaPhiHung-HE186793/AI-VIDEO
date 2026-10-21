@@ -593,7 +593,11 @@ class Flow:
             if quota and targets and all(quota.get(s, 1) <= 0 for s in targets):
                 break  # đã đủ mọi hàng cần tải — không quét tiếp lưới cũ
             stall = 0 if progressed else stall + 1
-            if stall >= 3 and wait_done and (time.time() - t0 < wait_timeout) and self.progress():
+            pending_quota = bool(quota and targets and any(quota.get(s, 0) > 0 for s in targets))
+            if stall >= 3 and wait_done and (time.time() - t0 < wait_timeout) and (
+                self.progress() or (pending_quota and time.time() - t0 < min(wait_timeout, 120))
+            ):
+                done_rows.clear()
                 # Vẫn còn hàng đang render (%) trên đầu lưới → cuộn về đầu trang chờ cuốn chiếu
                 self.page.evaluate(JS_SCROLLER, None)
                 self.wait(8.0)

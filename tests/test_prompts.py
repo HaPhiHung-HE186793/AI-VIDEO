@@ -513,3 +513,48 @@ def test_ilm_3d_spatial_modes_contact_physics_and_fantasy_trap_linter(cfg):
     shot["veo_prompt"] += " Rex has glowing amber eyes under blue-violet lightning."
     codes_trap = {f["code"] for f in prompts.lint_shot(proj, shot, cfg)}
     assert "FANTASY_LIGHTING_TRAP" in codes_trap
+
+
+
+def test_storyboard_grid_prompt_and_auto_slicer(tmp_path, cfg):
+    import numpy as np
+    from scripts.studio import media, storyboard as sb
+
+    cv2 = media.cv2_module()
+    proj_dir = tmp_path / "demo_grid"
+    proj_dir.mkdir(parents=True, exist_ok=True)
+    proj = {
+        "project_name": "Demo Grid",
+        "project_slug": "demo-grid",
+        "aspect_ratio": "16:9",
+        "style_line": "Photorealistic ILM live-action creature cinematography",
+        "characters": [
+            {"id": "CHAR_A", "name": "Rex", "short_name": "Rex", "identity_line": "9-ton adult Tyrannosaurus rex"},
+            {"id": "CHAR_B", "name": "Spino", "short_name": "Spino", "identity_line": "11-ton adult Spinosaurus"},
+        ],
+        "environments": [{"id": "ENV_1", "name": "Swamp", "identity_line": "flooded cypress swamp at night"}],
+        "shots": [
+            {"shot_id": f"shot_{i:02d}", "order": i, "generation_mode": "first_last",
+             "camera": "1.5m low-angle 35mm lens", "start_action": f"Start action {i}", "end_action": f"End action {i}"}
+            for i in range(1, 5)
+        ],
+    }
+    panels = sb.default_grid_panels(proj, rows=2, cols=2)
+    assert len(panels) == 4
+    gp = prompts.build_storyboard_grid_prompt(proj, rows=2, cols=2, panels=panels)
+    assert "Seamless edge-to-edge 2x2 cinematic storyboard contact sheet" in gp
+    assert "Panel 1 (Row 1 Left):" in gp
+    assert "Panel 4 (Row 2 Right):" in gp
+
+    # Create a synthetic 2x2 grid image (1920x1080) with black divider lines at x=960, y=540
+    canvas = np.full((1080, 1920, 3), 90, dtype=np.uint8)
+    canvas[:, 958:962] = 0
+    canvas[538:542, :] = 0
+    grid_file = proj_dir / "grid_2x2.jpg"
+    cv2.imwrite(str(grid_file), canvas)
+
+    res = sb.slice_storyboard_grid(grid_file, proj_dir, proj, rows=2, cols=2, apply_to_shots=True)
+    assert len(res["panels"]) == 4
+    assert (proj_dir / res["annotated_sheet"]).exists()
+    p1 = cv2.imread(str(proj_dir / res["panels"][0]["path"]))
+    assert p1.shape == (1080, 1920, 3)

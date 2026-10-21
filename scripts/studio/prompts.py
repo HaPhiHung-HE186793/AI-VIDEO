@@ -1005,3 +1005,56 @@ def route_model(score: int, cfg: dict) -> dict:
     tier = "quality" if score >= cfg["credits"]["quality_threshold"] else "fast"
     m = cfg["models"]["video"][tier]
     return {"tier": tier, "label": m["label"], "credits": m["credits"]}
+
+
+def build_storyboard_grid_prompt(project: dict, rows: int = 3, cols: int = 3, panels: list = None) -> str:
+    """D?ng prompt 1 ?nh Storyboard Grid t?ng h?p (vd: 3x3 = 9 ? ho?c 2x2 = 4 ? c?ng t? l? khung h?nh d? ?n)."""
+    from . import storyboard as sb
+
+    chars = mf.characters_by_id(project)
+    envs = mf.environments_by_id(project)
+    aspect = project.get("aspect_ratio", "16:9")
+    n_panels = rows * cols
+    if not panels:
+        panels = sb.default_grid_panels(project, rows=rows, cols=cols)
+
+    header = (
+        f"Seamless edge-to-edge {cols}x{rows} cinematic storyboard contact sheet "
+        f"({n_panels} equal {aspect} widescreen panels arranged in {rows} rows of {cols} columns, "
+        f"reading left-to-right from top row to bottom row, separated by thin 2px solid black divider lines, "
+        f"zero outer margin, no text, no numbers, no labels)."
+    )
+
+    cast_bits = []
+    for idx, cid in enumerate(chars, 1):
+        c = chars[cid]
+        cname = display_name(c, cid)
+        id_line = (c.get("identity_line") or "").strip().rstrip(".")
+        if id_line:
+            cast_bits.append(f"{cname} (reference {idx}: {id_line})")
+    cast_header = f"Shared Cast across all {n_panels} panels: " + "; ".join(cast_bits) + "." if cast_bits else ""
+
+    env_line = ""
+    if envs:
+        first_env = next(iter(envs.values()))
+        env_line = (first_env.get("identity_line") or first_env.get("name") or "").strip().rstrip(".")
+    style_line = (project.get("style_line") or project.get("visual_style") or "").strip().rstrip(".")
+    world_header = f"Shared World & Lighting: {env_line}. {style_line}." if env_line or style_line else ""
+
+    col_names = {1: ["Center"], 2: ["Left", "Right"], 3: ["Left", "Center", "Right"], 4: ["Col 1", "Col 2", "Col 3", "Col 4"]}
+    c_labels = col_names.get(cols, [f"Col {i+1}" for i in range(cols)])
+
+    panel_lines = []
+    for p in panels[:n_panels]:
+        r_idx = int(p.get("row", (p["index"] - 1) // cols + 1))
+        c_idx = int(p.get("col", (p["index"] - 1) % cols + 1))
+        c_lbl = c_labels[c_idx - 1] if 1 <= c_idx <= len(c_labels) else f"Col {c_idx}"
+        desc = (p.get("description") or "").strip().rstrip(".")
+        panel_lines.append(f"Panel {p['index']} (Row {r_idx} {c_lbl}): {desc}.")
+
+    footer = (
+        f"100% consistent character anatomy, scale, and Chiaroscuro lighting across all {n_panels} panels. "
+        f"Strictly {n_panels} clean {aspect} frames in a {cols}x{rows} grid; no text, no captions, no numbers, no watermarks."
+    )
+    parts = [header, cast_header, world_header, " ".join(panel_lines), footer]
+    return re.sub(r"\s{2,}", " ", " ".join(x for x in parts if x)).strip()

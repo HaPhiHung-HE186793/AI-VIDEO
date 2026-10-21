@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `t-rex-vs-spinosaurus-swamp-battle` — thư mục `projects/t-rex-vs-spinosaurus-swamp-battle/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/5e06c00b-e4b1-4460-b012-4454fd94fa25
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T02:27:37 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
+- **Cập nhật lần cuối:** 2026-10-21T08:48:38 trên máy **DESKTOP-HUP72C4** (lệnh `flow-storyboard`)
 - **Storyboard:** đã sửa sau khi duyệt (cần duyệt lại: 4104a924f329a648)
 
 ## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
@@ -95,6 +95,11 @@ python scripts/studio_helper.py flow-harvest --project t-rex-vs-spinosaurus-swam
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-21 08:48 | DESKTOP-HUP72C4 | `flow-storyboard --grid 3x3 --slice-only` | ok |
+| 10-21 08:46 | DESKTOP-HUP72C4 | `flow-storyboard --grid 3x3 --harvest-only` | ok |
+| 10-21 08:42 | DESKTOP-HUP72C4 | `flow-storyboard --grid 3x3 --count 2` | ❌ [ERROR] Ch?a c? ?nh Storyboard Grid t?i D:\myProject\AI-video\projects\t-rex-vs- |
+| 10-21 08:40 | DESKTOP-HUP72C4 | `flow-storyboard --grid 3x3 --count 2` | ❌ AttributeError: module 'studio.manifest' has no attribute '_project_prefix' |
+| 10-21 08:39 | DESKTOP-HUP72C4 | `flow-storyboard --grid 3x3 --count 2` | ❌ AttributeError: module 'studio.manifest' has no attribute 'project_prefix' |
 | 10-21 02:27 | DESKTOP-HUP72C4 | `storyboard ` | ok |
 | 10-21 02:26 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_06c --wait` | ok |
 | 10-21 02:25 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_06c --count 2` | ok |
@@ -105,8 +110,3 @@ python scripts/studio_helper.py flow-harvest --project t-rex-vs-spinosaurus-swam
 | 10-21 02:16 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
 | 10-21 02:15 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --all` | ok |
 | 10-21 02:11 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --all` | ok |
-| 10-21 02:07 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-21 02:07 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --wait` | ok |
-| 10-21 01:42 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_01,shot_02,shot_04b --count 2` | ok |
-| 10-21 01:41 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --all` | ok |
-| 10-21 01:39 | DESKTOP-HUP72C4 | `storyboard ` | ok |
