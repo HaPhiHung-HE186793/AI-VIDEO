@@ -1,6 +1,6 @@
 # Bảng prompt cho Google Flow — T-Rex vs Spinosaurus Swamp Battle
 
-Tạo lúc 2026-10-21 09:22. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.
+Tạo lúc 2026-10-21 09:44. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.
 
 ## shot_01 — Omni 1.1 Flash (độ khó 3/10)
 
