@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `cherno-alpha-vs-godzilla` — thư mục `projects/cherno-alpha-vs-godzilla/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/eba75017-1af5-48e6-b95b-1b0d6294c221
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T21:03:20 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
+- **Cập nhật lần cuối:** 2026-10-21T21:28:45 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
@@ -152,6 +152,13 @@ python scripts/studio_helper.py storyboard-approve --project cherno-alpha-vs-god
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-21 21:28 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 21:27 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_06,shot_07,shot_08 --wait` | ok |
+| 10-21 21:25 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_06,shot_07,shot_08 --count 2` | ok |
+| 10-21 21:23 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_06,shot_07 --wait` | ok |
+| 10-21 21:22 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_06,shot_07 --count 2` | ok |
+| 10-21 21:19 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_05,shot_06 --wait` | ok |
+| 10-21 21:18 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_05,shot_06 --count 2` | ok |
 | 10-21 21:03 | DESKTOP-HUP72C4 | `storyboard ` | ok |
 | 10-21 21:02 | DESKTOP-HUP72C4 | `storyboard ` | ok |
 | 10-21 20:59 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_05 --wait` | ok |
@@ -160,10 +167,3 @@ python scripts/studio_helper.py storyboard-approve --project cherno-alpha-vs-god
 | 10-21 20:55 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
 | 10-21 20:55 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
 | 10-21 20:20 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-21 20:19 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_04 --wait` | ok |
-| 10-21 20:18 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_04` | ok |
-| 10-21 20:15 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_03,shot_04 --wait` | ok |
-| 10-21 20:14 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_01,shot_02,shot_03,shot_04` | ok |
-| 10-21 20:13 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
-| 10-21 20:13 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
-| 10-21 20:00 | DESKTOP-HUP72C4 | `storyboard ` | ok |

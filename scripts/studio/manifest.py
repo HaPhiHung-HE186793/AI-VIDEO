@@ -557,6 +557,8 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
 
     for p in shot.get("reference_images", []):
         push(p)
+    if shot.get("strict_reference_images") and ordered:
+        return ordered[:limit] if limit else ordered
 
     # Nếu shot có ô tham chiếu bố cục cắt từ Storyboard Grid và đang cần nâng cấp lên Hero Frame 1080p
     if shot.get("grid_panel_start_path") and shot.get("use_grid_layout_ref", True):
