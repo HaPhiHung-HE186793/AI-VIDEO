@@ -423,6 +423,37 @@ def _build_director_timeline(shot: dict, chars: dict = None) -> str:
     return "Choreography timeline: " + " ".join(blocks)
 
 
+def strip_transient_vfx_for_keyframe(text: str) -> str:
+    """Khử các hiệu ứng hạt thoáng qua (giọt nước nhỏ thành dòng từ cằm, vòng sóng âm lơ lửng) khỏi prompt Keyframe tĩnh.
+
+    Nếu đưa 'water droplets dripping from its chin' hoặc 'concentric acoustic shockwave rings' vào ảnh tĩnh START/END,
+    Nano Banana sẽ vẽ các tia nước liền mạch hoặc vòng tròn trắng lơ lửng; khi vào Veo `first_last`, mô hình buộc phải
+    giữ nguyên tia nước đó suốt 3–4 giây như vòi nước tĩnh. Hàm này chuyển chúng về trạng thái bề mặt bền vững.
+    """
+    s = (text or "").strip()
+    if not s:
+        return ""
+    s = re.sub(
+        r"\bwater\s+droplets\s+dripping\s+from\s+(?:its|his|her|the)?\s*([a-z]+)(?:\s+into\s+[^,.;]+)?",
+        r"wet glistening \1 above the rippling water surface",
+        s,
+        flags=re.I,
+    )
+    s = re.sub(
+        r"\b(?:dripping|pouring)\s+(?:streams?\s+of\s+)?water\s+from\s+(?:its|his|her|the)?\s*([a-z]+)",
+        r"wet glistening \1",
+        s,
+        flags=re.I,
+    )
+    s = re.sub(
+        r"\b(?:concentric\s+)?(?:cymatic\s+|acoustic\s+|sound[- ]?wave\s+|shockwave\s+)+(?:rings|circles|waves)\b[^,.;]*",
+        "natural surface ripples and mist",
+        s,
+        flags=re.I,
+    )
+    return s
+
+
 def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
     """Biên dịch chỉ dẫn dàn dựng chi tiết cho từng ảnh Keyframe (`start_staging` / `end_staging`)."""
     key = "start_staging" if slot == "start" else "end_staging"
@@ -443,7 +474,7 @@ def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
     if isinstance(subj_poses, dict) and subj_poses:
         p_list = []
         for cid, pose_txt in subj_poses.items():
-            clean_p = (str(pose_txt or "")).strip(" .")
+            clean_p = strip_transient_vfx_for_keyframe((str(pose_txt or "")).strip(" ."))
             if not clean_p:
                 continue
             c_name = display_name(chars.get(cid, {}), cid)
@@ -453,10 +484,10 @@ def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
                 p_list.append(f"{c_name}: {clean_p}")
         if p_list:
             parts.append(_sentence(f"Character Staging & Anatomy: {' | '.join(p_list)}"))
-    contact_phys = (stg.get("contact_physics") or "").strip(" .")
+    contact_phys = strip_transient_vfx_for_keyframe((stg.get("contact_physics") or "").strip(" ."))
     if contact_phys:
         parts.append(_sentence(f"Physical Contact & Mass Coupling: {contact_phys}"))
-    vfx_env = (stg.get("vfx_environment") or stg.get("vfx") or "").strip(" .")
+    vfx_env = strip_transient_vfx_for_keyframe((stg.get("vfx_environment") or stg.get("vfx") or "").strip(" ."))
     if vfx_env:
         parts.append(_sentence(f"Environment & 3D VFX State: {vfx_env}"))
     return " ".join(parts)
@@ -761,7 +792,7 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
         shot.get("camera") or shot.get("camera_shot") or "",
         flags=re.I,
     ).strip(" ,.")
-    pose = _clean_kinematic_action(shot.get("start_action") or shot.get("action") or "")
+    pose = strip_transient_vfx_for_keyframe(_clean_kinematic_action(shot.get("start_action") or shot.get("action") or ""))
     cam_head = (cam or shot.get("camera") or shot.get("camera_shot") or "").rstrip(".")
     parts = [_sentence(f"{cam_head}: {pose}" if cam_head and pose else (cam_head or pose))]
     if shot.get("grid_panel_start_path") and shot.get("use_grid_layout_ref", True):
@@ -804,7 +835,7 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
 
-    end_pose = _clean_kinematic_action(shot.get("end_action") or shot.get("action") or "")
+    end_pose = strip_transient_vfx_for_keyframe(_clean_kinematic_action(shot.get("end_action") or shot.get("action") or ""))
     cam_raw = shot.get("camera") or shot.get("camera_shot") or ""
     impact_re = re.compile(
         r"\b(slam|slams|crash|crashes|shatter|shatters|collapse|collapses|knock|knocks|pin|pins|crush|crushes|"
@@ -874,7 +905,10 @@ def effective_negative_prompt(project: dict, shot: dict) -> str:
     if not items[0] and project.get("genre") in GENRE_PROFILES:
         items[0] = GENRE_PROFILES[project["genre"]].get("negative_prompt", "")
     if shot.get("generation_mode") == "first_last":
-        items.append("cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping")
+        items.append(
+            "cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping, "
+            "film strip border, kodak frame text, concentric sound rings, cartoon shockwave circles"
+        )
     return ", ".join(x.strip(" ,") for x in items if x and x.strip(" ,"))
 
 
@@ -1167,6 +1201,36 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
             add("warn", "FIRST_LAST_CAMERA_MISMATCH",
                 "veo_prompt có lệnh push-in/pull-back/zoom nhưng Keyframe START/END cùng cỡ cảnh (dynamic_camera=False) "
                 "→ dễ gây chồng mờ (dissolve) ở giây thứ 6. Chạy lại `build-prompts` để đồng bộ hoặc đặt `dynamic_camera: true`.")
+        start_poses = (shot.get("start_staging") or {}).get("subject_poses") or {}
+        end_poses = (shot.get("end_staging") or {}).get("subject_poses") or {}
+        for cid, sp_txt in start_poses.items():
+            ep_txt = end_poses.get(cid, "")
+            if not sp_txt or not ep_txt:
+                continue
+            sp_l, ep_l = str(sp_txt).lower(), str(ep_txt).lower()
+            s_dir = "right" if re.search(r"\bfacing\s+(?:3/4\s+|sharply\s+)?right\b", sp_l) else (
+                "left" if re.search(r"\bfacing\s+(?:3/4\s+|sharply\s+)?left\b", sp_l) else ""
+            )
+            e_dir = "right" if re.search(r"\bfacing\s+(?:3/4\s+|sharply\s+)?right\b", ep_l) else (
+                "left" if re.search(r"\bfacing\s+(?:3/4\s+|sharply\s+)?left\b", ep_l) else ""
+            )
+            if s_dir and e_dir and s_dir != e_dir and not shot.get("allow_torso_turn"):
+                add("warn", "FIRST_LAST_TORSO_FLIP",
+                    f"Chủ thể {cid} đổi hướng mặt từ '{s_dir}' ở start_staging sang '{e_dir}' ở end_staging trong chế độ `first_last` "
+                    "→ Veo 3.1 sẽ bị xoay/vặn thân phi vật lý ở giữa clip. Giữ cùng hướng trục thân hoặc cắt sang shot mới.")
+
+    cam_lens_txt = (shot.get("camera") or shot.get("camera_shot") or "").lower()
+    act_full_txt = f"{shot.get('action', '')} {shot.get('end_action', '')}".lower()
+    if (
+        re.search(r"\b(14mm|16mm|18mm|20mm|24mm|28mm|wide\s+shot|extreme\s+wide)\b", cam_lens_txt)
+        and re.search(
+            r"\b(jaws?\s+clamp(?:ed|s|ing)?|clamp(?:ed|s|ing)?\s+(?:its|his|her|the)?\s*jaws?|neck\s+clamp|teeth\s+sink(?:ing|s)?|bite(?:s|ing)?\s+deep)\b",
+            act_full_txt,
+        )
+    ):
+        add("info", "BITE_IMPACT_WIDE_LENS",
+            "Cảnh mô tả cú cắn/ngoạm sâu vào da thịt nhưng đang dùng ống kính góc rộng (24mm–28mm / Wide) "
+            "→ vùng răng tiếp xúc quá nhỏ (<5% khung hình) dễ gây cảm giác 'trượt bề mặt'. Nên dùng 50mm–85mm Close-Up để thấy rõ răng cắm ngập vào cơ cổ.")
     if mode == "extend" and not shot.get("extends"):
         add("error", "MISSING_EXTEND_PARENT", "mode=extend cần trường `extends` (shot_id clip gốc).")
 

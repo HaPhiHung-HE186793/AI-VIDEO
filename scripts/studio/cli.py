@@ -1858,8 +1858,10 @@ def cmd_auto_select(args, cfg):
         in_beat = s.get("beat") in bt.beats_by_id(m)
         is_chained = bool(s.get("chain_from_prev")) or next_chained.get(s["shot_id"], False)
         pad = 0.35 if is_chained else 0.15
+        is_finale = bool(ordered) and s["shot_id"] == ordered[-1]["shot_id"]
         d = takes.choose_take(s, need, cfg, pref=round(need + pad, 2) if in_beat else None,
-                              chain_next=next_chained.get(s["shot_id"], False), proj_dir=proj)
+                              chain_next=next_chained.get(s["shot_id"], False), proj_dir=proj,
+                              is_finale=is_finale)
         if d.get("retake"):
             rounds = sum(1 for j in m.get("flow_jobs", []) if j["shot"] == s["shot_id"] and j["kind"] == "video")
             cap = cfg["credits"].get("max_retakes_per_shot", 2)

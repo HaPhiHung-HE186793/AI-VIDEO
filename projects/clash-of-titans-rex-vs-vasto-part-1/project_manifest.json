@@ -229,7 +229,7 @@
       "crop_focus_x": 0.45,
       "veo_prompt": "1.5m low-angle 35mm Anamorphic tracking shot from behind a wet fern frond. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Choreography timeline: [0.0s-3.0s Peaceful Canyon Stroll] Camera: 35mm low-angle steady frame. Action: Rex takes two slow, heavy footsteps forward along the stream bank with head lowered. VFX/Env: Gentle water ripples expand around its ankles under golden twilight beams. SFX: Calm flowing stream water and deep rhythmic footsteps. [3.0s-8.0s Sudden Alert] Camera: Subtle focus rack to Rex's amber eye. Action: Rex halts abruptly, lifts its massive rectangular skull high, and stares intently toward the right. VFX/Env: Warm breath mist curls from its nostrils into the cool canyon air. SFX: Distant snapping tree branch followed by a low guttural rumble. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: flowing forest stream, heavy rhythmic footsteps on wet gravel, sudden snapping branch, low guttural inhale. No subtitles, no on-screen text.",
       "first_frame_prompt": "1.5m low-angle 35mm Anamorphic: Rex walks calmly from left to right along the shallow basalt stream, head lowered to sniff the water. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Camera & Optics: 1.5m low-angle 35mm lens, shallow depth of field; foreground scale anchor: blurred wet redwood fern fronds framing the bottom-left corner. Character Staging & Anatomy: Rex: walking leisurely in left-center profile, snout dipped near the rippling stream surface. Physical Contact & Mass Coupling: heavy three-toed feet pressing into wet basalt gravel with gentle water ripples. Environment & 3D VFX State: golden dusk sunbeams filtering through ancient sequoias and drifting blue-teal mist. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.",
-      "last_frame_prompt": "Final state at the end of the shot: Rex stands alert in the shallow stream with head raised high and amber eyes locked sharply to the right, nostrils flaring. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Camera & Optics: 1.5m low-angle 35mm lens, identical framing; foreground scale anchor: blurred wet redwood fern fronds in the bottom-left corner. Character Staging & Anatomy: Rex: planted firmly in left-center with neck raised, head turned 3/4 facing right, mouth closed, amber eyes narrowed. Physical Contact & Mass Coupling: water droplets dripping from its chin into the calm stream. Environment & 3D VFX State: concentric ripples spreading across the basalt stream. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Rex stands alert in the shallow stream with head raised high and amber eyes locked sharply to the right, nostrils flaring. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Camera & Optics: 1.5m low-angle 35mm lens, identical framing; foreground scale anchor: blurred wet redwood fern fronds in the bottom-left corner. Character Staging & Anatomy: Rex: planted firmly in left-center with neck raised, head turned 3/4 facing right, mouth closed, amber eyes narrowed. Physical Contact & Mass Coupling: wet glistening chin above the rippling water surface. Environment & 3D VFX State: concentric ripples spreading across the basalt stream. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
         "reasons": [
@@ -247,83 +247,41 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S01_START_c01.jpg",
-          "sha256": "72a8c55ccc0d12cd296c67909ae357890bef9eac14f71f043f18cb0d33838906",
-          "uid": "KF_CTRV1_S01_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S01_START_c02.jpg",
-          "sha256": "98e8c6470c5a7c836459d9ca98cd9d8bcaed0dd26e6b29cad1907f6e7e5c5c65",
-          "uid": "KF_CTRV1_S01_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S01_END_c01.jpg",
-          "sha256": "98e2bd9a842c1907df6d224de287581a95dc0b9880a4b8d424d2b3e6f177bdb7",
-          "uid": "KF_CTRV1_S01_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S01_END_c02.jpg",
-          "sha256": "7e304a19bd752af31ffce5a13cc0c5cc09387ae0a5abd26424281c983dbf8215",
-          "uid": "KF_CTRV1_S01_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 2.1,
-        "hist_corr": 0.981,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_01_take01.mp4",
           "sha256": "f975cd91ea729506de9100ef3ee45be63bb5f89dc5930de00228a3cae7d0dd6c",
-          "registered_at": "2026-10-21T10:19:43",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.5m low-angle 35mm Anamorphic tracking shot from behind a wet fern frond. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Choreography timeline: [0.0s-3.0s Peaceful Canyon Stroll] Camera: 35mm low-angle steady frame. Action: Rex takes two slow, heavy footsteps forward along the stream bank with head lowered. VFX/Env: Gentle water ripples expand around its ankles under golden twilight beams. SFX: Calm flowing stream water and deep rhythmic footsteps. [3.0s-8.0s Sudden Alert] Camera: Subtle focus rack to Rex's amber eye. Action: Rex halts abruptly, lifts its massive rectangular skull high, and stares intently toward the right. VFX/Env: Warm breath mist curls from its nostrils into the cool canyon air. SFX: Distant snapping tree branch followed by a low guttural rumble. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: flowing forest stream, heavy rhythmic footsteps on wet gravel, sudden snapping branch, low guttural inhale. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S01_START.jpg",
-              "sha256": "72a8c55ccc0d12cd296c67909ae357890bef9eac14f71f043f18cb0d33838906"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S01_END.jpg",
-              "sha256": "7e304a19bd752af31ffce5a13cc0c5cc09387ae0a5abd26424281c983dbf8215"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
               "identity_score_1_10": 9,
               "prompt_adherence_1_10": 9,
               "aesthetic_1_10": 9,
-              "defects": [],
+              "defects": [
+                {
+                  "rule": "objects",
+                  "severity": "minor",
+                  "t_from": 5.2,
+                  "t_to": 7.8,
+                  "note": "Static water streams hanging from chin between t=5.5s and t=7.5s due to end-frame droplets."
+                }
+              ],
               "overall_score_1_10": 9,
               "verdict": "pass",
-              "notes": "Rex bronze-brown hide and smooth back match reference 100%; natural heavy footsteps 0.5-3.0s followed by sharp head-raise looking right at 3.5-7.5s with subtle breath vapor.",
+              "notes": "Rex bronze-brown hide and smooth back match reference 100%; natural heavy footsteps 0.5-3.0s followed by sharp head-raise looking right at 3.5-5.0s with subtle breath vapor.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -331,35 +289,16 @@
           "take": 2,
           "path": "assets/clips/takes/shot_01_take02.mp4",
           "sha256": "222e77d5fc4fcde0ce88026f71d057351546049685a7280763aec521986b60f1",
-          "registered_at": "2026-10-21T10:19:44",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.5m low-angle 35mm Anamorphic tracking shot from behind a wet fern frond. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Choreography timeline: [0.0s-3.0s Peaceful Canyon Stroll] Camera: 35mm low-angle steady frame. Action: Rex takes two slow, heavy footsteps forward along the stream bank with head lowered. VFX/Env: Gentle water ripples expand around its ankles under golden twilight beams. SFX: Calm flowing stream water and deep rhythmic footsteps. [3.0s-8.0s Sudden Alert] Camera: Subtle focus rack to Rex's amber eye. Action: Rex halts abruptly, lifts its massive rectangular skull high, and stares intently toward the right. VFX/Env: Warm breath mist curls from its nostrils into the cool canyon air. SFX: Distant snapping tree branch followed by a low guttural rumble. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: flowing forest stream, heavy rhythmic footsteps on wet gravel, sudden snapping branch, low guttural inhale. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S01_START.jpg",
-              "sha256": "72a8c55ccc0d12cd296c67909ae357890bef9eac14f71f043f18cb0d33838906"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S01_END.jpg",
-              "sha256": "7e304a19bd752af31ffce5a13cc0c5cc09387ae0a5abd26424281c983dbf8215"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
-            "duration": 8.04,
+            "duration": 8.0,
             "vision": {
               "identity_score_1_10": 9,
               "prompt_adherence_1_10": 8,
@@ -377,27 +316,27 @@
               "verdict": "pass",
               "notes": "Good movement and identity, slightly heavy water stream off the jaw around t=4.5s compared to take 1.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 1,
       "status": "qa_pass",
-      "edit_in": 1.71,
-      "edit_out": 6.36,
+      "selected_take": 1,
+      "edit_in": 0.35,
+      "edit_out": 5.0,
       "auto_selection": {
         "take": 1,
-        "edit_in": 1.71,
-        "edit_out": 6.36,
-        "score": 18.5,
-        "reason": "điểm 18.5 (cao nhất / 2 take đạt)",
+        "edit_in": 0.35,
+        "edit_out": 5.0,
+        "score": 18.15,
+        "reason": "điểm 18.15 (cao nhất / 2 take đạt)",
         "alternatives": [
           2
         ],
         "window": [
           0.0,
-          8.0
+          5.0
         ]
       }
     },
@@ -488,71 +427,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S02_START_c01.jpg",
-          "sha256": "44386bcea9b884e3de3b5311c51552dbfbff1aa72bae4b2570c6ed1c59b36e15",
-          "uid": "KF_CTRV1_S02_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S02_START_c02.jpg",
-          "sha256": "12fab562dfae7111f7a91b36b0679bc3b8fcbbfe37da18ef61e103825d13ee63",
-          "uid": "KF_CTRV1_S02_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S02_END_c01.jpg",
-          "sha256": "c9ed53a172e79b166ef47f323fe843f4943a3000ee91b34cc0098ef6eeecd3b1",
-          "uid": "KF_CTRV1_S02_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S02_END_c02.jpg",
-          "sha256": "2dcc96a78fb094fcbf0c7c8b228b668c94a551b67d31bb29cf2a638370c3f2cc",
-          "uid": "KF_CTRV1_S02_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 0.7,
-        "hist_corr": 0.988,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_02_take01.mp4",
           "sha256": "8df2458a0a9f59a3220e3128d8178e27cfa9464be24bca1f74f647b4156b47ee",
-          "registered_at": "2026-10-21T10:19:37",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.5m low-angle 50mm Anamorphic medium-wide shot through parting sequoia branches. Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-3.2s Emerging from the Mist] Camera: 50mm low-angle locked frame. Action: Vasto steps out of the misty redwood trees on the right, casually scanning the stream toward the left. VFX/Env: Fern fronds whip back and mist swirls off its jagged dorsal spikes. SFX: Rustling foliage and heavy thudding footsteps. [3.2s-8.0s Predatory Recognition] Camera: 50mm low-angle locked frame. Action: Vasto stops dead, drops its horned skull low facing left, and bares its blade-like teeth in a territorial hiss. VFX/Env: Pebbles skitter under its gripping claws. SFX: Deep crocodilian hiss building into a resonant chest vibration. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, cold 6500K blue-teal canyon mist rim-lighting the jagged dorsal horn-spikes with warm twilight side-light. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: parting forest branches, heavy thudding footsteps, deep territorial hiss and sub-bass chest rumble. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S02_START.jpg",
-              "sha256": "8e7b98b7e602fbefed1e3586d25719f94b2403a186d828cf4d81d60233bbdace"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S02_END.jpg",
-              "sha256": "c9ed53a172e79b166ef47f323fe843f4943a3000ee91b34cc0098ef6eeecd3b1"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -572,7 +461,7 @@
               "verdict": "retake",
               "notes": "Film border text overlay appears in the first half (1.0s-4.0s); second half (4.2s-7.8s) is clean, but take 2 is completely free of border text.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -580,33 +469,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_02_take02.mp4",
           "sha256": "d3d9fea9385848d0eadc794f5b08930b3722679b186cd16d4e0556f636335701",
-          "registered_at": "2026-10-21T10:19:38",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.5m low-angle 50mm Anamorphic medium-wide shot through parting sequoia branches. Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-3.2s Emerging from the Mist] Camera: 50mm low-angle locked frame. Action: Vasto steps out of the misty redwood trees on the right, casually scanning the stream toward the left. VFX/Env: Fern fronds whip back and mist swirls off its jagged dorsal spikes. SFX: Rustling foliage and heavy thudding footsteps. [3.2s-8.0s Predatory Recognition] Camera: 50mm low-angle locked frame. Action: Vasto stops dead, drops its horned skull low facing left, and bares its blade-like teeth in a territorial hiss. VFX/Env: Pebbles skitter under its gripping claws. SFX: Deep crocodilian hiss building into a resonant chest vibration. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, cold 6500K blue-teal canyon mist rim-lighting the jagged dorsal horn-spikes with warm twilight side-light. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: parting forest branches, heavy thudding footsteps, deep territorial hiss and sub-bass chest rumble. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S02_START.jpg",
-              "sha256": "8e7b98b7e602fbefed1e3586d25719f94b2403a186d828cf4d81d60233bbdace"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S02_END.jpg",
-              "sha256": "c9ed53a172e79b166ef47f323fe843f4943a3000ee91b34cc0098ef6eeecd3b1"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -618,13 +488,13 @@
               "verdict": "pass",
               "notes": "Completely clean 16:9 frame with zero border text; obsidian-slate horned Vasto emerges from right facing left (180-degree eyeline match) and snarls with realistic breath mist.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 2,
       "status": "qa_pass",
+      "selected_take": 2,
       "edit_in": 0.35,
       "edit_out": 5.0,
       "auto_selection": {
@@ -738,71 +608,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S03_START_c01.jpg",
-          "sha256": "02ddd8b0cf453c04e92d09cc163649e682233b7ea8a375f1e1f744756d6566df",
-          "uid": "KF_CTRV1_S03_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S03_START_c02.jpg",
-          "sha256": "644e380ccc451a13ae77768b7788f051c1884d4a16a1964be753fc54b91b3501",
-          "uid": "KF_CTRV1_S03_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S03_END_c01.jpg",
-          "sha256": "451e6eab02cbcb996c7ae443ad10de4ca5a756a7bb3d33c41de1de6b3febaaaa",
-          "uid": "KF_CTRV1_S03_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S03_END_c02.jpg",
-          "sha256": "b3e07701a5cf71d769c626558d477fbf99a4ba925a650f2ad4f4eca3b67abb0a",
-          "uid": "KF_CTRV1_S03_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 2.0,
-        "hist_corr": 0.969,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_03_take01.mp4",
           "sha256": "392ff939f76e3ccc291770c2aed13a54f7427462337c87dfa7430aa2166110ac",
-          "registered_at": "2026-10-21T10:18:05",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.4m low-angle 35mm Anamorphic Over-The-Shoulder two-shot across the fallen sequoia log. In the close foreground on the left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Looming in the midground on the right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-2.5s Tense Standoff] Camera: 35mm low-angle OTS locked frame. Action: Rex shifts its weight in the left foreground and inhales deeply, ribcage expanding; Vasto stalks one step closer on the right bank, lowering its horned brow. VFX/Env: Stream water laps quietly against the mossy fallen sequoia log. SFX: Tense low-frequency rumble and heavy dual inhales. [2.5s-8.0s Mutual Challenge Roar] Camera: Micro-vibration on lens from acoustic shockwave. Action: Rex snaps its jaws wide open and blasts a thunderous roar from the left; Vasto answers immediately from the right with a jagged, ear-splitting apex roar. VFX/Env: Concentric cymatic water rings and mist plumes explode outward between the two titans. SFX: Deafening dual dinosaur roars echoing across the volcanic canyon walls. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, dramatic twilight backlight separating bronze-brown Rex on the left and obsidian-slate horned Vasto on the right. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: dual earth-shaking apex predator roars echoing off canyon walls, vibrating water spray. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S03_START.jpg",
-              "sha256": "02ddd8b0cf453c04e92d09cc163649e682233b7ea8a375f1e1f744756d6566df"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S03_END.jpg",
-              "sha256": "b3e07701a5cf71d769c626558d477fbf99a4ba925a650f2ad4f4eca3b67abb0a"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -814,7 +634,7 @@
               "verdict": "pass",
               "notes": "Excellent OTS two-shot across the fallen sequoia log; Rex on left and Vasto on right maintain strict 180-degree axis and unleash a realistic mutual challenge roar with water spray from t=3.0s to 7.5s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -822,33 +642,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_03_take02.mp4",
           "sha256": "3ed88e7df55264c51d4a22264514256edc1291306480dd8b9dab89a0ac1efb89",
-          "registered_at": "2026-10-21T10:18:05",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.4m low-angle 35mm Anamorphic Over-The-Shoulder two-shot across the fallen sequoia log. In the close foreground on the left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Looming in the midground on the right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-2.5s Tense Standoff] Camera: 35mm low-angle OTS locked frame. Action: Rex shifts its weight in the left foreground and inhales deeply, ribcage expanding; Vasto stalks one step closer on the right bank, lowering its horned brow. VFX/Env: Stream water laps quietly against the mossy fallen sequoia log. SFX: Tense low-frequency rumble and heavy dual inhales. [2.5s-8.0s Mutual Challenge Roar] Camera: Micro-vibration on lens from acoustic shockwave. Action: Rex snaps its jaws wide open and blasts a thunderous roar from the left; Vasto answers immediately from the right with a jagged, ear-splitting apex roar. VFX/Env: Concentric cymatic water rings and mist plumes explode outward between the two titans. SFX: Deafening dual dinosaur roars echoing across the volcanic canyon walls. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, dramatic twilight backlight separating bronze-brown Rex on the left and obsidian-slate horned Vasto on the right. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: dual earth-shaking apex predator roars echoing off canyon walls, vibrating water spray. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S03_START.jpg",
-              "sha256": "02ddd8b0cf453c04e92d09cc163649e682233b7ea8a375f1e1f744756d6566df"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S03_END.jpg",
-              "sha256": "b3e07701a5cf71d769c626558d477fbf99a4ba925a650f2ad4f4eca3b67abb0a"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -868,13 +669,13 @@
               "verdict": "retake",
               "notes": "Unwanted cartoon-like concentric white shockwave rings rendered in mid-air at 3.0s-6.0s; use take 1 which has photorealistic vapor and water spray.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 1,
       "status": "qa_pass",
+      "selected_take": 1,
       "edit_in": 2.88,
       "edit_out": 7.53,
       "auto_selection": {
@@ -993,71 +794,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S04_START_c01.jpg",
-          "sha256": "a27768c308bda997b87fa8f36eba8602d8b9aded76dee5dbb6f65496361d765c",
-          "uid": "KF_CTRV1_S04_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S04_START_c02.jpg",
-          "sha256": "9a8df0ab7fce320c91524769ed67b0c669c86f1390f520801371d8cd37a5a77a",
-          "uid": "KF_CTRV1_S04_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S04_END_c01.jpg",
-          "sha256": "2590d30eefc9de294122b6bb7180b8f2ecb93bc7b1fa0450456e23fcb9d842ae",
-          "uid": "KF_CTRV1_S04_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S04_END_c02.jpg",
-          "sha256": "c41207e107cc4c3aac67ce894f10eb40e04dd1862358948375b03b5fa4ab8aea",
-          "uid": "KF_CTRV1_S04_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 3.5,
-        "hist_corr": 0.949,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_04_take01.mp4",
           "sha256": "fff932c8fa5e15702daeb38a34a77ebf385ba3910201a39f3d699d044173ff70",
-          "registered_at": "2026-10-21T10:18:00",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.2m ankle-level 28mm Anamorphic wide action shot across the stream. Charging from the foreground left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Bracing in the midground right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-1.6s Full-Speed Charge] Camera: 28mm low-angle wide frame. Action: Rex lunges forward from the left, crushing the mossy sequoia log underfoot; Vasto bounds forward from the right with horned skull lowered. VFX/Env: Mud and stream water kick up behind their driving hind legs. SFX: Thunderous galloping footsteps and splintering wood. [1.6s-8.0s Cataclysmic Skull-to-Skull Impact] Camera: Heavy impact camera shake settling into a tight low-angle lock. Action: Rex slams its broad skull into Vasto, neck muscles bulging under the shock; Vasto absorbs the blow on its horned brow and pushes back chest-to-chest. VFX/Env: The fallen sequoia log splinters apart as a 6-meter geyser of water and bark erupts. SFX: Bone-jarring skull impact, exploding timber, and roaring water splash. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: heavy charging footsteps, bone-crushing skull collision, shattering redwood log, massive water explosion. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S04_START.jpg",
-              "sha256": "a27768c308bda997b87fa8f36eba8602d8b9aded76dee5dbb6f65496361d765c"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S04_END.jpg",
-              "sha256": "2590d30eefc9de294122b6bb7180b8f2ecb93bc7b1fa0450456e23fcb9d842ae"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -1069,7 +820,7 @@
               "verdict": "pass",
               "notes": "Explosive full-speed charge and skull-to-skull collision at t=2.0s-4.5s shattering the sequoia log with a towering curtain of water and flying wood splinters.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -1077,33 +828,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_04_take02.mp4",
           "sha256": "36124d7606be5efb1c8218e2ac5aef351592485626f378bd049a0ecef4d3e0ea",
-          "registered_at": "2026-10-21T10:18:00",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.2m ankle-level 28mm Anamorphic wide action shot across the stream. Charging from the foreground left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture). Bracing in the midground right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-1.6s Full-Speed Charge] Camera: 28mm low-angle wide frame. Action: Rex lunges forward from the left, crushing the mossy sequoia log underfoot; Vasto bounds forward from the right with horned skull lowered. VFX/Env: Mud and stream water kick up behind their driving hind legs. SFX: Thunderous galloping footsteps and splintering wood. [1.6s-8.0s Cataclysmic Skull-to-Skull Impact] Camera: Heavy impact camera shake settling into a tight low-angle lock. Action: Rex slams its broad skull into Vasto, neck muscles bulging under the shock; Vasto absorbs the blow on its horned brow and pushes back chest-to-chest. VFX/Env: The fallen sequoia log splinters apart as a 6-meter geyser of water and bark erupts. SFX: Bone-jarring skull impact, exploding timber, and roaring water splash. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: heavy charging footsteps, bone-crushing skull collision, shattering redwood log, massive water explosion. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S04_START.jpg",
-              "sha256": "a27768c308bda997b87fa8f36eba8602d8b9aded76dee5dbb6f65496361d765c"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S04_END.jpg",
-              "sha256": "2590d30eefc9de294122b6bb7180b8f2ecb93bc7b1fa0450456e23fcb9d842ae"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -1123,13 +855,13 @@
               "verdict": "pass",
               "notes": "Strong collision and timber explosion at 3.5s-5.5s, though take 1 has cleaner head-to-head contact geometry at t=2.5s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 1,
       "status": "qa_pass",
+      "selected_take": 1,
       "edit_in": 0.35,
       "edit_out": 5.0,
       "auto_selection": {
@@ -1248,71 +980,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S05_START_c01.jpg",
-          "sha256": "103ca000ae79cc62f94fc9f2762331efff19e0b75bf98150af18e981d71cd519",
-          "uid": "KF_CTRV1_S05_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S05_START_c02.jpg",
-          "sha256": "2e70d2069beab444e56a7cbd32261a5d5d89310293dfca3ebc461defb440aae5",
-          "uid": "KF_CTRV1_S05_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S05_END_c01.jpg",
-          "sha256": "8b16d17056ce88538fe8307252ab838a44224d72d4d9b84268f948b0ebeb5c57",
-          "uid": "KF_CTRV1_S05_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S05_END_c02.jpg",
-          "sha256": "b2fafec07176c5122631e498bfd310124e25657687977603388c7cea516400a1",
-          "uid": "KF_CTRV1_S05_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 4.0,
-        "hist_corr": 0.779,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_05_take01.mp4",
           "sha256": "ea75974b5cc7046453546585e3c18ded7e29f0344b7e01affd5e24db8dfdf604",
-          "registered_at": "2026-10-21T10:17:54",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.5m low-angle 35mm medium-close clinch shot. Physically clinched in center-left in an overlapping 3D grapple, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Locked chest-to-chest in center-right with overlapping body mass, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-2.2s Horned Uppercut] Camera: 35mm low-angle tight two-shot. Action: Rex's head is knocked upward as Vasto's horned brow rams under its chin; Vasto thrusts its spiked skull upward and lunges at Rex's exposed shoulder. VFX/Env: Saliva and water spray whip upward from the uppercut. SFX: Heavy bone thud and sharp reptilian snarl. [2.2s-8.0s Shoulder Bite & Tree Slam] Camera: Impact shudder as Rex hits the redwood trunk. Action: Rex skids backward through the mud and slams its flank into a giant sequoia trunk on the left; Vasto clamps its jaws onto Rex's shoulder and drives its full 10-ton weight forward from the right. VFX/Env: Redwood bark shatters and pine needles rain down around them. SFX: Flesh-ripping bite crunch, skidding mud, and booming tree-trunk impact. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, high-contrast twilight rim light glinting off wet teeth and flying water spray. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: horned skull uppercut thud, vicious jaw clamp, booming impact against giant redwood trunk, pained roar. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S05_START.jpg",
-              "sha256": "103ca000ae79cc62f94fc9f2762331efff19e0b75bf98150af18e981d71cd519"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S05_END.jpg",
-              "sha256": "b2fafec07176c5122631e498bfd310124e25657687977603388c7cea516400a1"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -1332,7 +1014,7 @@
               "verdict": "pass",
               "notes": "Visceral horned uppercut under Rex chin at 0.5s-2.5s and powerful shoulder lunge/slam at 2.5s-5.0s and 7.0s-7.8s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -1340,33 +1022,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_05_take02.mp4",
           "sha256": "26de5959975ac671591c444ad88b645282e8c8f5e2d08f1718fd7cfb7bc4be9c",
-          "registered_at": "2026-10-21T10:17:54",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.5m low-angle 35mm medium-close clinch shot. Physically clinched in center-left in an overlapping 3D grapple, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Locked chest-to-chest in center-right with overlapping body mass, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes). Choreography timeline: [0.0s-2.2s Horned Uppercut] Camera: 35mm low-angle tight two-shot. Action: Rex's head is knocked upward as Vasto's horned brow rams under its chin; Vasto thrusts its spiked skull upward and lunges at Rex's exposed shoulder. VFX/Env: Saliva and water spray whip upward from the uppercut. SFX: Heavy bone thud and sharp reptilian snarl. [2.2s-8.0s Shoulder Bite & Tree Slam] Camera: Impact shudder as Rex hits the redwood trunk. Action: Rex skids backward through the mud and slams its flank into a giant sequoia trunk on the left; Vasto clamps its jaws onto Rex's shoulder and drives its full 10-ton weight forward from the right. VFX/Env: Redwood bark shatters and pine needles rain down around them. SFX: Flesh-ripping bite crunch, skidding mud, and booming tree-trunk impact. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, high-contrast twilight rim light glinting off wet teeth and flying water spray. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: horned skull uppercut thud, vicious jaw clamp, booming impact against giant redwood trunk, pained roar. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S05_START.jpg",
-              "sha256": "103ca000ae79cc62f94fc9f2762331efff19e0b75bf98150af18e981d71cd519"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S05_END.jpg",
-              "sha256": "b2fafec07176c5122631e498bfd310124e25657687977603388c7cea516400a1"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -1386,31 +1049,26 @@
               "verdict": "retake",
               "notes": "Severe head occlusion/clipping on Rex from 2.2s to 6.8s; take 1 preserves both heads clearly.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 1,
       "status": "qa_pass",
-      "edit_in": 2.89,
-      "edit_out": 7.54,
+      "selected_take": 1,
+      "edit_in": 0.35,
+      "edit_out": 5.0,
       "auto_selection": {
         "take": 1,
-        "edit_in": 2.89,
-        "edit_out": 7.54,
-        "score": 16.6,
-        "reason": "điểm 16.6 (cao nhất / 1 take đạt)",
+        "edit_in": 0.35,
+        "edit_out": 5.0,
+        "score": 16.95,
+        "reason": "điểm 16.95 (cao nhất / 1 take đạt)",
         "alternatives": [],
         "window": [
           0.0,
-          8.0
+          5.0
         ]
-      },
-      "edit_window": {
-        "in": 0.35,
-        "out": 5.0,
-        "source": "uppercut_peak"
       }
     },
     {
@@ -1514,71 +1172,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S06_START_c01.jpg",
-          "sha256": "9d25732397cd0bb8fece65d87396f36ad6995a87d98a0fa21eb0e7a20d5ddea8",
-          "uid": "KF_CTRV1_S06_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S06_START_c02.jpg",
-          "sha256": "113d259ed9aa39eaf3adfacbdf2779d3d39c3ee4341a57e01ef626a9dd6775e6",
-          "uid": "KF_CTRV1_S06_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S06_END_c01.jpg",
-          "sha256": "04a7f6d9f8380bd29e2095258c167c303e9a0194c90d05704463a68463035d83",
-          "uid": "KF_CTRV1_S06_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S06_END_c02.jpg",
-          "sha256": "36a3785608200cb444296aec8da8b4ee33375a625ddbc3134f860f6a2040bedc",
-          "uid": "KF_CTRV1_S06_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 5.6,
-        "hist_corr": 0.977,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_06_take01.mp4",
           "sha256": "ca0628c3df570f15df0588246b42d6c5e809acd5af8dcc96ced137bdcfb20b3e",
-          "registered_at": "2026-10-21T10:17:47",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.3m low-angle 50mm Anamorphic close combat shot. Driving forward from center-left with jaws clamped deep into its rival's neck, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Pinned in center-right with neck hide compressed under the bite, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.4s Furious Break & Pivot] Camera: 50mm low-angle close combat frame. Action: Rex rams its heavy brow against Vasto's snout to break free and opens its jaws wide; Vasto's head snaps back to the right from the counter-blow. VFX/Env: Mud and saliva spray across the lens. SFX: Explosive snarl and skull-bash crack. [2.4s-8.0s Bone-Crushing Neck Clamp] Camera: Heavy downward camera jolt on bite impact. Action: Rex clamps its jaws onto Vasto's neck and violently wrenches downward; Vasto roars in pain on the right as its forequarters are forced down into the stream. VFX/Env: Water erupts around Vasto's collapsing knee. SFX: Visceral jaw-clamp crunch, grinding scales, and heavy water slam. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, warm amber sunbeam catching Rex's amber eye as it counters against cold blue-teal mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: ferocious T-Rex counter-roar, bone-crushing jaw clamp on armored scales, heavy body splash. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S06_START.jpg",
-              "sha256": "9d25732397cd0bb8fece65d87396f36ad6995a87d98a0fa21eb0e7a20d5ddea8"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S06_END.jpg",
-              "sha256": "04a7f6d9f8380bd29e2095258c167c303e9a0194c90d05704463a68463035d83"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -1590,7 +1198,7 @@
               "verdict": "pass",
               "notes": "Powerful counter-attack by battle-scarred Rex on the left, breaking free at 0.5s-2.5s and clamping jaws onto Vasto armored neck at 3.5s-7.5s with heavy water splash.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -1598,35 +1206,16 @@
           "take": 2,
           "path": "assets/clips/takes/shot_06_take02.mp4",
           "sha256": "a14de4702265bacd9ca12cca686bfe9ddd742e1d4ad62f4d9e399633cc207af7",
-          "registered_at": "2026-10-21T10:17:47",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.3m low-angle 50mm Anamorphic close combat shot. Driving forward from center-left with jaws clamped deep into its rival's neck, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Pinned in center-right with neck hide compressed under the bite, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.4s Furious Break & Pivot] Camera: 50mm low-angle close combat frame. Action: Rex rams its heavy brow against Vasto's snout to break free and opens its jaws wide; Vasto's head snaps back to the right from the counter-blow. VFX/Env: Mud and saliva spray across the lens. SFX: Explosive snarl and skull-bash crack. [2.4s-8.0s Bone-Crushing Neck Clamp] Camera: Heavy downward camera jolt on bite impact. Action: Rex clamps its jaws onto Vasto's neck and violently wrenches downward; Vasto roars in pain on the right as its forequarters are forced down into the stream. VFX/Env: Water erupts around Vasto's collapsing knee. SFX: Visceral jaw-clamp crunch, grinding scales, and heavy water slam. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, warm amber sunbeam catching Rex's amber eye as it counters against cold blue-teal mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: ferocious T-Rex counter-roar, bone-crushing jaw clamp on armored scales, heavy body splash. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S06_START.jpg",
-              "sha256": "9d25732397cd0bb8fece65d87396f36ad6995a87d98a0fa21eb0e7a20d5ddea8"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S06_END.jpg",
-              "sha256": "04a7f6d9f8380bd29e2095258c167c303e9a0194c90d05704463a68463035d83"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
-            "duration": 8.04,
+            "duration": 8.0,
             "vision": {
               "identity_score_1_10": 8,
               "prompt_adherence_1_10": 8,
@@ -1644,13 +1233,13 @@
               "verdict": "pass",
               "notes": "Good initial counter-bite and final neck clamp, minor dip in pose at t=4.5s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 1,
       "status": "qa_pass",
+      "selected_take": 1,
       "edit_in": 0.35,
       "edit_out": 5.0,
       "auto_selection": {
@@ -1768,72 +1357,23 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S07_START_c01.jpg",
-          "sha256": "a89214f858d7cb2f02a3fcf1f5975212b39524f5e7e8dd7aa47a35489cc35c58",
-          "uid": "KF_CTRV1_S07_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S07_START_c02.jpg",
-          "sha256": "84aac23d6adf0010b15afa6a1053f6c497ac1e2cb4fcc6de8daf9c56962e8129",
-          "uid": "KF_CTRV1_S07_START"
-        }
-      ],
-      "is_scene_anchor": true,
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S07_END_c01.jpg",
-          "sha256": "3eedbca7274e34a604875a5941608597a32803663ad9ea8bf0be16bfe6b5a34d",
-          "uid": "KF_CTRV1_S07_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S07_END_c02.jpg",
-          "sha256": "9fa8e847f419d9d367bb478b4be131afde32fe95d8fdb12f0aeb35bdaf6623c1",
-          "uid": "KF_CTRV1_S07_END"
-        }
-      ],
+      "first_frame_source": "hero_1080p",
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 3.5,
-        "hist_corr": 0.97,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_07_take01.mp4",
           "sha256": "9330c5f65663046f935049d4a3429c500d449f77e9d4d5863da1ca0da347af0f",
-          "registered_at": "2026-10-21T10:17:39",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.4m low-angle 35mm wide two-shot capturing the full muddy stream arena. Physically clinched in center-left in an overlapping 3D grapple, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Locked chest-to-chest in center-right with overlapping body mass, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.5s Spiked Tail & Shoulder Counter] Camera: 35mm low-angle wide frame. Action: Rex takes a heavy shoulder-and-tail blow to the ribs and releases its bite; Vasto surges upward from the right, thrashing its spiked body to throw Rex off. VFX/Env: A sheet of muddy water whips sideways across the stream. SFX: Whip-crack tail impact and guttural grunt. [2.5s-8.0s Evenly Matched Stalemate Skid] Camera: 35mm low-angle wide frame. Action: Rex skids backward onto the left bank, digging its claws into the basalt gravel to hold its ground; Vasto skids backward onto the right bank, lowering its scarred snout in a ragged snarl. VFX/Env: Gravel and steam billow from both banks as neither predator yields. SFX: Grinding gravel skid and heavy synchronized ragged breathing. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, dramatic twilight chiaroscuro with golden dust motes and cold blue-teal water spray. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: heavy tail-whip impact, dual claws skidding across basalt gravel, ragged steaming breaths. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S07_START.jpg",
-              "sha256": "a89214f858d7cb2f02a3fcf1f5975212b39524f5e7e8dd7aa47a35489cc35c58"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S07_END.jpg",
-              "sha256": "3eedbca7274e34a604875a5941608597a32803663ad9ea8bf0be16bfe6b5a34d"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
-            "duration": 8.04,
+            "duration": 8.0,
             "vision": {
               "identity_score_1_10": 9,
               "prompt_adherence_1_10": 9,
@@ -1843,7 +1383,7 @@
               "verdict": "pass",
               "notes": "Dynamic grapple break with muddy splash at 1.5s-2.5s followed by an evenly matched stalemate skid onto opposite banks from 3.5s to 7.5s with steaming jaws.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -1851,33 +1391,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_07_take02.mp4",
           "sha256": "55d8856a8f3aaf10609eed3d334d94ea16fe3510c787d97c8dff807ab1a54fe7",
-          "registered_at": "2026-10-21T10:17:40",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.4m low-angle 35mm wide two-shot capturing the full muddy stream arena. Physically clinched in center-left in an overlapping 3D grapple, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Locked chest-to-chest in center-right with overlapping body mass, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.5s Spiked Tail & Shoulder Counter] Camera: 35mm low-angle wide frame. Action: Rex takes a heavy shoulder-and-tail blow to the ribs and releases its bite; Vasto surges upward from the right, thrashing its spiked body to throw Rex off. VFX/Env: A sheet of muddy water whips sideways across the stream. SFX: Whip-crack tail impact and guttural grunt. [2.5s-8.0s Evenly Matched Stalemate Skid] Camera: 35mm low-angle wide frame. Action: Rex skids backward onto the left bank, digging its claws into the basalt gravel to hold its ground; Vasto skids backward onto the right bank, lowering its scarred snout in a ragged snarl. VFX/Env: Gravel and steam billow from both banks as neither predator yields. SFX: Grinding gravel skid and heavy synchronized ragged breathing. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, dramatic twilight chiaroscuro with golden dust motes and cold blue-teal water spray. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: heavy tail-whip impact, dual claws skidding across basalt gravel, ragged steaming breaths. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S07_START.jpg",
-              "sha256": "a89214f858d7cb2f02a3fcf1f5975212b39524f5e7e8dd7aa47a35489cc35c58"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S07_END.jpg",
-              "sha256": "3eedbca7274e34a604875a5941608597a32803663ad9ea8bf0be16bfe6b5a34d"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -1897,13 +1418,13 @@
               "verdict": "pass",
               "notes": "Impressive physical tail-whip maneuver at 1.5s-2.5s and clean stalemate standoff from 3.5s to 7.5s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 1,
       "status": "qa_pass",
+      "selected_take": 1,
       "edit_in": 0.76,
       "edit_out": 5.41,
       "auto_selection": {
@@ -1917,7 +1438,7 @@
         ],
         "window": [
           0.0,
-          8.04
+          8.0
         ]
       }
     },
@@ -2021,71 +1542,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S08_START_c01.jpg",
-          "sha256": "72e95d438f1558df84a7ef4b35968385b90db78cc9518d89a3ec25b4d329c9e9",
-          "uid": "KF_CTRV1_S08_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S08_START_c02.jpg",
-          "sha256": "4522b979c13c7f0c73b918f0082ca58138f2b6cff2ffc0dda8f4b1ec5bb7a149",
-          "uid": "KF_CTRV1_S08_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S08_END_c01.jpg",
-          "sha256": "b1e038b4c0b36c2ce3744c4336a78c431f72378782ead39b35a28c4b4a9c518b",
-          "uid": "KF_CTRV1_S08_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S08_END_c02.jpg",
-          "sha256": "dafb4a3103a3138a1ea890e30834550ce81983be69621ff617bb88972715b24c",
-          "uid": "KF_CTRV1_S08_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 0.6,
-        "hist_corr": 0.987,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_08_take01.mp4",
           "sha256": "f44c79ed859395ee9add9a0d41123626d521062b6b95c6fe15f47782c096e4c0",
-          "registered_at": "2026-10-21T10:17:33",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.2m ground-level 35mm Anamorphic medium shot on the cracking canyon ledge. Charging from the foreground left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Bracing in the midground right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.0s Deadlock Jaw Clash] Camera: 35mm ground-level frame with violent impact shake. Action: Rex slams its open jaws into Vasto's snout from the left, locking teeth; Vasto meets Rex head-on from the right, clamping back with equal force. VFX/Env: Sparks of gravel and foam fly from their colliding jaws. SFX: Thunderous jaw collision and dual straining growls. [2.0s-8.0s Canyon Shelf Fracture] Camera: Continuous seismic tremor on lens. Action: Rex plants its hind legs on the left as the rock floor splits beneath them; Vasto braces on the right as the fissure widens between their feet. VFX/Env: A jagged chasm cracks open across the basalt ledge, venting thick canyon dust and mist. SFX: Deafening tectonic rock-splitting crack and rumbling landslide. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, fiery twilight rim light and dark volcanic dust clouds. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: grinding teeth lock, straining guttural growls, deafening basalt rock fracture and landslide rumble. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S08_START.jpg",
-              "sha256": "72e95d438f1558df84a7ef4b35968385b90db78cc9518d89a3ec25b4d329c9e9"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S08_END.jpg",
-              "sha256": "dafb4a3103a3138a1ea890e30834550ce81983be69621ff617bb88972715b24c"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -2097,7 +1568,7 @@
               "verdict": "pass",
               "notes": "Fierce jaw-to-jaw deadlock on the basalt ledge with the rock floor cracking and collapsing into a chasm between their feet from t=4.5s to 7.5s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -2105,33 +1576,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_08_take02.mp4",
           "sha256": "c7d2b5d2c5621cf45be403924a01b1e85b6d7c69bf2e8950103d9b7544fcb036",
-          "registered_at": "2026-10-21T10:17:33",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.2m ground-level 35mm Anamorphic medium shot on the cracking canyon ledge. Charging from the foreground left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Bracing in the midground right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.0s Deadlock Jaw Clash] Camera: 35mm ground-level frame with violent impact shake. Action: Rex slams its open jaws into Vasto's snout from the left, locking teeth; Vasto meets Rex head-on from the right, clamping back with equal force. VFX/Env: Sparks of gravel and foam fly from their colliding jaws. SFX: Thunderous jaw collision and dual straining growls. [2.0s-8.0s Canyon Shelf Fracture] Camera: Continuous seismic tremor on lens. Action: Rex plants its hind legs on the left as the rock floor splits beneath them; Vasto braces on the right as the fissure widens between their feet. VFX/Env: A jagged chasm cracks open across the basalt ledge, venting thick canyon dust and mist. SFX: Deafening tectonic rock-splitting crack and rumbling landslide. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, fiery twilight rim light and dark volcanic dust clouds. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: grinding teeth lock, straining guttural growls, deafening basalt rock fracture and landslide rumble. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S08_START.jpg",
-              "sha256": "72e95d438f1558df84a7ef4b35968385b90db78cc9518d89a3ec25b4d329c9e9"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S08_END.jpg",
-              "sha256": "dafb4a3103a3138a1ea890e30834550ce81983be69621ff617bb88972715b24c"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -2143,13 +1595,13 @@
               "verdict": "pass",
               "notes": "Even more dramatic tectonic rock fracture and dust/mist eruption beneath their deadlocked jaws from t=3.5s to 7.5s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 2,
       "status": "qa_pass",
+      "selected_take": 2,
       "edit_in": 1.84,
       "edit_out": 6.49,
       "auto_selection": {
@@ -2267,71 +1719,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S09_START_c01.jpg",
-          "sha256": "3e841c9c103d5de2fc2a02806ace5aa5720cf68f23255ed5b2c3092cbb2a395f",
-          "uid": "KF_CTRV1_S09_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S09_START_c02.jpg",
-          "sha256": "bc159f20ae1e9f8631aecb46c5ffe7e140ab6a27cfc9bb48ee47f938b305acc1",
-          "uid": "KF_CTRV1_S09_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S09_END_c01.jpg",
-          "sha256": "ad66570e1d5eadf538c8f28bd53e071a91f45a5001c73da3c5c9af2dbc5dee1e",
-          "uid": "KF_CTRV1_S09_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S09_END_c02.jpg",
-          "sha256": "8320e26ce56d70e721d460d9cdffa28b8e129ce0c7602834eca74cc149fdacec",
-          "uid": "KF_CTRV1_S09_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 0.2,
-        "hist_corr": 0.992,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_09_take01.mp4",
           "sha256": "c864bc7f34714125d39a6569464c0134bf7959bd23b1766f4af5a82fe701847b",
-          "registered_at": "2026-10-21T10:19:32",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.6m low-angle 24mm Anamorphic wide shot across the collapsing ravine. Towering in the left foreground at a 3/4 low-angle perspective, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Lunging from the right midground across the z-axis depth, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-3.0s Ravine Collapse & Separation] Camera: 24mm wide low-angle with seismic shudder. Action: Rex wrenches back onto the left cliff shelf as the center rock gives way; Vasto bounds backward onto the right cliff shelf, tail sweeping for balance. VFX/Env: Boulders and stream water plunge into the newly formed chasm, sending up a wall of dust. SFX: Crashing rockslide and roaring waterfall drop. [3.0s-8.0s Divided Rivals] Camera: Steady wide epic framing. Action: Rex steadies itself on the left rim, glaring across the gulf at Vasto; Vasto stalks along the right rim, refusing to retreat. VFX/Env: Thick twilight mist rises from the chasm between them. SFX: Rumbling echoes fading into tense wind and cascading water. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, warm amber sunset rays cutting through a massive curtain of rising canyon dust and cold blue waterfall mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: collapsing rock bridge, crashing waterfall into chasm, heavy claws gripping cliff edge. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S09_START.jpg",
-              "sha256": "3e841c9c103d5de2fc2a02806ace5aa5720cf68f23255ed5b2c3092cbb2a395f"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S09_END.jpg",
-              "sha256": "8320e26ce56d70e721d460d9cdffa28b8e129ce0c7602834eca74cc149fdacec"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -2358,7 +1760,7 @@
               "verdict": "pass",
               "notes": "Good rock bridge collapse at 0.5s-2.5s; trim before 6.8s to avoid end rock re-appearance.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -2366,33 +1768,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_09_take02.mp4",
           "sha256": "8bdef65beeabde97159c8e0521f8ea430881a2c3c84579d375fa919b059eae76",
-          "registered_at": "2026-10-21T10:19:33",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.6m low-angle 24mm Anamorphic wide shot across the collapsing ravine. Towering in the left foreground at a 3/4 low-angle perspective, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Lunging from the right midground across the z-axis depth, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-3.0s Ravine Collapse & Separation] Camera: 24mm wide low-angle with seismic shudder. Action: Rex wrenches back onto the left cliff shelf as the center rock gives way; Vasto bounds backward onto the right cliff shelf, tail sweeping for balance. VFX/Env: Boulders and stream water plunge into the newly formed chasm, sending up a wall of dust. SFX: Crashing rockslide and roaring waterfall drop. [3.0s-8.0s Divided Rivals] Camera: Steady wide epic framing. Action: Rex steadies itself on the left rim, glaring across the gulf at Vasto; Vasto stalks along the right rim, refusing to retreat. VFX/Env: Thick twilight mist rises from the chasm between them. SFX: Rumbling echoes fading into tense wind and cascading water. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, warm amber sunset rays cutting through a massive curtain of rising canyon dust and cold blue waterfall mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: collapsing rock bridge, crashing waterfall into chasm, heavy claws gripping cliff edge. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S09_START.jpg",
-              "sha256": "3e841c9c103d5de2fc2a02806ace5aa5720cf68f23255ed5b2c3092cbb2a395f"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S09_END.jpg",
-              "sha256": "8320e26ce56d70e721d460d9cdffa28b8e129ce0c7602834eca74cc149fdacec"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -2412,13 +1795,13 @@
               "verdict": "pass",
               "notes": "Spectacular central rock bridge collapse into the waterfall at 0.5s-3.0s and defiant dual roar across the open chasm at 3.0s-5.8s. Trim out 6.0s-8.0s.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 2,
       "status": "qa_pass",
+      "selected_take": 2,
       "edit_in": 0.35,
       "edit_out": 5.0,
       "auto_selection": {
@@ -2432,7 +1815,7 @@
         ],
         "window": [
           0.0,
-          5.75
+          5.8
         ]
       }
     },
@@ -2533,71 +1916,21 @@
           "msg": "First/Last frame phải cùng cỡ cảnh, góc máy, ánh sáng — khác nhau sẽ gây biến hình."
         }
       ],
-      "scene_anchor_path": "assets/frames/KF_CTRV1_S07_START.jpg",
-      "frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S10_START_c01.jpg",
-          "sha256": "6150d533828192b4471151ece7054d7eee57e6eaa96ebe8971b877f5cacc76e4",
-          "uid": "KF_CTRV1_S10_START"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S10_START_c02.jpg",
-          "sha256": "0fe15b6295d9c07a3595ca6c2872e9363e39562e80d2a27b29a5a7b2b5979334",
-          "uid": "KF_CTRV1_S10_START"
-        }
-      ],
       "first_frame_source": "hero_1080p",
-      "last_frame_candidates": [
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S10_END_c01.jpg",
-          "sha256": "2b171f14f4bbdfae86481adf038f43508268ddb82a4cb21c2ffbda2825ac6b72",
-          "uid": "KF_CTRV1_S10_END"
-        },
-        {
-          "path": "assets/frames/candidates/KF_CTRV1_S10_END_c02.jpg",
-          "sha256": "9b0c0d3f870d8007716d404137878f7f04f2f5f18ddcf019bd8b55662fa700e0",
-          "uid": "KF_CTRV1_S10_END"
-        }
-      ],
       "last_frame_source": "hero_1080p",
-      "keyframe_continuity": {
-        "ok": true,
-        "luma_diff": 1.2,
-        "hist_corr": 0.98,
-        "issues": []
-      },
       "takes": [
         {
           "take": 1,
           "path": "assets/clips/takes/shot_10_take01.mp4",
           "sha256": "53ff0bb232d9f3457c640cb999b82418375e911f9d74d8430b26038b42f56bf3",
-          "registered_at": "2026-10-21T10:19:26",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.4m low-angle 35mm Anamorphic Over-The-Shoulder cliffhanger shot across the misty chasm. In the close foreground on the left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Looming in the midground on the right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.8s Unfinished Blood Feud] Camera: 35mm low-angle OTS steady frame. Action: Rex steps to the very edge of the left cliff, amber eyes burning through the mist; Vasto steps to the edge of the right cliff, yellow eyes locked on Rex. VFX/Env: Chasm mist curls upward between the two undefeated apex predators. SFX: Deep resonant dual inhale over rushing chasm wind. [2.8s-8.0s Cliffhanger Dual Roar] Camera: 35mm low-angle OTS steady frame. Action: Rex unleashes a long, thunderous sovereign roar from the left cliff; Vasto answers across the abyss with a savage, echoing challenger roar. VFX/Env: Shockwaves of mist and twilight dust ripple outward as Part 1 ends on an open cliffhanger. SFX: Monumental dual apex roars reverberating into a deep cliffhanger sub-bass boom. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, epic twilight silhouette: warm 2700K sunset rim light vs deep 6500K blue-teal chasm mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: monumental dual cliffhanger roars echoing across the chasm, deep sub-bass boom. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S10_START.jpg",
-              "sha256": "6150d533828192b4471151ece7054d7eee57e6eaa96ebe8971b877f5cacc76e4"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S10_END.jpg",
-              "sha256": "9b0c0d3f870d8007716d404137878f7f04f2f5f18ddcf019bd8b55662fa700e0"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 0,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -2609,7 +1942,7 @@
               "verdict": "pass",
               "notes": "Epic OTS cliffhanger across the misty chasm; Rex roars at 3.5s and Vasto roars back at 5.5s-7.5s as pebbles crumble into the abyss.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         },
@@ -2617,33 +1950,14 @@
           "take": 2,
           "path": "assets/clips/takes/shot_10_take02.mp4",
           "sha256": "057b3172e19911777e23a3f8b43a5d26abb13c46b16714fca393993f0610ee23",
-          "registered_at": "2026-10-21T10:19:26",
+          "registered_at": "2026-10-21T11:10:58",
           "generation_mode": "first_last",
           "model": "Omni 1.1 Flash",
-          "prompt": "1.4m low-angle 35mm Anamorphic Over-The-Shoulder cliffhanger shot across the misty chasm. In the close foreground on the left, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Looming in the midground on the right, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.8s Unfinished Blood Feud] Camera: 35mm low-angle OTS steady frame. Action: Rex steps to the very edge of the left cliff, amber eyes burning through the mist; Vasto steps to the edge of the right cliff, yellow eyes locked on Rex. VFX/Env: Chasm mist curls upward between the two undefeated apex predators. SFX: Deep resonant dual inhale over rushing chasm wind. [2.8s-8.0s Cliffhanger Dual Roar] Camera: 35mm low-angle OTS steady frame. Action: Rex unleashes a long, thunderous sovereign roar from the left cliff; Vasto answers across the abyss with a savage, echoing challenger roar. VFX/Env: Shockwaves of mist and twilight dust ripple outward as Part 1 ends on an open cliffhanger. SFX: Monumental dual apex roars reverberating into a deep cliffhanger sub-bass boom. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, epic twilight silhouette: warm 2700K sunset rim light vs deep 6500K blue-teal chasm mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: monumental dual cliffhanger roars echoing across the chasm, deep sub-bass boom. No subtitles, no on-screen text.",
-          "negative_prompt": "plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping",
-          "inputs": [
-            {
-              "path": "assets/frames/KF_CTRV1_S10_START.jpg",
-              "sha256": "6150d533828192b4471151ece7054d7eee57e6eaa96ebe8971b877f5cacc76e4"
-            },
-            {
-              "path": "assets/frames/KF_CTRV1_S10_END.jpg",
-              "sha256": "9b0c0d3f870d8007716d404137878f7f04f2f5f18ddcf019bd8b55662fa700e0"
-            }
-          ],
-          "note": "flow-harvest",
-          "flow_tile_index": 1,
+          "note": "restored from takes dir",
           "qa": {
             "technical": {
               "verdict": "warn",
-              "findings": [
-                {
-                  "level": "warn",
-                  "code": "LOW_RESOLUTION",
-                  "msg": "1280x720 < đầu ra 1920x1080. Tải bản 1080p/upscale từ Flow thay vì để ffmpeg phóng to."
-                }
-              ]
+              "findings": []
             },
             "duration": 8.0,
             "vision": {
@@ -2655,19 +1969,19 @@
               "verdict": "pass",
               "notes": "Best cliffhanger take: sustained dual roaring silhouettes from 3.5s to 7.8s with thick billowing breath vapor and falling cliff stones.",
               "reviewer": "agent",
-              "checked_at": "2026-10-21T10:25:13"
+              "checked_at": "2026-10-21T11:10:59"
             }
           }
         }
       ],
-      "selected_take": 2,
       "status": "qa_pass",
-      "edit_in": 1.01,
-      "edit_out": 5.66,
+      "selected_take": 2,
+      "edit_in": 2.39,
+      "edit_out": 7.04,
       "auto_selection": {
         "take": 2,
-        "edit_in": 1.01,
-        "edit_out": 5.66,
+        "edit_in": 2.39,
+        "edit_out": 7.04,
         "score": 18.8,
         "reason": "điểm 18.8 (cao nhất / 2 take đạt)",
         "alternatives": [
@@ -2677,11 +1991,6 @@
           0.0,
           8.0
         ]
-      },
-      "edit_window": {
-        "in": 2.6,
-        "out": 7.6,
-        "source": "cliffhanger_roar"
       }
     }
   ],
@@ -2726,489 +2035,82 @@
       "ok": true
     },
     {
-      "at": "2026-10-21T10:00:54",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind assets --count 2 --new-project",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:01:09",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "audit-assets",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:01:09",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "actor-bank",
-      "args": "export --char CHAR_REX",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:01:09",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "actor-bank",
-      "args": "export --char CHAR_VASTO",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:04:27",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:05:40",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:08:47",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:10:08",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:10:09",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:10:10",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "storyboard-approve",
-      "args": "--by user_delegated",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:10:31",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "qa-frames",
-      "args": "",
-      "ok": false,
-      "error": "[ERROR] Không có clip nào để QA."
-    },
-    {
-      "at": "2026-10-21T10:10:42",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "make-lut",
-      "args": "--preset blockbuster",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:10:42",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "score",
-      "args": "--mood combat",
-      "ok": false,
-      "error": "ValueError: zero-size array to reduction operation maximum which has no identity"
-    },
-    {
-      "at": "2026-10-21T10:14:49",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind video --count 2 --skip-approval",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:18:36",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind video --wait",
-      "ok": false,
-      "error": "TimeoutError: Locator.scroll_into_view_if_needed: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"button[aria-label='Tải xuống hàng loạt']\").nth(8)\n"
-    },
-    {
-      "at": "2026-10-21T10:19:45",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind video --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:20:39",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "qa-takes",
-      "args": "--reviewer agent",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T10:23:52",
+      "at": "2026-10-21T11:08:35",
       "machine": "DESKTOP-HUP72C4",
       "command": "qa-takes-submit",
       "args": "--reviewer agent",
       "ok": true
     },
     {
-      "at": "2026-10-21T10:23:52",
+      "at": "2026-10-21T11:08:36",
       "machine": "DESKTOP-HUP72C4",
       "command": "auto-select",
       "args": "",
       "ok": true
     },
     {
-      "at": "2026-10-21T10:25:13",
+      "at": "2026-10-21T11:08:36",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T11:08:36",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T11:09:22",
       "machine": "DESKTOP-HUP72C4",
       "command": "qa-takes-submit",
       "args": "--reviewer agent",
       "ok": true
     },
     {
-      "at": "2026-10-21T10:25:25",
+      "at": "2026-10-21T11:09:23",
       "machine": "DESKTOP-HUP72C4",
       "command": "auto-select",
       "args": "",
       "ok": true
     },
     {
-      "at": "2026-10-21T10:26:25",
+      "at": "2026-10-21T11:10:59",
       "machine": "DESKTOP-HUP72C4",
-      "command": "score",
-      "args": "--mood combat",
+      "command": "qa-takes-submit",
+      "args": "--reviewer agent",
       "ok": true
     },
     {
-      "at": "2026-10-21T10:27:56",
+      "at": "2026-10-21T11:11:11",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "auto-select",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T11:14:39",
       "machine": "DESKTOP-HUP72C4",
       "command": "assemble",
       "args": "--format both",
       "ok": true
     },
     {
-      "at": "2026-10-21T10:27:59",
+      "at": "2026-10-21T11:20:04",
       "machine": "DESKTOP-HUP72C4",
-      "command": "thumbnail",
-      "args": "--shot shot_03 --title REX VS VASTO --subtitle PART I: CANYON CLASH",
+      "command": "build-prompts",
+      "args": "",
       "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-21T10:27:59",
+    "at": "2026-10-21T11:20:04",
     "machine": "DESKTOP-HUP72C4",
-    "command": "thumbnail"
+    "command": "build-prompts"
   },
   "flow_project_url": "https://flow.google.com/project/6924a83e-c093-44ee-8229-c27facfb7721",
-  "flow_jobs": [
-    {
-      "shot": "shot_01",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:02:19",
-      "harvested": "2026-10-21T10:05:08"
-    },
-    {
-      "shot": "shot_02",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:02:56",
-      "harvested": "2026-10-21T10:05:03"
-    },
-    {
-      "shot": "shot_03",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:03:15",
-      "harvested": "2026-10-21T10:04:57"
-    },
-    {
-      "shot": "shot_04",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:03:25",
-      "harvested": "2026-10-21T10:04:53"
-    },
-    {
-      "shot": "shot_05",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:03:35",
-      "harvested": "2026-10-21T10:04:48"
-    },
-    {
-      "shot": "shot_06",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:03:45",
-      "harvested": "2026-10-21T10:04:43"
-    },
-    {
-      "shot": "shot_07",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:03:56",
-      "harvested": "2026-10-21T10:04:39"
-    },
-    {
-      "shot": "shot_08",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:04:06",
-      "harvested": "2026-10-21T10:05:38"
-    },
-    {
-      "shot": "shot_09",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:04:17",
-      "harvested": "2026-10-21T10:05:34"
-    },
-    {
-      "shot": "shot_10",
-      "slot": "start",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:04:27",
-      "harvested": "2026-10-21T10:05:28"
-    },
-    {
-      "shot": "shot_01",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:06:18",
-      "harvested": "2026-10-21T10:09:35"
-    },
-    {
-      "shot": "shot_02",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:06:34",
-      "harvested": "2026-10-21T10:09:30"
-    },
-    {
-      "shot": "shot_03",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:06:51",
-      "harvested": "2026-10-21T10:09:25"
-    },
-    {
-      "shot": "shot_04",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:07:07",
-      "harvested": "2026-10-21T10:09:19"
-    },
-    {
-      "shot": "shot_05",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:07:24",
-      "harvested": "2026-10-21T10:09:14"
-    },
-    {
-      "shot": "shot_06",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:07:41",
-      "harvested": "2026-10-21T10:09:08"
-    },
-    {
-      "shot": "shot_07",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:07:58",
-      "harvested": "2026-10-21T10:09:03"
-    },
-    {
-      "shot": "shot_08",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:08:14",
-      "harvested": "2026-10-21T10:08:59"
-    },
-    {
-      "shot": "shot_09",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:08:31",
-      "harvested": "2026-10-21T10:10:06"
-    },
-    {
-      "shot": "shot_10",
-      "slot": "end",
-      "kind": "image",
-      "model": "Nano Banana Pro",
-      "count": 2,
-      "credits": 0,
-      "at": "2026-10-21T10:08:47",
-      "harvested": "2026-10-21T10:10:00"
-    },
-    {
-      "shot": "shot_01",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:11:14",
-      "harvested": "2026-10-21T10:19:43"
-    },
-    {
-      "shot": "shot_02",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:11:38",
-      "harvested": "2026-10-21T10:19:37"
-    },
-    {
-      "shot": "shot_03",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:12:01",
-      "harvested": "2026-10-21T10:18:05"
-    },
-    {
-      "shot": "shot_04",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:12:25",
-      "harvested": "2026-10-21T10:18:00"
-    },
-    {
-      "shot": "shot_05",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:12:49",
-      "harvested": "2026-10-21T10:17:53"
-    },
-    {
-      "shot": "shot_06",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:13:13",
-      "harvested": "2026-10-21T10:17:47"
-    },
-    {
-      "shot": "shot_07",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:13:36",
-      "harvested": "2026-10-21T10:17:39"
-    },
-    {
-      "shot": "shot_08",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:14:01",
-      "harvested": "2026-10-21T10:17:32"
-    },
-    {
-      "shot": "shot_09",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:14:25",
-      "harvested": "2026-10-21T10:19:32"
-    },
-    {
-      "shot": "shot_10",
-      "kind": "video",
-      "model": "Omni 1.1 Flash",
-      "count": 2,
-      "credits": 24,
-      "at": "2026-10-21T10:14:49",
-      "harvested": "2026-10-21T10:19:26"
-    }
-  ],
-  "storyboard": {
-    "status": "approved",
-    "built_hash": "2251124a9e4e5347",
-    "built_at": "2026-10-21T10:10:09",
-    "approved_hash": "2251124a9e4e5347",
-    "approved_at": "2026-10-21T10:10:10",
-    "approved_by": "user_delegated"
-  },
   "lut_path": "assets/grade/blockbuster_100.cube",
-  "music_path": "assets/audio/music/score_auto.wav",
-  "music_source": {
-    "kind": "procedural",
-    "mood": "combat",
-    "seed": 7,
-    "license": "tự tổng hợp, miễn bản quyền"
-  }
+  "music_path": "assets/audio/music/score_auto.wav"
 }

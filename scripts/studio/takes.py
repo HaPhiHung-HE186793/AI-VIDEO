@@ -202,8 +202,14 @@ def detect_rubber_stamp(vision_results: list, min_batch: int = 5) -> list:
 
 def clean_windows(duration: float, defects: list, severities=("major",), pad: float = 0.25) -> list:
     """Các khoảng [a, b] không giao với lỗi thuộc `severities` (nới mỗi lỗi thêm `pad` giây hai phía)."""
-    bad = sorted((max(0.0, float(d["t_from"]) - pad), min(duration, float(d["t_to"]) + pad))
-                 for d in defects if d.get("severity") in severities)
+    bad = sorted(
+        (
+            max(0.0, float(d.get("t_from", d.get("start_sec", 0.0))) - pad),
+            min(duration, float(d.get("t_to", d.get("end_sec", 0.0))) + pad),
+        )
+        for d in defects
+        if d.get("severity") in severities
+    )
     windows, cur = [], 0.0
     for a, b in bad:
         if a > cur:
@@ -275,9 +281,26 @@ def inertia_trim_bounds(diffs, fps: float, w0: float, w1: float, length: float,
     return round(eff_w0, 2), round(eff_w1, 2)
 
 
-def motion_peak_window(clip: Path, w0: float, w1: float, length: float, lead_ratio: float = 0.42) -> tuple:
+def _is_tail_climax_shot(shot: dict, is_finale: bool = False) -> bool:
+    """True nếu shot là cảnh kết/cliffhanger hoặc có pha cuối là cao trào đối đáp (dual roar / payoff / sudden alert)."""
+    if is_finale:
+        return True
+    if not isinstance(shot, dict):
+        return False
+    phases = shot.get("timeline_phases") or []
+    if len(phases) >= 2:
+        last_p = phases[-1] or {}
+        pname = (last_p.get("phase_name") or "").lower()
+        if any(w in pname for w in ("cliffhanger", "dual roar", "payoff", "resolution", "finale", "climax")):
+            return True
+    return False
+
+
+def motion_peak_window(clip: Path, w0: float, w1: float, length: float, lead_ratio: float = 0.42,
+                       shot: dict = None, is_finale: bool = False) -> tuple:
     """Tìm cửa sổ [a, b] dài `length` bên trong [w0, w1] sao cho đỉnh chuyển động (impact peak) nằm tại ~42% cửa sổ,
-    đồng thời tự động cắt bỏ 2 đầu mút tăng/giảm tốc tĩnh (Auto Inertia Window Trim).
+    đồng thời tự động cắt bỏ 2 đầu mút tăng/giảm tốc tĩnh (Auto Inertia Window Trim) và giữ trọn pha cao trào cuối
+    cho các cảnh kết / cliffhanger.
     """
     import numpy as np
 
@@ -297,6 +320,16 @@ def motion_peak_window(clip: Path, w0: float, w1: float, length: float, lead_rat
         kernel = np.ones(k) / k
         smooth = np.convolve(diffs, kernel, mode="same")
         eff_w0, eff_w1 = inertia_trim_bounds(smooth, fps, w0, w1, length)
+        if _is_tail_climax_shot(shot, is_finale) and eff_w1 - eff_w0 >= length:
+            mid_i = int(round(((eff_w0 + eff_w1) * 0.5) * fps))
+            end_i = min(len(smooth) - 1, int(round(eff_w1 * fps)))
+            start_i = max(1, int(round(eff_w0 * fps)))
+            first_half = float(np.mean(smooth[start_i:max(start_i + 1, mid_i)]))
+            second_half = float(np.mean(smooth[mid_i:max(mid_i + 1, end_i)]))
+            if second_half >= first_half * 0.45:
+                b = round(eff_w1, 2)
+                a = round(max(eff_w0, b - length), 2)
+                return a, b
         margin = min(0.35, max(0.0, (eff_w1 - eff_w0 - length) * 0.30))
         i0 = max(1, int(round((eff_w0 + margin) * fps)))
         i1 = min(len(smooth) - 1, int(round((eff_w1 - margin) * fps)))
@@ -318,11 +351,12 @@ def score_take(q: dict) -> float:
 
 
 def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chain_next: bool = False,
-                proj_dir: Path = None) -> dict:
+                proj_dir: Path = None, is_finale: bool = False) -> dict:
     """Quyết định take + cửa sổ cắt. Trả về {take, edit_in, edit_out, score, reason} hoặc {retake: True, reasons}.
 
-    pref: độ dài cắt mong muốn (mặc định preferred_shot_sec; shot trong beat dùng đúng phần chia của beat).
-    chain_next: True nếu shot kế tiếp có `chain_from_prev=True` (nối từ frame cuối của shot này).
+    2-Tier Defect Avoidance:
+    - Ưu tiên tìm cửa sổ sạch né cả lỗi `major` lẫn `minor` (`severities=("major", "minor")`).
+    - Chỉ khi né cả `minor` khiến đoạn còn lại < `need_sec` mới fallback về chỉ né `major`.
     """
     pref = float(pref if pref is not None else cfg["editorial"].get("preferred_shot_sec", 4.0))
     chain_prev = bool(shot.get("chain_from_prev"))
@@ -340,8 +374,18 @@ def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chai
             reasons.append(f"{tag}: lỗi kỹ thuật")
             continue
         v, dur = q["vision"], q.get("duration") or 8.0
-        wins = clean_windows(dur, v.get("defects", []))
-        best = max(wins, key=lambda w: w[1] - w[0], default=None)
+        defects = v.get("defects", [])
+        has_minor = any(d.get("severity") == "minor" for d in defects)
+        strict_pad = 0.20 if has_minor else 0.25
+        strict_wins = clean_windows(dur, defects, severities=("major", "minor"), pad=strict_pad)
+        best_strict = max(strict_wins, key=lambda w: w[1] - w[0], default=None)
+        if best_strict and best_strict[1] - best_strict[0] >= need_sec:
+            best = best_strict
+            minor_free_bonus = 0.35 if has_minor else 0.0
+        else:
+            wins = clean_windows(dur, defects, severities=("major",), pad=0.25)
+            best = max(wins, key=lambda w: w[1] - w[0], default=None)
+            minor_free_bonus = 0.0
         if not best or best[1] - best[0] < need_sec:
             reasons.append(f"{tag}: đoạn sạch dài nhất {0 if not best else best[1] - best[0]:.1f}s < cần {need_sec:.1f}s")
             continue
@@ -359,8 +403,8 @@ def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chai
         else:
             # Đặt cửa sổ bám theo đỉnh chuyển động (impact peak) nếu có file clip, tránh đầu/cuối tĩnh.
             clip_p = (Path(proj_dir) / t["path"]) if proj_dir and t.get("path") else None
-            a, b = motion_peak_window(clip_p, best[0], best[1], length)
-        score = score_take(v) + (0.5 if v.get("verdict") == "pass" else -2.0)
+            a, b = motion_peak_window(clip_p, best[0], best[1], length, shot=shot, is_finale=is_finale)
+        score = score_take(v) + (0.5 if v.get("verdict") == "pass" else -2.0) + minor_free_bonus
         candidates.append({"take": t["take"], "edit_in": a, "edit_out": b, "score": round(score, 2),
                            "window": best})
     if not candidates:

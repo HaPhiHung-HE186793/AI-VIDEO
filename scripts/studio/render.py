@@ -73,12 +73,66 @@ def write_srt(segs: list, out_path: Path, cfg: dict, fmt: str = "landscape") -> 
     return n
 
 
+def _prepare_color_match(segs: list) -> None:
+    """Cân bằng nhiệt độ màu và độ sáng liên cảnh (Shot-to-Shot Reinhard Color Harmonization).
+
+    Đo trung bình kênh màu (B, G, R) ở giữa mỗi đoạn cắt và kéo nhẹ các shot bị lệch tông gắt
+    (vd: một shot quá vàng cam giữa chuỗi cảnh xanh lạnh) về gần trung vị toàn phim trước khi áp 3D LUT.
+    """
+    if len(segs) < 2:
+        return
+    try:
+        import numpy as np
+
+        stats = []
+        for seg in segs:
+            clip = seg.get("clip")
+            if not clip or not Path(clip).exists():
+                stats.append(None)
+                continue
+            t_mid = (float(seg.get("tin", 0.0)) + float(seg.get("tout", 4.0))) * 0.5
+            frame, _ = media.read_frame_at(Path(clip), t_mid)
+            if frame is None:
+                stats.append(None)
+                continue
+            arr = frame.astype(np.float32) / 255.0
+            b_m, g_m, r_m = float(arr[:, :, 0].mean()), float(arr[:, :, 1].mean()), float(arr[:, :, 2].mean())
+            luma = 0.114 * b_m + 0.587 * g_m + 0.299 * r_m
+            stats.append((b_m, g_m, r_m, luma))
+
+        valid = [s for s in stats if s is not None]
+        if len(valid) < 2:
+            return
+        med_b = float(np.median([s[0] for s in valid]))
+        med_g = float(np.median([s[1] for s in valid]))
+        med_r = float(np.median([s[2] for s in valid]))
+        med_l = float(np.median([s[3] for s in valid]))
+
+        for seg, st in zip(segs, stats):
+            if st is None:
+                continue
+            b_m, g_m, r_m, luma = st
+            rm = max(-0.10, min(0.10, (med_r - r_m) * 0.55))
+            gm = max(-0.06, min(0.06, (med_g - g_m) * 0.35))
+            bm = max(-0.10, min(0.10, (med_b - b_m) * 0.55))
+            br = max(-0.05, min(0.05, (med_l - luma) * 0.35))
+            parts = []
+            if abs(rm) >= 0.015 or abs(bm) >= 0.015:
+                parts.append(f"colorbalance=rm={rm:.3f}:gm={gm:.3f}:bm={bm:.3f}")
+            if abs(br) >= 0.012:
+                parts.append(f"eq=brightness={br:.3f}")
+            if parts:
+                seg["_color_match_fx"] = "," + ",".join(parts)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def _shake_And_grain_suffix(seg: dict, w: int, h: int) -> str:
-    """Hiệu ứng rung máy vật lý tại điểm va chạm (Impact Camera Shake) + hạt phim 35mm IMAX cho cảnh hành động."""
+    """Hiệu ứng cân bằng màu liên cảnh + rung máy vật lý tại điểm va chạm (Impact Camera Shake) + hạt phim 35mm IMAX."""
     shot = seg.get("shot") or {}
     shake = shot.get("camera_shake")
     grain = shot.get("film_grain")
-    fx = ""
+    fx = seg.get("_color_match_fx", "")
     if shake:
         cfg_s = shake if isinstance(shake, dict) else {}
         amp = float(cfg_s.get("amp", 14.0))
@@ -186,6 +240,8 @@ def render(segs: list, out_path: Path, cfg: dict, fmt: str = "landscape", fit: s
     fps = out_cfg["fps"]
     if fit is None:
         fit = "pad" if fmt == "landscape" else "crop"
+
+    _prepare_color_match(segs)
 
     inputs, filters = [], []
     for i, seg in enumerate(segs):

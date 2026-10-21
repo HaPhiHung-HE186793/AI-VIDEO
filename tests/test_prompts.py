@@ -1216,3 +1216,108 @@ def test_universal_genres_wardrobe_bank_180_axis_and_nle_export(tmp_path, cfg):
     assert cc_data["duration"] == 4_000_000
     assert len(cc_data["tracks"]) == 4
 
+
+
+def test_six_defect_root_cause_fixes_strict_window_tail_climax_and_linters(cfg):
+    from studio import takes
+
+    proj = {
+        "language": "en",
+        "style_line": "Photorealistic live-action creature cinematography",
+        "characters": [
+            {"id": "CHAR_REX", "name": "Rex", "short_name": "Rex",
+             "identity_line": "a massive 9-ton adult Tyrannosaurus rex",
+             "reference_images": ["assets/characters/rex.png"]},
+            {"id": "CHAR_VASTO", "name": "Vasto", "short_name": "Vasto",
+             "identity_line": "a colossal 11-ton V-Rex",
+             "reference_images": ["assets/characters/vasto.png"]},
+        ],
+        "environments": [{"id": "ENV_VALLEY", "name": "Valley", "identity_line": "a mist-shrouded valley"}],
+    }
+
+    # 1. Transient VFX Sanitizer for static START/END keyframes + negative prompt protection
+    shot_vfx = {
+        "shot_id": "shot_01",
+        "generation_mode": "first_last",
+        "first_frame_path": "f1.jpg",
+        "last_frame_path": "f2.jpg",
+        "camera": "35mm low-angle shot",
+        "subjects": ["CHAR_REX"],
+        "environment": "ENV_VALLEY",
+        "action": "Rex stalks forward",
+        "start_staging": {
+            "camera_blocking": "35mm low-angle lens",
+            "subject_poses": {"CHAR_REX": "Rex lowers its head with water droplets dripping from its chin"},
+            "vfx_environment": "Concentric acoustic shockwave rings ripple through the air",
+        },
+    }
+    ff_p = prompts.build_first_frame_prompt(proj, shot_vfx)
+    assert "water droplets dripping from its chin" not in ff_p.lower()
+    assert "wet glistening chin" in ff_p.lower()
+    assert "concentric acoustic shockwave rings" not in ff_p.lower()
+    neg = prompts.effective_negative_prompt(proj, shot_vfx)
+    assert "film strip border" in neg and "concentric sound rings" in neg
+
+    # 2. FIRST_LAST_TORSO_FLIP & BITE_IMPACT_WIDE_LENS linters
+    shot_flip = {
+        "shot_id": "shot_05",
+        "generation_mode": "first_last",
+        "first_frame_path": "f1.jpg",
+        "last_frame_path": "f2.jpg",
+        "camera": "24mm ultra-wide combat shot",
+        "subjects": ["CHAR_REX", "CHAR_VASTO"],
+        "environment": "ENV_VALLEY",
+        "action": "Rex clamps its jaws deep into Vasto's neck muscular crest",
+        "start_staging": {
+            "subject_poses": {
+                "CHAR_REX": "Left frame lunging right",
+                "CHAR_VASTO": "Right frame facing left",
+            }
+        },
+        "end_staging": {
+            "subject_poses": {
+                "CHAR_REX": "Left frame bracing",
+                "CHAR_VASTO": "Right frame facing right with head twisted",
+            }
+        },
+    }
+    shot_flip["veo_prompt"] = prompts.build_prompt(proj, shot_flip)
+    codes = {f["code"] for f in prompts.lint_shot(proj, shot_flip, cfg)}
+    assert "FIRST_LAST_TORSO_FLIP" in codes
+    assert "BITE_IMPACT_WIDE_LENS" in codes
+
+    # 3. 2-Tier Clean Window Selection (Avoiding Minor Defects when Clean Window >= need_sec)
+    shot_minor = {
+        "shot_id": "shot_05",
+        "takes": [
+            {
+                "take": 1,
+                "qa": {
+                    "duration": 8.0,
+                    "technical": {"verdict": "pass"},
+                    "vision": {
+                        "verdict": "pass",
+                        "overall_score_1_10": 9.0,
+                        "identity_score_1_10": 9.0,
+                        "prompt_adherence_1_10": 9.0,
+                        "defects": [
+                            {"severity": "minor", "start_sec": 5.2, "end_sec": 6.6, "description": "torso spin"}
+                        ],
+                    },
+                },
+            }
+        ],
+    }
+    res_minor = takes.choose_take(shot_minor, 4.65, cfg, pref=4.65)
+    assert res_minor["edit_out"] <= 5.05
+
+    # 4. Phase-Aware Tail Climax / Cliffhanger Windowing
+    shot_finale = {
+        "shot_id": "shot_10",
+        "timeline_phases": [
+            {"time": "0.0s-3.0s", "phase_name": "Pull Back"},
+            {"time": "3.0s-8.0s", "phase_name": "Dual Cliffhanger Roar"},
+        ],
+    }
+    assert takes._is_tail_climax_shot(shot_finale, is_finale=False) is True
+    assert takes._is_tail_climax_shot({"shot_id": "shot_10"}, is_finale=True) is True
