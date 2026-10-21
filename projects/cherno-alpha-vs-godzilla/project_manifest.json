@@ -375,6 +375,7 @@
           "uid": "KF_CAVG1_S01_START"
         }
       ],
+      "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "1.2m water-level 24mm Anamorphic wide shot across churning black harbor waves toward the flooded city skyline. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: body and head completely submerged underwater beneath churning black ocean waves, only the row of unlit dark charcoal-grey jagged maple-leaf dorsal plates slicing above the foaming water surface). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m water-level 24mm Anamorphic wide shot across churning black harbor waves toward the flooded city skyline. Action: Godzilla: Only Godzilla's jagged dark bone-grey maple-leaf dorsal plates protrude above the churning black harbor water surface like shark fins on the right slicing left toward the seawall, while Godzilla's head, face, and body remain completely underwater beneath the foaming waves. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: deafening thunderclap, torrential rain lashing water, deep sub-bass underwater rumble, slicing ocean waves. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m water-level 24mm Anamorphic wide shot across churning black harbor waves toward the flooded city skyline. Action: Godzilla: Submerged beneath the black harbor swells on the right, Godzilla's row of jagged dorsal fins cleaves rapidly forward through the white sea foam toward the coastal seawall. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: deafening thunderclap, torrential rain lashing water, deep sub-bass underwater rumble, slicing ocean waves. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m water-level 24mm Anamorphic wide shot across churning black harbor waves toward the flooded city skyline. Action: Godzilla's submerged dorsal fins reach the concrete harbor seawall on the right as the water boils violently. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: deafening thunderclap, torrential rain lashing water, deep sub-bass underwater rumble, slicing ocean waves. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: deafening thunderclap, torrential rain lashing water, deep sub-bass underwater rumble, slicing ocean waves. No subtitles, no on-screen text.",
       "first_frame_prompt": "1.2m water-level 24mm Anamorphic wide shot across churning black harbor waves toward the flooded coastal city skyline: ON THE RIGHT SIDE OF THE FRAME, ONLY a row of jagged dark bone-grey maple-leaf dorsal fins protrudes above the churning black ocean water surface like giant shark fins slicing from right to left toward the concrete seawall, churning up a huge V-shaped wake of white sea foam. The kaiju head, face, jaws, arms, and torso are 100% completely submerged underwater out of sight beneath the dark waves (ONLY the dorsal fins stick out of the water). A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, burning skyscrapers in the background on the left, lightning in the storm clouds, dark moody teal and orange Hollywood color grading, volumetric fog, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
@@ -389,8 +390,7 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": [],
-      "first_frame_source": "hero_1080p"
+      "lint": []
     },
     {
       "shot_id": "shot_02",
@@ -500,6 +500,7 @@
           "uid": "KF_CAVG1_S02_START"
         }
       ],
+      "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "1.2m water-level 35mm Anamorphic medium-close shot at the shattered harbor seawall. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m water-level 35mm Anamorphic medium-close shot at the shattered harbor seawall. Action: Godzilla's massive head and upper shoulders burst vertically upward out of the boiling harbor water on the right facing left, with thick waterfalls of white foaming seawater cascading down from its wet charcoal skull, closed jaws, and dark unlit dorsal plates. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: explosive water breach roar, cascading waterfall splashes, low guttural kaiju breath, thunder. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m water-level 35mm Anamorphic medium-close shot at the shattered harbor seawall. Action: Godzilla surges waist-high out of the churning harbor water on the right, shedding torrents of white seawater from its head and shoulders onto the shattered concrete seawall. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: explosive water breach roar, cascading waterfall splashes, low guttural kaiju breath, thunder. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m water-level 35mm Anamorphic medium-close shot at the shattered harbor seawall. Action: Godzilla's head and upper torso loom above the shattered harbor seawall on the right facing left, preparing to step onto land. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: explosive water breach roar, cascading waterfall splashes, low guttural kaiju breath, thunder. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: explosive water breach roar, cascading waterfall splashes, low guttural kaiju breath, thunder. No subtitles, no on-screen text.",
       "first_frame_prompt": "1.2m water-level 35mm Anamorphic medium-close action shot at the harbor seawall: ON THE RIGHT SIDE OF THE FRAME FACING LEFT, Godzilla head, closed jaws, and muscular upper shoulders burst explosively upward out of the boiling harbor water right behind the concrete seawall, with massive waterfalls and curtains of white foaming seawater pouring down from the top of its wet charcoal-black skull, neck, and shoulders. Unlit dark charcoal-grey dorsal fins without any blue glow. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, burning skyscrapers in the background, dark moody teal and orange Hollywood color grading, volumetric fog, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
@@ -513,8 +514,7 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": [],
-      "first_frame_source": "hero_1080p"
+      "lint": []
     },
     {
       "shot_id": "shot_03",
@@ -624,6 +624,7 @@
           "uid": "KF_CAVG1_S03_START"
         }
       ],
+      "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "85mm Macro low-angle ground-level close-up shot on Godzilla's colossal clawed foot stepping onto the seawall road. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro low-angle ground-level close-up shot on Godzilla's colossal clawed foot stepping onto the seawall road. Action: Godzilla's colossal charcoal-scaled right foot and thick pillar-like leg slam down from the right onto the concrete harbor seawall and flooded asphalt road, crushing the concrete barrier wall beneath its giant hooked talons and blasting a huge wave of floodwater leftward. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: 50 Hz sub-bass kaiju footstep boom, shattering concrete seawall crunch, rushing floodwater wave, heavy rain. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro low-angle ground-level close-up shot on Godzilla's colossal clawed foot stepping onto the seawall road. Action: Godzilla's massive clawed foot crushes the concrete seawall blocks into rubble on the right as its 90,000-ton weight shifts onto the flooded coastal street, sending a two-meter surge of water and debris rushing left. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: 50 Hz sub-bass kaiju footstep boom, shattering concrete seawall crunch, rushing floodwater wave, heavy rain. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro low-angle ground-level close-up shot on Godzilla's colossal clawed foot stepping onto the seawall road. Action: Godzilla's colossal clawed feet stand planted on the shattered flooded coastal street on the right facing left. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: 50 Hz sub-bass kaiju footstep boom, shattering concrete seawall crunch, rushing floodwater wave, heavy rain. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: 50 Hz sub-bass kaiju footstep boom, shattering concrete seawall crunch, rushing floodwater wave, heavy rain. No subtitles, no on-screen text.",
       "first_frame_prompt": "1.2m ground-level 85mm Macro low-angle close-up shot framed strictly from the knee down to the street surface (head and upper body out of frame above the top edge): ON THE RIGHT SIDE OF THE FRAME STEPPING LEFT, Godzilla colossal charcoal-scaled four-toed clawed foot and thick pillar-like lower leg slam heavily down onto the concrete harbor seawall barrier and flooded asphalt street, crushing the concrete seawall blocks into flying rubble beneath its giant claws and blasting a massive wave of floodwater toward the left. A flooded, ruined modern coastal city street at night during a heavy thunderstorm, wet asphalt reflecting firelight from burning skyscrapers, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
@@ -638,8 +639,7 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": [],
-      "first_frame_source": "hero_1080p"
+      "lint": []
     },
     {
       "shot_id": "shot_04",
@@ -759,6 +759,7 @@
           "uid": "KF_CAVG1_S04_START"
         }
       ],
+      "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "1.2m ground-level 28mm Anamorphic low-angle full-body hero shot looking up from the flooded street. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 28mm Anamorphic low-angle full-body hero shot looking up from the flooded street. Action: Godzilla stands towering full-body on the flooded coastal city street on the right side of the frame facing left, throwing its head and neck tilted high upward toward the lightning-split storm clouds with its massive square jaws wide open in a deafening skyward roar, unlit dark charcoal dorsal fins along its back. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: deafening monster roar echoing off burning skyscrapers, acoustic shockwave rattling rain, thunderclap. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 28mm Anamorphic low-angle full-body hero shot looking up from the flooded street. Action: Godzilla braces its muscular torso on the flooded street on the right and bellows a thunderous skyward roar into the thunderstorm, sending visible acoustic shockwave rings rippling through the falling rain as lightning flashes behind it. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: deafening monster roar echoing off burning skyscrapers, acoustic shockwave rattling rain, thunderclap. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 28mm Anamorphic low-angle full-body hero shot looking up from the flooded street. Action: Godzilla stands anchored on the right side of the flooded harbor street facing left after its skyward roar. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: deafening monster roar echoing off burning skyscrapers, acoustic shockwave rattling rain, thunderclap. A flooded, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: deafening monster roar echoing off burning skyscrapers, acoustic shockwave rattling rain, thunderclap. No subtitles, no on-screen text.",
       "first_frame_prompt": "1.2m ground-level 28mm Anamorphic low-angle full-body hero shot looking up from the flooded coastal city street: ON THE RIGHT SIDE OF THE FRAME standing planted on the flooded asphalt street inside the city (in front of the seawall), Godzilla stands at its full 110-meter height facing left, throwing its head and neck tilted sharply UPWARD at a 60-degree angle toward the storm clouds with its massive jaws WIDE OPEN roaring furiously into the lightning-split night sky. Hot steam breath and saliva spray from its wide-open roaring mouth in the pouring rain; unlit dark charcoal-grey dorsal plates along its spine (no blue glow). A flooded, ruined modern coastal city at night during a heavy thunderstorm, burning skyscrapers in the background, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
@@ -772,8 +773,7 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": [],
-      "first_frame_source": "hero_1080p"
+      "lint": []
     },
     {
       "shot_id": "shot_05",
@@ -782,15 +782,15 @@
       "order": 5,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "BUT: Humanity deploys its heaviest brute-force Jaeger via aerial steel cables into the left side of the harbor dropzone",
-      "entry_state": "ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water",
-      "start_action": "ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water",
-      "action": "The overhead steel skyhook cables release with explosive bolts and ChernoAlpha drops vertically through the storm-lashed air onto the left side of the flooded harbor street",
-      "exit_state": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch",
-      "end_action": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch",
+      "causal_link": "BUT: Humanity's heaviest Jaeger fires its leg hydraulic pistons to leap explosively out of the harbor water onto the coastal street",
+      "entry_state": "ChernoAlpha leaps upward and forward out of the churning harbor water toward the flooded coastal street on the left facing right, its massive hydraulic leg pistons extended as both steel boots vault airborne over the seawall in a towering eruption of white sea foam",
+      "start_action": "ChernoAlpha leaps upward and forward out of the churning harbor water toward the flooded coastal street on the left facing right, its massive hydraulic leg pistons extended as both steel boots vault airborne over the seawall in a towering eruption of white sea foam",
+      "action": "Driven by explosive leg pistons, ChernoAlpha's 2,400-ton olive-drab steel frame vaults up from the harbor water over the shattered seawall onto the left side of the flooded street",
+      "exit_state": "ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact",
+      "end_action": "ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact",
       "generation_mode": "first_frame",
       "first_frame_path": "assets/frames/KF_CAVG1_S05_START.jpg",
-      "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds",
+      "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge",
       "spatial_mode": "low_angle_3d",
       "spatial_lock": true,
       "subjects": [
@@ -803,58 +803,58 @@
       "environment": "ENV_ACT1_HARBOR_RUINS",
       "lighting": "rainy night in ruined city, dark teal and orange lighting, volumetric fog, wet asphalt reflecting firelight and city lights, IMAX 70mm cinematic VFX, heavy slow-motion weight",
       "start_staging": {
-        "camera_blocking": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds",
+        "camera_blocking": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water"
+          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha leaps upward and forward out of the churning harbor water toward the flooded coastal street on the left facing right, its massive hydraulic leg pistons extended as both steel boots vault airborne over the seawall in a towering eruption of white sea foam"
         },
-        "contact_physics": "ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water",
+        "contact_physics": "ChernoAlpha leaps upward and forward out of the churning harbor water toward the flooded coastal street on the left facing right, its massive hydraulic leg pistons extended as both steel boots vault airborne over the seawall in a towering eruption of white sea foam",
         "vfx_environment": "Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS"
       },
       "end_staging": {
-        "camera_blocking": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds",
+        "camera_blocking": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch"
+          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact"
         },
-        "contact_physics": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch",
+        "contact_physics": "ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact",
         "vfx_environment": "Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS"
       },
       "timeline_phases": [
         {
           "time": "0.0s-2.5s",
           "phase_name": "Entry State & Telegraph",
-          "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds",
+          "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha leaps upward and forward out of the churning harbor water toward the flooded coastal street on the left facing right, its massive hydraulic leg pistons extended as both steel boots vault airborne over the seawall in a towering eruption of white sea foam"
           },
           "vfx": "Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS",
-          "sfx": "high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder"
+          "sfx": "explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder"
         },
         {
           "time": "2.5s-5.5s",
           "phase_name": "Primary Biomechanical & Mechanical Action",
-          "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds",
+          "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "The overhead steel skyhook cables release with explosive bolts and ChernoAlpha drops vertically through the storm-lashed air onto the left side of the flooded harbor street"
+            "CHAR_CHERNO_ALPHA": "Driven by explosive leg pistons, ChernoAlpha's 2,400-ton olive-drab steel frame vaults up from the harbor water over the shattered seawall onto the left side of the flooded street"
           },
           "vfx": "IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement",
-          "sfx": "high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder"
+          "sfx": "explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder"
         },
         {
           "time": "5.5s-8.0s",
           "phase_name": "Consequence & Exit State Lock",
-          "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds",
+          "camera": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact"
           },
           "vfx": "Settling floodwater waves, sparks, and steam matching exit state",
-          "sfx": "high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder"
+          "sfx": "explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder"
         }
       ],
       "audio": {
         "mode": "sfx_only",
-        "sfx": "high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder"
+        "sfx": "explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder"
       },
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
@@ -871,22 +871,42 @@
           "path": "assets/frames/candidates/KF_CAVG1_S05_START_c01.jpg",
           "sha256": "caa5453180433ea3686eb289519658e55f0ef0ce99642514f1b0ba81619d61aa",
           "uid": "KF_CAVG1_S05_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S05_START_c03.jpg",
+          "sha256": "a1f1278b96bc95b420419048b9b6277526118a34dc6484c1a80a5164f546d8e9",
+          "uid": "KF_CAVG1_S05_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S05_START_c04.jpg",
+          "sha256": "4701004b6286a590c62abcc7e4efe0d081dc85983af32b69deabe496e1e7da8f",
+          "uid": "KF_CAVG1_S05_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S05_START_c05.jpg",
+          "sha256": "4dc25b19631873d67ae36b06267b69c25c047aebf362ca6ce40d38dd6f67e3dc",
+          "uid": "KF_CAVG1_S05_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S05_START_c06.jpg",
+          "sha256": "af4b986334a92cb8df9122d1568bc20c6ea87314d52bccf8083cc98c3cef09b0",
+          "uid": "KF_CAVG1_S05_START"
         }
       ],
-      "first_frame_source": "hero_1080p",
-      "veo_prompt": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds. Action: ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds. Action: ChernoAlpha: The overhead steel skyhook cables release with explosive bolts and ChernoAlpha drops vertically through the storm-lashed air onto the left side of the flooded harbor street. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds. Action: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: high-tension steel cable snap, turbine downdraft roar, heavy metallic wind whistle, thunder. No subtitles, no on-screen text.",
-      "first_frame_prompt": "1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds: ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water. Physical Contact & Mass Coupling: ChernoAlpha hangs suspended in mid-air twenty meters above the flooded harbor street on the left side of the frame, hanging beneath taut overhead steel skyhook transport cables with both massive mechanical boots dangling high in the air above the water. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
-      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 28mm Anamorphic low-angle wide shot tilted up toward storm clouds; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch. Physical Contact & Mass Coupling: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right, knees bending into a deep impact absorption crouch. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "veo_prompt": "1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge. Action: ChernoAlpha leaps upward and forward out of the churning harbor water toward the flooded coastal street on the left facing right, its massive hydraulic leg pistons extended as both steel boots vault airborne over the seawall in a towering eruption of white sea foam. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge. Action: ChernoAlpha: Driven by explosive leg pistons, ChernoAlpha's 2,400-ton olive-drab steel frame vaults up from the harbor water over the shattered seawall onto the left side of the flooded street. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge. Action: ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: explosive hydraulic leg piston launch boom, roaring water eruption, heavy metallic whoosh, thunder. No subtitles, no on-screen text.",
+      "first_frame_prompt": "1.2m ground-level 28mm Anamorphic low-angle wide action shot at the harbor seawall edge: ON THE LEFT SIDE OF THE FRAME FACING RIGHT, Cherno Alpha (85-meter olive-drab heavy mechanical Jaeger robot with cylindrical reactor-tower chest-head and amber sternum cockpit visor, NO cables, NO wires) fires its massive leg hydraulic pistons at full power to LEAP explosively upward out of the deep churning harbor water over the concrete seawall toward the coastal street. Both giant mechanical boots are airborne in a powerful forward jump above a towering geyser of white foaming seawater and pressurized hydraulic steam erupting beneath its feet. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, burning skyscrapers in the background, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 28mm Anamorphic low-angle wide shot at the harbor seawall edge; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact. Physical Contact & Mass Coupling: ChernoAlpha's massive steel boots slam down onto the flooded street asphalt on the left facing right, knees and torso bending slightly forward to absorb the landing impact. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "routing": {
-        "complexity": 5,
+        "complexity": 1,
         "reasons": [
-          "tương tác vật lý / tay cầm nắm"
+          "đã khóa bố cục bằng keyframe (in-betweening)"
         ],
-        "tier": "quality",
+        "tier": "fast",
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "is_scene_anchor": true
     },
     {
       "shot_id": "shot_06",
@@ -895,15 +915,15 @@
       "order": 6,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "THEREFORE: The 2,400-ton landing crushes the flooded coastal road surface on impact",
-      "entry_state": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right",
-      "start_action": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right",
-      "action": "ChernoAlpha's ankle shock-absorber pistons compress violently as its steel heels shatter the wet asphalt into deep spiderweb craters, blasting geysers of rainwater and concrete chunks outward in slow motion",
-      "exit_state": "ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents",
-      "end_action": "ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents",
+      "causal_link": "THEREFORE: Cherno Alpha lands on both steel feet on the flooded street, bending its knees and torso slightly to absorb the 2,400-ton landing shock",
+      "entry_state": "ChernoAlpha lands on both massive olive-drab steel boots on the flooded coastal street on the left facing right, with its knees slightly bent and upper torso leaning slightly forward to cushion the landing recoil as the wet asphalt shatters beneath its heels",
+      "start_action": "ChernoAlpha lands on both massive olive-drab steel boots on the flooded coastal street on the left facing right, with its knees slightly bent and upper torso leaning slightly forward to cushion the landing recoil as the wet asphalt shatters beneath its heels",
+      "action": "ChernoAlpha's ankle and knee shock-absorber pistons compress as its two steel boots crush the wet asphalt into spiderweb craters, splashing water outward while its slightly bent posture absorbs the momentum",
+      "exit_state": "ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up",
+      "end_action": "ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up",
       "generation_mode": "first_frame",
       "first_frame_path": "assets/frames/KF_CAVG1_S06_START.jpg",
-      "camera": "85mm Macro close-up detail shot at asphalt level on the mechanical feet",
+      "camera": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street",
       "spatial_mode": "low_angle_3d",
       "spatial_lock": true,
       "subjects": [
@@ -916,58 +936,58 @@
       "environment": "ENV_ACT1_HARBOR_RUINS",
       "lighting": "rainy night in ruined city, dark teal and orange lighting, volumetric fog, wet asphalt reflecting firelight and city lights, IMAX 70mm cinematic VFX, heavy slow-motion weight",
       "start_staging": {
-        "camera_blocking": "85mm Macro close-up detail shot at asphalt level on the mechanical feet",
+        "camera_blocking": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right"
+          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha lands on both massive olive-drab steel boots on the flooded coastal street on the left facing right, with its knees slightly bent and upper torso leaning slightly forward to cushion the landing recoil as the wet asphalt shatters beneath its heels"
         },
-        "contact_physics": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right",
+        "contact_physics": "ChernoAlpha lands on both massive olive-drab steel boots on the flooded coastal street on the left facing right, with its knees slightly bent and upper torso leaning slightly forward to cushion the landing recoil as the wet asphalt shatters beneath its heels",
         "vfx_environment": "Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS"
       },
       "end_staging": {
-        "camera_blocking": "85mm Macro close-up detail shot at asphalt level on the mechanical feet",
+        "camera_blocking": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents"
+          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up"
         },
-        "contact_physics": "ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents",
+        "contact_physics": "ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up",
         "vfx_environment": "Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS"
       },
       "timeline_phases": [
         {
           "time": "0.0s-2.5s",
           "phase_name": "Entry State & Telegraph",
-          "camera": "85mm Macro close-up detail shot at asphalt level on the mechanical feet",
+          "camera": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha lands on both massive olive-drab steel boots on the flooded coastal street on the left facing right, with its knees slightly bent and upper torso leaning slightly forward to cushion the landing recoil as the wet asphalt shatters beneath its heels"
           },
           "vfx": "Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS",
-          "sfx": "earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash"
+          "sfx": "earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash"
         },
         {
           "time": "2.5s-5.5s",
           "phase_name": "Primary Biomechanical & Mechanical Action",
-          "camera": "85mm Macro close-up detail shot at asphalt level on the mechanical feet",
+          "camera": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha's ankle shock-absorber pistons compress violently as its steel heels shatter the wet asphalt into deep spiderweb craters, blasting geysers of rainwater and concrete chunks outward in slow motion"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha's ankle and knee shock-absorber pistons compress as its two steel boots crush the wet asphalt into spiderweb craters, splashing water outward while its slightly bent posture absorbs the momentum"
           },
           "vfx": "IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement",
-          "sfx": "earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash"
+          "sfx": "earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash"
         },
         {
           "time": "5.5s-8.0s",
           "phase_name": "Consequence & Exit State Lock",
-          "camera": "85mm Macro close-up detail shot at asphalt level on the mechanical feet",
+          "camera": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up"
           },
           "vfx": "Settling floodwater waves, sparks, and steam matching exit state",
-          "sfx": "earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash"
+          "sfx": "earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash"
         }
       ],
       "audio": {
         "mode": "sfx_only",
-        "sfx": "earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash"
+        "sfx": "earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash"
       },
       "transition_to_next": "INTRA_SCENE_CONTINUE",
       "transition_out": "cut",
@@ -984,24 +1004,33 @@
           "path": "assets/frames/candidates/KF_CAVG1_S06_START_c02.jpg",
           "sha256": "212ef235c8a619d6784e0bd0513f958037f26cd78fb053a1e7773f1376d78fe0",
           "uid": "KF_CAVG1_S06_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S06_START_c03.jpg",
+          "sha256": "fc64b45bdc3599bfbec6dd5cd8eeb47ff0f3f01b8cd895da848a036d0d19717b",
+          "uid": "KF_CAVG1_S06_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S06_START_c04.jpg",
+          "sha256": "a1e07c5355d039d731475ea20e082095dca7f5a9ecc94b3bd07c447863c8aa31",
+          "uid": "KF_CAVG1_S06_START"
         }
       ],
-      "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
-      "veo_prompt": "85mm Macro close-up detail shot at asphalt level on the mechanical feet. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro close-up detail shot at asphalt level on the mechanical feet. Action: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro close-up detail shot at asphalt level on the mechanical feet. Action: ChernoAlpha's ankle shock-absorber pistons compress violently as its steel heels shatter the wet asphalt into deep spiderweb craters, blasting geysers of rainwater and concrete chunks outward in slow motion. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro close-up detail shot at asphalt level on the mechanical feet. Action: ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: earth-shattering metallic impact boom, pulverizing asphalt crunch, high-pressure hydraulic hiss, water splash. No subtitles, no on-screen text.",
-      "first_frame_prompt": "85mm Macro close-up detail shot at asphalt level on the mechanical feet: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 85mm Macro close-up detail shot at asphalt level on the mechanical feet; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right. Physical Contact & Mass Coupling: ChernoAlpha's massive olive-drab mechanical boots touch the flooded asphalt on the left facing right. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
-      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 85mm Macro close-up detail shot at asphalt level on the mechanical feet; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents. Physical Contact & Mass Coupling: ChernoAlpha's mechanical boots remain planted deep in the shattered flooded asphalt on the left facing right, white hydraulic steam hissing from ankle vents. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "veo_prompt": "1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street. Action: ChernoAlpha lands on both massive olive-drab steel boots on the flooded coastal street on the left facing right, with its knees slightly bent and upper torso leaning slightly forward to cushion the landing recoil as the wet asphalt shatters beneath its heels. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street. Action: ChernoAlpha's ankle and knee shock-absorber pistons compress as its two steel boots crush the wet asphalt into spiderweb craters, splashing water outward while its slightly bent posture absorbs the momentum. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street. Action: ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: earth-shattering metallic landing boom, pulverizing asphalt crunch, high-pressure hydraulic shock-absorber hiss, water splash. No subtitles, no on-screen text.",
+      "first_frame_prompt": "1.2m ground-level 35mm Anamorphic full-body low-angle action shot on the flooded coastal street right inside the harbor seawall: ON THE LEFT SIDE OF THE FRAME FACING RIGHT, Cherno Alpha (85-meter olive-drab mechanical Jaeger with cylindrical reactor-tower chest-head) JUST LANDS from its jump with BOTH massive steel boots slamming down onto the flooded asphalt street, its knees bent slightly and its heavy upper torso leaning slightly forward to absorb the landing impact while both arms are held low for balance. The wet asphalt shatters into spiderweb cracks beneath its two boots, blasting a ring of floodwater, concrete chunks, and white ankle-piston shock-absorber steam outward. A flooded, ruined modern coastal city harbor street at night during a heavy thunderstorm, burning skyscrapers in the background, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 35mm Anamorphic full-body low-angle shot on the flooded street; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up. Physical Contact & Mass Coupling: ChernoAlpha finishes absorbing the landing shock on the left facing right and begins extending its legs to stand straight up. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "routing": {
-        "complexity": 1,
+        "complexity": 5,
         "reasons": [
-          "cận chi tiết giải phẫu",
-          "đã khóa bố cục bằng keyframe (in-betweening)"
+          "tương tác vật lý / tay cầm nắm"
         ],
-        "tier": "fast",
+        "tier": "quality",
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "first_frame_source": "hero_1080p"
     },
     {
       "shot_id": "shot_07",
@@ -1010,15 +1039,15 @@
       "order": 7,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "THEREFORE: Cherno Alpha rises from its landing crouch and powers up its nuclear reactor core",
-      "entry_state": "ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right",
-      "start_action": "ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right",
-      "action": "ChernoAlpha extends its leg hydraulics to rise to its full 85-meter height on the left, its amber sternum cockpit visor blazing bright while twin shoulder turbines vent thick black diesel exhaust into the rain",
-      "exit_state": "ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest",
-      "end_action": "ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest",
+      "causal_link": "THEREFORE: Having absorbed the landing recoil, Cherno Alpha straightens its legs and torso to stand fully upright at its towering 85-meter height",
+      "entry_state": "ChernoAlpha stands fully upright with straight legs and erect torso on the left side of the flooded harbor street facing right, both giant mechanical arms hanging down at its sides as white steam vents from its reactor tower",
+      "start_action": "ChernoAlpha stands fully upright with straight legs and erect torso on the left side of the flooded harbor street facing right, both giant mechanical arms hanging down at its sides as white steam vents from its reactor tower",
+      "action": "ChernoAlpha locks its leg and spine hydraulics fully upright on the left facing right, its amber sternum cockpit visor blazing bright as it spots Godzilla across the flooded street",
+      "exit_state": "ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard",
+      "end_action": "ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard",
       "generation_mode": "first_frame",
       "first_frame_path": "assets/frames/KF_CAVG1_S07_START.jpg",
-      "camera": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising",
+      "camera": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up",
       "spatial_mode": "low_angle_3d",
       "spatial_lock": true,
       "subjects": [
@@ -1031,30 +1060,30 @@
       "environment": "ENV_ACT1_HARBOR_RUINS",
       "lighting": "rainy night in ruined city, dark teal and orange lighting, volumetric fog, wet asphalt reflecting firelight and city lights, IMAX 70mm cinematic VFX, heavy slow-motion weight",
       "start_staging": {
-        "camera_blocking": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising",
+        "camera_blocking": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right"
+          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha stands fully upright with straight legs and erect torso on the left side of the flooded harbor street facing right, both giant mechanical arms hanging down at its sides as white steam vents from its reactor tower"
         },
-        "contact_physics": "ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right",
+        "contact_physics": "ChernoAlpha stands fully upright with straight legs and erect torso on the left side of the flooded harbor street facing right, both giant mechanical arms hanging down at its sides as white steam vents from its reactor tower",
         "vfx_environment": "Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS"
       },
       "end_staging": {
-        "camera_blocking": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising",
+        "camera_blocking": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest"
+          "CHAR_CHERNO_ALPHA": "On the left: ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard"
         },
-        "contact_physics": "ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest",
+        "contact_physics": "ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard",
         "vfx_environment": "Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS"
       },
       "timeline_phases": [
         {
           "time": "0.0s-2.5s",
           "phase_name": "Entry State & Telegraph",
-          "camera": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising",
+          "camera": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha stands fully upright with straight legs and erect torso on the left side of the flooded harbor street facing right, both giant mechanical arms hanging down at its sides as white steam vents from its reactor tower"
           },
           "vfx": "Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS",
           "sfx": "deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain"
@@ -1062,9 +1091,9 @@
         {
           "time": "2.5s-5.5s",
           "phase_name": "Primary Biomechanical & Mechanical Action",
-          "camera": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising",
+          "camera": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha extends its leg hydraulics to rise to its full 85-meter height on the left, its amber sternum cockpit visor blazing bright while twin shoulder turbines vent thick black diesel exhaust into the rain"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha locks its leg and spine hydraulics fully upright on the left facing right, its amber sternum cockpit visor blazing bright as it spots Godzilla across the flooded street"
           },
           "vfx": "IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement",
           "sfx": "deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain"
@@ -1072,9 +1101,9 @@
         {
           "time": "5.5s-8.0s",
           "phase_name": "Consequence & Exit State Lock",
-          "camera": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising",
+          "camera": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest"
+            "CHAR_CHERNO_ALPHA": "ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard"
           },
           "vfx": "Settling floodwater waves, sparks, and steam matching exit state",
           "sfx": "deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain"
@@ -1099,13 +1128,22 @@
           "path": "assets/frames/candidates/KF_CAVG1_S07_START_c02.jpg",
           "sha256": "60b90a5ca05f01159bb3a70b60f193b973da147f30c7493c7c1aafa627507612",
           "uid": "KF_CAVG1_S07_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S07_START_c03.jpg",
+          "sha256": "ef39315134277f3323b5f53fecb40d156a7507df7e5d20c61a286b1c43e2bfb2",
+          "uid": "KF_CAVG1_S07_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S07_START_c04.jpg",
+          "sha256": "576b543a2bad9137de35c14bcea02947f25a4ab39e0f583878f2150a87c6760e",
+          "uid": "KF_CAVG1_S07_START"
         }
       ],
-      "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
-      "veo_prompt": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising. Action: ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising. Action: ChernoAlpha extends its leg hydraulics to rise to its full 85-meter height on the left, its amber sternum cockpit visor blazing bright while twin shoulder turbines vent thick black diesel exhaust into the rain. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising. Action: ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. No subtitles, no on-screen text.",
-      "first_frame_prompt": "1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising: ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right. Physical Contact & Mass Coupling: ChernoAlpha crouches low in the shattered flooded asphalt on the left side of the harbor street facing right. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
-      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 35mm Anamorphic medium-wide shot looking up at the Jaeger rising; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest. Physical Contact & Mass Coupling: ChernoAlpha stands upright in knee-deep harbor floodwater on the left facing right, raising both giant mechanical fists toward its chest. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "veo_prompt": "1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up. Action: ChernoAlpha stands fully upright with straight legs and erect torso on the left side of the flooded harbor street facing right, both giant mechanical arms hanging down at its sides as white steam vents from its reactor tower. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up. Action: ChernoAlpha locks its leg and spine hydraulics fully upright on the left facing right, its amber sternum cockpit visor blazing bright as it spots Godzilla across the flooded street. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up. Action: ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: deep mechanical hydraulic groans, nuclear reactor turbine spooling hum, heavy metallic servo lock, rain. No subtitles, no on-screen text.",
+      "first_frame_prompt": "1.2m ground-level 35mm Anamorphic full-body low-angle hero shot on the flooded coastal street: ON THE LEFT SIDE OF THE FRAME FACING RIGHT, having absorbed the landing shock, Cherno Alpha (85-meter olive-drab mechanical Jaeger with cylindrical reactor-tower chest-head and glowing amber sternum visor) now stands 100% FULLY UPRIGHT and ERECT with both legs straight and torso tall, while BOTH giant blunt blocky steel arms still hang relaxed down at its sides (arms NOT raised yet) as white steam vents from its shoulder pods. A flooded, ruined modern coastal city harbor street at night during a heavy thunderstorm, burning skyscrapers in the background, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 1.2m ground-level 35mm Anamorphic medium-wide low-angle shot looking up at the Jaeger standing straight up; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard. Physical Contact & Mass Coupling: ChernoAlpha stands tall and fully upright on the left facing right, preparing to raise both fists into a fighting guard. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
         "reasons": [
@@ -1115,7 +1153,8 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "first_frame_source": "hero_1080p"
     },
     {
       "shot_id": "shot_08",
@@ -1124,12 +1163,12 @@
       "order": 8,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "THEREFORE: Both titans lock eyes across the flooded harbor in an iconic Hollywood face-off",
-      "entry_state": "On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised; on the right, Godzilla stands anchored at the harbor edge facing left",
-      "start_action": "On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised; on the right, Godzilla stands anchored at the harbor edge facing left",
-      "action": "On the left, ChernoAlpha stands heavily in deep water, slamming its two giant mechanical fists together creating bright electrical sparks. On the right, Godzilla steps out of the ocean, roaring furiously into the storm as lightning flashes across the burning city skyline",
-      "exit_state": "On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left",
-      "end_action": "On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left",
+      "causal_link": "THEREFORE: Spotting Godzilla across the street, Cherno Alpha raises both massive mechanical fists into a combat guard as both titans face off",
+      "entry_state": "On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right; on the right, Godzilla stands anchored at the harbor edge facing left",
+      "start_action": "On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right; on the right, Godzilla stands anchored at the harbor edge facing left",
+      "action": "On the left, ChernoAlpha stands heavily in deep water, raising and slamming its two giant mechanical fists together in a combat stance. On the right, Godzilla roars furiously into the storm as lightning flashes across the burning city skyline",
+      "exit_state": "On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left",
+      "end_action": "On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left",
       "generation_mode": "first_frame",
       "first_frame_path": "assets/frames/KF_CAVG1_S08_START.jpg",
       "camera": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level",
@@ -1150,20 +1189,20 @@
         "camera_blocking": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised",
+          "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right",
           "CHAR_GODZILLA": "on the right, Godzilla stands anchored at the harbor edge facing left"
         },
-        "contact_physics": "On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised; on the right, Godzilla stands anchored at the harbor edge facing left",
+        "contact_physics": "On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right; on the right, Godzilla stands anchored at the harbor edge facing left",
         "vfx_environment": "Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS"
       },
       "end_staging": {
         "camera_blocking": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
         "subject_poses": {
-          "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right",
+          "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right",
           "CHAR_GODZILLA": "on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left"
         },
-        "contact_physics": "On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left",
+        "contact_physics": "On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left",
         "vfx_environment": "Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS"
       },
       "timeline_phases": [
@@ -1172,7 +1211,7 @@
           "phase_name": "Entry State & Telegraph",
           "camera": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised",
+            "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right",
             "CHAR_GODZILLA": "on the right, Godzilla stands anchored at the harbor edge facing left"
           },
           "vfx": "Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS",
@@ -1183,8 +1222,8 @@
           "phase_name": "Primary Biomechanical & Mechanical Action",
           "camera": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha stands heavily in deep water, slamming its two giant mechanical fists together creating bright electrical sparks",
-            "CHAR_GODZILLA": "On the right,Godzilla steps out of the ocean, roaring furiously into the storm as lightning flashes across the burning city skyline"
+            "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha stands heavily in deep water, raising and slamming its two giant mechanical fists together in a combat stance",
+            "CHAR_GODZILLA": "On the right,Godzilla roars furiously into the storm as lightning flashes across the burning city skyline"
           },
           "vfx": "IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement",
           "sfx": "deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain"
@@ -1194,7 +1233,7 @@
           "phase_name": "Consequence & Exit State Lock",
           "camera": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level",
           "subjects": {
-            "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right",
+            "CHAR_CHERNO_ALPHA": "On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right",
             "CHAR_GODZILLA": "on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left"
           },
           "vfx": "Settling floodwater waves, sparks, and steam matching exit state",
@@ -1224,9 +1263,9 @@
       ],
       "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
-      "veo_prompt": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Towering in the left foreground at a 3/4 low-angle perspective, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Lunging from the right midground across the z-axis depth, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Action: ChernoAlpha: On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised; Godzilla: on the right, Godzilla stands anchored at the harbor edge facing left. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Action: ChernoAlpha: On the left, ChernoAlpha stands heavily in deep water, slamming its two giant mechanical fists together creating bright electrical sparks; Godzilla: On the right,Godzilla steps out of the ocean, roaring furiously into the storm as lightning flashes across the burning city skyline. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. [5.5s-8.0s Consequence & Exit State Lock] Camera: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Action: ChernoAlpha: On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right; Godzilla: on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level: On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised; on the right, Godzilla stands anchored at the harbor edge facing left. Towering in the left foreground at a 3/4 low-angle perspective, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Lunging from the right midground across the z-axis depth, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised | Godzilla: on the right, Godzilla stands anchored at the harbor edge facing left. Physical Contact & Mass Coupling: On the left, ChernoAlpha stands upright in knee-deep floodwater with both giant fists raised; on the right, Godzilla stands anchored at the harbor edge facing left. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
-      "last_frame_prompt": "Final state at the end of the shot: On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Towering in the left foreground at a 3/4 low-angle perspective, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Lunging from the right midground across the z-axis depth, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right | Godzilla: on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. Physical Contact & Mass Coupling: On the left, ChernoAlpha holds a low boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "veo_prompt": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Towering in the left foreground at a 3/4 low-angle perspective, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Lunging from the right midground across the z-axis depth, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Action: ChernoAlpha: On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right; Godzilla: on the right, Godzilla stands anchored at the harbor edge facing left. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Action: ChernoAlpha: On the left, ChernoAlpha stands heavily in deep water, raising and slamming its two giant mechanical fists together in a combat stance; Godzilla: On the right,Godzilla roars furiously into the storm as lightning flashes across the burning city skyline. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. [5.5s-8.0s Consequence & Exit State Lock] Camera: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level. Action: ChernoAlpha: On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right; Godzilla: on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: deafening metallic fist-slam clang, crackling electrical arc, deafening monster roar, thunderclap, heavy rain. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level: On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right; on the right, Godzilla stands anchored at the harbor edge facing left. Towering in the left foreground at a 3/4 low-angle perspective, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Lunging from the right midground across the z-axis depth, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right | Godzilla: on the right, Godzilla stands anchored at the harbor edge facing left. Physical Contact & Mass Coupling: On the left, ChernoAlpha stands upright in knee-deep floodwater and raises both giant mechanical fists high in front of its chest in a fighting stance facing right; on the right, Godzilla stands anchored at the harbor edge facing left. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Towering in the left foreground at a 3/4 low-angle perspective, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Lunging from the right midground across the z-axis depth, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: Cinematic IMAX 28mm Anamorphic low-angle wide two-shot at 1.2m ground level; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right | Godzilla: on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. Physical Contact & Mass Coupling: On the left, ChernoAlpha holds a high boxer guard with sparking steel knuckles facing right; on the right, Godzilla lowers its roaring head into an aggressive forward charge posture facing left. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 2,
         "reasons": [
@@ -8672,41 +8711,6 @@
   },
   "session_log": [
     {
-      "at": "2026-10-21T18:17:27",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T18:17:27",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T18:18:01",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T18:18:02",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T18:22:16",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind assets --new-project --count 2",
-      "ok": true
-    },
-    {
       "at": "2026-10-21T18:22:28",
       "machine": "DESKTOP-HUP72C4",
       "command": "audit-assets",
@@ -8937,10 +8941,59 @@
       "command": "storyboard",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-21T20:55:26",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T20:55:27",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "--strict",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T20:56:02",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --count 2 --shots shot_05,shot_06,shot_07",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T20:57:31",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_05,shot_06,shot_07 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T20:59:22",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_05 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T21:02:46",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T21:03:20",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-21T20:20:41",
+    "at": "2026-10-21T21:03:20",
     "machine": "DESKTOP-HUP72C4",
     "command": "storyboard"
   },
@@ -9745,11 +9798,41 @@
       "credits": 0,
       "at": "2026-10-21T20:18:08",
       "harvested": "2026-10-21T20:19:24"
+    },
+    {
+      "shot": "shot_05",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-21T20:55:41",
+      "harvested": "2026-10-21T20:59:19"
+    },
+    {
+      "shot": "shot_06",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-21T20:55:51",
+      "harvested": "2026-10-21T20:57:29"
+    },
+    {
+      "shot": "shot_07",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-21T20:56:02",
+      "harvested": "2026-10-21T20:57:25"
     }
   ],
   "storyboard": {
     "status": "pending",
-    "built_hash": "b3ec9d9dc15f6888",
-    "built_at": "2026-10-21T20:20:40"
+    "built_hash": "d702932ffd74b9f6",
+    "built_at": "2026-10-21T21:03:20"
   }
 }
