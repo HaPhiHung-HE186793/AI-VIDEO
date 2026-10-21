@@ -3258,20 +3258,6 @@
   ],
   "session_log": [
     {
-      "at": "2026-10-20T23:57:23",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind video --shots shot_04,shot_04b,shot_05,shot_06a,shot_06b,shot_06c,shot_07,shot_08",
-      "ok": true
-    },
-    {
-      "at": "2026-10-20T23:59:24",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind video --wait",
-      "ok": true
-    },
-    {
       "at": "2026-10-21T00:03:57",
       "machine": "DESKTOP-HUP72C4",
       "command": "qa-takes",
@@ -3539,10 +3525,24 @@
       "command": "lint-prompts",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-21T09:44:53",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-21T09:44:54",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "lint-prompts",
+      "args": "",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-21T09:22:49",
+    "at": "2026-10-21T09:44:54",
     "machine": "DESKTOP-HUP72C4",
     "command": "lint-prompts"
   },
@@ -4662,6 +4662,50 @@
           "shot_08:start",
           "shot_08:end"
         ]
+      }
+    ]
+  },
+  "generation_dag": {
+    "total_shots": 12,
+    "critical_path_waves": 2,
+    "max_parallelism": 11,
+    "waves": [
+      {
+        "wave": 1,
+        "parallel_shots": [
+          "shot_01",
+          "shot_02",
+          "shot_02b",
+          "shot_03",
+          "shot_04",
+          "shot_04b",
+          "shot_05",
+          "shot_06a",
+          "shot_06c",
+          "shot_07",
+          "shot_08"
+        ],
+        "count": 11,
+        "dependencies": {},
+        "reasons": {}
+      },
+      {
+        "wave": 2,
+        "parallel_shots": [
+          "shot_06b"
+        ],
+        "count": 1,
+        "dependencies": {
+          "shot_06b": [
+            "shot_06a"
+          ]
+        },
+        "reasons": {
+          "shot_06b": [
+            "neo Star-Anchor F0 vào shot_06a",
+            "nối Daisy-Chain từ frame cuối shot_06a"
+          ]
+        }
       }
     ]
   }

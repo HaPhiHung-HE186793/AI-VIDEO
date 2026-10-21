@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `t-rex-vs-spinosaurus-swamp-battle` — thư mục `projects/t-rex-vs-spinosaurus-swamp-battle/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/5e06c00b-e4b1-4460-b012-4454fd94fa25
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T09:22:49 trên máy **DESKTOP-HUP72C4** (lệnh `lint-prompts`)
+- **Cập nhật lần cuối:** 2026-10-21T09:44:54 trên máy **DESKTOP-HUP72C4** (lệnh `lint-prompts`)
 - **Storyboard:** đã sửa sau khi duyệt (cần duyệt lại: a131d8bc0bb5097d)
 
 ## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
@@ -95,6 +95,8 @@ python scripts/studio_helper.py flow-harvest --project t-rex-vs-spinosaurus-swam
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-21 09:44 | DESKTOP-HUP72C4 | `lint-prompts ` | ok |
+| 10-21 09:44 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
 | 10-21 09:22 | DESKTOP-HUP72C4 | `lint-prompts ` | ok |
 | 10-21 09:22 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
 | 10-21 08:48 | DESKTOP-HUP72C4 | `flow-storyboard --grid 3x3 --slice-only` | ok |
@@ -108,5 +110,3 @@ python scripts/studio_helper.py flow-harvest --project t-rex-vs-spinosaurus-swam
 | 10-21 02:24 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
 | 10-21 02:19 | DESKTOP-HUP72C4 | `storyboard ` | ok |
 | 10-21 02:18 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_04b --wait` | ok |
-| 10-21 02:17 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_01,shot_02,shot_04b --count 2` | ok |
-| 10-21 02:16 | DESKTOP-HUP72C4 | `build-prompts ` | ok |

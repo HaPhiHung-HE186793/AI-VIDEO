@@ -22,6 +22,211 @@ LANGUAGE_NAMES_EN = {"vi": "Vietnamese", "en": "English", "ja": "Japanese", "ko"
 GENERATION_MODES = ("text", "ingredients", "first_frame", "first_last", "extend")
 AUDIO_MODES = ("sfx_only", "voiceover_external", "veo_dialogue", "veo_narration")
 
+# Hệ thống Đạo diễn Đa Thể Loại Toàn Diện (Universal Genre Director Profiles)
+GENRE_PROFILES = {
+    "action_blockbuster": {
+        "label": "Hành động / Đại chiến IMAX (Action / Monster / Blockbuster)",
+        "style_line": (
+            "Live-action IMAX 65mm anamorphic cinematography, physical contact mass coupling, "
+            "Chiaroscuro 2700K warm firelight vs 6500K cold steel-teal rim lighting, 180-degree shutter natural motion blur, fine 35mm film grain"
+        ),
+        "negative_prompt": (
+            "plastic CGI skin, weightless floating motion, slow-motion hovering, glowing LED eyes, purple neon lightning, "
+            "cartoon cel-shading, extra limbs, morphing anatomy, subtitles, watermark"
+        ),
+        "lut_preset": "blockbuster",
+        "music_mood": "combat",
+        "avg_shot_sec": 3.2,
+        "char_type": "creature",
+    },
+    "wuxia_xianxia": {
+        "label": "Cổ trang / Kiếm hiệp / Tiên hiệp (Wuxia / Xianxia / Eastern Fantasy)",
+        "style_line": (
+            "Prestige Eastern cinema anamorphic 50mm lens, flowing silk garment physics in mountain wind, "
+            "atmospheric ink-wash mist, warm lantern gold key light against deep jade-cyan moonlight shadows, tactile martial choreography"
+        ),
+        "negative_prompt": (
+            "modern clothing, plastic mannequin face, stiff cape, western architecture, neon cyberpunk signs, "
+            "floating disembodied swords, deformed hands, extra fingers, subtitles, watermark"
+        ),
+        "lut_preset": "wuxia_jade",
+        "music_mood": "combat",
+        "avg_shot_sec": 3.5,
+        "char_type": "human",
+    },
+    "cyberpunk_scifi": {
+        "label": "Khoa học viễn tưởng / Cyberpunk (Sci-Fi / Cyberpunk)",
+        "style_line": (
+            "Anamorphic Panavision sci-fi cinematography, wet asphalt reflections, volumetric sodium-vapor amber and cyan-teal "
+            "holographic rim lighting, rain-streaked optical lens flare, grounded hard-surface mechanical detail"
+        ),
+        "negative_prompt": (
+            "flat daylight, cartoon 2D illustration, blurry low-res textures, medieval props, rubbery armor, "
+            "morphing helmet visor, extra fingers, subtitles, watermark"
+        ),
+        "lut_preset": "cyberpunk_neon",
+        "music_mood": "tension",
+        "avg_shot_sec": 3.5,
+        "char_type": "human",
+    },
+    "horror_thriller": {
+        "label": "Kinh dị / Giật gân / Trinh thám (Horror / Psychological Thriller)",
+        "style_line": (
+            "A24 psychological thriller 35mm cinematography, deep low-key chiaroscuro shadows, practical flickering tungsten bulb "
+            "and cold moonlight shafts, claustrophobic shallow depth of field, raw unsettling realism"
+        ),
+        "negative_prompt": (
+            "bright cheerful lighting, oversaturated colors, comedic expressions, glossy beauty filter, "
+            "cartoon monster, morphing walls, subtitles, watermark"
+        ),
+        "lut_preset": "noir_thriller",
+        "music_mood": "tension",
+        "avg_shot_sec": 4.2,
+        "char_type": "human",
+    },
+    "romance_kdrama": {
+        "label": "Ngôn tình / Tâm lý / Điện ảnh Lãng mạn (Romance / K-Drama / Slice of Life)",
+        "style_line": (
+            "Prestige romantic cinema 85mm f/1.4 portrait lens, creamy bokeh, soft golden-hour backlight and warm practical lamps, "
+            "natural translucent skin micro-texture, subtle emotional micro-expressions"
+        ),
+        "negative_prompt": (
+            "harsh horror shadows, distorted facial features, uncanny valley grin, plastic doll skin, "
+            "jerky fast camera shake, extra fingers, subtitles, watermark"
+        ),
+        "lut_preset": "romance_pastel",
+        "music_mood": "podcast_lofi",
+        "avg_shot_sec": 4.8,
+        "char_type": "human",
+    },
+    "anime_2d_3d": {
+        "label": "Hoạt hình Anime 2D / 3D Donghua (Theatrical Anime / Stylized Animation)",
+        "style_line": (
+            "Theatrical 2D anime cinematography, hand-drawn key animation line art with multi-plane camera parallax, "
+            "dramatic rim lighting, expressive sakuga motion arcs, rich painted background art"
+        ),
+        "negative_prompt": (
+            "photorealistic human skin pores, live-action footage, uncanny 3D wax doll, inconsistent line weight, "
+            "blurry smeared faces, extra limbs, subtitles, watermark"
+        ),
+        "lut_preset": "anime_vibrant",
+        "music_mood": "wonder",
+        "avg_shot_sec": 3.5,
+        "char_type": "cartoon",
+    },
+    "sitcom_podcast": {
+        "label": "Sitcom / Podcast / Hài đời thường (Ensemble Sitcom / Visual Podcast)",
+        "style_line": (
+            "Warm cinematic ensemble comedy coverage, 35mm medium two-shots and over-the-shoulder angles, "
+            "cozy practical tungsten cafe lighting, expressive natural body language and lip-sync"
+        ),
+        "negative_prompt": (
+            "attribute swapping between characters, extra arms, floating coffee cups, dark horror shadows, "
+            "lip-sync on non-speaking listeners, subtitles, watermark"
+        ),
+        "lut_preset": "warm_dawn",
+        "music_mood": "podcast_lofi",
+        "avg_shot_sec": 4.2,
+        "char_type": "human",
+    },
+    "nature_documentary": {
+        "label": "Tài liệu Thiên nhiên / Khoa học (BBC Natural History / Science Documentary)",
+        "style_line": (
+            "Photorealistic BBC Planet Earth III natural history cinematography, 400mm f/2.8 telephoto lens compression, "
+            "authentic animal biomechanics, wet skin and feather micro-detail, natural atmospheric daylight"
+        ),
+        "negative_prompt": (
+            "cartoon animation, anthropomorphic clothing, glowing fantasy eyes, CGI plastic sheen, "
+            "weightless sliding feet, morphing species, subtitles, watermark"
+        ),
+        "lut_preset": "documentary",
+        "music_mood": "wonder",
+        "avg_shot_sec": 4.5,
+        "char_type": "creature",
+    },
+    "commercial_product": {
+        "label": "TVC Quảng cáo / Sản phẩm Cao cấp (Luxury Commercial / Product Macro)",
+        "style_line": (
+            "High-end commercial macro cinematography, Arri Alexa Mini LF with 100mm macro probe lens, "
+            "precision studio specular rim lighting, crisp fluid and surface micro-physics, razor-sharp focus falloff"
+        ),
+        "negative_prompt": (
+            "warped product logo, melting geometry, muddy lighting, amateur handheld blur, "
+            "deformed hands holding product, extra fingers, subtitles, watermark"
+        ),
+        "lut_preset": "blockbuster",
+        "music_mood": "wonder",
+        "avg_shot_sec": 2.6,
+        "char_type": "human",
+    },
+    "historical_epic": {
+        "label": "Sử thi / Lịch sử / Chiến tranh (Historical Epic / Period Drama)",
+        "style_line": (
+            "Epic historical cinema 65mm film look, authentic period armor and weathered fabric textures, "
+            "natural torchlight and volumetric battlefield smoke, grounded physical weight, 35mm organic grain"
+        ),
+        "negative_prompt": (
+            "modern wristwatches, plastic props, neon lighting, synthetic polyester clothes, "
+            "weightless sword swings, extra limbs, subtitles, watermark"
+        ),
+        "lut_preset": "wuxia_jade",
+        "music_mood": "combat",
+        "avg_shot_sec": 4.0,
+        "char_type": "human",
+    },
+}
+
+
+def resolve_genre_profile(project: dict) -> dict:
+    """Xác định hồ sơ đạo diễn theo thể loại (`genre`) của dự án (khai báo tường minh hoặc tự nhận diện)."""
+    explicit = (project.get("genre") or "").strip().lower()
+    if explicit in GENRE_PROFILES:
+        return {"genre": explicit, **GENRE_PROFILES[explicit]}
+    blob = " ".join(
+        str(project.get(k) or "") for k in ("project_name", "project_slug", "title", "visual_style", "style_line")
+    ).lower()
+    if any(w in blob for w in ("wuxia", "xianxia", "kiếm hiệp", "tiên hiệp", "cổ trang", "cultivator", "jianghu")):
+        key = "wuxia_xianxia"
+    elif any(w in blob for w in ("cyberpunk", "sci-fi", "scifi", "mecha", "spaceship", "neon city")):
+        key = "cyberpunk_scifi"
+    elif any(w in blob for w in ("horror", "thriller", "kinh dị", "ám ảnh", "ghost", "haunted")):
+        key = "horror_thriller"
+    elif any(w in blob for w in ("romance", "kdrama", "ngôn tình", "lãng mạn", "tình yêu", "love story")):
+        key = "romance_kdrama"
+    elif any(w in blob for w in ("anime", "2d animation", "cartoon", "cel-shaded", "hoạt hình", "manga")):
+        key = "anime_2d_3d"
+    elif any(w in blob for w in ("podcast", "sitcom", "cafe", "bàn tiệc", "tâm sự", "comedy")):
+        key = "sitcom_podcast"
+    elif any(w in blob for w in ("tvc", "commercial", "product", "quảng cáo", "luxury")):
+        key = "commercial_product"
+    elif any(w in blob for w in ("historical", "lịch sử", "chiến tranh", "dynasty", "sử thi")):
+        key = "historical_epic"
+    elif any(w in blob for w in ("battle", "combat", "vs", "showdown", "clash", "đại chiến")):
+        key = "action_blockbuster"
+    else:
+        key = "nature_documentary"
+    return {"genre": key, **GENRE_PROFILES[key]}
+
+
+def apply_genre_profile(project: dict, genre_key: str, overwrite: bool = False) -> dict:
+    """Áp dụng chuẩn Đạo diễn Hình ảnh & Âm thanh của thể loại `genre_key` vào `project_manifest.json`."""
+    gkey = (genre_key or "").strip().lower()
+    if gkey not in GENRE_PROFILES:
+        raise ValueError(f"Thể loại '{genre_key}' không hợp lệ. Chọn trong: {', '.join(GENRE_PROFILES)}")
+    prof = GENRE_PROFILES[gkey]
+    project["genre"] = gkey
+    if overwrite or not project.get("visual_style") or project.get("visual_style") == "cinematic photorealistic":
+        project["visual_style"] = prof["style_line"]
+    if overwrite or not project.get("style_line") or project.get("style_line") == "cinematic photorealistic":
+        project["style_line"] = prof["style_line"]
+    if overwrite or not project.get("negative_prompt"):
+        project["negative_prompt"] = prof["negative_prompt"]
+    if overwrite or not project.get("music_mood"):
+        project["music_mood"] = prof["music_mood"]
+    if overwrite or not project.get("lut_preset"):
+        project["lut_preset"] = prof["lut_preset"]
+    return {"genre": gkey, **prof}
+
 # Câu boilerplate do engine cũ (v8–v10) tự chèn vào prompt. Chúng không có tác dụng với model
 # hoặc gây phản tác dụng (câu phủ định gợi ra đúng thứ cần tránh).
 _SENTENCE_END = r".*?\.(?=\s+[A-Z]|\s*$)"  # tới dấu chấm kết câu (bỏ qua "0.0s", "v10.0")
@@ -276,19 +481,21 @@ def _build_motion_arc(shot: dict, chars: dict = None) -> str:
     return _sentence(act or start_act or end_act)
 
 
-def _format_cast_lines(shot: dict, chars: dict) -> list:
+def _format_cast_lines(shot: dict, chars: dict, project: dict = None) -> list:
     """Định dạng danh sách nhân vật có tên (từ 1 đến 20+ người) đồng bộ tuyệt đối giữa Keyframe START, END và Veo Prompt.
 
     - Khóa vị trí Trái/Giữa/Phải (`On the left / In the center / On the right`) cho các nhân vật tiêu điểm (`subjects`)
       ở CẢ 3 TẦNG để Nano Banana không vẽ ngược bên với Veo.
+    - Hỗ trợ biến thể trang phục / trạng thái theo cảnh (`character_states` / `wardrobe_variants` chuẩn `OmniChar`).
     - Khi cảnh có từ 4..20+ nhân vật (qua `subjects` hoặc `ensemble_cast` / `table_group`), tự động liệt kê đầy đủ
       100% nhân vật được gọi tên kèm tạo hình rút gọn (`compact_identity`) theo sơ đồ chỗ ngồi quanh bàn/cảnh.
     """
+    proj_ctx = project if isinstance(project, dict) else {"characters": list(chars.values())}
     focal_ids = [cid for cid in (shot.get("subjects") or []) if cid in chars]
     all_cast = [cid for cid in mf.shot_all_cast_ids(shot) if cid in chars]
     lines = []
 
-    # Tầng 1: Nhân vật tiêu điểm (1..3 người đang thực hiện hành động chính) kèm full identity_line
+    # Tầng 1: Nhân vật tiêu điểm (1..3 người đang thực hiện hành động chính) kèm full identity_line + state override
     primary_ids = focal_ids[:3] if len(focal_ids) <= 3 else focal_ids[:2]
     cam_lower = (shot.get("camera") or shot.get("camera_shot") or "").lower()
     sp_mode = (shot.get("spatial_mode") or "").strip().lower()
@@ -321,7 +528,9 @@ def _format_cast_lines(shot: dict, chars: dict) -> list:
         c = chars[cid]
         if c.get("identity_line"):
             prefix = f"{pos_tags[idx]} " if use_pos and idx < len(pos_tags) else ""
-            lines.append(_sentence(f"{prefix}{display_name(c, cid)} is {c['identity_line'].rstrip('.')}"))
+            state_desc = mf.resolve_character_state(proj_ctx, shot, cid)
+            state_suffix = f" (current state/wardrobe: {state_desc})" if state_desc else ""
+            lines.append(_sentence(f"{prefix}{display_name(c, cid)} is {c['identity_line'].rstrip('.')}{state_suffix}"))
 
     # Tầng 2: Nếu cảnh có >= 4 nhân vật hoặc có khai báo `ensemble_cast` / `table_group` (4..20+ người),
     # xuất sơ đồ chỗ ngồi đầy đủ 100% các nhân vật có tên trong cảnh để không sót bất kỳ ai.
@@ -335,10 +544,15 @@ def _format_cast_lines(shot: dict, chars: dict) -> list:
         )
         layout = (shot.get("seating_layout") or default_layout).strip().rstrip(":")
         primary_set = set(primary_ids)
-        roster = [
-            display_name(chars[cid], cid) if cid in primary_set else f"{display_name(chars[cid], cid)} ({compact_identity(chars[cid])})"
-            for cid in all_cast
-        ]
+        roster = []
+        for cid in all_cast:
+            if cid in primary_set:
+                roster.append(display_name(chars[cid], cid))
+            else:
+                st = mf.resolve_character_state(proj_ctx, shot, cid)
+                comp = compact_identity(chars[cid])
+                desc = f"{comp}; {st}" if (comp and st) else (comp or st)
+                roster.append(f"{display_name(chars[cid], cid)} ({desc})" if desc else display_name(chars[cid], cid))
         lines.append(_sentence(f"All {len(roster)} named characters {layout}: {', '.join(roster)}"))
 
     return lines
@@ -493,7 +707,7 @@ def build_prompt(project: dict, shot: dict) -> str:
     parts = [_sentence(_align_first_last_camera(raw_cam, shot))]
 
     all_cast = mf.shot_all_cast_ids(shot)
-    parts += _format_cast_lines(shot, chars)
+    parts += _format_cast_lines(shot, chars, project=project)
     attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
@@ -557,7 +771,7 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
         )
 
     all_cast = mf.shot_all_cast_ids(shot)
-    parts += _format_cast_lines(shot, chars)
+    parts += _format_cast_lines(shot, chars, project=project)
     attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
@@ -632,7 +846,7 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
         anchor_rule,
     ]
     all_cast = mf.shot_all_cast_ids(shot)
-    parts += _format_cast_lines(shot, chars)
+    parts += _format_cast_lines(shot, chars, project=project)
     attr_lock = _cross_attribute_lock(all_cast, chars)
     if attr_lock:
         parts.append(attr_lock)
@@ -657,9 +871,27 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
 
 def effective_negative_prompt(project: dict, shot: dict) -> str:
     items = [project.get("negative_prompt", ""), shot.get("negative_prompt", "")]
+    if not items[0] and project.get("genre") in GENRE_PROFILES:
+        items[0] = GENRE_PROFILES[project["genre"]].get("negative_prompt", "")
     if shot.get("generation_mode") == "first_last":
         items.append("cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping")
     return ", ".join(x.strip(" ,") for x in items if x and x.strip(" ,"))
+
+
+def infer_shot_eyeline(shot: dict) -> str:
+    """Suy luận hướng nhìn ngang (`left` | `right` | ``) của chủ thể trong shot (phục vụ kiểm tra Eyeline Match 180°)."""
+    explicit = str(shot.get("eyeline") or shot.get("screen_direction") or "").strip().lower()
+    if explicit in ("left", "looking_left", "screen_left", "right_to_left"):
+        return "left"
+    if explicit in ("right", "looking_right", "screen_right", "left_to_right"):
+        return "right"
+    blob = f"{shot.get('start_action', '')} {shot.get('action', '')}"
+    m = re.search(
+        r"\b(?:looking|gazing|staring|glancing|facing)\s+(?:off[- ]?screen\s+|to\s+the\s+|toward\s+the\s+|screen\s+)?(left|right)\b",
+        blob,
+        flags=re.I,
+    )
+    return m.group(1).lower() if m else ""
 
 
 def _strip_accents(text: str) -> str:
@@ -798,8 +1030,11 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     all_cast = mf.shot_all_cast_ids(shot)
     # Tự động nới trần độ dài prompt khi cảnh có đông nhân vật có tên (4..20+ người), cầu nối chuyển động hoặc quần chúng nền
     tl_phases = shot.get("timeline_phases") if isinstance(shot.get("timeline_phases"), list) else []
+    c_states = shot.get("character_states") if isinstance(shot.get("character_states"), dict) else {}
+    state_allowance = sum(len(mf.resolve_character_state(project, shot, cid)) + 34 for cid in all_cast if mf.resolve_character_state(project, shot, cid))
     extra_cast_allowance = (
         max(0, (len(all_cast) - 1) * 95)
+        + state_allowance
         + (160 if _crowd_atmosphere_line(project, shot) else 0)
         + (110 if shot.get("end_action") else 0)
         + (1600 + len(tl_phases) * 350 if tl_phases else 0)
@@ -872,6 +1107,27 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
                 add("warn", "IDENTITY_LINE_DRIFT", f"Nhân vật trong cảnh '{cid}' chưa có mô tả ngoại hình trong prompt.")
         if mode in ("text",) or (mode == "ingredients" and not (shot.get("reference_images") or c.get("reference_images"))):
             add("warn", "NO_IDENTITY_REFERENCE", f"{cid} xuất hiện nhưng shot không dùng ảnh tham chiếu (mode={mode}). Danh tính sẽ trôi giữa các clip.")
+
+    for st_cid in c_states:
+        if st_cid not in chars:
+            add("warn", "UNKNOWN_CHARACTER_STATE", f"character_states khai báo cho '{st_cid}' nhưng nhân vật này không có trong `characters`.")
+        elif st_cid not in all_cast:
+            add("info", "UNUSED_CHARACTER_STATE", f"character_states khai báo cho '{st_cid}' nhưng nhân vật không có trong `subjects`/`ensemble_cast` của shot.")
+
+    # Kiểm tra mâu thuẫn vị trí Trái/Phải ngay trong nội bộ 1 shot (subjects[0] mặc định bên Trái nhưng start_staging lại đặt bên Phải)
+    focal_valid = [cid for cid in subjects if cid in chars]
+    if len(focal_valid) >= 2 and bool(shot.get("spatial_lock", True)):
+        stg_poses = (shot.get("start_staging") or {}).get("subject_poses") or {}
+        if isinstance(stg_poses, dict):
+            left_cid, right_cid = focal_valid[0], focal_valid[1]
+            left_pose = str(stg_poses.get(left_cid) or "")
+            right_pose = str(stg_poses.get(right_cid) or "")
+            if re.search(r"\b(?:positioned|standing|sitting|anchored|looming)\s+(?:in\s+the\s+foreground\s+|in\s+the\s+midground\s+)?on\s+the\s+right\b", left_pose, re.I) or re.search(
+                r"\b(?:positioned|standing|sitting|anchored|looming)\s+(?:in\s+the\s+foreground\s+|in\s+the\s+midground\s+)?on\s+the\s+left\b", right_pose, re.I
+            ):
+                add("warn", "SPATIAL_AXIS_CONTRADICTION",
+                    f"Mâu thuẫn trục Trái/Phải trong shot: `subjects` đặt [{left_cid} (Trái), {right_cid} (Phải)] nhưng `start_staging.subject_poses` lại mô tả ngược bên. "
+                    "Hãy đồng bộ thứ tự `subjects` với mô tả vị trí trong `start_staging`.")
 
     # Kiểm tra nếu cảnh mô tả cả bàn/cả nhóm nhưng chỉ khai báo lèo tèo 1-2 người
     beat_id = shot.get("beat")
@@ -1033,6 +1289,45 @@ def lint_project(project: dict, cfg: dict) -> list:
                     "Hãy xen kẽ góc chụp qua vai theo chiều sâu (`Over-the-shoulder` / `spatial_mode: ots_left`), góc sát đất `1.2m Ground-level POV`, hoặc cú cắt đặc tả `Extreme close-up Macro` (1.2s–1.8s).")
         else:
             flat_streak = []
+
+    # 4. Kiểm tra Quy tắc Trục Điện Ảnh 180 Độ (180-Degree Axis) & Hướng Nhìn (Eyeline Match) giữa các shot liên tiếp cùng cảnh
+    for prev, cur in zip(shots, shots[1:]):
+        same_scene = (
+            (prev.get("scene_id") and prev.get("scene_id") == cur.get("scene_id"))
+            or prev.get("transition_to_next") == "INTRA_SCENE_CONTINUE"
+            or bool(cur.get("chain_from_prev"))
+        )
+        if not same_scene:
+            continue
+        p_subjs = [c for c in (prev.get("subjects") or []) if c in chars][:2]
+        c_subjs = [c for c in (cur.get("subjects") or []) if c in chars][:2]
+        cam_pair = f"{prev.get('camera', '')} {cur.get('camera', '')}"
+        has_bridge_cam = bool(re.search(r"\b(orbit|360|overhead|bird'?s[- ]eye|pov)\b", cam_pair, re.I))
+
+        if (
+            len(p_subjs) == 2
+            and len(c_subjs) == 2
+            and p_subjs[0] == c_subjs[1]
+            and p_subjs[1] == c_subjs[0]
+            and bool(prev.get("spatial_lock", True))
+            and bool(cur.get("spatial_lock", True))
+            and not cur.get("axis_cross_motivating_movement")
+            and not cur.get("allow_axis_flip")
+            and not has_bridge_cam
+        ):
+            add("warn", "AXIS_180_VIOLATION",
+                f"Vi phạm quy tắc trục 180 độ giữa {prev['shot_id']} ({p_subjs[0]} trái / {p_subjs[1]} phải) và {cur['shot_id']} "
+                f"({c_subjs[0]} trái / {c_subjs[1]} phải) trong cùng cảnh: đảo vị trí Trái/Phải đột ngột làm người xem mất phương hướng không gian. "
+                f"Hãy giữ nguyên thứ tự `subjects: {p_subjs}` hoặc dùng máy quay `orbit` / đặt `axis_cross_motivating_movement: true`.")
+
+        if len(p_subjs) == 1 and len(c_subjs) == 1 and p_subjs[0] != c_subjs[0] and not cur.get("allow_same_eyeline"):
+            eye_a = infer_shot_eyeline(prev)
+            eye_b = infer_shot_eyeline(cur)
+            if eye_a and eye_b and eye_a == eye_b:
+                add("warn", "EYELINE_MISMATCH",
+                    f"Lệch hướng nhìn (Eyeline Mismatch) giữa 2 cảnh cận đối diện {prev['shot_id']} ({p_subjs[0]} nhìn sang {eye_a}) "
+                    f"và {cur['shot_id']} ({c_subjs[0]} cũng nhìn sang {eye_b}): hai nhân vật đối thoại/đối đầu phải nhìn ngược hướng nhau "
+                    "trên màn ảnh (người này nhìn phải thì người kia nhìn trái).")
     return out
 
 

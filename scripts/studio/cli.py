@@ -104,7 +104,9 @@ def cmd_init(args, cfg):
     for sub in ("characters", "environments", "props", "frames", "clips/takes", "audio/vo", "audio/music", "qa"):
         (proj / "assets" / sub).mkdir(parents=True, exist_ok=True)
     (proj / "output").mkdir(exist_ok=True)
-    avg = args.avg_shot or (3.5 if args.aspect == "9:16" else 5.0)
+    genre_key = getattr(args, "genre", "") or ""
+    genre_prof = prompts.GENRE_PROFILES.get(genre_key, {}) if genre_key else {}
+    avg = args.avg_shot or genre_prof.get("avg_shot_sec") or (3.5 if args.aspect == "9:16" else 5.0)
     plan = calc_plan(args.duration, args.lang, avg, cfg)
     n = plan["clips_to_generate"]
     manifest = {
@@ -116,9 +118,41 @@ def cmd_init(args, cfg):
         "audio_strategy": args.audio,
         "plan": plan, "characters": [], "environments": [], "props": [],
     }
+    if genre_key:
+        prompts.apply_genre_profile(manifest, genre_key, overwrite=(args.style == "cinematic photorealistic"))
     manifest["shots"] = [new_shot(i, n, args.audio, manifest) for i in range(1, n + 1)]
     mf.save(proj, manifest)
-    out({"status": "ok", "project": str(proj), "clips": n, "plan": plan})
+    out({"status": "ok", "project": str(proj), "genre": manifest.get("genre", ""), "clips": n, "plan": plan})
+
+
+def cmd_apply_genre(args, cfg):
+    if getattr(args, "list", False) or not getattr(args, "genre", ""):
+        out({"genres": {k: {"label": v["label"], "lut_preset": v["lut_preset"], "music_mood": v["music_mood"],
+                            "avg_shot_sec": v["avg_shot_sec"]} for k, v in prompts.GENRE_PROFILES.items()}})
+        return
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    applied = prompts.apply_genre_profile(m, args.genre, overwrite=bool(args.overwrite))
+    mf.save(proj, m)
+    out({"status": "ok", "project": m.get("project_slug", proj.name), "applied_genre": applied})
+
+
+def cmd_actor_bank(args, cfg):
+    action = args.action
+    if action == "list":
+        out({"actors": mf.list_actor_bank()})
+        return
+    if not args.project or not args.char:
+        sys.exit("[ERROR] Lệnh actor-bank export/import cần --project và --char <CHAR_ID>.")
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    if action == "export":
+        res = mf.export_character_to_bank(proj, m, args.char)
+        out({"status": "ok", "action": "export", **res})
+    elif action == "import":
+        res = mf.import_character_from_bank(proj, m, args.char)
+        mf.save(proj, m)
+        out({"status": "ok", "action": "import", **res})
 
 
 # ---------------------------------------------------------------- migrate
@@ -358,9 +392,12 @@ def cmd_build_prompts(args, cfg):
         if neg:
             sheet += ["Negative prompt (nếu chế độ hỗ trợ):", "", "```text", neg, "```", ""]
     (proj / "prompts_for_flow.md").write_text("\n".join(sheet), encoding="utf-8")
+    dag = mf.compute_generation_dag(m, proj)
+    m["generation_dag"] = dag
     mf.save(proj, m)
     out({"status": "ok", "built_from_structured_fields": built, "built_keyframe_prompts": built_frames,
          "expanded_waypoints": expanded_waypoints, "chained_keyframes": chained, "skipped_no_prompt": skipped,
+         "dag_summary": {"waves": dag["critical_path_waves"], "max_parallelism": dag["max_parallelism"]},
          "flow_sheet": str(proj / "prompts_for_flow.md")})
 
 
@@ -830,11 +867,14 @@ def cmd_assemble(args, cfg):
     outdir.mkdir(exist_ok=True)
     (outdir / "timeline.json").write_text(json.dumps(timeline.to_json(segs), ensure_ascii=False, indent=2), encoding="utf-8")
 
+    from . import nle
+
     formats = ["landscape", "vertical"] if args.format == "both" else (
         [args.format] if args.format else m.get("delivery_formats", ["landscape"]))
     music = Path(args.music) if args.music else (proj / m["music_path"] if m.get("music_path") else None)
     lut = None if args.no_lut else (Path(args.lut) if args.lut else (proj / m["lut_path"] if m.get("lut_path") else None))
     renders, srts, cues = [], [], 0
+    nle_exports = {}
     for fmt in formats:
         path = outdir / render.output_name(args.out, fmt)
         srt = outdir / render.output_name("subtitles", fmt).replace(".mp4", ".srt")
@@ -846,11 +886,28 @@ def cmd_assemble(args, cfg):
         probe = media.probe(path)
         info["duration_actual"] = round(probe["duration"], 2)
         renders.append(info)
+        nle_exports[fmt] = nle.export_all_nle(segs, outdir, m, cfg, fmt=fmt, music=music)
     out({"status": "ok", "elapsed_sec": round(time.time() - t0, 1), "renders": renders,
          "subtitle_cues": cues, "subtitles_srt": srts if cues else None,
          "excluded_shots": excluded,
          "edit_notes": {s["shot_id"]: s["notes"] for s in segs if s["notes"]},
-         "timeline": str(outdir / "timeline.json")})
+         "timeline": str(outdir / "timeline.json"),
+         "nle_exports": nle_exports})
+
+
+def cmd_export_nle(args, cfg):
+    from . import nle
+
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    segs = timeline.compute(proj, m, cfg, include_pending=args.include_failed)
+    outdir = proj / "output"
+    outdir.mkdir(exist_ok=True)
+    music = Path(args.music) if args.music else (proj / m["music_path"] if m.get("music_path") else None)
+    fmt = args.format or ("vertical" if m.get("aspect_ratio") == "9:16" else "landscape")
+    exported = nle.export_all_nle(segs, outdir, m, cfg, fmt=fmt, music=music)
+    out({"status": "ok", "format": fmt, "segments": len(segs), "total_duration_sec": timeline.total_duration(segs),
+         "nle_exports": exported})
 
 
 # ---------------------------------------------------------------- nhạc nền tự tổng hợp + thumbnail
@@ -891,16 +948,19 @@ def cmd_make_lut(args, cfg):
 
     proj = proj_dir_of(args)
     m = mf.load(proj)
-    rel_path = f"assets/grade/{args.preset}_{int(args.strength * 100)}.cube"
-    grade.write_cube(proj / rel_path, args.preset, args.strength)
-    res = {"status": "ok", "lut": rel_path}
+    preset = args.preset
+    if preset == "auto":
+        preset = m.get("lut_preset") or grade.auto_preset_for_genre(m.get("genre") or prompts.resolve_genre_profile(m)["genre"])
+    rel_path = f"assets/grade/{preset}_{int(args.strength * 100)}.cube"
+    grade.write_cube(proj / rel_path, preset, args.strength)
+    res = {"status": "ok", "preset": preset, "lut": rel_path}
     clip = next((mf.clip_path(proj, s) for s in mf.ordered_shots(m) if mf.clip_path(proj, s).exists()), None)
     if clip:
         cv2 = media.cv2_module()
         frame, _ = media.read_frame_at(clip, 2.0)
         prev = proj / "output" / "grade_preview.jpg"
         prev.parent.mkdir(exist_ok=True)
-        cv2.imwrite(str(prev), grade.preview(cv2.resize(frame, (960, 540)), args.preset, args.strength))
+        cv2.imwrite(str(prev), grade.preview(cv2.resize(frame, (960, 540)), preset, args.strength))
         res["preview"] = str(prev)
     if not args.no_apply:
         m["lut_path"] = rel_path
@@ -1837,10 +1897,23 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--name", required=True)
     sp.add_argument("--duration", type=int, required=True)
     sp.add_argument("--lang", default="vi")
+    sp.add_argument("--genre", default="", choices=["", *prompts.GENRE_PROFILES.keys()],
+                    help="Hồ sơ đạo diễn theo thể loại (tự cấu hình style, ánh sáng, LUT, mood nhạc, nhịp cắt)")
     sp.add_argument("--style", default="cinematic photorealistic")
     sp.add_argument("--aspect", default="16:9", choices=["16:9", "9:16"])
     sp.add_argument("--audio", default="voiceover_external", choices=list(prompts.AUDIO_MODES))
     sp.add_argument("--avg-shot", type=float, default=0)
+
+    sp = add("apply-genre", cmd_apply_genre, "Áp dụng hoặc liệt kê 10 Hồ sơ Đạo diễn Đa Thể Loại (Genre Director Profiles)")
+    sp.add_argument("--project", default="", help="Thư mục dự án hoặc slug (bỏ trống nếu chỉ --list)")
+    sp.add_argument("--genre", default="", choices=["", *prompts.GENRE_PROFILES.keys()])
+    sp.add_argument("--overwrite", action="store_true", help="Ghi đè cả style_line và negative_prompt hiện có")
+    sp.add_argument("--list", action="store_true", help="Liệt kê toàn bộ 10 thể loại chuyên nghiệp hỗ trợ sẵn")
+
+    sp = add("actor-bank", cmd_actor_bank, "Kho Diễn Viên & Trang Phục Toàn Cục (OmniChar Global Actor Bank đa dự án/tập phim)")
+    sp.add_argument("action", choices=["list", "export", "import"])
+    sp.add_argument("--project", default="", help="Dự án nguồn (khi export) hoặc đích (khi import)")
+    sp.add_argument("--char", default="", help="ID nhân vật cần đóng gói hoặc nhập (vd. CHAR_REX)")
 
     sp = add("migrate", cmd_migrate, "Nâng manifest cũ lên schema v2 (dọn prompt, đăng ký clip làm take)")
     project_arg(sp)
@@ -1942,6 +2015,12 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--out", default="final_video.mp4")
     sp.add_argument("--skip-exact-tempo", action="store_true", help=argparse.SUPPRESS)
 
+    sp = add("export-nle", cmd_export_nle, "Xuất dự án hậu kỳ ra DaVinci / Premiere / Final Cut (.fcpxml, .edl) và CapCut Draft JSON")
+    project_arg(sp)
+    sp.add_argument("--format", choices=["landscape", "vertical"], default="")
+    sp.add_argument("--music", default="")
+    sp.add_argument("--include-failed", action="store_true")
+
     sp = add("score", cmd_score, "Nhạc nền tự tổng hợp theo beat (miễn bản quyền, 0 credit) → music_path")
     project_arg(sp)
     sp.add_argument("--seed", type=int, default=7)
@@ -1973,9 +2052,11 @@ def build_parser() -> argparse.ArgumentParser:
         project_arg(sp)
         sp.add_argument("--all", action="store_true", help="Mọi file media của dự án (cả take không chọn), không chỉ file đang dùng")
 
+    from . import grade as _gr
+
     sp = add("make-lut", cmd_make_lut, "Tạo LUT màu .cube bằng code (0 đồng) + ảnh so sánh trước/sau")
     project_arg(sp)
-    sp.add_argument("--preset", choices=["documentary", "warm_dawn", "blockbuster"], default="documentary")
+    sp.add_argument("--preset", choices=["auto", *_gr.PRESETS.keys()], default="auto")
     sp.add_argument("--strength", type=float, default=1.0)
     sp.add_argument("--no-apply", action="store_true", help="Chỉ tạo file, không đặt vào manifest")
 
@@ -2085,7 +2166,7 @@ def main(argv=None):
     args = build_parser().parse_args(argv)
     cfg = load_config()
     read_only = {"publish-kit", "status", "timeline", "plan", "list-models", "compare-voices", "browser", "check-browser",
-                 "resume", "progress"}
+                 "resume", "progress", "export-nle"}
     try:
         if getattr(args, "project", None) and args.command not in read_only:
             proj = proj_dir_of(args)

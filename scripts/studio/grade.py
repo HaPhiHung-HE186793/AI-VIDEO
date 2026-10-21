@@ -13,7 +13,34 @@ PRESETS = {
                   "sat": 1.0, "green_sat": 0.9},
     "blockbuster": {"contrast": 0.26, "shadow_tint": (-0.018, -0.004, 0.028), "high_tint": (0.032, 0.010, -0.024),
                     "sat": 0.96, "green_sat": 0.72},
+    "cyberpunk_neon": {"contrast": 0.28, "shadow_tint": (-0.024, 0.006, 0.036), "high_tint": (0.034, -0.006, 0.022),
+                       "sat": 1.08, "green_sat": 0.78},
+    "noir_thriller": {"contrast": 0.30, "shadow_tint": (-0.014, -0.002, 0.020), "high_tint": (0.008, 0.006, -0.008),
+                      "sat": 0.72, "green_sat": 0.65},
+    "romance_pastel": {"contrast": 0.08, "shadow_tint": (0.006, 0.002, 0.010), "high_tint": (0.026, 0.014, -0.012),
+                       "sat": 0.98, "green_sat": 0.92},
+    "wuxia_jade": {"contrast": 0.22, "shadow_tint": (-0.016, 0.008, 0.016), "high_tint": (0.028, 0.014, -0.018),
+                   "sat": 0.95, "green_sat": 0.82},
+    "anime_vibrant": {"contrast": 0.20, "shadow_tint": (-0.006, -0.002, 0.016), "high_tint": (0.018, 0.008, -0.010),
+                      "sat": 1.12, "green_sat": 1.0},
 }
+
+GENRE_TO_LUT = {
+    "action_blockbuster": "blockbuster",
+    "wuxia_xianxia": "wuxia_jade",
+    "cyberpunk_scifi": "cyberpunk_neon",
+    "horror_thriller": "noir_thriller",
+    "romance_kdrama": "romance_pastel",
+    "anime_2d_3d": "anime_vibrant",
+    "sitcom_podcast": "warm_dawn",
+    "nature_documentary": "documentary",
+    "commercial_product": "blockbuster",
+    "historical_epic": "wuxia_jade",
+}
+
+
+def auto_preset_for_genre(genre: str) -> str:
+    return GENRE_TO_LUT.get((genre or "").strip().lower(), "documentary")
 
 
 def transform(rgb, preset: str = "documentary", strength: float = 1.0):

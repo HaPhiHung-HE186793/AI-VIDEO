@@ -450,6 +450,71 @@ def backfill_scene_anchor(manifest: dict, shot_id: str, frame_rel_path: str = ""
     return {"anchor_shot": shot_id, "anchor_path": anchor_rel, "applied_to_shots": updated}
 
 
+def resolve_character_state(manifest: dict, shot: dict, char_id: str) -> str:
+    """Giải quyết trạng thái trang phục / ngoại hình theo cảnh (`OmniChar` Wardrobe & State Variants).
+
+    Cho phép nhân vật giữ nguyên `identity_line` gốc (khóa khuôn mặt/nhận dạng), đồng thời gắn thêm biến thể
+    trang phục, vết thương hoặc trạng thái theo từng Shot hoặc từng Beat:
+    - Khai báo trong `character`: `wardrobe_variants` (hoặc `states`) = `{"combat": "...", "injured": "..."}`
+    - Khai báo trong `shot` (hoặc `beat`): `character_states` = `{"CHAR_ID": "combat"}` hoặc chuỗi trực tiếp.
+    """
+    chars = characters_by_id(manifest)
+    c = chars.get(char_id, {})
+    if not c:
+        return ""
+    raw_state = (shot.get("character_states") or {}).get(char_id) or (shot.get("wardrobe_overrides") or {}).get(char_id)
+    if not raw_state and shot.get("beat"):
+        for b in manifest.get("beats", []):
+            if b.get("beat_id") == shot.get("beat"):
+                raw_state = (b.get("character_states") or {}).get(char_id)
+                break
+    if not raw_state:
+        raw_state = c.get("active_state") or ""
+    raw_state = str(raw_state or "").strip()
+    if not raw_state:
+        return ""
+    variants = c.get("wardrobe_variants") or c.get("states") or {}
+    if isinstance(variants, dict) and raw_state in variants:
+        val = variants[raw_state]
+        if isinstance(val, dict):
+            return str(val.get("description") or val.get("identity_modifier") or "").strip(" .")
+        return str(val or "").strip(" .")
+    return raw_state.strip(" .")
+
+
+def resolve_character_state_refs(manifest: dict, shot: dict, char_id: str, proj_dir: Path = None) -> list:
+    """Lấy danh sách ảnh tham chiếu riêng cho biến thể trang phục/trạng thái của nhân vật trong shot (nếu có)."""
+    chars = characters_by_id(manifest)
+    c = chars.get(char_id, {})
+    if not c:
+        return []
+    raw_state = (shot.get("character_states") or {}).get(char_id) or (shot.get("wardrobe_overrides") or {}).get(char_id)
+    if not raw_state and shot.get("beat"):
+        for b in manifest.get("beats", []):
+            if b.get("beat_id") == shot.get("beat"):
+                raw_state = (b.get("character_states") or {}).get(char_id)
+                break
+    raw_state = str(raw_state or c.get("active_state") or "").strip()
+    if not raw_state:
+        return []
+
+    def ok(rel_path: str) -> bool:
+        if not rel_path:
+            return False
+        return True if proj_dir is None else (Path(proj_dir) / rel_path).exists()
+
+    candidates = []
+    w_refs = c.get("wardrobe_refs") or c.get("state_reference_images") or {}
+    if isinstance(w_refs, dict) and raw_state in w_refs:
+        item = w_refs[raw_state]
+        candidates += [item] if isinstance(item, str) else list(item or [])
+    variants = c.get("wardrobe_variants") or c.get("states") or {}
+    if isinstance(variants, dict) and isinstance(variants.get(raw_state), dict):
+        v_refs = variants[raw_state].get("reference_images") or variants[raw_state].get("path") or []
+        candidates += [v_refs] if isinstance(v_refs, str) else list(v_refs)
+    return [p for p in dict.fromkeys(candidates) if ok(p)]
+
+
 def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limit: int = 3,
                          include_env: bool = True, include_scene_anchor: bool = True) -> list:
     """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin + Auto Group Composite + Iterative Scene Backfilling).
@@ -460,7 +525,7 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
        - Giữ ảnh riêng cho nhân vật tiêu điểm đầu tiên (`subjects[0]`).
        - Tự động ghép toàn bộ các nhân vật còn lại (hoặc cả nhóm 4..20+ người) thành 1 bảng `group_cast_<hash>.jpg`
          để chỉ tốn 1 slot nhưng AI thấy đủ mặt tất cả mọi người.
-    3. Ảnh chính diện (`refs[0]`) của từng nhân vật trong `shot_all_cast_ids(shot)`.
+    3. Ảnh biến thể trang phục (`wardrobe_refs`) + ảnh chính diện (`refs[0]`) của từng nhân vật trong `shot_all_cast_ids(shot)`.
     4. Ảnh đạo cụ (`shot.props` hoặc đạo cụ khớp tên trong `action`).
     5. Ảnh mỏ neo ánh sáng thực địa cùng cảnh (`scene_lighting_anchor_path` - Iterative Backfilling).
     6. Ảnh bối cảnh sạch (`environment.path`) nếu `include_env=True`.
@@ -493,7 +558,9 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
     valid_cast_ids = []
     for cid in all_cast:
         c = chars.get(cid, {})
-        valid = [p for p in c.get("reference_images", []) if ok(p)]
+        state_refs = resolve_character_state_refs(manifest, shot, cid, proj_dir=proj_dir)
+        base_refs = [p for p in c.get("reference_images", []) if ok(p)]
+        valid = list(dict.fromkeys(state_refs + base_refs))
         if valid:
             subj_refs.append(valid)
             valid_cast_ids.append(cid)
@@ -542,6 +609,192 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
                 push(refs[idx])
 
     return ordered[:limit] if limit else ordered
+
+
+ACTOR_BANK_DIR = Path(__file__).resolve().parents[2] / "assets_library" / "characters"
+
+
+def export_character_to_bank(proj_dir: Path, manifest: dict, char_id: str, bank_dir: Path = None) -> dict:
+    """Đóng gói nhân vật (`OmniChar` package: identity_line, voice, wardrobe_variants, reference_images) vào Global Actor Bank."""
+    import copy
+
+    chars = characters_by_id(manifest)
+    if char_id not in chars:
+        raise ManifestError(f"Không tìm thấy nhân vật '{char_id}' trong manifest.")
+    c = copy.deepcopy(chars[char_id])
+    bank_root = Path(bank_dir) if bank_dir else ACTOR_BANK_DIR
+    pkg_dir = bank_root / char_id
+    pkg_dir.mkdir(parents=True, exist_ok=True)
+
+    copied_refs = []
+    for rel_p in c.get("reference_images", []):
+        src = Path(proj_dir) / rel_p
+        if src.exists():
+            dst = pkg_dir / src.name
+            if src.resolve() != dst.resolve():
+                shutil.copy2(src, dst)
+            copied_refs.append(src.name)
+
+    copied_wardrobe_refs = {}
+    w_refs = c.get("wardrobe_refs") or {}
+    if isinstance(w_refs, dict):
+        for state_k, paths in w_refs.items():
+            p_list = [paths] if isinstance(paths, str) else list(paths or [])
+            saved_list = []
+            for rel_p in p_list:
+                src = Path(proj_dir) / rel_p
+                if src.exists():
+                    dst = pkg_dir / src.name
+                    if src.resolve() != dst.resolve():
+                        shutil.copy2(src, dst)
+                    saved_list.append(src.name)
+            if saved_list:
+                copied_wardrobe_refs[state_k] = saved_list
+
+    pkg_meta = {
+        **c,
+        "bank_char_id": char_id,
+        "source_project": manifest.get("project_slug") or Path(proj_dir).name,
+        "bank_files": copied_refs,
+        "bank_wardrobe_files": copied_wardrobe_refs,
+    }
+    meta_path = pkg_dir / "character.json"
+    meta_path.write_text(json.dumps(pkg_meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    return {"char_id": char_id, "package_dir": str(pkg_dir), "files_copied": len(copied_refs)}
+
+
+def import_character_from_bank(proj_dir: Path, manifest: dict, char_id: str, bank_dir: Path = None) -> dict:
+    """Nhập nhân vật từ Global Actor Bank vào dự án hiện tại (sao chép cả ảnh tham chiếu và biến thể trang phục)."""
+    bank_root = Path(bank_dir) if bank_dir else ACTOR_BANK_DIR
+    meta_path = bank_root / char_id / "character.json"
+    if not meta_path.exists():
+        raise ManifestError(f"Không tìm thấy gói nhân vật '{char_id}' trong Global Actor Bank ({meta_path}).")
+    pkg = json.loads(meta_path.read_text(encoding="utf-8"))
+    pkg_dir = meta_path.parent
+    dst_char_dir = Path(proj_dir) / "assets" / "characters"
+    dst_char_dir.mkdir(parents=True, exist_ok=True)
+
+    new_refs = []
+    for fname in pkg.get("bank_files", []):
+        src = pkg_dir / fname
+        if src.exists():
+            dst = dst_char_dir / fname
+            if src.resolve() != dst.resolve():
+                shutil.copy2(src, dst)
+            new_refs.append(f"assets/characters/{fname}")
+    if not new_refs:
+        new_refs = list(pkg.get("reference_images", []))
+
+    new_w_refs = {}
+    for state_k, fnames in (pkg.get("bank_wardrobe_files") or {}).items():
+        s_list = []
+        for fname in fnames:
+            src = pkg_dir / fname
+            if src.exists():
+                dst = dst_char_dir / fname
+                if src.resolve() != dst.resolve():
+                    shutil.copy2(src, dst)
+                s_list.append(f"assets/characters/{fname}")
+        if s_list:
+            new_w_refs[state_k] = s_list
+
+    clean_char = {k: v for k, v in pkg.items() if k not in ("bank_char_id", "source_project", "bank_files", "bank_wardrobe_files")}
+    clean_char["id"] = char_id
+    clean_char["reference_images"] = new_refs
+    if new_w_refs:
+        clean_char["wardrobe_refs"] = new_w_refs
+
+    char_list = manifest.setdefault("characters", [])
+    replaced = False
+    for idx, existing in enumerate(char_list):
+        if existing.get("id") == char_id:
+            char_list[idx] = clean_char
+            replaced = True
+            break
+    if not replaced:
+        char_list.append(clean_char)
+    return {"char_id": char_id, "imported_refs": new_refs, "updated_existing": replaced}
+
+
+def list_actor_bank(bank_dir: Path = None) -> list:
+    """Liệt kê toàn bộ diễn viên/nhân vật đang lưu trong Global Actor Bank."""
+    bank_root = Path(bank_dir) if bank_dir else ACTOR_BANK_DIR
+    if not bank_root.exists():
+        return []
+    items = []
+    for mp in sorted(bank_root.glob("*/character.json")):
+        try:
+            d = json.loads(mp.read_text(encoding="utf-8"))
+            items.append({
+                "id": d.get("id") or mp.parent.name,
+                "name": d.get("name", ""),
+                "voice": d.get("voice", ""),
+                "wardrobe_variants": list((d.get("wardrobe_variants") or d.get("states") or {}).keys()),
+                "reference_count": len(d.get("bank_files") or d.get("reference_images") or []),
+                "source_project": d.get("source_project", ""),
+            })
+        except Exception:  # noqa: BLE001
+            continue
+    return items
+
+
+def compute_generation_dag(manifest: dict, proj_dir: Path = None) -> dict:
+    """Tính đồ thị phụ thuộc DAG (Directed Acyclic Graph) & chia đợt tạo song song (Execution Waves).
+
+    Học từ kiến trúc DAG + Critical Path Method (CPM) của `F-R-L/forge-film`:
+    - Xác định shot nào hoàn toàn độc lập (Wave 1: tạo ngay lập tức song song) và shot nào phụ thuộc vào
+      shot trước đó (`chain_from_prev`, `INTRA_SCENE_CONTINUE`, `extend`, `anchor_frame_shot`).
+    """
+    shots = [s for s in ordered_shots(manifest) if not s.get("exclude_from_edit")]
+    by_id = {s["shot_id"]: s for s in shots}
+    deps = {s["shot_id"]: set() for s in shots}
+    reasons = {s["shot_id"]: [] for s in shots}
+
+    for i, s in enumerate(shots):
+        sid = s["shot_id"]
+        if s.get("generation_mode") == "extend" and s.get("extends") in by_id and s.get("extends") != sid:
+            p_id = s["extends"]
+            deps[sid].add(p_id)
+            reasons[sid].append(f"extend từ clip {p_id}")
+        if s.get("anchor_frame_shot") in by_id and s.get("anchor_frame_shot") != sid:
+            a_id = s["anchor_frame_shot"]
+            deps[sid].add(a_id)
+            reasons[sid].append(f"neo Star-Anchor F0 vào {a_id}")
+        if i > 0:
+            prev = shots[i - 1]
+            prev_id = prev["shot_id"]
+            if s.get("chain_from_prev") or prev.get("transition_to_next") == "INTRA_SCENE_CONTINUE":
+                deps[sid].add(prev_id)
+                reasons[sid].append(f"nối Daisy-Chain từ frame cuối {prev_id}")
+
+    remaining = set(deps.keys())
+    waves = []
+    completed = set()
+    while remaining:
+        ready = sorted(
+            [sid for sid in remaining if deps[sid].issubset(completed)],
+            key=lambda x: by_id[x].get("order", 0),
+        )
+        if not ready:
+            # Phòng hờ vòng lặp phụ thuộc: giải phóng phần còn lại
+            ready = sorted(remaining, key=lambda x: by_id[x].get("order", 0))
+        wave_idx = len(waves) + 1
+        waves.append({
+            "wave": wave_idx,
+            "parallel_shots": ready,
+            "count": len(ready),
+            "dependencies": {sid: sorted(deps[sid]) for sid in ready if deps[sid]},
+            "reasons": {sid: reasons[sid] for sid in ready if reasons[sid]},
+        })
+        completed.update(ready)
+        remaining -= set(ready)
+
+    return {
+        "total_shots": len(shots),
+        "critical_path_waves": len(waves),
+        "max_parallelism": max((w["count"] for w in waves), default=0),
+        "waves": waves,
+    }
 
 
 def shot_audio(shot: dict) -> dict:

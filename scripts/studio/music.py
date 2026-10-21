@@ -38,6 +38,14 @@ def detect_mood(project: dict, requested: str = "auto") -> str:
     explicit = (project.get("music_mood") or "").strip().lower()
     if explicit in ("tension", "combat", "podcast_lofi", "wonder"):
         return explicit
+    genre = (project.get("genre") or "").strip().lower()
+    if genre:
+        from . import prompts as pr
+
+        if genre in pr.GENRE_PROFILES:
+            g_mood = pr.GENRE_PROFILES[genre].get("music_mood")
+            if g_mood in ("tension", "combat", "podcast_lofi", "wonder"):
+                return g_mood
     blob = " ".join(
         str(project.get(k) or "") for k in ("project_name", "project_slug", "title", "visual_style", "style_line")
     ).lower()
