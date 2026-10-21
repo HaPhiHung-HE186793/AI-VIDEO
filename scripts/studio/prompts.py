@@ -1317,6 +1317,46 @@ def _detect_fsm_posture_discontinuity(prev: dict, cur: dict, chars: dict) -> str
     return ""
 
 
+_ZONE_DISPLACEMENT_BRIDGE_RE = re.compile(
+    r"\b(push(?:es|ed|ing)?|shov(?:es|ed|ing)|hurl(?:s|ed|ing)?|throw(?:s|n|ing)?|flung|fling(?:s|ing)?|"
+    r"chas(?:es|ed|ing)|pursu(?:es|ed|ing)|retreat(?:s|ed|ing)?|sprint(?:s|ed|ing)?|run(?:s|ning)?|"
+    r"leap(?:s|ed|ing)?|jump(?:s|ed|ing)?|tumbl(?:es|ed|ing)|slid(?:es|ing)|drag(?:s|ged|ging)?|"
+    r"crash(?:es|ed|ing)?\s+into|fall(?:s|ing)?\s+into|splash(?:es|ed|ing)?\s+into|"
+    r"into\s+the\s+(?:sea|ocean|surf|water|swamp|marsh|mud)|down\s+the\s+(?:bank|slope|ridge)|"
+    r"off\s+the\s+(?:bank|ledge|cliff|shore)|across\s+the\s+(?:shoreline|boundary|bank))\b",
+    re.I,
+)
+
+
+def _detect_unbridged_arena_teleport(prev: dict, cur: dict) -> str:
+    """Phát hiện lỗi nhảy cóc địa hình (Arena Teleportation) khi đổi vùng đấu trường mà thiếu cầu nối dịch chuyển vật lý."""
+    if cur.get("allow_arena_cut"):
+        return ""
+    prev_zone = str(prev.get("arena_stage") or prev.get("environment") or "").strip()
+    cur_zone = str(cur.get("arena_stage") or cur.get("environment") or "").strip()
+    if not prev_zone or not cur_zone or prev_zone == cur_zone:
+        return ""
+    bridge_blob = " ".join(
+        str(x or "")
+        for x in (
+            prev.get("action"),
+            prev.get("end_action"),
+            prev.get("exit_state"),
+            cur.get("causal_link"),
+            cur.get("entry_state"),
+            cur.get("start_action"),
+            cur.get("action"),
+        )
+    )
+    if not _ZONE_DISPLACEMENT_BRIDGE_RE.search(bridge_blob):
+        return (
+            f"Chuyển đổi địa hình đột ngột (Unbridged Arena Teleport) giữa {prev.get('shot_id')} ('{prev_zone}') và "
+            f"{cur.get('shot_id')} ('{cur_zone}') mà thiếu Cầu nối Dịch chuyển Vật lý (đẩy lùi, quăng xuống biển/đầm lầy, "
+            "vừa chạy vừa đánh, hoặc nhảy theo truy kích). Hai vùng địa hình phải liền kề và chuyển tiếp bằng lực tác động vật lý!"
+        )
+    return ""
+
+
 def lint_project(project: dict, cfg: dict) -> list:
     """Kiểm tra cấu trúc tổng thể của dự án (nhịp truyện beat, đầy đủ 1..N nhân vật được gọi tên, liên kết đạo cụ/bối cảnh)."""
     out = []
@@ -1471,6 +1511,10 @@ def lint_project(project: dict, cfg: dict) -> list:
         fsm_err = _detect_fsm_posture_discontinuity(prev, cur, chars)
         if fsm_err:
             add("warn", "FSM_POSTURE_DISCONTINUITY", fsm_err)
+
+        teleport_err = _detect_unbridged_arena_teleport(prev, cur)
+        if teleport_err:
+            add("warn", "UNBRIDGED_ARENA_TELEPORT", teleport_err)
     return out
 
 
@@ -1593,11 +1637,41 @@ def build_director_choreography_blueprint(duration_sec: int, genre_key: str = "a
     act_sec = round(dur / act_count, 1)
     shots_per_act = max(1, round(unique_shots / act_count))
     act_archetypes_5 = [
-        ("Act I — Territory Breach & Opening Clash", "ARENA_1_BOUNDARY_ZONE", "Thiết lập quy mô, lý do xung đột, va chạm mở màn (Cân sức 50/50)", "L0_fresh_dry_to_splashed"),
-        ("Act II — Speed & Terrain Hazard Escalation", "ARENA_2_OBSTACLE_LABYRINTH", "Kẻ thách thức dùng tốc độ/địa hình dồn ép; bước ngoặt Reversal 1 (30/70)", "L1_wet_hide_superficial_scratches"),
-        ("Act III — Raw Power Counter-Attack & Grapple", "ARENA_3_MUD_OR_CRUSH_PIT", "Phản công bằng sức nặng & khóa hàm/đòn vật; bước ngoặt Reversal 2 (75/25)", "L2_mud_coated_bleeding_shoulder"),
-        ("Act IV — All Is Lost / Cliff-Edge Desperation", "ARENA_4_HAZARD_PRECIPICE", "Cả hai thấm mệt, sạt lở địa hình, khoảnh khắc sinh tử mép vực; Reversal 3", "L3_heavy_steam_panting_deep_wounds"),
-        ("Act V — Climactic Finisher & Apex Sovereignty", "ARENA_5_ABYSS_CLIMAX", "Đòn tất sát kết liễu (Finisher) đẩy đối thủ xuống vực/tháo chạy & gầm chiến thắng", "L4_exhausted_battle_scarred_victor"),
+        (
+            "Act I — Dry Land Encounter, Probing & First Takedown (Đất liền Bìa rừng)",
+            "ZONE_1_DRY_COASTAL_CLEARING",
+            "Chạm mặt trên đất liền (hậu cảnh đã thấy đầm lầy & biển kế bên); gầm thăm dò, lao vào vật ngã, dùng vai đánh lùi nhau ra để đo sức",
+            "L0_dry_dust_to_first_claw_scratches",
+            "Bridge 1->2: Vasto bị sức nặng của Rex ép lùi, vừa đánh trả vừa rút chạy dọc triền dốc xuống Đầm lầy bùn ven bờ để hãm tốc độ Rex; Rex lao theo truy kích",
+        ),
+        (
+            "Act II — Muddy Marsh Skirmish & Traction Loss (Đầm lầy Bùn ven bờ)",
+            "ZONE_2_COASTAL_MUDDY_MARSH",
+            "Chân Rex lún bùn sâu 40cm mất tốc độ xoay trở; Vasto linh hoạt lách sườn cào rách vai Rex (Reversal 1: 30/70)",
+            "L1_heavy_mud_splattered_bleeding_shoulder",
+            "Bridge 2->3: Rex khóa chặt hàm vào cổ Vasto, dùng hai chân sau đẩy lùi Vasto trượt băng qua rặng cây ngập mặn văng ra Bãi cát & Ghềnh đá sát mép biển",
+        ),
+        (
+            "Act III — Rocky Shoreline Grapple & Hurl Into the Sea (Bờ biển & Quăng xuống Biển)",
+            "ZONE_3_ROCKY_SHORELINE_EDGE",
+            "Quần thảo trên bờ cát & đá tảng sát sóng; Rex quật ngã Vasto rồi quăng Vasto văng qua bờ đá rơi ầm xuống biển (Reversal 2: 75/25)",
+            "L2_mud_and_wet_sand_bruised_hide",
+            "Bridge 3->4 (3-Shot Physical Bridge): [1] Rex quăng Vasto rơi xuống vùng nước biển ngập ngực -> [2] Vasto đạp đáy biển đứng bật dậy giữa sóng vỗ -> [3] Rex từ bờ đất phóng nhảy thẳng xuống biển ngay chỗ Vasto đứng để đánh tiếp!",
+        ),
+        (
+            "Act IV — Chest-Deep Breaking Sea Surf Battle (Thủy chiến giữa Sóng biển)",
+            "ZONE_4_CHEST_DEEP_SEA_SURF",
+            "Đánh nhau trong nước biển ngập ngực (lực cản nước lớn, sóng xô lệch trụ); Vasto đè đầu Rex xuống nước biển định dìm ngạt thở -> Rex đạp đáy biển húc ngược đỉnh sọ từ dưới nước lên (Reversal 3)",
+            "L3_sea_soaked_foaming_blood_heavy_panting",
+            "Bridge 4->5: Cả hai vừa cắn xé vừa vật nhau dạt lên Mỏm đá gành nhô ra vùng biển sâu ngay sát bên",
+        ),
+        (
+            "Act V — Coastal Reef Spit Finisher & Apex Sovereignty (Mỏm đá Gành biển & Kết liễu)",
+            "ZONE_5_COASTAL_REEF_SPIT",
+            "Kiệt sức trên mỏm đá ướt; Rex khóa hàm vào gáy Vasto, mượn đà lao + độ dốc mỏm đá quật Vasto rơi xuống biển sâu buộc đối thủ tháo chạy, rồi đứng trên gành đá gầm vang chiến thắng",
+            "L4_exhausted_sea_drenched_battle_scarred_victor",
+            "Aftermath: Kẻ thua cuộc chìm xuống sóng biển sâu rút lui; kẻ thắng đứng sừng sững trên mỏm đá gành giữa sóng vỗ",
+        ),
     ]
     acts_breakdown = []
     for idx in range(act_count):
@@ -1611,6 +1685,7 @@ def build_director_choreography_blueprint(duration_sec: int, genre_key: str = "a
             "arena_stage": arch[1],
             "dramatic_goal_and_reversal": arch[2],
             "progressive_damage_state": arch[3],
+            "zone_transition_bridge": arch[4],
             "exchanges_in_act": max(1, round((t1 - t0) / 20.0)),
             "unique_shots_in_act": shots_per_act if idx < act_count - 1 else max(1, unique_shots - shots_per_act * (act_count - 1)),
         })
@@ -1618,6 +1693,12 @@ def build_director_choreography_blueprint(duration_sec: int, genre_key: str = "a
     return {
         "standard": "WORLD_CLASS_0_1_PERCENT_DIRECTOR_STANDARD",
         "zero_clip_reuse_policy": True,
+        "contiguous_map_topology_policy": "5 vùng địa hình phải nằm liền kề nhau trên cùng 1 bản đồ sinh thái (Đất liền <-> Đầm lầy <-> Bờ biển <-> Dưới biển); chuyển vùng bắt buộc bằng lực đẩy/quăng/chạy truy kích vật lý.",
+        "grounded_plausibility_laws": [
+            "1. Bảo toàn Khối lượng & Đòn bẩy (Mass & Leverage): Muốn quăng đối thủ xuống biển phải khóa cổ + dùng đà lao + độ dốc bờ đất; cơ sinh học thay đổi theo địa hình (đất cứng -> bùn lún -> nước biển cản lực).",
+            "2. Tâm lý Thực chiến (Combat Psychology): Thăm dò (Probe) -> Vật ngã (Takedown) -> Đánh lùi giữ khoảng cách (Push-back) -> Vừa chạy vừa đánh (Mobile Skirmish) -> Nhảy theo truy kích (Pursuit Leap).",
+            "3. Hợp thức hóa Siêu nhiên/Sci-Fi (Rationalized Sci-Fi/Supernatural): Nếu có năng lượng/tia nhiệt/phép thuật, bắt buộc có (a) Dấu hiệu nạp sinh học, (b) Phản lực Newton lún chân + tương tác nhiệt thật với nước/đất, (c) Tiêu hao thể lực sau chiêu.",
+        ],
         "fsm_state_continuity_equation": "Shot[k-1].exit_state == Shot[k].entry_state",
         "fixed_duration_blueprint": {
             "target_duration_sec": dur,

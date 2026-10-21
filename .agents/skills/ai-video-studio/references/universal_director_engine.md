@@ -38,8 +38,18 @@ AI tạo video không có trí nhớ giữa các shot. Nếu Shot $k$ kết thú
   2. `causal_link`: Bắt đầu bằng `"THEREFORE:"` (*Vì vậy*) hoặc `"BUT:"` (*Nhưng*). Cấm nối cảnh bằng kiểu liệt kê *"Và rồi"*.
   3. `action` + `timeline_phases`: Quỹ đạo động học 3 pha (`0.0-2.5s` Phát lực $\rightarrow$ `2.5-5.5s` Va chạm $\rightarrow$ `5.5-8.0s` Hệ quả). Chỉ dùng động từ cơ sinh học nhìn thấy được, không viết câu tâm lý trừu tượng.
   4. `exit_state`: Tư thế và vị trí kết thúc ở `t = 8.0s` (khóa `last_frame_prompt` và truyền cho shot kế tiếp).
-  5. `arena_stage`: Tiểu đấu trường / địa hình hiện tại (phải dịch chuyển sau mỗi 12–15 shots trong phim hành động).
-  6. `character_states`: Trạng thái thương tích, bùn đất, mồ hôi/hơi thở tích lũy tăng dần (`L0_fresh` $\rightarrow$ `L1_wet` $\rightarrow$ `L2_muddy_scratched` $\rightarrow$ `L3_bleeding_heavy_steam_panting`), không bao giờ tự nhiên sạch lại ở cảnh sau.
+  5. `arena_stage`: Tiểu đấu trường / vùng địa hình liền kề hiện tại (vd: `ZONE_1_DRY_COASTAL_CLEARING` $\rightarrow$ `ZONE_2_MUDDY_MARSH` $\rightarrow$ `ZONE_3_ROCKY_SHORELINE` $\rightarrow$ `ZONE_4_BREAKING_SEA_SURF` $\rightarrow$ `ZONE_5_COASTAL_REEF_SPIT`).
+  6. `character_states`: Trạng thái thương tích, bùn đất, nước biển, mồ hôi/hơi thở tích lũy tăng dần (`L0_fresh` $\rightarrow$ `L1_dusty_scratched` $\rightarrow$ `L2_mud_coated` $\rightarrow$ `L3_sea_soaked_bleeding` $\rightarrow$ `L4_exhausted_heavy_panting`), không bao giờ tự nhiên sạch lại ở cảnh sau.
+
+### 2b. Định luật Bản đồ Địa lý Liền kề & Hợp thức hóa Vật lý (`Contiguous Map & Grounded Plausibility`)
+- **5 Đấu trường là 5 Vùng Địa hình Liền kề trên cùng 1 Bản đồ Sinh thái (`Đất liền` $\leftrightarrow$ `Đầm lầy` $\leftrightarrow$ `Bờ biển` $\leftrightarrow$ `Dưới biển`):** Tuyệt đối không cắt cảnh nhảy cóc sang nơi xa lạ, cũng không làm mặt đất tự nhiên nổ vỡ vô lý. Ngay ở góc rộng Vùng 1 (đất liền), hậu cảnh đã thấy đầm lầy và biển nằm kế bên.
+- **Cầu nối Dịch chuyển Vật lý 3 Shot (`3-Shot Zone-Transition Bridge`):** Mỗi khi chuyển từ vùng A sang vùng B (vd: từ bờ đất xuống biển), bắt buộc phải có chuỗi nhân quả vật lý:
+  1. `Shot Cầu nối 1 (Đẩy lùi / Quăng xuống nước / Vừa chạy vừa đánh)`: Một con bị húc lùi, bị quăng qua mép bờ rơi xuống biển, hoặc chủ động vừa đánh trả vừa chạy xuống biển/đầm lầy để mượn địa hình cản tốc độ đối thủ.
+  2. `Shot Cầu nối 2 (Tiếp đất & Đứng dậy tại địa hình mới)`: Con bị quăng xuống biển rơi tung bọt sóng, lập tức đạp chân xuống đáy cát đứng dậy ngay tại chỗ vừa rơi xuống.
+  3. `Shot Cầu nối 3 (Nhảy theo Truy kích)`: Con trên bờ lao tới phóng/nhảy thẳng xuống vùng nước biển ngay trước mặt nơi đối thủ vừa đứng dậy để tiếp tục giao chiến (`lint-prompts` kiểm tra `UNBRIDGED_ARENA_TELEPORT`).
+- **Hợp thức hóa Vật lý & Yếu tố Siêu nhiên/Sci-Fi (`Grounded Plausibility`):**
+  - *Địa hình nào — Cơ sinh học đó:* Trên đất liền (lượn vòng thăm dò, khóa hàm vật ngã, đánh lùi giữ khoảng cách); trong đầm lầy (chân lún bùn sâu, trượt ma sát); dưới biển (sức cản nước biển làm bước chạy nặng nề, sóng đánh lệch trọng tâm, vật ngã dưới nước có nguy cơ sặc nước/ngạt thở).
+  - *Hợp lý hóa Siêu nhiên/Khoa học viễn tưởng:* Nếu có năng lượng, tia nhiệt, điện sinh học hay phép thuật, cấm "thích làm gì thì làm". Phải có: (1) Dấu hiệu nạp/tích tụ sinh học trước khi phát chiêu, (2) Phản lực Newton đẩy lùi chân trụ + tương tác nhiệt/vật lý thật với môi trường (tia nhiệt chạm nước biển bốc hơi thành sương mù trắng xóa), và (3) Tiêu hao thể lực/thở dốc sau chiêu lớn.
 
 ---
 

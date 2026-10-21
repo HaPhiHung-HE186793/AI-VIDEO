@@ -81,34 +81,63 @@ Trong điện ảnh chuyên nghiệp (Hollywood / Weta / ILM / Netflix):
 
 Khi có khung thời gian cố định $T = 300\text{s}$, Đạo diễn Top 0.1% (như Peter Jackson biên đạo trận *Kong vs. 3 V-Rexes* hay Gareth Evans biên đạo *The Raid*) không bao giờ viết tràn lan mà chia theo **Cấu trúc Đồng hồ Thụy Sĩ 3 Tầng (`Macro Act -> Meso Exchange -> Micro Cell`)**:
 
-#### Tầng 1 — 5 Hồi Địa hình & Cán cân Sức mạnh (`5 Acts × 60s = 300s`):
-Một trận đánh 5 phút muốn khán giả không rời mắt **bắt buộc phải dịch chuyển qua 5 tiểu đấu trường (`Sub-Arenas`)** với địa hình, vũ khí tự nhiên và mức độ thương tích leo thang:
-- **HỒI I (`0:00 – 1:00` | 15 Shots | `Arena 1: Bờ Suối Ngập Nước & Ranh Giới Lãnh Thổ`):**
-  - *Mục tiêu Kịch tính:* Thiết lập quy mô khổng lồ, lý do xung đột (tranh giành lãnh thổ/con mồi) và cú va chạm mở màn.
-  - *Diễn biến:* Rung chấn bước chân cymatics -> Phát hiện đối thủ qua màn sương -> Gầm uy hiếp -> Lao vào đâm sầm giữa lòng suối -> Thủy chiến đợt 1 (Cân sức 50/50).
-- **HỒI II (`1:00 – 2:00` | 15 Shots | `Arena 2: Rừng Cổ Thụ Redwood Mục Nát`):**
-  - *Mục tiêu Kịch tính:* Tốc độ & Sự linh hoạt (Vasto) áp đảo Sức nặng (Rex).
-  - *Diễn biến:* Cú va chạm đẩy cả hai văng lên bờ rừng cổ thụ -> Vasto lợi dụng thân cây lớn để ẩn nấp, lách sườn cắn trộm vào bắp đùi/sườn Rex -> Thân cây cổ thụ gãy đổ chắn ngang -> **Bước ngoặt 1 (`Reversal 1`):** Rex bị cây đổ kẹp chân, Vasto nhảy lên lưng cào rách bả vai Rex (Vasto chiếm ưu thế 70/30).
-- **HỒI III (`2:00 – 3:00` | 15 Shots | `Arena 3: Đầm Bùn Đá Bazan & Hố Lầy`):**
-  - *Mục tiêu Kịch tính:* Sức mạnh cơ học thuần túy & Lực cắn nghiền xương của Rex phản kích.
-  - *Diễn biến:* Rex gầm vang, hất tung thân cây mục, quật đầu vào ngực Vasto đẩy cả hai trượt xuống đầm bùn bazan trơn trượt -> Trong bùn sâu, Vasto mất lợi thế tốc độ chân -> **Bước ngoặt 2 (`Reversal 2`):** Rex ngoạm chặt hàm răng vào cổ Vasto, ghì sập Vasto xuống bùn sâu -> Vasto giãy giụa, dùng vuốt chân sau đạp rách cằm Rex và quất đuôi tạt bùn mù mắt Rex để thoát khỏi cú ghì (Rex chiếm ưu thế 75/25 rồi bị gỡ hòa).
-- **HỒI IV (`3:00 – 4:00` | 15 Shots | `Arena 4: Vách Đá Hẻm Núi Sạt Lở`):**
-  - *Mục tiêu Kịch tính:* Điểm Đen Tối Nhất (`All Is Lost / Desperation Phase`) — Cả hai đã thấm mệt, thở ra khói trắng, mình đầy bùn và vết máu, phải dùng địa hình hiểm trở.
-  - *Diễn biến:* Rex bị bùn che mắt tạm thời, Vasto lùa Rex dồn ra sát mép vách đá hẻm núi đang sạt lở -> **Bước ngoặt 3 (`Reversal 3`):** Đá dưới chân chân phải của Rex vỡ vụn, Rex trượt nửa người xuống mép vực, hàm Vasto lao tới định kết liễu -> Khoảnh khắc sinh tử: Rex nghiêng đầu né cú đớp vào khoảng không, dùng hộp sọ cứng húc ngược từ dưới lên trúng cổ họng Vasto (`Upward Cranial Ram`).
-- **HỒI V (`4:00 – 5:00` | 15 Shots | `Arena 5: Đỉnh Vực Thác Nước & Đòn Kết Liễu Đỉnh Cao`):**
-  - *Mục tiêu Kịch tính:* Đòn Tất Sát (`Climactic Finisher`) & Dư âm Thống trị (`Apex Aftermath`).
-  - *Diễn biến:* Cả hai titan đứng đối diện trong mưa tầm tã, máu hòa nước mưa, hơi thở dồn dập -> Cú lao cuối cùng dồn 100% sinh lực -> **Bước ngoặt 4 (`Finisher`):** Rex chịu một vết cào sâu vào ngực để đổi lấy góc khóa hàm tử thần vào gáy Vasto, xoay người dùng toàn bộ khối lượng 9 tấn quăng Vasto đập vỡ vách đá rơi xuống dòng thác sương mù bên dưới (hoặc buộc Vasto tháo chạy xuống vực) -> Rex đặt chân lên mỏm đá cao nhất, ngửa cổ gầm vang giữa tia chớp và ánh lửa bình minh.
+#### Tầng 1 — Bản đồ Địa lý Liền kề 5 Vùng & Cầu nối Dịch chuyển Vật lý (`5 Contiguous Terrain Zones × 60s = 300s`):
+> **Nguyên tắc Thực tế Vật lý (`Contiguous Geography Law`):**
+> **5 Đấu trường KHÔNG PHẢI là 5 nơi xa lạ tự nhiên cắt cảnh nhảy tới, càng không phải mặt đất tự nhiên nổ vỡ vô lý!**
+> Toàn bộ trận chiến phải diễn ra trên **1 Bản đồ Sinh thái Liền kề nhau** (Ví dụ: `Đất liền Bìa rừng` nằm sát cạnh `Đầm lầy ven bờ`, và ngay bên cạnh đầm lầy là `Bãi biển & Vùng nước biển sóng vỗ`). Ngay từ các góc máy rộng (Wide Shot) ở Vùng 1, khán giả đã thấy đầm lầy và biển nằm ở hậu cảnh/bên sườn. Khi chuyển từ vùng này sang vùng kia, **bắt buộc phải do lực tác động vật lý của trận đánh**: vừa đánh vừa lùi, vừa chạy vừa truy kích, hoặc bị quăng/húc văng xuống biển rồi con kia nhảy xuống biển theo để đánh tiếp!
 
-#### Tầng 2 — 15 Hiệp Giao tranh (`15 Tactical Exchanges × 20s`):
-Mỗi Hồi 60 giây được chia đúng thành **3 Hiệp (`Exchanges`)**, mỗi hiệp 20 giây giải quyết trọn vẹn 1 câu hỏi vật lý (Ví dụ: *Làm sao thoát khỏi cú khóa cổ? Làm sao dùng thân cây đổ làm vũ khí?*).
+- **HỒI I (`0:00 – 1:00` | 15 Shots | `Vùng 1: Đất Liền Bìa Rừng Ven Biển — Dry Coastal Clearing`):**
+  - *Logic Chiến thuật & Vật lý:* Hai con chạm mặt trên nền đất cứng (phía xa bên phải đã thấy đầm lầy và sóng biển). Chúng không lao vào tự sát ngay mà **gầm thăm dò, lượn vòng đo sức (`probing & circling`)** $\rightarrow$ lao vào khóa cổ vật ngã lần 1 $\rightarrow$ dùng vai và đầu **đánh lùi nhau ra (`push-back & spacing`)** để thăm dò phản xạ của đối thủ.
+  - *Cầu nối Dịch chuyển Vật lý sang Vùng 2 (`Shots 13–15` — Vừa chạy vừa đánh / Đẩy lùi):* Vasto bị Rex ép lùi bằng sức nặng, vừa táp trả vừa lùi/chạy dọc theo triền dốc dẫn xuống **Đầm lầy bùn ven bờ** để lợi dụng địa hình lầy lội làm chậm bước chạy của Rex; Rex gầm lên lao theo truy kích sát nút.
+- **HỒI II (`1:00 – 2:00` | 15 Shots | `Vùng 2: Đầm Lầy Bùn Ven Bờ — Coastal Muddy Marsh`):**
+  - *Logic Chiến thuật & Vật lý:* Dưới lớp bùn lầy ngập cổ chân 30–40cm, bàn chân 9 tấn của Rex bị lún sâu làm giảm tốc độ xoay trở. Vasto nhẹ và linh hoạt hơn, liên tục lách qua sườn dùng móng vuốt cào và đớp vào bả vai Rex, làm bùn đen bắn tung tóe lên khắp cơ thể cả hai (**Bước ngoặt 1**: Vasto chiếm ưu thế 70/30 nhờ địa hình bùn).
+  - *Cầu nối Dịch chuyển Vật lý sang Vùng 3 (`Shots 28–30` — Vật ngã & Đẩy trượt ra Bãi bờ biển):* Rex chịu đau, chờ lúc Vasto lao vào cắn sườn liền khóa chặt hàm vào cổ Vasto rồi dùng toàn bộ lực chân sau đẩy lùi Vasto trượt băng qua rặng cây ngập mặn, văng thẳng ra **Dải bờ cát & Ghềnh đá sát mép sóng biển**.
+- **HỒI III (`2:00 – 3:00` | 15 Shots | `Vùng 3: Bờ Cát & Ghềnh Đá Sát Mép Biển — Rocky Shoreline & Surf Edge`):**
+  - *Logic Chiến thuật & Vật lý:* Trên bãi cát ướt và đá tảng ven biển, sóng biển bắt đầu tràn vào mắt cá chân. Cả hai quần thảo dữ dội: quật đuôi, húc đầu làm vỡ các tảng đá风 hóa ven bờ (**Bước ngoặt 2**: Rex dùng sức nặng quật Vasto ngã nghiêng trên bờ cát).
+  - *Cầu nối Dịch chuyển Vật lý sang Vùng 4 (`Shots 42–45` — Quăng xuống Biển & Nhảy theo Truy kích):*
+    - `Shot 43 (Quăng/Húc xuống biển):` Rex ngoạm bả vai Vasto, dồn lực hông quăng mạnh Vasto văng qua gờ đá bờ biển rơi ầm xuống **vùng nước biển ngập ngang đùi/ngực** cách bờ 6m, cột nước biển tung trắng xóa.
+    - `Shot 44 (Đứng dậy dưới biển):` Vasto chới với giữa sóng biển nhưng lập tức đạp chân xuống đáy cát ngầm, đứng bật dậy ngay tại chỗ vừa bị ném xuống, rũ nước mặn khỏi đầu và gầm ngược lên bờ.
+    - `Shot 45 (Nhảy xuống biển đấu tiếp):` Không cho đối thủ kịp hồi sức, Rex từ trên gờ bờ đất liền lấy đà **phóng nhảy thẳng xuống vùng nước biển ngay trước mặt nơi Vasto đang đứng**, tạo làn sóng xung kích xô dạt cả hai vào cuộc thủy chiến!
+- **HỒI IV (`3:00 – 4:00` | 15 Shots | `Vùng 4: Thủy Chiến Giữa Sóng Biển Ngập Ngực — Chest-Deep Breaking Sea Surf`):**
+  - *Logic Chiến thuật & Vật lý (`Hydrodynamic Drag`):* Đánh nhau trong nước biển sâu ngang đùi/bụng khác hẳn trên cạn: sức cản của nước biển làm mọi cú bước chân nặng nề, sóng lớn liên tục đánh vào sườn làm chao đảo trọng tâm, bọt biển trắng xóa trộn lẫn máu từ vết thương.
+  - *Diễn biến (**Bước ngoặt 3 — Nguy cơ Chết đuối Sinh học**):* Trong lúc giằng co giữa sóng lớn, Vasto lợi dụng một con sóng ngầm húc lệch chân trụ của Rex làm Rex khuỵu gối xuống nước biển; Vasto chồm lên đè đầu Rex xuống sát mặt nước biển sủi bọt để dìm ngạt thở $\rightarrow$ Khoảnh khắc sinh tử: Đầu Rex bị ép sát mặt nước biển, lỗ mũi ph่น bong bóng nước dữ dội, Rex đạp mạnh hai chân sau vào đáy biển và húc ngược đỉnh sọ từ dưới nước lên trúng hàm dưới của Vasto, hất tung Vasto ngửa ra sau giữa sóng biển.
+- **HỒI V (`4:00 – 5:00` | 15 Shots | `Vùng 5: Mỏm Đá Gành Biển & Đòn Kết Liễu — Coastal Reef Spit Climax`):**
+  - *Logic Chiến thuật & Vật lý:* Cả hai ướt sũng nước biển, cơ bắp run lên vì kiệt sức, vừa vật lộn vừa dạt lên **Mỏm đá gành nhô ra biển sâu** ngay kế bên.
+  - *Diễn biến (**Bước ngoặt 4 — Đòn Tất Sát Hợp Lý Vật Lý**):* Cả hai lấy chút sức lực cuối cùng lao vào nhau. Thay vì những đòn ảo phi vật lý, Rex chủ động chịu một vết cào vào bả vai để luồn hàm xuống dưới cổ Vasto, khóa chặt khí quản rồi lợi dụng chính đà lao của Vasto + độ dốc trơn của mỏm đá ướt, **xoay trụ quật Vasto trượt khỏi mỏm đá gành rơi xuống vùng nước biển sâu sóng dữ bên dưới** (Vasto chìm xuống rồi phải bơi/lội tháo chạy dọc bờ biển) $\rightarrow$ Rex đứng thở dốc trên mỏm đá gành giữa sóng biển đập tung bọt trắng xóa, ngửa cổ gầm vang khẳng định chủ quyền.
 
-#### Tầng 3 — Tế bào Hành động - Phản ứng 5 Shot (`The 5-Shot Action-Reaction Cell` = 20s):
-Trong mỗi Hiệp 20 giây, Đạo diễn viết đúng **4 đến 5 Shot Duy Nhất (`~4.0s/shot`)** theo chu kỳ cơ sinh học:
-1. **Shot 1 — Lấy đà & Ý đồ (`Telegraph / Setup` — `4.0s`):** Góc trung/rộng hoặc POV thấp, cho thấy sự chuẩn bị cơ bắp, bước chân dồn lực, ánh mắt khóa mục tiêu.
-2. **Shot 2 — Phát lực & Va chạm (`Strike / Collision` — `4.0s`):** Góc rộng/3/4 theo chiều sâu (`Z-axis`), hai khối cơ thể lao vào nhau, quán tính truyền lực rõ ràng.
-3. **Shot 3 — Đặc tả Điểm Tiếp Xúc (`Visceral Macro Insert` — `3.0s`):** Ống kính 85mm–100mm cận cảnh răng/móng vuốt/vũ khí cắm ngập vào da thịt hoặc bàn chân đạp vỡ đá.
-4. **Shot 4 — Hệ quả Vật lý & Ngã/Văng (`Consequence / Recoil` — `4.5s`):** Kẻ trúng đòn bị hất văng, ngã sập xuống bùn/gãy cây, thay đổi hoàn toàn tư thế (`standing` -> `prone/pinned`).
-5. **Shot 5 — Phản ứng Sinh tồn & Chuyển thế (`Recovery / Counter-Pivot` — `4.5s`):** Kẻ bị đè dùng địa hình hoặc đòn hiểm thoát ra, thiết lập `exit_state` mở đường cho Hiệp tiếp theo.
+#### Tầng 2 — Cầu nối Dịch chuyển Địa hình 3 Shot Bắt buộc (`The 3-Shot Zone-Transition Bridge`):
+Mỗi khi cuộc chiến dịch chuyển từ Địa hình $A$ sang Địa hình liền kề $B$ (vd: từ Đất liền $\rightarrow$ Đầm lầy, hoặc từ Bờ biển $\rightarrow$ Dưới biển), Đạo diễn **cấm cắt cảnh nhảy cóc** mà phải viết đủ **Chuỗi 3 Shot Cầu nối Vật lý**:
+1. **Shot Cầu nối 1 — Tác động Dịch chuyển (`Displacement / Running Pursuit`):** Một bên bị đánh bật lùi, bị quăng qua ranh giới địa hình, hoặc chủ động vừa chạy vừa đánh sang địa hình kế bên. Khung hình phải thấy rõ **cả địa hình cũ lẫn địa hình mới** nằm cạnh nhau.
+2. **Shot Cầu nối 2 — Tiếp đất & Thích nghi Địa hình (`Landing & Terrain Recovery`):** Kẻ bị quăng xuống biển/đầm lầy rơi xuống tạo tương tác vật lý thật (sóng biển tung bọt, bùn văng), sau đó đạp chân tìm điểm tựa đứng dậy ngay tại vị trí vừa rơi xuống.
+3. **Shot Cầu nối 3 — Truy kích Nhập cuộc (`Pursuit Entry`):** Kẻ tấn công trên bờ chạy lao xuống hoặc nhảy bổ xuống đúng vị trí dưới biển/đầm lầy nơi đối thủ vừa đứng dậy để tiếp tục giao chiến.
+
+#### Tầng 3 — 15 Hiệp Giao tranh (`15 Tactical Exchanges × 20s`) & Tế bào 5 Shot (`Action-Reaction Cell`):
+Trong mỗi Hiệp 20 giây, Đạo diễn viết đúng **4 đến 5 Shot Duy Nhất (`~4.0s/shot`)** theo chu kỳ cơ sinh học thực tế:
+1. **Shot 1 — Thăm dò / Lấy đà (`Probe / Telegraph` — `4.0s`):** Lượn vòng giữ khoảng cách, bước chân dồn lực lên đất/bùn/nước biển, ánh mắt khóa mục tiêu.
+2. **Shot 2 — Phát lực & Va chạm (`Strike / Clinch` — `4.0s`):** Lao vào khóa hàm, húc vai, quật đuôi theo đúng quán tính khối lượng 8–9 tấn.
+3. **Shot 3 — Đặc tả Điểm Tiếp Xúc (`Visceral Macro Insert` — `3.0s`):** Ống kính 85mm–100mm cận cảnh răng/móng vuốt/vũ khí cắm vào da thịt hoặc bàn chân trượt trên đá ướt.
+4. **Shot 4 — Hệ quả Vật lý & Vật ngã/Đánh lùi (`Takedown / Push-Back` — `4.5s`):** Bị vật ngã xuống đất/nước hoặc bị đánh bật lùi ra xa để thở dốc (`standing` $\rightarrow$ `prone/staggered_back`).
+5. **Shot 5 — Đứng dậy / Chuyển thế Chiến thuật (`Recovery / Tactical Shift` — `4.5s`):** Chống chân đứng dậy, lợi dụng địa hình (bùn, sóng biển, đá ngầm) để đổi thế đánh cho hiệp sau.
+
+---
+
+### 2.2b. ĐỊNH LUẬT HỢP THỨC HÓA VẬT LÝ & SIÊU NHIÊN (`GROUNDED PLAUSIBILITY & RATIONALIZED SCI-FI/SUPERNATURAL LAW`)
+
+Dù phim thuộc thể loại **Hiện thực Tiền sử (`Realistic Prehistoric`)**, **Quái vật Khổng lồ / Khoa học Viễn tưởng (`MonsterVerse / Sci-Fi Mecha`)** hay **Tiên hiệp / Siêu nhiên (`Xianxia / Fantasy`)**, tiêu chuẩn Top 0.1% áp dụng quy tắc sắt: **"Không bao giờ thích làm gì thì làm — Mọi hành động đều phải hợp lý hóa bằng Quy luật Vật lý & Sinh học Nội tại"**:
+
+1. **Định luật Bảo toàn Khối lượng, Đòn bẩy & Sức cản Địa hình (`Mass, Leverage & Terrain Drag`):**
+   - Một sinh vật nặng 8–9 tấn không thể tự nhiên bay lơ lửng hay ném đối thủ 8 tấn bay xa 50 mét như quả bóng nhựa. Muốn quăng đối thủ xuống biển, nó phải **khóa hàm vào cổ làm đòn bẩy + lợi dụng đà lao của đối thủ + độ dốc của bờ đất/vách đá** để hất đối thủ mất trụ lăn/rơi xuống biển.
+   - **Địa hình nào — Cơ sinh học đó:**
+     - *Trên đất liền:* Bước chạy nhanh, dứt khoát, bụi mù, dễ giữ thăng bằng.
+     - *Trong đầm lầy:* Bàn chân lún sâu, bước rút chân nặng, dễ trượt ngã khi xoay hông gấp.
+     - *Dưới biển / Sóng vỗ:* Nước biển ngập ngang đùi/ngực tạo lực cản thủy động lực học (`hydrodynamic drag`), mỗi bước lao tạo sóng cuộn; khi bị vật ngã dưới nước sẽ bị sặc nước/ngạt thở, buộc nhân vật phải giãy giụa tìm cách ngoi đầu lên khỏi mặt nước.
+2. **Định luật Tâm lý Chiến đấu Thực tế (`Realistic Combat Psychology`):**
+   - Sinh vật thông minh hoặc võ sĩ thực chiến luôn có nhịp: **Thăm dò (`Probe`) $\rightarrow$ Va chạm & Vật ngã (`Clinch & Takedown`) $\rightarrow$ Đánh lùi tách ra để thở & Quan sát (`Disengage & Assess`) $\rightarrow$ Vừa di chuyển/chạy vừa đánh (`Mobile Skirmish`)**, tuyệt đối không đứng yên một chỗ vung đòn vô hồn.
+3. **Định luật Hợp thức hóa Yếu tố Siêu nhiên / Khoa học Viễn tưởng (`Rationalized Supernatural & Sci-Fi`):**
+   - Nếu dự án có yếu tố siêu nhiên hoặc khoa học viễn tưởng (hơi thở nguyên tử/nhiệt năng, phóng điện sinh học, trọng lực, kiếm khí), **bắt buộc phải hợp thức hóa bằng 3 cơ chế vật lý**:
+     - *Cơ chế Nạp & Dấu hiệu Sinh học (`Biomechanical Telegraph`):* Trước khi phát năng lượng phải có quá trình tích tụ hợp lý (lồng ngực phồng lớn hút khí, các gai lưng/mạch năng lượng sáng dần từ đuôi lên cổ, không khí xung quanh bị nung nóng biến dạng quang học).
+     - *Phản lực Newton & Tương tác Môi trường (`Newtonian Recoil & Element Coupling`):* Phóng một luồng xung kích về phía trước thì hai chân sau phải bị đẩy trượt lùi trên mặt đất/đáy biển; luồng nhiệt bắn xuống biển phải làm nước biển sôi sục và bốc hơi thành sương mù dày đặc tức thì.
+     - *Tiêu hao Sinh lực (`Metabolic Cost & Cooldown`):* Sau khi tung đòn đặc biệt, cơ thể phải chịu tải (thở dốc, bốc khói nhiệt từ miệng/khe giáp, giảm tốc độ trong nhịp kế tiếp), không bao giờ tung chiêu vô hạn.
 
 ---
 
@@ -209,3 +238,4 @@ Trước khi chạy `flow-generate` tốn bất kỳ credit nào, Kịch bản �
    - Không quá 2 shot liên tiếp dùng cùng một cỡ cảnh phẳng (`flat medium/wide two-shot`). Phải đan xen: `Wide Geography` -> `OTS Depth` -> `85mm Macro Impact` -> `1.2m Ground-Level POV` -> `Reaction ECU`.
 6. **Cổng 6 — Kiểm định Tự động bằng Lệnh (`Automated Linter Gate`):**
    - Chạy `python scripts/studio_helper.py lint-prompts --project <slug> --strict` đạt **0 Error, 0 FSM Discontinuity, 0 Underbudgeted Shot Warning**.
+

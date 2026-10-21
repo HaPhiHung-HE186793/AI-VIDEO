@@ -1334,6 +1334,9 @@ def test_world_class_0_1_percent_director_standard_blueprint_and_fsm_lint(cfg):
     assert fixed["distinct_arenas_required"] == 5
     assert len(fixed["acts_breakdown"]) == 5
     assert "tier_4_feature_anthology" in bp["autonomous_runtime_tiers"]
+    assert "contiguous_map_topology_policy" in bp
+    assert len(bp["grounded_plausibility_laws"]) == 3
+    assert "zone_transition_bridge" in fixed["acts_breakdown"][0]
 
     proj = {
         "language": "vi",
@@ -1352,6 +1355,7 @@ def test_world_class_0_1_percent_director_standard_blueprint_and_fsm_lint(cfg):
                 "shot_id": "shot_01",
                 "order": 1,
                 "scene_id": "scene_01",
+                "arena_stage": "ZONE_1_DRY_COASTAL_CLEARING",
                 "generation_mode": "first_last",
                 "first_frame_path": "f1.jpg",
                 "last_frame_path": "f2.jpg",
@@ -1360,7 +1364,7 @@ def test_world_class_0_1_percent_director_standard_blueprint_and_fsm_lint(cfg):
                 "environment": "ENV_SWAMP",
                 "causal_link": "And then Rex slams Vasto into the mud",
                 "entry_state": "Rex and Vasto clash chest-to-chest in the shallow water",
-                "action": "Rex slams Vasto down into the deep mud bank",
+                "action": "Rex bites Vasto's shoulder",
                 "exit_state": "Vasto lies pinned on its right flank in the deep mud while Rex towers over it",
                 "transition_to_next": "INTRA_SCENE_CONTINUE",
             },
@@ -1368,6 +1372,7 @@ def test_world_class_0_1_percent_director_standard_blueprint_and_fsm_lint(cfg):
                 "shot_id": "shot_02",
                 "order": 2,
                 "scene_id": "scene_01",
+                "arena_stage": "ZONE_4_CHEST_DEEP_SEA_SURF",
                 "generation_mode": "first_last",
                 "first_frame_path": "f3.jpg",
                 "last_frame_path": "f4.jpg",
@@ -1395,3 +1400,4 @@ def test_world_class_0_1_percent_director_standard_blueprint_and_fsm_lint(cfg):
     proj_codes = {f["code"] for f in prompts.lint_project(proj, cfg)}
     assert "UNDERBUDGETED_SHOT_COUNT" in proj_codes
     assert "FSM_POSTURE_DISCONTINUITY" in proj_codes
+    assert "UNBRIDGED_ARENA_TELEPORT" in proj_codes
