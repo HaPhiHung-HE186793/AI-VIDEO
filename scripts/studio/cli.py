@@ -54,8 +54,8 @@ def rel(proj: Path, p: Path) -> str:
 
 # ---------------------------------------------------------------- plan / init
 
-def calc_plan(duration: int, lang: str, avg_shot: float, cfg: dict, quality_share: float = 0.6) -> dict:
-    """Số clip cần tạo dựa trên độ dài shot SAU DỰNG (không phải 8s/clip)."""
+def calc_plan(duration: int, lang: str, avg_shot: float, cfg: dict, quality_share: float = 0.6, genre: str = "") -> dict:
+    """Số clip cần tạo dựa trên độ dài shot SAU DỰNG (không phải 8s/clip) + Kiến trúc Đạo diễn Top 0.1%."""
     lang = prompts.normalize_lang(lang)
     clips = max(1, math.ceil(duration / avg_shot))
     takes = cfg["credits"]["takes_per_shot"]
@@ -63,6 +63,11 @@ def calc_plan(duration: int, lang: str, avg_shot: float, cfg: dict, quality_shar
     per_clip = quality_share * q + (1 - quality_share) * f
     credits = round(clips * takes * per_clip)
     rates = prompts.LANGUAGE_RATES[lang]
+    blueprint = prompts.build_director_choreography_blueprint(
+        duration_sec=duration,
+        genre_key=genre or "action_blockbuster",
+        avg_shot_sec=avg_shot,
+    )
     return {
         "target_duration_sec": duration,
         "avg_edited_shot_sec": avg_shot,
@@ -74,12 +79,13 @@ def calc_plan(duration: int, lang: str, avg_shot: float, cfg: dict, quality_shar
         "language_code": lang,
         "max_speech_units_per_8s_clip": rates["rec_max_per_8s"],
         "speech_unit": rates["unit"],
-        "note": "Mỗi clip Veo 8s được dựng còn ~avg_edited_shot_sec giây. Lời dẫn dài → dùng voiceover_external.",
+        "director_blueprint": blueprint,
+        "note": "Mỗi clip Veo 8s được dựng còn ~avg_edited_shot_sec giây (1 Shot = 1 Biến cố Vi mô Mới, không lặp clip ở hậu kỳ).",
     }
 
 
 def cmd_plan(args, cfg):
-    out(calc_plan(args.duration, args.lang, args.avg_shot, cfg))
+    out(calc_plan(args.duration, args.lang, args.avg_shot, cfg, genre=getattr(args, "genre", "")))
 
 
 def new_shot(i: int, n: int, audio_mode: str, manifest: dict = None) -> dict:
@@ -87,6 +93,7 @@ def new_shot(i: int, n: int, audio_mode: str, manifest: dict = None) -> dict:
     ff_path = mf.keyframe_rel_path(manifest, sid, "start") if manifest else f"assets/frames/{sid}_start.png"
     return {
         "shot_id": sid, "scene_id": f"scene_{i:02d}", "order": i,
+        "arena_stage": "", "causal_link": "", "entry_state": "", "exit_state": "",
         "camera": "", "subjects": [], "action": "", "environment": "", "setting": "", "lighting": "",
         "audio": {"mode": audio_mode, "line": "", "speaker": "", "delivery": "", "sfx": ""},
         "generation_mode": "first_frame", "first_frame_prompt": "", "first_frame_path": ff_path,
@@ -2038,10 +2045,12 @@ def build_parser() -> argparse.ArgumentParser:
     def project_arg(sp):
         sp.add_argument("--project", required=True, help="Thư mục dự án hoặc slug trong projects/")
 
-    sp = add("plan", cmd_plan, "Ước lượng số clip & credit theo độ dài shot sau dựng")
+    sp = add("plan", cmd_plan, "Ước lượng số clip, credit & Kiến trúc Biên đạo Đạo diễn Top 0.1% theo thời lượng")
     sp.add_argument("--duration", type=int, required=True)
     sp.add_argument("--lang", default="vi")
     sp.add_argument("--avg-shot", type=float, default=5.0, help="Độ dài TB một shot sau dựng (giây)")
+    sp.add_argument("--genre", default="action_blockbuster", choices=["", *prompts.GENRE_PROFILES.keys()],
+                    help="Thể loại để tính kiến trúc Hồi/Đấu trường/Hiệp giao tranh")
 
     sp = add("init", cmd_init, "Khởi tạo dự án (schema v2)")
     sp.add_argument("--name", required=True)

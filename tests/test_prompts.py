@@ -1321,3 +1321,77 @@ def test_six_defect_root_cause_fixes_strict_window_tail_climax_and_linters(cfg):
     }
     assert takes._is_tail_climax_shot(shot_finale, is_finale=False) is True
     assert takes._is_tail_climax_shot({"shot_id": "shot_10"}, is_finale=True) is True
+
+
+def test_world_class_0_1_percent_director_standard_blueprint_and_fsm_lint(cfg):
+    bp = prompts.build_director_choreography_blueprint(duration_sec=300, genre_key="action_blockbuster", avg_shot_sec=4.0)
+    assert bp["standard"] == "WORLD_CLASS_0_1_PERCENT_DIRECTOR_STANDARD"
+    assert bp["zero_clip_reuse_policy"] is True
+    fixed = bp["fixed_duration_blueprint"]
+    assert fixed["target_duration_sec"] == 300
+    assert fixed["unique_shots_required"] == 75
+    assert fixed["acts_count"] == 5
+    assert fixed["distinct_arenas_required"] == 5
+    assert len(fixed["acts_breakdown"]) == 5
+    assert "tier_4_feature_anthology" in bp["autonomous_runtime_tiers"]
+
+    proj = {
+        "language": "vi",
+        "genre": "action_blockbuster",
+        "style_line": "Live-action IMAX 65mm cinematography",
+        "plan": {"target_duration_sec": 300, "avg_edited_shot_sec": 4.0},
+        "characters": [
+            {"id": "CHAR_REX", "name": "Rex", "short_name": "Rex", "identity_line": "a massive charcoal T. rex",
+             "reference_images": ["r.png"]},
+            {"id": "CHAR_VASTO", "name": "Vasto", "short_name": "Vasto", "identity_line": "an agile V-Rex with osteoderms",
+             "reference_images": ["v.png"]},
+        ],
+        "environments": [{"id": "ENV_SWAMP", "name": "Swamp", "identity_line": "a muddy swamp"}],
+        "shots": [
+            {
+                "shot_id": "shot_01",
+                "order": 1,
+                "scene_id": "scene_01",
+                "generation_mode": "first_last",
+                "first_frame_path": "f1.jpg",
+                "last_frame_path": "f2.jpg",
+                "camera": "35mm wide combat shot",
+                "subjects": ["CHAR_REX", "CHAR_VASTO"],
+                "environment": "ENV_SWAMP",
+                "causal_link": "And then Rex slams Vasto into the mud",
+                "entry_state": "Rex and Vasto clash chest-to-chest in the shallow water",
+                "action": "Rex slams Vasto down into the deep mud bank",
+                "exit_state": "Vasto lies pinned on its right flank in the deep mud while Rex towers over it",
+                "transition_to_next": "INTRA_SCENE_CONTINUE",
+            },
+            {
+                "shot_id": "shot_02",
+                "order": 2,
+                "scene_id": "scene_01",
+                "generation_mode": "first_last",
+                "first_frame_path": "f3.jpg",
+                "last_frame_path": "f4.jpg",
+                "camera": "50mm medium two-shot",
+                "subjects": ["CHAR_REX", "CHAR_VASTO"],
+                "environment": "ENV_SWAMP",
+                "causal_link": "THEREFORE: Vasto counter-attacks",
+                "entry_state": "Vasto is standing tall and charging forward from a standing stance at Rex",
+                "action": "Vasto snaps its jaws at Rex",
+                "exit_state": "Both titans recoil apart",
+            },
+        ],
+    }
+    for s in proj["shots"]:
+        s["first_frame_prompt"] = prompts.build_first_frame_prompt(proj, s)
+        s["last_frame_prompt"] = prompts.build_last_frame_prompt(proj, s)
+        s["veo_prompt"] = prompts.build_prompt(proj, s)
+
+    assert "pinned on its right flank" in proj["shots"][0]["last_frame_prompt"]
+    assert "Starting from Rex and Vasto clash chest-to-chest" in proj["shots"][0]["veo_prompt"]
+
+    s1_codes = {f["code"] for f in prompts.lint_shot(proj, proj["shots"][0], cfg)}
+    assert "WEAK_CAUSAL_CONNECTOR" in s1_codes
+
+    proj_codes = {f["code"] for f in prompts.lint_project(proj, cfg)}
+    assert "UNDERBUDGETED_SHOT_COUNT" in proj_codes
+    assert "FSM_POSTURE_DISCONTINUITY" in proj_codes

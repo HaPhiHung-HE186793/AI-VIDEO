@@ -494,14 +494,14 @@ def _build_keyframe_staging(shot: dict, chars: dict, slot: str) -> str:
 
 
 def _build_motion_arc(shot: dict, chars: dict = None) -> str:
-    """Ghép câu quỹ đạo chuyển động: ưu tiên `timeline_phases` chi tiết theo từng giây, dự phòng 3 pha (Start -> Bridge -> End)."""
+    """Ghép câu quỹ đạo chuyển động: ưu tiên `timeline_phases` chi tiết theo từng giây, dự phòng 3 pha (Start/Entry -> Bridge -> End/Exit)."""
     if shot.get("timeline_phases"):
         tl_str = _build_director_timeline(shot, chars)
         if tl_str:
             return tl_str
-    start_act = _clean_kinematic_action(shot.get("start_action") or "")
+    start_act = _clean_kinematic_action(shot.get("start_action") or shot.get("entry_state") or "")
     act = _clean_kinematic_action(shot.get("action") or "")
-    end_act = _clean_kinematic_action(shot.get("end_action") or "")
+    end_act = _clean_kinematic_action(shot.get("end_action") or shot.get("exit_state") or "")
     if re.search(r"\bthen smoothly transition(?:s|ing)\b", act, flags=re.I):
         return _sentence(act)
     if shot.get("generation_mode") == "first_last" and end_act:
@@ -792,7 +792,9 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
         shot.get("camera") or shot.get("camera_shot") or "",
         flags=re.I,
     ).strip(" ,.")
-    pose = strip_transient_vfx_for_keyframe(_clean_kinematic_action(shot.get("start_action") or shot.get("action") or ""))
+    pose = strip_transient_vfx_for_keyframe(
+        _clean_kinematic_action(shot.get("start_action") or shot.get("entry_state") or shot.get("action") or "")
+    )
     cam_head = (cam or shot.get("camera") or shot.get("camera_shot") or "").rstrip(".")
     parts = [_sentence(f"{cam_head}: {pose}" if cam_head and pose else (cam_head or pose))]
     if shot.get("grid_panel_start_path") and shot.get("use_grid_layout_ref", True):
@@ -835,7 +837,9 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
 
-    end_pose = strip_transient_vfx_for_keyframe(_clean_kinematic_action(shot.get("end_action") or shot.get("action") or ""))
+    end_pose = strip_transient_vfx_for_keyframe(
+        _clean_kinematic_action(shot.get("end_action") or shot.get("exit_state") or shot.get("action") or "")
+    )
     cam_raw = shot.get("camera") or shot.get("camera_shot") or ""
     impact_re = re.compile(
         r"\b(slam|slams|crash|crashes|shatter|shatters|collapse|collapses|knock|knocks|pin|pins|crush|crushes|"
@@ -1259,7 +1263,58 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     if len(all_cast) >= 2 and mode == "ingredients":
         add("info", "MULTI_SUBJECT_COMPOSITION", f"Cảnh có {len(all_cast)} nhân vật dùng mode=ingredients: nếu cần kiểm soát "
                                                  "chặt vị trí trái/phải (quy tắc 180°) và hướng nhìn, nên dựng first_frame trước.")
+    causal = (shot.get("causal_link") or "").strip()
+    if causal and re.match(r"^(and\s+then|và\s+rồi|sau\s+đó)\b", causal, flags=re.I):
+        add("warn", "WEAK_CAUSAL_CONNECTOR",
+            f"Trường `causal_link` đang mở đầu bằng '{causal[:20]}...' (liệt kê tuyến tính). "
+            "Theo chuẩn Đạo diễn Top 0.1%, hãy bắt đầu bằng 'THEREFORE:' (Vì vậy — hệ quả tất yếu) hoặc 'BUT:' (Nhưng — bước ngoặt cản trở).")
     return out
+
+
+_GROUNDED_POSTURE_RE = re.compile(
+    r"\b(pinned|knocked\s+down|collapsed|prone|on\s+(?:its|his|her)\s+(?:right\s+|left\s+)?(?:flank|side|back)|"
+    r"slammed\s+(?:onto|into)\s+the\s+(?:mud|ground|floor|earth)|flat\s+on\s+the\s+(?:ground|mud))\b",
+    re.I,
+)
+_UPRIGHT_START_RE = re.compile(
+    r"\b(standing\s+tall|charging\s+forward\s+from\s+a\s+standing|pacing\s+upright|circling\s+each\s+other\s+upright|"
+    r"standing\s+upright|towering\s+upright)\b",
+    re.I,
+)
+_RECOVERY_BRIDGE_RE = re.compile(
+    r"\b(rising|push(?:es|ing)\s+up|kip[- ]?up|struggl(?:es|ing)\s+(?:up|to\s+rise)|from\s+prone|from\s+the\s+mud|"
+    r"pinned|on\s+(?:its|his|her)\s+(?:right\s+|left\s+)?(?:flank|side)|grounded|kick(?:s|ing)\s+free|thrash(?:es|ing)|"
+    r"regain(?:s|ing)\s+footing|scramble(?:s|ing)\s+up)\b",
+    re.I,
+)
+
+
+def _detect_fsm_posture_discontinuity(prev: dict, cur: dict, chars: dict) -> str:
+    """Phát hiện lỗi đứt gãy trạng thái vật lý (State Amnesia) giữa cuối shot trước và đầu shot sau."""
+    if cur.get("allow_posture_jump"):
+        return ""
+    prev_end_poses = (prev.get("end_staging") or {}).get("subject_poses") or {}
+    cur_start_poses = (cur.get("start_staging") or {}).get("subject_poses") or {}
+    common_cids = [c for c in (prev.get("subjects") or []) if c in (cur.get("subjects") or []) and c in chars]
+    for cid in common_cids:
+        c_name = display_name(chars.get(cid, {}), cid)
+        p_txt = str(prev_end_poses.get(cid) or "")
+        if not p_txt:
+            raw_end = f"{prev.get('exit_state', '')} {prev.get('end_action', '')}"
+            if c_name.lower() in raw_end.lower():
+                p_txt = raw_end
+        c_txt = str(cur_start_poses.get(cid) or "")
+        if not c_txt:
+            raw_start = f"{cur.get('entry_state', '')} {cur.get('start_action', '')} {cur.get('action', '')}"
+            if c_name.lower() in raw_start.lower():
+                c_txt = raw_start
+        if p_txt and c_txt and _GROUNDED_POSTURE_RE.search(p_txt) and _UPRIGHT_START_RE.search(c_txt) and not _RECOVERY_BRIDGE_RE.search(c_txt):
+            return (
+                f"Đứt gãy trạng thái cơ học (FSM State Discontinuity) của {c_name} ({cid}) giữa {prev.get('shot_id')} và {cur.get('shot_id')}: "
+                f"cuối {prev.get('shot_id')} nhân vật đang bị quật ngã/nằm dưới đất ('{p_txt[:80]}...'), nhưng đầu {cur.get('shot_id')} "
+                f"lại đứng thẳng tấn công ngay ('{c_txt[:80]}...') mà thiếu pha chống chân đứng dậy hoặc phản đòn từ mặt đất."
+            )
+    return ""
 
 
 def lint_project(project: dict, cfg: dict) -> list:
@@ -1271,6 +1326,26 @@ def lint_project(project: dict, cfg: dict) -> list:
 
     shots = [s for s in mf.ordered_shots(project) if not s.get("exclude_from_edit")]
     chars = mf.characters_by_id(project)
+
+    # 0. Kiểm tra Ngân sách Shot Duy nhất theo Chuẩn Đạo diễn Top 0.1% (Cấm kéo giãn/lặp lại clip ít ỏi ở hậu kỳ)
+    plan_obj = project.get("plan") or {}
+    target_dur = float(plan_obj.get("target_duration_sec") or 0.0)
+    avg_shot_plan = float(plan_obj.get("avg_edited_shot_sec") or 4.2)
+    if target_dur >= 60.0 and shots and not project.get("allow_underbudgeted_shots"):
+        expected_unique_shots = max(1, int(round(target_dur / max(2.5, avg_shot_plan))))
+        min_acceptable_shots = max(1, int(expected_unique_shots * 0.72))
+        if len(shots) < min_acceptable_shots:
+            add("warn", "UNDERBUDGETED_SHOT_COUNT",
+                f"Dự án đặt thời lượng mục tiêu {target_dur:.0f}s nhưng chỉ có {len(shots)} shot kịch bản "
+                f"(chuẩn Đạo diễn Top 0.1% cần ~{expected_unique_shots} shot duy nhất với nhịp {avg_shot_plan:.1f}s/shot, tối thiểu {min_acceptable_shots} shot). "
+                "Tuyệt đối không dùng ít clip rồi lặp lại/chia nhỏ ở hậu kỳ; hãy bổ sung đủ các Hồi (Acts), Hiệp giao tranh (Exchanges) và Shot chuyển tiếp mới.")
+
+    if len(shots) >= 25:
+        arenas = {str(s.get("arena_stage") or s.get("environment") or "").strip() for s in shots if s.get("arena_stage") or s.get("environment")}
+        if len(arenas) <= 1:
+            add("info", "STATIC_ARENA_FATIGUE",
+                f"Dự án dài ({len(shots)} shots) nhưng toàn bộ diễn ra trong 1 bối cảnh/đấu trường duy nhất ({list(arenas)}). "
+                "Theo chuẩn Đạo diễn Top 0.1%, cứ mỗi 12–15 shots (60s–75s) nên dịch chuyển sang tiểu đấu trường mới (`arena_stage` / `environment`) với địa hình và chướng ngại vật mới.")
 
     # 1. Quét toàn bộ kịch bản xem có nhân vật nào được gọi tên riêng nhưng chưa tạo trong `manifest.characters`
     undeclared_names = _find_undeclared_proper_names(project, chars)
@@ -1392,6 +1467,10 @@ def lint_project(project: dict, cfg: dict) -> list:
                     f"Lệch hướng nhìn (Eyeline Mismatch) giữa 2 cảnh cận đối diện {prev['shot_id']} ({p_subjs[0]} nhìn sang {eye_a}) "
                     f"và {cur['shot_id']} ({c_subjs[0]} cũng nhìn sang {eye_b}): hai nhân vật đối thoại/đối đầu phải nhìn ngược hướng nhau "
                     "trên màn ảnh (người này nhìn phải thì người kia nhìn trái).")
+
+        fsm_err = _detect_fsm_posture_discontinuity(prev, cur, chars)
+        if fsm_err:
+            add("warn", "FSM_POSTURE_DISCONTINUITY", fsm_err)
     return out
 
 
@@ -1489,3 +1568,79 @@ def build_storyboard_grid_prompt(project: dict, rows: int = 3, cols: int = 3, pa
     )
     parts = [header, cast_header, world_header, " ".join(panel_lines), footer]
     return re.sub(r"\s{2,}", " ", " ".join(x for x in parts if x)).strip()
+
+
+def build_director_choreography_blueprint(duration_sec: int, genre_key: str = "action_blockbuster", avg_shot_sec: float = 0.0) -> dict:
+    """Sinh Kiến trúc Biên đạo & Kịch bản Đạo diễn theo Chuẩn Top 0.1% Thế giới.
+
+    Hỗ trợ cả 2 chế độ:
+    1. Chế độ Thời lượng Cố định (`fixed_duration_blueprint`): Phân rã `duration_sec` thành Số Hồi (`Acts`),
+       Số Đấu trường (`Arenas`), Số Hiệp giao tranh (`Exchanges`), Tế bào 4-5 Shot (`Action-Reaction Cell`) và
+       Số Shot Duy nhất Bắt buộc (`1 Shot = 1 Biến cố Vi mô Mới`, cấm lặp clip ở hậu kỳ).
+    2. Chế độ Đạo diễn Tự Định cỡ (`autonomous_runtime_tiers`): Đề xuất 4 Gói Thời lượng Chuẩn từ 60s đến 60 phút.
+    """
+    import math
+
+    gprof = GENRE_PROFILES.get(genre_key) or GENRE_PROFILES["action_blockbuster"]
+    asl = float(avg_shot_sec or gprof.get("avg_shot_sec") or 4.0)
+    dur = max(15, int(duration_sec or 60))
+    unique_shots = max(4, math.ceil(dur / asl))
+    act_count = 3 if dur <= 180 else (5 if dur <= 900 else 8)
+    arenas_count = max(1, math.ceil(dur / 60.0)) if dur <= 600 else max(8, math.ceil(dur / 120.0))
+    exchanges_count = max(2, round(dur / 20.0))
+    reversals_count = max(1, act_count)
+
+    act_sec = round(dur / act_count, 1)
+    shots_per_act = max(1, round(unique_shots / act_count))
+    act_archetypes_5 = [
+        ("Act I — Territory Breach & Opening Clash", "ARENA_1_BOUNDARY_ZONE", "Thiết lập quy mô, lý do xung đột, va chạm mở màn (Cân sức 50/50)", "L0_fresh_dry_to_splashed"),
+        ("Act II — Speed & Terrain Hazard Escalation", "ARENA_2_OBSTACLE_LABYRINTH", "Kẻ thách thức dùng tốc độ/địa hình dồn ép; bước ngoặt Reversal 1 (30/70)", "L1_wet_hide_superficial_scratches"),
+        ("Act III — Raw Power Counter-Attack & Grapple", "ARENA_3_MUD_OR_CRUSH_PIT", "Phản công bằng sức nặng & khóa hàm/đòn vật; bước ngoặt Reversal 2 (75/25)", "L2_mud_coated_bleeding_shoulder"),
+        ("Act IV — All Is Lost / Cliff-Edge Desperation", "ARENA_4_HAZARD_PRECIPICE", "Cả hai thấm mệt, sạt lở địa hình, khoảnh khắc sinh tử mép vực; Reversal 3", "L3_heavy_steam_panting_deep_wounds"),
+        ("Act V — Climactic Finisher & Apex Sovereignty", "ARENA_5_ABYSS_CLIMAX", "Đòn tất sát kết liễu (Finisher) đẩy đối thủ xuống vực/tháo chạy & gầm chiến thắng", "L4_exhausted_battle_scarred_victor"),
+    ]
+    acts_breakdown = []
+    for idx in range(act_count):
+        t0 = round(idx * act_sec)
+        t1 = dur if idx == act_count - 1 else round((idx + 1) * act_sec)
+        arch = act_archetypes_5[min(idx, len(act_archetypes_5) - 1)]
+        acts_breakdown.append({
+            "act_number": idx + 1,
+            "time_window_sec": f"{t0}s-{t1}s",
+            "title": arch[0],
+            "arena_stage": arch[1],
+            "dramatic_goal_and_reversal": arch[2],
+            "progressive_damage_state": arch[3],
+            "exchanges_in_act": max(1, round((t1 - t0) / 20.0)),
+            "unique_shots_in_act": shots_per_act if idx < act_count - 1 else max(1, unique_shots - shots_per_act * (act_count - 1)),
+        })
+
+    return {
+        "standard": "WORLD_CLASS_0_1_PERCENT_DIRECTOR_STANDARD",
+        "zero_clip_reuse_policy": True,
+        "fsm_state_continuity_equation": "Shot[k-1].exit_state == Shot[k].entry_state",
+        "fixed_duration_blueprint": {
+            "target_duration_sec": dur,
+            "genre": genre_key,
+            "avg_edited_shot_sec": asl,
+            "unique_shots_required": unique_shots,
+            "acts_count": act_count,
+            "distinct_arenas_required": arenas_count,
+            "tactical_exchanges_count": exchanges_count,
+            "major_reversals_required": reversals_count,
+            "action_reaction_cell_grammar": [
+                "Shot 1 (Telegraph / Setup ~4.0s): Lấy đà, dồn trọng lượng, khóa ánh nhìn",
+                "Shot 2 (Primary Collision ~4.0s): Va chạm toàn thân theo chiều sâu Z-axis",
+                "Shot 3 (Visceral Macro Insert ~3.0s): 85mm-100mm cận cảnh răng/móng/vũ khí ép lún da thịt (>35% khung hình)",
+                "Shot 4 (Asymmetric Consequence ~4.5s): Hất văng/quật ngã làm thay đổi tư thế (standing -> prone/pinned)",
+                "Shot 5 (Tactical Recovery / Pivot ~4.5s): Dùng địa hình hoặc đòn hiểm thoát vây, khóa exit_state cho hiệp sau",
+            ],
+            "acts_breakdown": acts_breakdown,
+        },
+        "autonomous_runtime_tiers": {
+            "tier_1_short_teaser": {"duration_sec": 90, "unique_shots": math.ceil(90 / asl), "arenas": 2, "scope": "1 Cao trào duy nhất (TikTok/Reels/Shorts)"},
+            "tier_2_theatrical_setpiece": {"duration_sec": 300, "unique_shots": math.ceil(300 / asl), "arenas": 5, "scope": "Đại chiến 5 Hồi - 5 Đấu trường hoàn chỉnh (Chuẩn IMAX / YouTube 5 phút)"},
+            "tier_3_extended_short_film": {"duration_sec": 900, "unique_shots": math.ceil(900 / asl), "arenas": 8, "scope": "Phim ngắn 15 phút (3 Chương: Rình mò -> Đụng độ & Rút lui đêm bão -> Quyết chiến vực thác)"},
+            "tier_4_feature_anthology": {"duration_sec": 3600, "unique_shots": math.ceil(3600 / asl), "arenas": 24, "scope": "Phim Điện ảnh 60 phút (8 Sequences, A-Plot + B-Plot, 3 đại cảnh chiến đấu)"},
+        },
+    }

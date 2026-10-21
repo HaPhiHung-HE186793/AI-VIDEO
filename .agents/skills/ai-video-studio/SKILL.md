@@ -12,7 +12,8 @@ description: >-
 
 Tài liệu tham chiếu:
 - [prompt_templates.md](./references/prompt_templates.md) — công thức prompt Gemini / Nano Banana / Veo 3.1.
-- [universal_director_engine.md](./references/universal_director_engine.md) — tư duy đạo diễn: kể chuyện, chọn chế độ Veo, dựng phim, âm thanh.
+- [universal_director_engine.md](./references/universal_director_engine.md) — tư duy đạo diễn & biên đạo chuẩn Top 0.1%: kiến trúc thời lượng kép, giao thức FSM chống AI đọc nhầm kịch bản, chọn chế độ Veo, dựng phim, âm thanh.
+- [WORLD_CLASS_0_1_PERCENT_DIRECTOR_STANDARD.md](../../../docs/WORLD_CLASS_0_1_PERCENT_DIRECTOR_STANDARD.md) — Tiêu chuẩn Đạo diễn & Biên đạo Điện ảnh Top 0.1% Thế giới (1 Shot = 1 Biến cố Vi mô Mới, cấm lặp/kéo giãn clip ở hậu kỳ, phân rã Hồi/Đấu trường/Hiệp giao tranh từ 1 phút đến 60+ phút).
 - [flow_ui_playbook.md](./references/flow_ui_playbook.md) — thao tác Google Flow tự động (đã kiểm chứng).
 
 Mọi lệnh: `python scripts/studio_helper.py <lệnh> --project <slug>` (xem `--help`). Cấu hình máy/model/credit: `studio_config.json`.
@@ -69,6 +70,7 @@ Mỗi shot trong manifest:
   "negative_prompt": "", "transition_to_next": "INTRA_SCENE_CONTINUE", "transition_out": "cut"
 }
 ```
+- **Định luật 1:1 Ngân sách Shot & Giao thức FSM (`entry_state` / `exit_state` / `causal_link` / `arena_stage`):** Số lượng shot duy nhất trong kịch bản phải bằng $\lceil T / \text{ASL} \rceil$ (vd: phim hành động 5 phút = `300s` với nhịp `4.0s/shot` bắt buộc phải viết **70–78 shots độc lập** chia làm 5 Hồi / 5 Đấu trường / 15 Hiệp giao tranh, cấm lặp/kéo giãn clip ít ỏi ở hậu kỳ). Mỗi shot phải khóa `entry_state` khớp với `exit_state` của shot trước để AI không vẽ nhảy tư thế (`lint-prompts` tự kiểm tra `UNDERBUDGETED_SHOT_COUNT`, `FSM_POSTURE_DISCONTINUITY`, `WEAK_CAUSAL_CONNECTOR`, `STATIC_ARENA_FATIGUE`).
 - **Cảnh đông người (4..20+ nhân vật có tên + quần chúng nền):** Đặt 1–3 nhân vật tiêu điểm vào `subjects` và toàn bộ các nhân vật phụ có tên trong bàn/cảnh vào `ensemble_cast` (hoặc đưa tất cả vào `subjects`). Bộ dựng prompt tự xuất sơ đồ chỗ ngồi (`All N named characters seated together...`) và `shot_reference_paths` tự ghép bảng ảnh `group_cast_<hash>.jpg` để vừa slot đính kèm của Flow. Đặt `background_crowd` trên `environment` hoặc `shot` để thêm các bàn phụ & khách quần chúng náo nhiệt phía sau.
 - **Cảnh hành động nhiều pha (`mid_actions`):** Đặt `"mid_actions": ["pha giữa 1", "pha giữa 2", ...]` trên shot `first_last` để `build-prompts` tự tách thành chuỗi `shot_XXa, shot_XXb...` khóa Star-Anchor vào `F0`.
 - `audio.mode`: `sfx_only` | `voiceover_external` | `veo_dialogue` (nhép miệng, có `speaker`, `delivery`) | `veo_narration` (không khuyến nghị).
