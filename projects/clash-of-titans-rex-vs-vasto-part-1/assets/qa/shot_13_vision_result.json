@@ -1,0 +1,28 @@
+{
+  "identity_match": [
+    {
+      "subject": "CHAR_REX",
+      "score_1_10": 9,
+      "issues": "Không có sai lệch; da nâu đồng (bronze-brown), lưng trơn cơ bắp không gai, hộp sọ chữ nhật và mắt hổ phách khớp chuẩn ảnh tham chiếu."
+    }
+  ],
+  "prompt_adherence": {
+    "camera_ok": true,
+    "action_ok": true,
+    "setting_ok": true,
+    "notes": "Take 1 (cửa sổ dựng 0.35s-5.00s) bám sát góc máy () và hành động (Rex tries to pivot its left foot in the marsh, but the thick suctioning mud grips its ankle, slowing) tại ."
+  },
+  "artifacts": {
+    "extra_or_missing_limbs": false,
+    "morphing": false,
+    "objects_popping_in": false,
+    "text_or_watermark": false,
+    "letterbox": false,
+    "physics_errors": false,
+    "notes": "Đoạn dựng [0.35s-5.00s] của take 1 hoàn toàn sạch lỗi giải phẫu và vật lý."
+  },
+  "continuity_with_previous": "Nối mượt từ shot_12 trong vùng , khớp trạng thái None -> None trên đoạn dựng [0.35s, 5.00s].",
+  "overall_score_1_10": 9,
+  "verdict": "pass",
+  "retake_advice": ""
+}

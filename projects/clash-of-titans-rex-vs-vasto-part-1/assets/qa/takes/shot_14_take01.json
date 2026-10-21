@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 9,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.6,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "tail_hold",
+      "description": "Hai titan giữ nguyên thế ghì ở 1.4s cuối."
+    }
+  ],
+  "notes": "[shot_14 take 01 | ] Góc máy: . Hành động: Vasto uses its lighter foot pressure to bound across the marsh surface, dodging past Rex's snapping jaws to an. Phát hiện lỗi tail_hold (minor) ở khoảng 6.6s-8.0s: Hai titan giữ nguyên thế ghì ở 1.4s cuối."
+}

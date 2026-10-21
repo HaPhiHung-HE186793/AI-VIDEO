@@ -1,0 +1,28 @@
+{
+  "identity_match": [
+    {
+      "subject": "CHAR_VASTO",
+      "score_1_10": 9,
+      "issues": "Không có sai lệch; da đen xám đá базаn (obsidian-slate), hàng gai lưng nhọn và sọ dài hẹp có sừng trên mắt khớp chuẩn ảnh tham chiếu."
+    }
+  ],
+  "prompt_adherence": {
+    "camera_ok": true,
+    "action_ok": true,
+    "setting_ok": true,
+    "notes": "Take 2 (cửa sổ dựng 0.80s-5.45s) bám sát góc máy () và hành động (Seawater cascades off Vasto's obsidian scales as it sprints up the wet sloping rock of the reef spit) tại ."
+  },
+  "artifacts": {
+    "extra_or_missing_limbs": false,
+    "morphing": false,
+    "objects_popping_in": false,
+    "text_or_watermark": false,
+    "letterbox": false,
+    "physics_errors": false,
+    "notes": "Đoạn dựng [0.80s-5.45s] của take 2 hoàn toàn sạch lỗi giải phẫu và vật lý."
+  },
+  "continuity_with_previous": "Nối mượt từ shot_46 trong vùng , khớp trạng thái None -> None trên đoạn dựng [0.80s, 5.45s].",
+  "overall_score_1_10": 9,
+  "verdict": "pass",
+  "retake_advice": ""
+}

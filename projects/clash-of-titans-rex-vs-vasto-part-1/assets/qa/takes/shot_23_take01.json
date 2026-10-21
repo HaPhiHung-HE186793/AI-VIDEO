@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 7,
+  "prompt_adherence_1_10": 7,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 7,
+  "defects": [
+    {
+      "t_from": 2.1,
+      "t_to": 3.1,
+      "severity": "major",
+      "rule": "axis_180_pivot",
+      "description": "Tại t=2.5s Vasto xoay đầu nhìn về phía camera khi đổi hướng trên bãi đá."
+    }
+  ],
+  "notes": "[shot_23 take 01 | ] Góc máy: . Hành động: Vasto breaks free of the shove as its claws scrape across wet basalt boulders at the shoreline edge, white oce. Phát hiện lỗi axis_180_pivot (major) ở khoảng 2.1s-3.1s: Tại t=2.5s Vasto xoay đầu nhìn về phía camera khi đổi hướng trên bãi đá."
+}

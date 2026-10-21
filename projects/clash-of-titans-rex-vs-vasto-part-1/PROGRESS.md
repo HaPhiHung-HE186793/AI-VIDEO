@@ -21,83 +21,81 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `clash-of-titans-rex-vs-vasto-part-1` — thư mục `projects/clash-of-titans-rex-vs-vasto-part-1/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/2771c196-bd45-40e4-bd63-da2daafb79d1
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T16:31:36 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
-- **Storyboard:** chưa duyệt
+- **Cập nhật lần cuối:** 2026-10-21T18:44:44 trên máy **DESKTOP-HUP72C4** (lệnh `thumbnail`)
+- **Storyboard:** đã duyệt (c5a78c5c99cc4fb2)
 
-## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
+## ▶ Bước tiếp theo: 7. Upscale 1080p
 
-60 shot chưa có video. Storyboard chưa duyệt.
+Còn 720p: shot_01, shot_02, shot_03, shot_04, shot_05, shot_06, shot_07, shot_08, shot_09, shot_10, shot_11, shot_12, shot_13, shot_14, shot_15, shot_16, shot_17, shot_18, shot_19, shot_20, shot_21, shot_22, shot_23, shot_24, shot_25, shot_26, shot_27, shot_28, shot_29, shot_30, shot_31, shot_32, shot_33, shot_34, shot_35, shot_36, shot_37, shot_38, shot_39, shot_40, shot_41, shot_42, shot_43, shot_44, shot_45, shot_46, shot_47, shot_48, shot_49, shot_50, shot_51, shot_52, shot_53, shot_54, shot_55, shot_56, shot_57, shot_58, shot_59, shot_60
 
 ```powershell
-python scripts/studio_helper.py storyboard --project clash-of-titans-rex-vs-vasto-part-1
-(người dùng xem output/storyboard.html)
-python scripts/studio_helper.py storyboard-approve --project clash-of-titans-rex-vs-vasto-part-1 --by "<tên>"
+python scripts/studio_helper.py flow-upscale --project clash-of-titans-rex-vs-vasto-part-1 --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,shot_14,shot_15,shot_16,shot_17,shot_18,shot_19,shot_20,shot_21,shot_22,shot_23,shot_24,shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36,shot_37,shot_38,shot_39,shot_40,shot_41,shot_42,shot_43,shot_44,shot_45,shot_46,shot_47,shot_48,shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60
 ```
 
 ## Shot
 
 | # | Shot | Beat | Trạng thái | Take chọn | 1080p | Cắt |
 |---|---|---|---|---|---|---|
-| 1 | shot_01 | beat_01 | pending | - / 0 |  |  |
-| 2 | shot_02 | beat_01 | pending | - / 0 |  |  |
-| 3 | shot_03 | beat_01 | pending | - / 0 |  |  |
-| 4 | shot_04 | beat_01 | pending | - / 0 |  |  |
-| 5 | shot_05 | beat_02 | pending | - / 0 |  |  |
-| 6 | shot_06 | beat_02 | pending | - / 0 |  |  |
-| 7 | shot_07 | beat_02 | pending | - / 0 |  |  |
-| 8 | shot_08 | beat_02 | pending | - / 0 |  |  |
-| 9 | shot_09 | beat_03 | pending | - / 0 |  |  |
-| 10 | shot_10 | beat_03 | pending | - / 0 |  |  |
-| 11 | shot_11 | beat_03 | pending | - / 0 |  |  |
-| 12 | shot_12 | beat_03 | pending | - / 0 |  |  |
-| 13 | shot_13 | beat_04 | pending | - / 0 |  |  |
-| 14 | shot_14 | beat_04 | pending | - / 0 |  |  |
-| 15 | shot_15 | beat_04 | pending | - / 0 |  |  |
-| 16 | shot_16 | beat_04 | pending | - / 0 |  |  |
-| 17 | shot_17 | beat_05 | pending | - / 0 |  |  |
-| 18 | shot_18 | beat_05 | pending | - / 0 |  |  |
-| 19 | shot_19 | beat_05 | pending | - / 0 |  |  |
-| 20 | shot_20 | beat_05 | pending | - / 0 |  |  |
-| 21 | shot_21 | beat_06 | pending | - / 0 |  |  |
-| 22 | shot_22 | beat_06 | pending | - / 0 |  |  |
-| 23 | shot_23 | beat_06 | pending | - / 0 |  |  |
-| 24 | shot_24 | beat_06 | pending | - / 0 |  |  |
-| 25 | shot_25 | beat_07 | pending | - / 0 |  |  |
-| 26 | shot_26 | beat_07 | pending | - / 0 |  |  |
-| 27 | shot_27 | beat_07 | pending | - / 0 |  |  |
-| 28 | shot_28 | beat_07 | pending | - / 0 |  |  |
-| 29 | shot_29 | beat_08 | pending | - / 0 |  |  |
-| 30 | shot_30 | beat_08 | pending | - / 0 |  |  |
-| 31 | shot_31 | beat_08 | pending | - / 0 |  |  |
-| 32 | shot_32 | beat_08 | pending | - / 0 |  |  |
-| 33 | shot_33 | beat_09 | pending | - / 0 |  |  |
-| 34 | shot_34 | beat_09 | pending | - / 0 |  |  |
-| 35 | shot_35 | beat_09 | pending | - / 0 |  |  |
-| 36 | shot_36 | beat_09 | pending | - / 0 |  |  |
-| 37 | shot_37 | beat_10 | pending | - / 0 |  |  |
-| 38 | shot_38 | beat_10 | pending | - / 0 |  |  |
-| 39 | shot_39 | beat_10 | pending | - / 0 |  |  |
-| 40 | shot_40 | beat_10 | pending | - / 0 |  |  |
-| 41 | shot_41 | beat_11 | pending | - / 0 |  |  |
-| 42 | shot_42 | beat_11 | pending | - / 0 |  |  |
-| 43 | shot_43 | beat_11 | pending | - / 0 |  |  |
-| 44 | shot_44 | beat_11 | pending | - / 0 |  |  |
-| 45 | shot_45 | beat_12 | pending | - / 0 |  |  |
-| 46 | shot_46 | beat_12 | pending | - / 0 |  |  |
-| 47 | shot_47 | beat_12 | pending | - / 0 |  |  |
-| 48 | shot_48 | beat_12 | pending | - / 0 |  |  |
-| 49 | shot_49 | beat_13 | pending | - / 0 |  |  |
-| 50 | shot_50 | beat_13 | pending | - / 0 |  |  |
-| 51 | shot_51 | beat_13 | pending | - / 0 |  |  |
-| 52 | shot_52 | beat_13 | pending | - / 0 |  |  |
-| 53 | shot_53 | beat_14 | pending | - / 0 |  |  |
-| 54 | shot_54 | beat_14 | pending | - / 0 |  |  |
-| 55 | shot_55 | beat_14 | pending | - / 0 |  |  |
-| 56 | shot_56 | beat_14 | pending | - / 0 |  |  |
-| 57 | shot_57 | beat_15 | pending | - / 0 |  |  |
-| 58 | shot_58 | beat_15 | pending | - / 0 |  |  |
-| 59 | shot_59 | beat_15 | pending | - / 0 |  |  |
-| 60 | shot_60 | beat_15 | pending | - / 0 |  |  |
+| 1 | shot_01 | beat_01 | qa_pass | 1 / 2 |  | 1.46–6.61 |
+| 2 | shot_02 | beat_01 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 3 | shot_03 | beat_01 | qa_pass | 2 / 2 |  | 1.08–6.23 |
+| 4 | shot_04 | beat_01 | qa_pass | 1 / 2 |  | 1.21–6.36 |
+| 5 | shot_05 | beat_02 | qa_pass | 1 / 2 |  | 0.59–5.74 |
+| 6 | shot_06 | beat_02 | qa_pass | 2 / 2 |  | 1.67–6.82 |
+| 7 | shot_07 | beat_02 | qa_pass | 1 / 2 |  | 2.43–7.58 |
+| 8 | shot_08 | beat_02 | qa_pass | 1 / 2 |  | 1.47–7.12 |
+| 9 | shot_09 | beat_03 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 10 | shot_10 | beat_03 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 11 | shot_11 | beat_03 | qa_pass | 1 / 2 |  | 1.05–6.20 |
+| 12 | shot_12 | beat_03 | qa_pass | 2 / 2 |  | 0.46–5.61 |
+| 13 | shot_13 | beat_04 | qa_pass | 1 / 2 |  | 0.35–5.50 |
+| 14 | shot_14 | beat_04 | qa_pass | 2 / 2 |  | 0.92–6.07 |
+| 15 | shot_15 | beat_04 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 16 | shot_16 | beat_04 | qa_pass | 2 / 2 |  | 3.35–8.00 |
+| 17 | shot_17 | beat_05 | qa_pass | 1 / 2 |  | 0.71–5.86 |
+| 18 | shot_18 | beat_05 | qa_pass | 2 / 2 |  | 1.65–6.80 |
+| 19 | shot_19 | beat_05 | qa_pass | 1 / 2 |  | 1.55–6.70 |
+| 20 | shot_20 | beat_05 | qa_pass | 1 / 2 |  | 1.93–7.08 |
+| 21 | shot_21 | beat_06 | qa_pass | 2 / 2 |  | 2.09–7.24 |
+| 22 | shot_22 | beat_06 | qa_pass | 2 / 2 |  | 2.13–7.28 |
+| 23 | shot_23 | beat_06 | qa_pass | 2 / 2 |  | 3.35–8.00 |
+| 24 | shot_24 | beat_06 | qa_pass | 2 / 2 |  | 2.34–7.49 |
+| 25 | shot_25 | beat_07 | qa_pass | 1 / 2 |  | 2.21–7.36 |
+| 26 | shot_26 | beat_07 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 27 | shot_27 | beat_07 | qa_pass | 1 / 2 |  | 0.80–5.95 |
+| 28 | shot_28 | beat_07 | qa_pass | 1 / 2 |  | 0.59–5.74 |
+| 29 | shot_29 | beat_08 | qa_pass | 1 / 2 |  | 1.00–6.15 |
+| 30 | shot_30 | beat_08 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 31 | shot_31 | beat_08 | qa_pass | 2 / 2 |  | 0.50–5.65 |
+| 32 | shot_32 | beat_08 | qa_pass | 1 / 2 |  | 0.46–5.61 |
+| 33 | shot_33 | beat_09 | qa_pass | 2 / 2 |  | 0.46–6.11 |
+| 34 | shot_34 | beat_09 | qa_pass | 1 / 2 |  | 0.63–5.78 |
+| 35 | shot_35 | beat_09 | qa_pass | 1 / 2 |  | 1.21–6.36 |
+| 36 | shot_36 | beat_09 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 37 | shot_37 | beat_10 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 38 | shot_38 | beat_10 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 39 | shot_39 | beat_10 | qa_pass | 2 / 2 |  | 0.55–5.70 |
+| 40 | shot_40 | beat_10 | qa_pass | 1 / 2 |  | 0.96–6.11 |
+| 41 | shot_41 | beat_11 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 42 | shot_42 | beat_11 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 43 | shot_43 | beat_11 | qa_pass | 1 / 2 |  | 0.96–6.11 |
+| 44 | shot_44 | beat_11 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 45 | shot_45 | beat_12 | qa_pass | 2 / 2 |  | 2.39–7.54 |
+| 46 | shot_46 | beat_12 | qa_pass | 1 / 2 |  | 1.55–6.70 |
+| 47 | shot_47 | beat_12 | qa_pass | 2 / 2 |  | 0.59–5.74 |
+| 48 | shot_48 | beat_12 | qa_pass | 2 / 2 |  | 1.42–6.57 |
+| 49 | shot_49 | beat_13 | qa_pass | 1 / 2 |  | 0.67–5.82 |
+| 50 | shot_50 | beat_13 | qa_pass | 1 / 2 |  | 0.59–5.74 |
+| 51 | shot_51 | beat_13 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 52 | shot_52 | beat_13 | qa_pass | 1 / 2 |  | 0.50–5.65 |
+| 53 | shot_53 | beat_14 | qa_pass | 1 / 2 |  | 1.50–6.65 |
+| 54 | shot_54 | beat_14 | qa_pass | 2 / 2 |  | 0.89–5.54 |
+| 55 | shot_55 | beat_14 | qa_pass | 1 / 2 |  | 1.64–7.29 |
+| 56 | shot_56 | beat_14 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 57 | shot_57 | beat_15 | qa_pass | 1 / 2 |  | 0.05–4.70 |
+| 58 | shot_58 | beat_15 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 59 | shot_59 | beat_15 | qa_pass | 1 / 2 |  | 2.39–7.54 |
+| 60 | shot_60 | beat_15 | qa_pass | 2 / 2 |  | 1.89–7.54 |
 
 ## Beat & lời dẫn
 
@@ -117,53 +115,31 @@ python scripts/studio_helper.py storyboard-approve --project clash-of-titans-rex
 - **beat_14** (climax_finisher_into_deep_sea) — 
 - **beat_15** (resolution_apex_roar) — 
 
+## Đầu ra gần nhất
+
+- `output/final_video_9x16.mp4` (2026-10-21 18:40)
+- `output/final_video.mp4` (2026-10-21 18:29)
+
 ## Media trên máy này
 
-⚠ Máy **DESKTOP-HUP72C4** thiếu 60/126 file — chạy `media-pull` (hoặc tải lại take từ Flow).
-
-- `assets/clips/shot_01.mp4` — shot_01 clip dựng
-- `assets/clips/shot_02.mp4` — shot_02 clip dựng
-- `assets/clips/shot_03.mp4` — shot_03 clip dựng
-- `assets/clips/shot_04.mp4` — shot_04 clip dựng
-- `assets/clips/shot_05.mp4` — shot_05 clip dựng
-- `assets/clips/shot_06.mp4` — shot_06 clip dựng
-- `assets/clips/shot_07.mp4` — shot_07 clip dựng
-- `assets/clips/shot_08.mp4` — shot_08 clip dựng
-- `assets/clips/shot_09.mp4` — shot_09 clip dựng
-- `assets/clips/shot_10.mp4` — shot_10 clip dựng
-- `assets/clips/shot_11.mp4` — shot_11 clip dựng
-- `assets/clips/shot_12.mp4` — shot_12 clip dựng
-- `assets/clips/shot_13.mp4` — shot_13 clip dựng
-- `assets/clips/shot_14.mp4` — shot_14 clip dựng
-- `assets/clips/shot_15.mp4` — shot_15 clip dựng
-- `assets/clips/shot_16.mp4` — shot_16 clip dựng
-- `assets/clips/shot_17.mp4` — shot_17 clip dựng
-- `assets/clips/shot_18.mp4` — shot_18 clip dựng
-- `assets/clips/shot_19.mp4` — shot_19 clip dựng
-- `assets/clips/shot_20.mp4` — shot_20 clip dựng
-- `assets/clips/shot_21.mp4` — shot_21 clip dựng
-- `assets/clips/shot_22.mp4` — shot_22 clip dựng
-- `assets/clips/shot_23.mp4` — shot_23 clip dựng
-- `assets/clips/shot_24.mp4` — shot_24 clip dựng
-- `assets/clips/shot_25.mp4` — shot_25 clip dựng
-- … và 35 file khác
+Đủ 188/188 file media trên máy **DESKTOP-HUP72C4**.
 
 ## Nhật ký lệnh (mới nhất trước)
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-21 16:31 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-21 16:29 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
-| 10-21 16:23 | DESKTOP-HUP72C4 | `flow-generate --kind frames --model Nano Banana Pro --count 1 --shots shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36,shot_37,` | ok |
-| 10-21 16:14 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
-| 10-21 16:14 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
-| 10-21 16:09 | DESKTOP-HUP72C4 | `flow-harvest --kind image` | ok |
-| 10-21 16:05 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
-| 10-21 16:02 | DESKTOP-HUP72C4 | `flow-generate --kind frames --model Nano Banana Pro --count 1 --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,` | ok |
-| 10-21 15:55 | DESKTOP-HUP72C4 | `flow-harvest --kind image` | ok |
-| 10-21 15:53 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_12` | ok |
-| 10-21 15:49 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
-| 10-21 15:46 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12 --count 1` | ok |
-| 10-21 15:41 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
-| 10-21 15:40 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
-| 10-21 15:40 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
+| 10-21 18:44 | DESKTOP-HUP72C4 | `thumbnail --title REX VS VASTO: PART 1` | ok |
+| 10-21 18:42 | DESKTOP-HUP72C4 | `thumbnail ` | ok |
+| 10-21 18:40 | DESKTOP-HUP72C4 | `assemble ` | ok |
+| 10-21 18:22 | DESKTOP-HUP72C4 | `make-lut ` | ok |
+| 10-21 18:22 | DESKTOP-HUP72C4 | `score ` | ok |
+| 10-21 18:20 | DESKTOP-HUP72C4 | `auto-select ` | ok |
+| 10-21 18:07 | DESKTOP-HUP72C4 | `qa-vision-submit --reviewer agent` | ok |
+| 10-21 18:07 | DESKTOP-HUP72C4 | `qa ` | ok |
+| 10-21 18:04 | DESKTOP-HUP72C4 | `qa-vision --reviewer agent` | ok |
+| 10-21 18:02 | DESKTOP-HUP72C4 | `auto-select ` | ok |
+| 10-21 18:01 | DESKTOP-HUP72C4 | `auto-select --shots shot_47` | ok |
+| 10-21 18:01 | DESKTOP-HUP72C4 | `qa-takes-submit --reviewer agent` | ok |
+| 10-21 17:57 | DESKTOP-HUP72C4 | `qa-takes-submit --reviewer agent` | ok |
+| 10-21 17:51 | DESKTOP-HUP72C4 | `qa-takes --reviewer agent` | ok |
+| 10-21 17:45 | DESKTOP-HUP72C4 | `flow-harvest --kind video --shots shot_59 --wait` | ok |

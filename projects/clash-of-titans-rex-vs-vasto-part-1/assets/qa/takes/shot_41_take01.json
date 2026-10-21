@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 7,
+  "prompt_adherence_1_10": 7,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 7,
+  "defects": [
+    {
+      "t_from": 6.6,
+      "t_to": 8.0,
+      "severity": "major",
+      "rule": "corner_artifact",
+      "description": "Xuất hiện nét chữ mờ ở góc dưới bên trái tại t=7.5s; take 2 sạch 100% và lực ghì đầu xuống sóng biển mạnh hơn."
+    }
+  ],
+  "notes": "[shot_41 take 01 | ] Góc máy: . Hành động: Vasto lunges down from the right, clamps its jaws and heavy chest over the back of Rex's neck, and presses dow. Phát hiện lỗi corner_artifact (major) ở khoảng 6.6s-8.0s: Xuất hiện nét chữ mờ ở góc dưới bên trái tại t=7.5s; take 2 sạch 100% và lực ghì đầu xuống sóng biển mạnh hơn."
+}

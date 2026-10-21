@@ -1,0 +1,33 @@
+{
+  "identity_match": [
+    {
+      "subject": "CHAR_REX",
+      "score_1_10": 10,
+      "issues": "Không có sai lệch; da nâu đồng (bronze-brown), lưng trơn cơ bắp không gai, hộp sọ chữ nhật và mắt hổ phách khớp chuẩn ảnh tham chiếu."
+    },
+    {
+      "subject": "CHAR_VASTO",
+      "score_1_10": 10,
+      "issues": "Không có sai lệch; da đen xám đá базаn (obsidian-slate), hàng gai lưng nhọn và sọ dài hẹp có sừng trên mắt khớp chuẩn ảnh tham chiếu."
+    }
+  ],
+  "prompt_adherence": {
+    "camera_ok": true,
+    "action_ok": true,
+    "setting_ok": true,
+    "notes": "Take 2 (cửa sổ dựng 1.63s-6.28s) bám sát góc máy () và hành động (Rex hauls its sea-drenched bronze frame onto the left side of the basalt reef spit; violent white oc) tại ."
+  },
+  "artifacts": {
+    "extra_or_missing_limbs": false,
+    "morphing": false,
+    "objects_popping_in": false,
+    "text_or_watermark": false,
+    "letterbox": false,
+    "physics_errors": false,
+    "notes": "Đoạn dựng [1.63s-6.28s] của take 2 hoàn toàn sạch lỗi giải phẫu và vật lý."
+  },
+  "continuity_with_previous": "Nối mượt từ shot_47 trong vùng , khớp trạng thái None -> None trên đoạn dựng [1.63s, 6.28s].",
+  "overall_score_1_10": 10,
+  "verdict": "pass",
+  "retake_advice": ""
+}

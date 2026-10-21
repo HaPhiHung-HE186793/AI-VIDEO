@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.6,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "hold_pose",
+      "description": "Thế ghì cổ ít dịch chuyển ở 1.4s cuối."
+    }
+  ],
+  "notes": "[shot_51 take 02 | ] Góc máy: . Hành động: Vasto snaps at Rex's upper shoulder and rakes its claws; holding its ground firmly, Rex absorbs the shoulder s. Phát hiện lỗi hold_pose (minor) ở khoảng 6.6s-8.0s: Thế ghì cổ ít dịch chuyển ở 1.4s cuối."
+}

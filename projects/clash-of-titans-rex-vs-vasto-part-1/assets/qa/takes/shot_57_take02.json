@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 7,
+  "prompt_adherence_1_10": 7,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 7,
+  "defects": [
+    {
+      "t_from": 4.8,
+      "t_to": 8.0,
+      "severity": "major",
+      "rule": "internal_dissolve",
+      "description": "Tại t=5.5s có hiện tượng chuyển cảnh mờ chồng (dissolve) đổi góc máy từ ngang sang nhìn từ phía sau."
+    }
+  ],
+  "notes": "[shot_57 take 02 | ] Góc máy: . Hành động: Too battered to climb back up the reef, Vasto turns its scarred head away from the spit and wades heavily thro. Phát hiện lỗi internal_dissolve (major) ở khoảng 4.8s-8.0s: Tại t=5.5s có hiện tượng chuyển cảnh mờ chồng (dissolve) đổi góc máy từ ngang sang nhìn từ phía sau."
+}

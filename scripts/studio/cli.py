@@ -1466,7 +1466,8 @@ def cmd_flow_generate(args, cfg):
                     refs = _ref_paths(proj, m, s, limit=4)
                     if slot == "end" and anchor_p and anchor_p.exists():
                         anchor_sid = s.get("anchor_frame_shot") or s["shot_id"]
-                        attach_list = [(anchor_p, mf.keyframe_uid(m, anchor_sid, "start"))]
+                        anchor_uid = anchor_p.stem if anchor_p.stem.startswith("KF_") else mf.keyframe_uid(m, anchor_sid, "start")
+                        attach_list = [(anchor_p, anchor_uid)]
                         if not re.search(r"\b(extreme\s+close[- ]up|macro|ecu)\b", s.get("camera") or "", re.I):
                             attach_list += [(r, "") for r in refs if r.resolve() != anchor_p.resolve()][:1]
                     else:
@@ -1516,11 +1517,13 @@ def cmd_flow_generate(args, cfg):
                         row["skipped"] = "thiếu last_frame_path"
                         report.append(row)
                         continue
-                    f.set_start_frame(proj / s["first_frame_path"], stage_dir=stage_dir,
-                                      uid=mf.keyframe_uid(m, s["shot_id"], "start"))
+                    start_p = proj / s["first_frame_path"]
+                    start_uid = f"{mf.keyframe_uid(m, s['shot_id'], 'start')}_{media.sha256_file(start_p)[:6]}"
+                    f.set_start_frame(start_p, stage_dir=stage_dir, uid=start_uid)
                     if mode == "first_last":
-                        f.set_end_frame(proj / s["last_frame_path"], stage_dir=stage_dir,
-                                        uid=mf.keyframe_uid(m, s["shot_id"], "end"))
+                        end_p = proj / s["last_frame_path"]
+                        end_uid = f"{mf.keyframe_uid(m, s['shot_id'], 'end')}_{media.sha256_file(end_p)[:6]}"
+                        f.set_end_frame(end_p, stage_dir=stage_dir, uid=end_uid)
                 if voice:
                     f.attach_voice(voice)
                 f.type_prompt(text)

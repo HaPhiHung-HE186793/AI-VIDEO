@@ -1,0 +1,33 @@
+{
+  "identity_match": [
+    {
+      "subject": "CHAR_REX",
+      "score_1_10": 9,
+      "issues": "Không có sai lệch; da nâu đồng (bronze-brown), lưng trơn cơ bắp không gai, hộp sọ chữ nhật và mắt hổ phách khớp chuẩn ảnh tham chiếu."
+    },
+    {
+      "subject": "CHAR_VASTO",
+      "score_1_10": 9,
+      "issues": "Không có sai lệch; da đen xám đá базаn (obsidian-slate), hàng gai lưng nhọn và sọ dài hẹp có sừng trên mắt khớp chuẩn ảnh tham chiếu."
+    }
+  ],
+  "prompt_adherence": {
+    "camera_ok": true,
+    "action_ok": true,
+    "setting_ok": true,
+    "notes": "Take 1 (cửa sổ dựng 0.80s-5.45s) bám sát góc máy () và hành động (They crash together with heavy, exhausted momentum, claws skidding sparks and water across the slick) tại ."
+  },
+  "artifacts": {
+    "extra_or_missing_limbs": false,
+    "morphing": false,
+    "objects_popping_in": false,
+    "text_or_watermark": false,
+    "letterbox": false,
+    "physics_errors": false,
+    "notes": "Đoạn dựng [0.80s-5.45s] của take 1 hoàn toàn sạch lỗi giải phẫu và vật lý."
+  },
+  "continuity_with_previous": "Nối mượt từ shot_49 trong vùng , khớp trạng thái None -> None trên đoạn dựng [0.80s, 5.45s].",
+  "overall_score_1_10": 9,
+  "verdict": "pass",
+  "retake_advice": ""
+}

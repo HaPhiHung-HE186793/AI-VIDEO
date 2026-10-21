@@ -1,0 +1,9 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 9,
+  "prompt_adherence_1_10": 9,
+  "aesthetic_1_10": 9,
+  "overall_score_1_10": 9,
+  "defects": [],
+  "notes": "[shot_13 take 01 | ] Góc máy: . Hành động: Rex tries to pivot its left foot in the marsh, but the thick suctioning mud grips its ankle, slowing its turn . Take 1 có quỹ đạo chuyển động và tương tác vật lý (bùn/nước/đá) sắc nét hơn, khớp trạng thái đầu-cuối {} -> {}."
+}

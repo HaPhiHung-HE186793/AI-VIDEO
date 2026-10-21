@@ -1,0 +1,17 @@
+{
+  "verdict": "retake",
+  "identity_score_1_10": 7,
+  "prompt_adherence_1_10": 6,
+  "aesthetic_1_10": 5,
+  "overall_score_1_10": 5,
+  "defects": [
+    {
+      "t_from": 0.0,
+      "t_to": 8.0,
+      "severity": "major",
+      "rule": "film_border_overlay",
+      "description": "Xuất hiện viền chữ KODAK VISION3 FILM IMAX ở mép trên và dưới khung hình; take 2 hoàn toàn sạch không có viền chữ."
+    }
+  ],
+  "notes": "[shot_38 take 01 | ] Góc máy: . Hành động: Their massive legs push hard against the heavy water drag, throwing up twin bow-waves before they crash chest-. Phát hiện lỗi film_border_overlay (major) ở khoảng 0.0s-8.0s: Xuất hiện viền chữ KODAK VISION3 FILM IMAX ở mép trên và dưới khung hình; take 2 hoàn toàn sạch không có viền chữ."
+}

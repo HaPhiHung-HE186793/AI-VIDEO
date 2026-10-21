@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.5,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "splash_settle",
+      "description": "Bùn bắn lắng xuống sớm ở cuối take 2."
+    }
+  ],
+  "notes": "[shot_11 take 02 | ] Góc máy: . Hành động: Vasto digs its claws into the submerged marsh roots, pivots its torso sharply back toward the left slope, and . Phát hiện lỗi splash_settle (minor) ở khoảng 6.5s-8.0s: Bùn bắn lắng xuống sớm ở cuối take 2."
+}

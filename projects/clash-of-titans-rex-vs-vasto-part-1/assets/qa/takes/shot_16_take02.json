@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 2.0,
+      "t_to": 3.1,
+      "severity": "major",
+      "rule": "axis_180_head_turn",
+      "description": "Tại t=2.5s Rex xoay mặt qua trục máy quay; đoạn từ t=3.4s đến 8.0s Rex ngoạm cổ Vasto và gầm rất sạch."
+    }
+  ],
+  "notes": "[shot_16 take 02 | ] Góc máy: . Hành động: Rex whips its massive rectangular head around in a ferocious counter-snap; Vasto ducks low under the swing as . Phát hiện lỗi axis_180_head_turn (major) ở khoảng 2.0s-3.1s: Tại t=2.5s Rex xoay mặt qua trục máy quay; đoạn từ t=3.4s đến 8.0s Rex ngoạm cổ Vasto và gầm rất sạch."
+}

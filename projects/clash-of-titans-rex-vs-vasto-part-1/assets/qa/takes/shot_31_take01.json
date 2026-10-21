@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.8,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "spray_fade",
+      "description": "Bọt sóng trắng phía sau lắng xuống ở giây cuối."
+    }
+  ],
+  "notes": "[shot_31 take 01 | ] Góc máy: . Hành động: Rex ducks under Vasto's chin and clamps its massive jaws onto the side of Vasto's neck and shoulder crest, usi. Phát hiện lỗi spray_fade (minor) ở khoảng 6.8s-8.0s: Bọt sóng trắng phía sau lắng xuống ở giây cuối."
+}

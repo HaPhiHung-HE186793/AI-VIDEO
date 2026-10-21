@@ -22,7 +22,8 @@ UI = {
     "settings": "button[aria-label='Điều kiện kích hoạt cài đặt']",
     "submit": "button[aria-label='Bắt đầu tạo']",
     "clear_prompt": "button[aria-label='Xoá câu lệnh']",
-    "bulk_download": "button[aria-label='Tải xuống hàng loạt'], button[aria-label='Tải xuống']",
+    "bulk_download": "button[aria-label='Tải xuống hàng loạt']",
+    "image_row_download": "button[aria-label='Tải xuống hàng loạt'], button[aria-label='Tải xuống']",
     "editor_download": "button[aria-label='Tải nội dung nghe nhìn xuống']",
     "ingredient_search": "input[placeholder*='Tìm kiếm']",
     "group_mode": "Chế độ",
@@ -495,10 +496,11 @@ class Flow:
         quota = dict(quota or {})
         watch = [d for d in (self.download_dir, Path.home() / "Downloads") if d and d.exists()]
         self._filter(UI["filter_video"] if kind == "video" else UI["filter_image"])
+        dl_sel = UI["bulk_download"] if kind == "video" else UI["image_row_download"]
         results, done_rows, stall = [], set(), 0
         t0 = time.time()
         while stall < 3:
-            texts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"])
+            texts = self.page.evaluate(JS_ROW_TEXTS, dl_sel)
             progressed, seen_count = False, {}
             for i, txt in enumerate(texts):
                 # Hàng đang render dở (có chỉ báo %) → bỏ qua ở vòng đầu; nếu vòng sau vẫn kẹt 99% nhưng đã có ít nhất 1 video xong (play_arrow) thì vẫn tải.
@@ -525,24 +527,24 @@ class Flow:
                     if on_row:
                         on_row(row)
                     continue
-                keys_now = self._row_keys()
+                keys_now = self._row_keys(dl_sel)
                 if key not in keys_now:
                     done_rows.discard(key)
                     break
                 i = keys_now.index(key)
-                btn = self.page.locator(UI["bulk_download"]).nth(i)
+                btn = self.page.locator(dl_sel).nth(i)
                 try:
                     btn.scroll_into_view_if_needed(timeout=5000)
                 except Exception:
                     done_rows.discard(key)
                     break
                 self.wait(0.8)
-                keys_now = self._row_keys()
+                keys_now = self._row_keys(dl_sel)
                 if key not in keys_now:
                     done_rows.discard(key)
                     break
                 i = keys_now.index(key)
-                btn = self.page.locator(UI["bulk_download"]).nth(i)
+                btn = self.page.locator(dl_sel).nth(i)
                 before = {f for d in watch for f in d.iterdir()}
                 partial_hung = kind == "video" and bool(re.search(r"\b\d{1,3}%", tile_txt)) and "play_arrow" in tile_txt
                 got = None
@@ -688,8 +690,8 @@ class Flow:
         results += [{**w, "error": "không tìm thấy clip trên Flow"} for w in pending.values()]
         return results
 
-    def _row_keys(self) -> list:
-        texts = self.page.evaluate(JS_ROW_TEXTS, UI["bulk_download"])
+    def _row_keys(self, sel: str = None) -> list:
+        texts = self.page.evaluate(JS_ROW_TEXTS, sel or UI["bulk_download"])
         seen, keys = {}, []
         for txt in texts:
             prefix = txt[:600]

@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 7,
+  "prompt_adherence_1_10": 7,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 7,
+  "defects": [
+    {
+      "t_from": 5.6,
+      "t_to": 8.0,
+      "severity": "major",
+      "rule": "premature_boundary_fall",
+      "description": "Từ t=6.0s Vasto đã ngã khỏi mép vực trước shot_55; cần cắt lấy đoạn [0.0, 5.3] khi Rex vừa dồn Vasto sát mép đá."
+    }
+  ],
+  "notes": "[shot_54 take 01 | ] Góc máy: . Hành động: Using its left leg as a pivot post and exploiting the steep wet slope of the basalt reef, Rex wrenches its mas. Phát hiện lỗi premature_boundary_fall (major) ở khoảng 5.6s-8.0s: Từ t=6.0s Vasto đã ngã khỏi mép vực trước shot_55; cần cắt lấy đoạn [0.0, 5.3] khi Rex vừa dồn Vasto sát mép đá."
+}

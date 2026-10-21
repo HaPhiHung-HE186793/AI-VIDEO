@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.2,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "spatial_orientation",
+      "description": "Ở t=6.5s-7.5s Vasto xoay lưng lại; take 2 giữ hướng ép Vasto thẳng lên ghềnh đá bazan."
+    }
+  ],
+  "notes": "[shot_45 take 01 | ] Góc máy: . Hành động: Expelling seawater from its jaws, Rex lunges forward through the chest-deep surf and rams its shoulder into Va. Phát hiện lỗi spatial_orientation (minor) ở khoảng 6.2s-8.0s: Ở t=6.5s-7.5s Vasto xoay lưng lại; take 2 giữ hướng ép Vasto thẳng lên ghềnh đá bazan."
+}

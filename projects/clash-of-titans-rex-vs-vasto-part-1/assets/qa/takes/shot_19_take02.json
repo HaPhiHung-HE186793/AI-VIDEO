@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 0.0,
+      "t_to": 1.2,
+      "severity": "minor",
+      "rule": "slow_onset",
+      "description": "Độ trễ quán tính nhẹ ở giây đầu tiên trước khi bùn văng lên."
+    }
+  ],
+  "notes": "[shot_19 take 02 | ] Góc máy: . Hành động: Still lying on its flank in the mud, Rex thrusts its massive head upward and clamps its jaws onto Vasto's lowe. Phát hiện lỗi slow_onset (minor) ở khoảng 0.0s-1.2s: Độ trễ quán tính nhẹ ở giây đầu tiên trước khi bùn văng lên."
+}

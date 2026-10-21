@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 9,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 4.2,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "boundary_progression",
+      "description": "Vasto dừng lại ở mép dốc đất khô lâu hơn take 1; take 1 thể hiện lực húc đẩy xuống đầm lầy rõ hơn."
+    }
+  ],
+  "notes": "[shot_08 take 02 | ] Góc máy: . Hành động: Both titans lower their heads and exhale heavy plumes of warm dust-laden breath, shifting their weight side to. Phát hiện lỗi boundary_progression (minor) ở khoảng 4.2s-8.0s: Vasto dừng lại ở mép dốc đất khô lâu hơn take 1; take 1 thể hiện lực húc đẩy xuống đầm lầy rõ hơn."
+}

@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 9,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.4,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "motion_decay",
+      "description": "Chuyển động dậm chân của Rex giảm nhẹ ở 1.5s cuối so với take 1."
+    }
+  ],
+  "notes": "[shot_04 take 02 | ] Góc máy: . Hành động: Vasto lunges its narrow blade-toothed snout forward in a fast probing snap; Rex jerks its broad head backward . Phát hiện lỗi motion_decay (minor) ở khoảng 6.4s-8.0s: Chuyển động dậm chân của Rex giảm nhẹ ở 1.5s cuối so với take 1."
+}

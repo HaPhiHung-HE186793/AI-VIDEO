@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 7,
+  "prompt_adherence_1_10": 7,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 7,
+  "defects": [
+    {
+      "t_from": 4.0,
+      "t_to": 5.3,
+      "severity": "major",
+      "rule": "axis_180_turn",
+      "description": "Tại t=4.5s Vasto quay mặt trực diện ống kính rồi lại quay sang phải ở cuối clip, không khớp hướng nhìn trái của shot_48."
+    }
+  ],
+  "notes": "[shot_47 take 01 | ] Góc máy: . Hành động: Seawater cascades off Vasto's obsidian scales as it sprints up the wet sloping rock of the reef spit, turning . Phát hiện lỗi axis_180_turn (major) ở khoảng 4.0s-5.3s: Tại t=4.5s Vasto quay mặt trực diện ống kính rồi lại quay sang phải ở cuối clip, không khớp hướng nhìn trái của shot_48."
+}

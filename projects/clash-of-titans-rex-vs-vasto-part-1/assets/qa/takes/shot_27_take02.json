@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "identity_score_1_10": 8,
+  "prompt_adherence_1_10": 8,
+  "aesthetic_1_10": 8,
+  "overall_score_1_10": 8,
+  "defects": [
+    {
+      "t_from": 6.5,
+      "t_to": 8.0,
+      "severity": "minor",
+      "rule": "motion_settle",
+      "description": "Chuyển động ghì hàm chậm lại ở 1.5s cuối."
+    }
+  ],
+  "notes": "[shot_27 take 02 | ] Góc máy: . Hành động: Rex drives forward and rams the solid bone crest of its skull directly into Vasto's sternum with a shockwave t. Phát hiện lỗi motion_settle (minor) ở khoảng 6.5s-8.0s: Chuyển động ghì hàm chậm lại ở 1.5s cuối."
+}

@@ -40,7 +40,7 @@ def _find_seam(clip_a: Path, t_min: float, clip_b: Path, b_in: float = 0.0, t_ma
 
 
 def _is_continuation(prev: dict, cur: dict) -> bool:
-    return prev.get("transition_to_next") == "INTRA_SCENE_CONTINUE" or (
+    return bool(cur.get("chain_from_prev")) or (
         cur.get("generation_mode") == "extend" and cur.get("extends") == prev.get("shot_id")
     )
 
@@ -165,16 +165,25 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
         if min_end >= w1 - 0.05:
             continue
         best_cut, best_bin, best_l1 = a["tout"], b_in, 1e9
-        b_candidates = [b_in] if b["source"] == "manual" else [0.0, 0.12, 0.24, 0.36]
+        b_w0 = b.get("clean_window", (0.0, b["clip_duration"]))[0]
+        b_candidates = (
+            [b_in]
+            if (b["source"] == "manual" or b_in > max(b_w0, 0.4))
+            else [round(b_w0 + d, 2) for d in (0.0, 0.12, 0.24, 0.36)]
+        )
         for cand_bin in b_candidates:
             if b["tout"] - cand_bin < ed["min_shot_sec"]:
                 continue
             tc, l1_val = _find_seam(a["clip"], min_end, b["clip"], cand_bin, t_max=w1)
             if l1_val < best_l1:
                 best_cut, best_bin, best_l1 = tc, cand_bin, l1_val
-        b["tin"] = best_bin
-        t_cut, l1 = best_cut, best_l1
-        a["tout"], a["seam_l1"] = best_cut, best_l1
+        if best_l1 <= ed["seam_max_l1"] * 2.0 or b["shot"].get("generation_mode") == "extend":
+            b["tin"] = best_bin
+            t_cut, l1 = best_cut, best_l1
+            a["tout"], a["seam_l1"] = best_cut, best_l1
+        else:
+            t_cut, l1 = a["tout"], best_l1
+            a["seam_l1"] = best_l1
         if l1 > ed["seam_max_l1"]:
             a["notes"].append(f"Điểm nối với {b['shot_id']} lệch (L1={l1} > {ed['seam_max_l1']}) — dùng Extend thay vì nối bằng 1 frame tĩnh.")
         if a["speech"] and t_cut < a["speech"]["end"] - 0.1:

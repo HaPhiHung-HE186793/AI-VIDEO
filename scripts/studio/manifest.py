@@ -33,12 +33,21 @@ def load(proj_dir: Path) -> dict:
 
 
 def save(proj_dir: Path, manifest: dict) -> None:
+    import time
+
     path = manifest_path(proj_dir)
     if path.exists():
         shutil.copy2(path, path.with_suffix(".json.bak"))
     tmp = path.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    os.replace(tmp, path)
+    for attempt in range(8):
+        try:
+            os.replace(tmp, path)
+            break
+        except PermissionError:
+            if attempt == 7:
+                raise
+            time.sleep(0.05 * (attempt + 1))
 
 
 def ordered_shots(manifest: dict) -> list:
