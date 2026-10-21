@@ -1,6 +1,6 @@
 # Bảng prompt cho Google Flow — Clash of Titans: Rex vs Vasto (Part 1)
 
-Tạo lúc 2026-10-21 11:20. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.
+Tạo lúc 2026-10-21 12:25. Mỗi shot: chọn chế độ, đính kèm đúng input, dán prompt.
 
 ## shot_01 — Omni 1.1 Flash (độ khó 1/10)
 
@@ -28,6 +28,27 @@ Negative prompt (nếu chế độ hỗ trợ):
 
 ```text
 plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping, film strip border, kodak frame text, concentric sound rings, cartoon shockwave circles
+```
+
+## shot_11 — Omni 1.1 Flash (độ khó 7/10)
+
+- Chế độ: **first_frame**
+- First frame (`KF_CTRV1_S11_START`): `assets/frames/KF_CTRV1_S11_START.jpg`
+
+```text
+0.3m ground-level macro shot, 24mm lens at puddle surface level. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Choreography timeline: [0.0s-1.8s Seismic Pre-Tremor] Camera: 0.3m ground-level macro lens. Action: Rex's colossal three-toed foot descends toward the dark puddle. VFX/Env: Concentric tremor ripples vibrate across the water surface. SFX: Deep sub-bass seismic rumble. [1.8s-8.0s 9-Ton Talon Stomp] Camera: Heavy ground-shock jolt on lens. Action: Rex's massive foot slams into the puddle, toes splaying under 9 tons of weight as it shifts forward. VFX/Env: Muddy water and gravel spray outward onto the lens in cold cyan moonlight. SFX: Earth-shattering 9-ton footfall thud and water splash. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key night chiaroscuro with cold 6500K steel-cyan moonlight reflections on dark basalt water. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: seismic sub-bass tremor, 9-ton clawed foot slamming into wet gravel puddle, water spray. No subtitles, no on-screen text.
+```
+
+Keyframe START (`KF_CTRV1_S11_START`):
+
+```text
+0.3m ground-level macro shot, 24mm lens at puddle surface level: Rex's massive three-toed clawed hind foot hovers just above a dark rain puddle on the basalt trail, concentric tremor ripples vibrating across the water surface. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Camera & Optics: 0.3m ground-level 24mm macro lens right at the puddle edge; foreground scale anchor: wet basalt pebbles and trembling water surface in immediate bottom foreground. Character Staging & Anatomy: Rex: massive scarred three-toed hind foot with thick black talons descending into frame. Physical Contact & Mass Coupling: seismic ground tremor vibrating concentric rings across the puddle before impact. Environment & 3D VFX State: cold night mist hugging the wet black basalt gravel. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key night chiaroscuro with cold 6500K steel-cyan moonlight reflections on dark basalt water. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.
+```
+
+Negative prompt (nếu chế độ hỗ trợ):
+
+```text
+plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars
 ```
 
 ## shot_02 — Omni 1.1 Flash (độ khó 5/10)
@@ -84,6 +105,27 @@ Negative prompt (nếu chế độ hỗ trợ):
 
 ```text
 plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping, film strip border, kodak frame text, concentric sound rings, cartoon shockwave circles
+```
+
+## shot_12 — Omni 1.1 Flash (độ khó 1/10)
+
+- Chế độ: **first_frame**
+- First frame (`KF_CTRV1_S12_START`): `assets/frames/KF_CTRV1_S12_START.jpg`
+
+```text
+85mm Extreme Close-Up macro portrait on Rex's scarred snout and wet amber eye. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Choreography timeline: [0.0s-3.0s Predatory Eye Lock] Camera: 85mm Extreme Close-Up locked on the amber eye. Action: Rex's dark pupil contracts inside its wet amber eye as its nostrils flare wide. VFX/Env: Hot steam puffs from the nostril into cold cyan mist. SFX: Deep resonant nasal inhale. [3.0s-8.0s Visceral Lip Curl & Snarl] Camera: Subtle 85mm push on the bared teeth. Action: Rex curls its scaly upper lip back, exposing wet gums and massive serrated teeth with saliva strands. VFX/Env: Fine mist vibrates around the snarling jaws. SFX: 20Hz guttural crocodile-like chest rumble. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key chiaroscuro darkness with a sharp 6500K cyan rim light and warm 2700K amber catchlight in the eye. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: deep cavernous nasal inhale, wet lip curl, 20Hz sub-bass guttural snarl. No subtitles, no on-screen text.
+```
+
+Keyframe START (`KF_CTRV1_S12_START`):
+
+```text
+85mm Extreme Close-Up macro portrait on Rex's scarred snout and wet amber eye: Tight 85mm Extreme Close-Up on Rex's battle-scarred dark bronze snout and forward-facing amber eye glistening in low-key shadow. Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Camera & Optics: 85mm Extreme Close-Up macro lens at f/2.0 with shallow depth of field; foreground scale anchor: blurred wet fern frond tip on the far left edge. Character Staging & Anatomy: Rex: head filling 85% of the frame in tight 3/4 macro profile, amber eye locked forward. Physical Contact & Mass Coupling: tense jaw adductor muscles flexing beneath wet pebbled scales. Environment & 3D VFX State: hot breath mist curling from its nostrils in the cold night air. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key chiaroscuro darkness with a sharp 6500K cyan rim light and warm 2700K amber catchlight in the eye. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.
+```
+
+Negative prompt (nếu chế độ hỗ trợ):
+
+```text
+plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars
 ```
 
 ## shot_04 — Omni 1.1 Flash (độ khó 1/10)
@@ -170,6 +212,27 @@ Negative prompt (nếu chế độ hỗ trợ):
 plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping, film strip border, kodak frame text, concentric sound rings, cartoon shockwave circles
 ```
 
+## shot_13 — Omni 1.1 Flash (độ khó 4/10)
+
+- Chế độ: **first_frame**
+- First frame (`KF_CTRV1_S13_START`): `assets/frames/KF_CTRV1_S13_START.jpg`
+
+```text
+85mm tight visceral combat close-up at 1.5m height, heads filling 80% of the frame. Driving forward from center-left with jaws clamped deep into its rival's neck, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Pinned in center-right with neck hide compressed under the bite, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.0s 85mm Visceral Neck Bite] Camera: 85mm tight close-up with heavy impact jolt. Action: Rex drives its serrated teeth deep into Vasto's thick neck crest from the left; Vasto's neck skin wrinkles deeply under the crushing bite as its jaws snap in agony. VFX/Env: Saliva and rain spray burst from the compressed neck hide. SFX: Visceral flesh-and-scale crunch and agonized roar. [2.0s-8.0s Violent Head-Shake Thrash] Camera: 180-degree shutter blur following the violent head wrench. Action: Rex violently shakes and wrenches its massive neck downward, dragging Vasto's head lower; Vasto braces its neck muscles and rakes its claws to tear free. VFX/Env: Hot steam and mud droplets whip across the 85mm lens. SFX: Straining jaw grind and thunderous thrashing. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key night chiaroscuro with cold 6500K cyan rim light on wet teeth and warm 2700K amber mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: visceral 35000N jaw clamp crunch, tearing hide, agonized apex roar. No subtitles, no on-screen text.
+```
+
+Keyframe START (`KF_CTRV1_S13_START`):
+
+```text
+85mm tight visceral combat close-up at 1.5m height, heads filling 80% of the frame: In tight 85mm close-up, Rex on the left lunges with jaws wide open inches from Vasto's armored throat on the right. Driving forward from center-left with jaws clamped deep into its rival's neck, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Pinned in center-right with neck hide compressed under the bite, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Camera & Optics: 85mm tight close-up lens at 1.5m height, filling 80% of the frame with both skulls and necks; foreground scale anchor: flying droplets of muddy water and saliva in foreground. Character Staging & Anatomy: Rex: filling the left half of frame with massive jaws wide open clamping onto Vasto's neck | Vasto: filling the right half of frame facing left, neck hide compressed under Rex's teeth. Physical Contact & Mass Coupling: 35,000-Newton jaw clamp sinking deep into wet neck folds with heavy skin deformation. Environment & 3D VFX State: saliva and muddy water spray exploding from the bite point. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key night chiaroscuro with cold 6500K cyan rim light on wet teeth and warm 2700K amber mist. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.
+```
+
+Negative prompt (nếu chế độ hỗ trợ):
+
+```text
+plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars
+```
+
 ## shot_07 — Omni 1.1 Flash (độ khó 8/10)
 
 - Chế độ: **first_last**
@@ -196,6 +259,27 @@ Negative prompt (nếu chế độ hỗ trợ):
 
 ```text
 plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars, cross-dissolve, double exposure, ghosting, mid-clip jump cut, attribute swapping, film strip border, kodak frame text, concentric sound rings, cartoon shockwave circles
+```
+
+## shot_14 — Omni 1.1 Flash (độ khó 4/10)
+
+- Chế độ: **first_frame**
+- First frame (`KF_CTRV1_S14_START`): `assets/frames/KF_CTRV1_S14_START.jpg`
+
+```text
+1.1m low-angle 35mm Anamorphic shot in low-key night chiaroscuro. Physically clinched in center-left in an overlapping 3D grapple, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Locked chest-to-chest in center-right with overlapping body mass, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Choreography timeline: [0.0s-2.5s Asymmetric Mud Slam] Camera: 1.1m low-angle 35mm frame with violent seismic shock. Action: Rex wrenches its neck and shoves Vasto hard downward into the stream bed; Vasto crashes onto its flank in the churning mud water, sending up a huge wave. VFX/Env: A 4-meter curtain of dark muddy water explodes upward. SFX: Earth-shaking 10-ton body slam into mud and water. [2.5s-8.0s Apex Pin & Desperate Kick] Camera: Low-angle hero framing looking up at Rex towering over Vasto. Action: Rex plants its clawed hind foot against Vasto's flank and roars downward with jaws wide open; Vasto: Pinned on the ground, Vasto thrashes its spiked tail and kicks upward to break the pin. VFX/Env: Steam and mud spray billow around the asymmetric grapple. SFX: Dominant apex roar answered by a furious thrashing growl. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key night chiaroscuro with 75% deep shadow and cold cyan moonlight rim on wet mud spray. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Ambient sound only: 10-ton body slam into water, mud geyser explosion, dominant pinning roar. No subtitles, no on-screen text.
+```
+
+Keyframe START (`KF_CTRV1_S14_START`):
+
+```text
+1.1m low-angle 35mm Anamorphic shot in low-key night chiaroscuro: Rex on the left wrenches Vasto off-balance as Vasto's hind legs slip in the churning black mud on the right. Physically clinched in center-left in an overlapping 3D grapple, Rex is a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes (current state/wardrobe: bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws). Locked chest-to-chest in center-right with overlapping body mass, Vasto is a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes (current state/wardrobe: obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam). Camera & Optics: 1.1m ground-level 35mm Anamorphic lens angled upward at Rex towering over Vasto; foreground scale anchor: splashing black mud and shattered redwood bark in bottom foreground. Character Staging & Anatomy: Rex: towering on the left at full height, driving its weight downward | Vasto: on the right crashing onto its flank in the shallow rocky stream, facing left. Physical Contact & Mass Coupling: 10-ton body slamming flat into the water and mud with Rex pinning from above. Environment & 3D VFX State: massive geyser of dark water and mud erupting around Vasto's downed flank. A prehistoric volcanic redwood canyon at twilight with towering ancient sequoia trunks, a shallow rocky stream cutting across dark wet basalt gravel, low-key night chiaroscuro with 75% deep shadow and cold cyan moonlight rim on wet mud spray. Live-action IMAX 65mm anamorphic creature cinematography, physical contact mass coupling, golden-amber twilight sunbeams piercing cold 6500K blue-teal volcanic canyon mist, wet subsurface-scattered reptile hide, 180-degree shutter natural motion blur, fine 35mm Kodak Vision3 film grain. Single still keyframe, exact composition and lighting, no text, no subtitles.
+```
+
+Negative prompt (nếu chế độ hỗ trợ):
+
+```text
+plastic CGI skin, toy dinosaur, weightless floating motion, glowing LED eyes, purple neon lightning, cartoon cel-shading, extra limbs, duplicate heads, dorsal spines on Rex, smooth back on Vasto, air-biting without physical contact, subtitles, watermark, black letterbox bars
 ```
 
 ## shot_08 — Omni 1.1 Flash (độ khó 8/10)

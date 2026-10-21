@@ -85,20 +85,24 @@ def _prepare_color_match(segs: list) -> None:
         import numpy as np
 
         stats = []
+        frame_cache = {}
         for seg in segs:
             clip = seg.get("clip")
             if not clip or not Path(clip).exists():
                 stats.append(None)
                 continue
-            t_mid = (float(seg.get("tin", 0.0)) + float(seg.get("tout", 4.0))) * 0.5
-            frame, _ = media.read_frame_at(Path(clip), t_mid)
-            if frame is None:
-                stats.append(None)
-                continue
-            arr = frame.astype(np.float32) / 255.0
-            b_m, g_m, r_m = float(arr[:, :, 0].mean()), float(arr[:, :, 1].mean()), float(arr[:, :, 2].mean())
-            luma = 0.114 * b_m + 0.587 * g_m + 0.299 * r_m
-            stats.append((b_m, g_m, r_m, luma))
+            t_mid = round((float(seg.get("tin", 0.0)) + float(seg.get("tout", 4.0))) * 0.5, 1)
+            cache_key = (str(clip), t_mid)
+            if cache_key not in frame_cache:
+                frame, _ = media.read_frame_at(Path(clip), t_mid)
+                if frame is None:
+                    frame_cache[cache_key] = None
+                else:
+                    arr = frame.astype(np.float32) / 255.0
+                    b_m, g_m, r_m = float(arr[:, :, 0].mean()), float(arr[:, :, 1].mean()), float(arr[:, :, 2].mean())
+                    luma = 0.114 * b_m + 0.587 * g_m + 0.299 * r_m
+                    frame_cache[cache_key] = (b_m, g_m, r_m, luma)
+            stats.append(frame_cache[cache_key])
 
         valid = [s for s in stats if s is not None]
         if len(valid) < 2:
@@ -127,12 +131,28 @@ def _prepare_color_match(segs: list) -> None:
         pass
 
 
+def _crop_mode_filter(seg: dict, w: int, h: int) -> str:
+    """Áp dụng tiêu cự quang học cắt cúp đa góc máy (Multi-Coverage Anamorphic Optical Punch-In)."""
+    cm = (seg.get("crop_mode") or "wide_master").strip().lower()
+    if cm == "visceral_jaw_clamp_85mm":
+        return f",crop=iw*0.64:ih*0.64:(iw-ow)/2:ih*0.10,scale={w}:{h}:flags=lanczos"
+    if cm == "cu_left_85mm":
+        return f",crop=iw*0.68:ih*0.68:iw*0.04:ih*0.10,scale={w}:{h}:flags=lanczos"
+    if cm == "cu_right_85mm":
+        return f",crop=iw*0.68:ih*0.68:iw*0.28:ih*0.10,scale={w}:{h}:flags=lanczos"
+    if cm == "foot_tremor_ground":
+        return f",crop=iw*0.66:ih*0.66:(iw-ow)/2:ih*0.30,scale={w}:{h}:flags=lanczos"
+    if cm == "ots_dirty_frame":
+        return f",crop=iw*0.76:ih*0.76:iw*0.12:ih*0.08,scale={w}:{h}:flags=lanczos"
+    return ""
+
+
 def _shake_And_grain_suffix(seg: dict, w: int, h: int) -> str:
-    """Hiệu ứng cân bằng màu liên cảnh + rung máy vật lý tại điểm va chạm (Impact Camera Shake) + hạt phim 35mm IMAX."""
+    """Hiệu ứng tiêu cự đa góc máy + cân bằng màu liên cảnh + rung máy vật lý tại điểm va chạm + hạt phim 35mm IMAX."""
     shot = seg.get("shot") or {}
     shake = shot.get("camera_shake")
     grain = shot.get("film_grain")
-    fx = seg.get("_color_match_fx", "")
+    fx = _crop_mode_filter(seg, w, h) + seg.get("_color_match_fx", "")
     if shake:
         cfg_s = shake if isinstance(shake, dict) else {}
         amp = float(cfg_s.get("amp", 14.0))
@@ -242,17 +262,53 @@ def render(segs: list, out_path: Path, cfg: dict, fmt: str = "landscape", fit: s
         fit = "pad" if fmt == "landscape" else "crop"
 
     _prepare_color_match(segs)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    if media.has_nvenc():
+        vcodec = ["-c:v", "h264_nvenc", "-preset", "p5", "-rc", "vbr", "-cq", "19", "-b:v", "0", "-profile:v", "high"]
+    else:
+        vcodec = ["-c:v", "libx264", "-preset", "medium", "-crf", str(out_cfg["crf"]), "-profile:v", "high"]
 
-    inputs, filters = [], []
-    for i, seg in enumerate(segs):
-        inputs += ["-i", str(seg["clip"])]
-        filters.append(_video_chain(i, seg, w, h, fps, fit))
-        filters.append(_audio_chain(i, seg))
-    vcat, acat, length = _join(segs, filters, fps)
+    inputs, filters, chunk_files = [], [], []
+    if len(segs) > 20:
+        chunk_size = 14
+        chunks = [segs[k : k + chunk_size] for k in range(0, len(segs), chunk_size)]
+        for c_idx, c_segs in enumerate(chunks):
+            c_in, c_flt = [], []
+            for j, seg in enumerate(c_segs):
+                c_in += ["-i", str(seg["clip"])]
+                c_flt.append(_video_chain(j, seg, w, h, fps, fit))
+                c_flt.append(_audio_chain(j, seg))
+            cv_lbl, ca_lbl, _ = _join(c_segs, c_flt, fps)
+            c_flt.append(f"{cv_lbl}null[cvout]")
+            c_flt.append(f"{ca_lbl}anull[caout]")
+            c_graph = out_path.parent / f"_chunk_graph_{c_idx:02d}{FORMATS[fmt]['suffix']}.txt"
+            c_graph.write_text(";\n".join(c_flt), encoding="utf-8")
+            c_file = out_path.parent / f"_act_chunk_{c_idx:02d}{FORMATS[fmt]['suffix']}.mp4"
+            media.run_ffmpeg(
+                [*c_in, "-filter_complex_script", c_graph.name, "-map", "[cvout]", "-map", "[caout]",
+                 *vcodec, "-pix_fmt", "yuv420p", "-r", str(fps), "-c:a", "aac", "-b:a", "256k", "-ar", "48000",
+                 str(c_file.name)],
+                cwd=out_path.parent,
+            )
+            c_graph.unlink(missing_ok=True)
+            chunk_files.append(c_file)
+            inputs += ["-i", str(c_file)]
+        pads = "".join(f"[{k}:v][{k}:a]" for k in range(len(chunk_files)))
+        filters.append(f"{pads}concat=n={len(chunk_files)}:v=1:a=1[vcat_raw][acat]")
+        filters.append(f"[vcat_raw]fps={fps}[vcat]")
+        vcat, acat = "[vcat]", "[acat]"
+        next_in = len(chunk_files)
+    else:
+        for i, seg in enumerate(segs):
+            inputs += ["-i", str(seg["clip"])]
+            filters.append(_video_chain(i, seg, w, h, fps, fit))
+            filters.append(_audio_chain(i, seg))
+        vcat, acat, length = _join(segs, filters, fps)
+        next_in = len(segs)
+
     total = total_duration(segs)
 
     # --- Lớp âm thanh: production (Veo) + lời dẫn + nhạc ---
-    next_in = len(segs)
     vo_labels = []
     for seg in segs:
         if seg["vo_path"]:
@@ -330,18 +386,17 @@ def render(segs: list, out_path: Path, cfg: dict, fmt: str = "landscape", fit: s
     graph = out_path.parent / f"filtergraph{FORMATS[fmt]['suffix']}.txt"
     graph.write_text(";\n".join(filters), encoding="utf-8")
 
-    if media.has_nvenc():
-        vcodec = ["-c:v", "h264_nvenc", "-preset", "p5", "-rc", "vbr", "-cq", "19", "-b:v", "0", "-profile:v", "high"]
-    else:
-        vcodec = ["-c:v", "libx264", "-preset", "medium", "-crf", str(out_cfg["crf"]), "-profile:v", "high"]
-
-    media.run_ffmpeg(
-        [*inputs, "-filter_complex_script", graph.name, "-map", "[vout]", "-map", "[aout]",
-         *vcodec, "-pix_fmt", "yuv420p", "-r", str(fps),
-         "-c:a", "aac", "-b:a", out_cfg["audio_bitrate"], "-ar", "48000",
-         "-movflags", "+faststart", os.path.relpath(out_path, out_path.parent)],
-        cwd=out_path.parent,
-    )
+    try:
+        media.run_ffmpeg(
+            [*inputs, "-filter_complex_script", graph.name, "-map", "[vout]", "-map", "[aout]",
+             *vcodec, "-pix_fmt", "yuv420p", "-r", str(fps),
+             "-c:a", "aac", "-b:a", out_cfg["audio_bitrate"], "-ar", "48000",
+             "-movflags", "+faststart", os.path.relpath(out_path, out_path.parent)],
+            cwd=out_path.parent,
+        )
+    finally:
+        for cf in chunk_files:
+            cf.unlink(missing_ok=True)
     loud_info = enforce_true_peak(out_path, out_cfg["true_peak_db"], out_cfg["audio_bitrate"])
     return {"path": str(out_path), "size": f"{w}x{h}", "fit": fit, "duration_planned": total,
             "loudness_lufs": loud_info["lufs"], "true_peak_db": loud_info["true_peak_db"],

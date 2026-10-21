@@ -23,6 +23,15 @@ PRESETS = {
                    "sat": 0.95, "green_sat": 0.82},
     "anime_vibrant": {"contrast": 0.20, "shadow_tint": (-0.006, -0.002, 0.016), "high_tint": (0.018, 0.008, -0.010),
                       "sat": 1.12, "green_sat": 1.0},
+    "ilm_night_battle": {
+        "gamma": 1.78,
+        "exposure": 0.68,
+        "contrast": 0.34,
+        "shadow_tint": (-0.030, -0.004, 0.038),
+        "high_tint": (0.036, 0.010, -0.018),
+        "sat": 0.82,
+        "green_sat": 0.42,
+    },
 }
 
 GENRE_TO_LUT = {
@@ -49,6 +58,8 @@ def transform(rgb, preset: str = "documentary", strength: float = 1.0):
 
     p = PRESETS[preset]
     x = np.clip(rgb, 0, 1)
+    if p.get("gamma") or p.get("exposure"):
+        x = np.clip((x ** float(p.get("gamma", 1.0))) * float(p.get("exposure", 1.0)), 0, 1)
     # S-curve quanh 0.5 (giữ đen/trắng tại chỗ)
     s = x + p["contrast"] * (x - 0.5) * (1 - np.abs(2 * x - 1))
     luma = (0.2126 * s[..., 0] + 0.7152 * s[..., 1] + 0.0722 * s[..., 2])[..., None]

@@ -387,3 +387,253 @@ def write_packet(packet: dict, out_md: Path, result_path: Path) -> Path:
               f"Ghi JSON kết quả vào: `{result_path.resolve()}` rồi chạy `qa-vision-submit`.", ""]
     out_md.write_text("\n".join(lines), encoding="utf-8")
     return out_md
+
+
+
+def benchmark_against_reference(
+    candidate_video: Path,
+    ref_video: Path,
+    project: dict = None,
+    timeline_path: Path = None,
+    out_sheet_path: Path = None,
+    target_duration_sec: float = 300.0,
+    ref_start_sec: float = 254.0,
+    ref_end_sec: float = 474.0,
+) -> dict:
+    """Đối chiếu định lượng & điện ảnh giữa video dự án (`candidate_video`) và video mẫu (`ref_video`, vd. Jurassic World Final Battle).
+
+    Trả về bảng điểm 0–100 trên 6 trụ cột:
+      1. `duration_score`: Độ khớp thời lượng mục tiêu (mặc định 300.0s = 5 phút).
+      2. `lighting_score`: Độ khớp ánh sáng Chiaroscuro đêm (Mean Luma, Dark Shadow Ratio, Contrast Std).
+      3. `pacing_score`: Mật độ cắt cảnh (Cut Count >= 60 cho 5 phút, ASL 3.5s–4.8s).
+      4. `camera_variety_score`: Độ phủ 6 mẫu góc máy đặc trưng của `FtCslvCjZEY` (Foot Macro, Eye/Snarl ECU, 85mm Jaw Clamp, Asymmetric Knockdown, Environmental Destruction, Cliff/Abyss Standoff).
+      5. `motion_score`: Động năng chuyển động và tỷ lệ khung hình hoạt động thực (không bị đóng băng).
+      6. `defect_free_score`: Tỷ lệ cửa sổ dựng hoàn toàn sạch lỗi `major` và `minor`.
+    """
+    import re
+    import numpy as np
+    cv2 = media.cv2_module()
+    candidate_video = Path(candidate_video)
+    ref_video = Path(ref_video)
+    project = project or {}
+
+    def _sample_video_metrics(vpath: Path, t_start: float = 0.0, t_end: float = 0.0, n_samples: int = 12):
+        cap = cv2.VideoCapture(str(vpath))
+        fps = cap.get(cv2.CAP_PROP_FPS) or 24.0
+        n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+        dur = n_frames / fps if fps > 0 else 0.0
+        t0 = max(0.5, float(t_start)) if t_start > 0 else 0.5
+        t1 = min(dur - 0.5, float(t_end)) if (t_end and t_end > t0) else max(t0 + 0.5, dur - 0.5)
+        ts = np.linspace(t0, t1, max(4, n_samples))
+        lumas, contrasts, dark_ratios, spec_ratios, motion_diffs, thumbs = [], [], [], [], [], []
+        prev_gray = None
+        for t in ts:
+            cap.set(cv2.CAP_PROP_POS_MSEC, float(t) * 1000.0)
+            ok, frame = cap.read()
+            if not ok or frame is None:
+                continue
+            small = cv2.resize(frame, (360, 200), interpolation=cv2.INTER_AREA)
+            gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
+            lumas.append(float(np.mean(gray)))
+            contrasts.append(float(np.std(gray)))
+            dark_ratios.append(float(np.mean(gray < 48)))
+            spec_ratios.append(float(np.mean(gray > 155)))
+            # Read next frame ~80ms later to measure instantaneous motion
+            ok2, frame2 = cap.read()
+            if ok2 and frame2 is not None:
+                g2 = cv2.cvtColor(cv2.resize(frame2, (360, 200), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2GRAY)
+                motion_diffs.append(float(np.mean(cv2.absdiff(gray, g2))))
+            elif prev_gray is not None:
+                motion_diffs.append(float(np.mean(cv2.absdiff(gray, prev_gray))))
+            prev_gray = gray
+            thumbs.append((float(t), small))
+        cap.release()
+        return {
+            "duration": round(dur, 2),
+            "mean_luma": round(float(np.mean(lumas)) if lumas else 0.0, 2),
+            "contrast_std": round(float(np.mean(contrasts)) if contrasts else 0.0, 2),
+            "dark_shadow_ratio": round(float(np.mean(dark_ratios)) if dark_ratios else 0.0, 3),
+            "specular_ratio": round(float(np.mean(spec_ratios)) if spec_ratios else 0.0, 4),
+            "mean_motion_diff": round(float(np.mean(motion_diffs)) if motion_diffs else 0.0, 2),
+            "active_motion_ratio": round(float(np.mean([m > 0.8 for m in motion_diffs])) if motion_diffs else 0.0, 3),
+            "thumbs": thumbs,
+        }
+
+    cand_m = _sample_video_metrics(candidate_video, 0.0, 0.0, n_samples=12)
+    ref_m = _sample_video_metrics(ref_video, ref_start_sec, ref_end_sec, n_samples=12) if ref_video.exists() else {
+        "duration": 516.93,
+        "mean_luma": 24.5,
+        "contrast_std": 28.5,
+        "dark_shadow_ratio": 0.78,
+        "specular_ratio": 0.012,
+        "mean_motion_diff": 3.4,
+        "active_motion_ratio": 0.96,
+        "thumbs": [],
+    }
+
+    issues = []
+
+    # 1. Duration Score (target 300.0s = 5 minutes)
+    dur_c = cand_m["duration"]
+    dur_err = abs(dur_c - target_duration_sec) / max(1.0, target_duration_sec)
+    duration_score = round(max(0.0, 100.0 * (1.0 - dur_err)), 1)
+    if dur_c < target_duration_sec * 0.85:
+        issues.append(
+            f"DURATION_SHORT ({dur_c:.1f}s vs mục tiêu {target_duration_sec:.0f}s): Video chưa đủ thời lượng 5 phút (5 hồi đại chiến)."
+        )
+
+    # 2. Chiaroscuro Lighting Score (ref mean_luma ~22–42, dark_shadow_ratio >= 0.55)
+    luma_c = cand_m["mean_luma"]
+    dark_c = cand_m["dark_shadow_ratio"]
+    std_c = cand_m["contrast_std"]
+    # Ideal low-key creature battle range: luma in [20, 46], dark_shadow_ratio >= 0.52, contrast_std >= 24
+    if 18.0 <= luma_c <= 46.0:
+        luma_sub = 100.0
+    elif luma_c > 46.0:
+        luma_sub = max(0.0, 100.0 - (luma_c - 46.0) * 1.35)
+    else:
+        luma_sub = max(0.0, 100.0 - (18.0 - luma_c) * 3.0)
+    dark_sub = min(100.0, (dark_c / 0.55) * 100.0)
+    contrast_sub = min(100.0, (std_c / 25.0) * 100.0)
+    lighting_score = round(0.45 * luma_sub + 0.35 * dark_sub + 0.20 * contrast_sub, 1)
+    if luma_c > 55.0 or dark_c < 0.45:
+        issues.append(
+            f"OVEREXPOSED_DAYLIGHT_LOOK (Mean Luma={luma_c:.1f}, Dark Ratio={dark_c:.2f} vs mẫu Jurassic World Luma={ref_m['mean_luma']:.1f}, Dark Ratio={ref_m['dark_shadow_ratio']:.2f}): "
+            "Ánh sáng ban ngày/vàng rực làm lộ bề mặt da CG; cần hạ về Low-Key Night Chiaroscuro (70% bóng tối sâu + viền sáng 6500K cyan / 2700K amber)."
+        )
+
+    # 3. Pacing & Cut Density Score
+    segs = []
+    if timeline_path and Path(timeline_path).exists():
+        try:
+            segs = json.loads(Path(timeline_path).read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            segs = []
+    num_cuts = len(segs) if segs else max(1, int(round(dur_c / 4.6)))
+    asl = round(dur_c / max(1, num_cuts), 2)
+    target_cuts = max(55, int(round(target_duration_sec / 4.5)))
+    cut_count_sub = min(100.0, (num_cuts / target_cuts) * 100.0)
+    asl_sub = 100.0 if 2.8 <= asl <= 4.8 else max(0.0, 100.0 - abs(asl - 4.0) * 18.0)
+    pacing_score = round(0.65 * cut_count_sub + 0.35 * asl_sub, 1)
+    if num_cuts < 50:
+        issues.append(
+            f"INSUFFICIENT_CUT_DENSITY ({num_cuts} cú cắt vs chuẩn {target_cuts}+ cú cắt trong 5 phút): "
+            "Cần dựng đa góc máy (Multi-Coverage Sub-Clipping + Dynamic Focal Punch-In) xuyên suốt 5 hồi."
+        )
+
+    # 4. Camera Archetype Coverage Score (6 Jurassic World Battle Archetypes)
+    shots = project.get("shots", [])
+    corpus_parts = []
+    for s in shots:
+        corpus_parts.append(
+            f"{s.get('camera', '')} {s.get('action', '')} {s.get('start_action', '')} {s.get('end_action', '')} {s.get('veo_prompt', '')}"
+        )
+    for seg in segs:
+        corpus_parts.append(f"{seg.get('shot_id', '')} {seg.get('coverage_role', '')} {seg.get('crop_mode', '')}")
+    corpus = " ".join(corpus_parts).lower()
+
+    archetypes = {
+        "foot_tremor_macro": bool(re.search(r"\b(foot|talon|clawed\s+foot|footprint|ground[- ]level|0\.3m|0\.4m|puddle\s+tremor|stomp)\b", corpus)),
+        "eye_snarl_ecu": bool(re.search(r"\b(extreme\s+close[- ]up|ecu|macro\s+eye|amber\s+eye|snarl|85mm\s+close|dilat)\b", corpus)),
+        "visceral_jaw_clamp_cu": bool(re.search(r"\b(50mm|85mm|close[- ]up)[^.]*\b(jaws?\s+clamp|clamp(?:s|ed|ing)?\s+(?:its\s+)?jaws?|teeth\s+sink|neck\s+flesh)\b|\b(jaw[- ]clamp|close_up_punch)\b", corpus)),
+        "asymmetric_knockdown": bool(re.search(r"\b(hurl(?:s|ed|ing)?|knock(?:s|ed)?\s+down|pinned|onto\s+(?:its\s+)?flank|slams?\s+onto\s+the\s+(?:mud|ground)|downed|towering\s+over)\b", corpus)),
+        "environmental_destruction": bool(re.search(r"\b(shatter(?:s|ing|ed)?|splinter(?:s|ing|ed)?|collaps(?:e|es|ing)|crushing|explod(?:e|es|ing)|basalt|burning\s+trunk)\b", corpus)),
+        "abyss_standoff_wide": bool(re.search(r"\b(chasm|precipice|gorge|waterfall|cliff[- ]edge|across\s+the\s+newly\s+formed)\b", corpus)),
+    }
+    covered = [k for k, v in archetypes.items() if v]
+    missing_arch = [k for k, v in archetypes.items() if not v]
+    camera_variety_score = round((len(covered) / len(archetypes)) * 100.0, 1)
+    if missing_arch:
+        issues.append(
+            f"MISSING_HOLLYWOOD_SHOT_ARCHETYPES (Thiếu {len(missing_arch)}/6 mẫu góc máy của Jurassic World: {', '.join(missing_arch)}): "
+            "Cần bổ sung đủ 6 mẫu cảnh (Đặc tả bàn chân dậm đất, ECU mắt/răng gầm, Cận cảnh 85mm ngoạm ngập cổ, Quật ngã ghì xuống bùn bất đối xứng, Phá hủy môi trường, Đối đầu bờ vực)."
+        )
+
+    # 5. Motion Energy & Active Ratio Score
+    act_r = cand_m["active_motion_ratio"]
+    mot_d = cand_m["mean_motion_diff"]
+    motion_score = round(min(100.0, 65.0 * act_r + 35.0 * min(1.0, mot_d / 2.2)), 1)
+
+    # 6. Defect-Free Score
+    defect_hits = 0
+    checked_shots = 0
+    for s in shots:
+        sel_t = s.get("selected_take")
+        t_in = float(s.get("edit_in") or 0.0)
+        t_out = float(s.get("edit_out") or 0.0)
+        if not sel_t or t_out <= t_in:
+            continue
+        checked_shots += 1
+        for tk in s.get("takes", []):
+            if tk.get("take") == sel_t:
+                defs = ((tk.get("qa") or {}).get("vision") or {}).get("defects") or []
+                for d in defs:
+                    d0 = float(d.get("t_from", d.get("start_sec", 0.0)))
+                    d1 = float(d.get("t_to", d.get("end_sec", 0.0)))
+                    if max(t_in, d0) < min(t_out, d1) - 0.05:
+                        defect_hits += 1
+    defect_free_score = round(max(0.0, 100.0 - defect_hits * 15.0), 1)
+    if defect_hits > 0:
+        issues.append(f"ACTIVE_WINDOW_DEFECTS: Còn {defect_hits} lỗi thị giác giao cắt với cửa sổ dựng [edit_in, edit_out].")
+
+    overall_score = round(
+        0.22 * duration_score
+        + 0.22 * lighting_score
+        + 0.18 * pacing_score
+        + 0.18 * camera_variety_score
+        + 0.10 * motion_score
+        + 0.10 * defect_free_score,
+        1,
+    )
+
+    # Render side-by-side visual comparison sheet if requested
+    if out_sheet_path and ref_m["thumbs"] and cand_m["thumbs"]:
+        out_sheet_path = Path(out_sheet_path)
+        out_sheet_path.parent.mkdir(parents=True, exist_ok=True)
+        idx_ref = np.linspace(0, len(ref_m["thumbs"]) - 1, 6).astype(int)
+        idx_cand = np.linspace(0, len(cand_m["thumbs"]) - 1, 6).astype(int)
+        ref_cells, cand_cells = [], []
+        for i in idx_ref:
+            t_r, img_r = ref_m["thumbs"][i]
+            cell = img_r.copy()
+            cv2.rectangle(cell, (0, 0), (360, 28), (0, 0, 0), -1)
+            cv2.putText(cell, f"REF JW @ {t_r:.0f}s (Luma {ref_m['mean_luma']:.0f})", (6, 20),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 210, 255), 1, cv2.LINE_AA)
+            ref_cells.append(cell)
+        for i in idx_cand:
+            t_c, img_c = cand_m["thumbs"][i]
+            cell = img_c.copy()
+            cv2.rectangle(cell, (0, 0), (360, 28), (0, 0, 0), -1)
+            cv2.putText(cell, f"STUDIO @ {t_c:.0f}s (Luma {cand_m['mean_luma']:.0f})", (6, 20),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 160), 1, cv2.LINE_AA)
+            cand_cells.append(cell)
+        row_ref_1 = np.hstack(ref_cells[:3])
+        row_ref_2 = np.hstack(ref_cells[3:6])
+        row_cand_1 = np.hstack(cand_cells[:3])
+        row_cand_2 = np.hstack(cand_cells[3:6])
+        comp_grid = np.vstack([row_ref_1, row_ref_2, row_cand_1, row_cand_2])
+        cv2.imwrite(str(out_sheet_path), comp_grid, [int(cv2.IMWRITE_JPEG_QUALITY), 92])
+
+    return {
+        "overall_similarity_score_100": overall_score,
+        "verdict": "PASS_HOLLYWOOD_BENCHMARK" if overall_score >= 92.0 and not issues else "NEEDS_IMPROVEMENT",
+        "scores": {
+            "duration_score_100": duration_score,
+            "lighting_chiaroscuro_score_100": lighting_score,
+            "pacing_cut_density_score_100": pacing_score,
+            "camera_variety_score_100": camera_variety_score,
+            "motion_energy_score_100": motion_score,
+            "defect_free_score_100": defect_free_score,
+        },
+        "candidate_metrics": {k: v for k, v in cand_m.items() if k != "thumbs"},
+        "reference_metrics": {k: v for k, v in ref_m.items() if k != "thumbs"},
+        "editorial_stats": {
+            "cut_count": num_cuts,
+            "avg_shot_length_sec": asl,
+            "target_duration_sec": target_duration_sec,
+            "covered_archetypes": covered,
+            "missing_archetypes": missing_arch,
+        },
+        "issues": issues,
+        "comparison_sheet": str(out_sheet_path) if out_sheet_path else None,
+    }

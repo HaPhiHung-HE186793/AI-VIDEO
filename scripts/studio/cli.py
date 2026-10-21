@@ -2001,6 +2001,29 @@ def cmd_list_models(args, cfg):
     out({"configured": {k: {"id": v, "available": v in all_ids} for k, v in configured.items()}, "models": rows})
 
 
+def cmd_benchmark_compare(args, cfg):
+    """Đối chiếu định lượng & điện ảnh giữa video đầu ra của dự án và video mẫu (vd. Jurassic World Final Battle)."""
+    proj = proj_dir_of(args)
+    m = mf.load(proj)
+    cand = Path(args.candidate) if args.candidate else (proj / "output" / "final_video.mp4")
+    if not cand.exists():
+        sys.exit(f"[ERROR] Không tìm thấy video dự án: {cand}")
+    ref = Path(args.reference)
+    tl = proj / "output" / "timeline.json"
+    sheet_out = proj / "assets" / "qa" / (args.sheet_name or "benchmark_vs_reference.jpg")
+    res = qa.benchmark_against_reference(
+        candidate_video=cand,
+        ref_video=ref,
+        project=m,
+        timeline_path=tl,
+        out_sheet_path=sheet_out,
+        target_duration_sec=float(args.target_duration),
+        ref_start_sec=float(args.ref_start),
+        ref_end_sec=float(args.ref_end),
+    )
+    out(res)
+
+
 # ---------------------------------------------------------------- main
 
 def build_parser() -> argparse.ArgumentParser:
@@ -2283,6 +2306,16 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = add("check-browser", cmd_check_browser, "Kiểm tra / mở Chrome debug cho Google Flow")
     sp.add_argument("--launch", action="store_true")
+
+    sp = add("benchmark-compare", cmd_benchmark_compare,
+             "Đối chiếu định lượng & điện ảnh giữa video dự án và video mẫu (vd. Jurassic World Final Battle)")
+    project_arg(sp)
+    sp.add_argument("--reference", required=True, help="Đường dẫn file video mẫu để đối chiếu")
+    sp.add_argument("--candidate", default="", help="Đường dẫn video dự án (mặc định: output/final_video.mp4)")
+    sp.add_argument("--target-duration", type=float, default=300.0, help="Thời lượng mục tiêu (giây, mặc định 300s = 5 phút)")
+    sp.add_argument("--ref-start", type=float, default=254.0, help="Mốc bắt đầu phân đoạn battle trong video mẫu (giây)")
+    sp.add_argument("--ref-end", type=float, default=474.0, help="Mốc kết thúc phân đoạn battle trong video mẫu (giây)")
+    sp.add_argument("--sheet-name", default="benchmark_vs_reference.jpg")
     return p
 
 
@@ -2293,7 +2326,7 @@ def main(argv=None):
     args = build_parser().parse_args(argv)
     cfg = load_config()
     read_only = {"publish-kit", "status", "timeline", "plan", "list-models", "compare-voices", "browser", "check-browser",
-                 "resume", "progress", "export-nle"}
+                 "resume", "progress", "export-nle", "benchmark-compare"}
     try:
         if getattr(args, "project", None) and args.command not in read_only:
             proj = proj_dir_of(args)
