@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `cherno-alpha-vs-godzilla` — thư mục `projects/cherno-alpha-vs-godzilla/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/eba75017-1af5-48e6-b95b-1b0d6294c221
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T18:22:28 trên máy **DESKTOP-HUP72C4** (lệnh `audit-assets`)
+- **Cập nhật lần cuối:** 2026-10-21T18:51:19 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
@@ -119,42 +119,51 @@ python scripts/studio_helper.py storyboard-approve --project cherno-alpha-vs-god
 
 ## Media trên máy này
 
-⚠ Máy **DESKTOP-HUP72C4** thiếu 120/126 file — chạy `media-pull` (hoặc tải lại take từ Flow).
+⚠ Máy **DESKTOP-HUP72C4** thiếu 60/126 file — chạy `media-pull` (hoặc tải lại take từ Flow).
 
-- `assets/frames/KF_CAVG1_S01_START.jpg` — shot_01 frame đầu
 - `assets/clips/shot_01.mp4` — shot_01 clip dựng
-- `assets/frames/KF_CAVG1_S02_START.jpg` — shot_02 frame đầu
 - `assets/clips/shot_02.mp4` — shot_02 clip dựng
-- `assets/frames/KF_CAVG1_S03_START.jpg` — shot_03 frame đầu
 - `assets/clips/shot_03.mp4` — shot_03 clip dựng
-- `assets/frames/KF_CAVG1_S04_START.jpg` — shot_04 frame đầu
 - `assets/clips/shot_04.mp4` — shot_04 clip dựng
-- `assets/frames/KF_CAVG1_S05_START.jpg` — shot_05 frame đầu
 - `assets/clips/shot_05.mp4` — shot_05 clip dựng
-- `assets/frames/KF_CAVG1_S06_START.jpg` — shot_06 frame đầu
 - `assets/clips/shot_06.mp4` — shot_06 clip dựng
-- `assets/frames/KF_CAVG1_S07_START.jpg` — shot_07 frame đầu
 - `assets/clips/shot_07.mp4` — shot_07 clip dựng
-- `assets/frames/KF_CAVG1_S08_START.jpg` — shot_08 frame đầu
 - `assets/clips/shot_08.mp4` — shot_08 clip dựng
-- `assets/frames/KF_CAVG1_S09_START.jpg` — shot_09 frame đầu
 - `assets/clips/shot_09.mp4` — shot_09 clip dựng
-- `assets/frames/KF_CAVG1_S10_START.jpg` — shot_10 frame đầu
 - `assets/clips/shot_10.mp4` — shot_10 clip dựng
-- `assets/frames/KF_CAVG1_S11_START.jpg` — shot_11 frame đầu
 - `assets/clips/shot_11.mp4` — shot_11 clip dựng
-- `assets/frames/KF_CAVG1_S12_START.jpg` — shot_12 frame đầu
 - `assets/clips/shot_12.mp4` — shot_12 clip dựng
-- `assets/frames/KF_CAVG1_S13_START.jpg` — shot_13 frame đầu
-- … và 95 file khác
+- `assets/clips/shot_13.mp4` — shot_13 clip dựng
+- `assets/clips/shot_14.mp4` — shot_14 clip dựng
+- `assets/clips/shot_15.mp4` — shot_15 clip dựng
+- `assets/clips/shot_16.mp4` — shot_16 clip dựng
+- `assets/clips/shot_17.mp4` — shot_17 clip dựng
+- `assets/clips/shot_18.mp4` — shot_18 clip dựng
+- `assets/clips/shot_19.mp4` — shot_19 clip dựng
+- `assets/clips/shot_20.mp4` — shot_20 clip dựng
+- `assets/clips/shot_21.mp4` — shot_21 clip dựng
+- `assets/clips/shot_22.mp4` — shot_22 clip dựng
+- `assets/clips/shot_23.mp4` — shot_23 clip dựng
+- `assets/clips/shot_24.mp4` — shot_24 clip dựng
+- `assets/clips/shot_25.mp4` — shot_25 clip dựng
+- … và 35 file khác
 
 ## Nhật ký lệnh (mới nhất trước)
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-21 18:51 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 18:51 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60 --wait` | ok |
+| 10-21 18:49 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60` | ok |
+| 10-21 18:46 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_37,shot_38,shot_39,shot_40,shot_41,shot_42,shot_43,shot_44,shot_45,shot_46,shot_47,shot_48 --wait` | ok |
+| 10-21 18:45 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_37,shot_38,shot_39,shot_40,shot_41,shot_42,shot_43,shot_44,shot_45,shot_46,shot_47,shot_48` | ok |
+| 10-21 18:42 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36 --wait` | ok |
+| 10-21 18:40 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36` | ok |
+| 10-21 18:36 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_13,shot_14,shot_15,shot_16,shot_17,shot_18,shot_19,shot_20,shot_21,shot_22,shot_23,shot_24 --wait` | ok |
+| 10-21 18:33 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_13,shot_14,shot_15,shot_16,shot_17,shot_18,shot_19,shot_20,shot_21,shot_22,shot_23,shot_24` | ok |
+| 10-21 18:29 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12 --wait` | ok |
+| 10-21 18:27 | DESKTOP-HUP72C4 | `flow-generate --kind frames --count 2 --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12` | ok |
 | 10-21 18:22 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
 | 10-21 18:22 | DESKTOP-HUP72C4 | `flow-generate --kind assets --new-project --count 2` | ok |
 | 10-21 18:18 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
 | 10-21 18:18 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
-| 10-21 18:17 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
-| 10-21 18:17 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
