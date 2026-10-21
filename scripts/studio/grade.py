@@ -24,13 +24,13 @@ PRESETS = {
     "anime_vibrant": {"contrast": 0.20, "shadow_tint": (-0.006, -0.002, 0.016), "high_tint": (0.018, 0.008, -0.010),
                       "sat": 1.12, "green_sat": 1.0},
     "ilm_night_battle": {
-        "gamma": 1.78,
-        "exposure": 0.68,
-        "contrast": 0.34,
+        "gamma": 1.54,
+        "exposure": 0.78,
+        "contrast": 0.36,
         "shadow_tint": (-0.030, -0.004, 0.038),
-        "high_tint": (0.036, 0.010, -0.018),
-        "sat": 0.82,
-        "green_sat": 0.42,
+        "high_tint": (0.038, 0.012, -0.018),
+        "sat": 0.84,
+        "green_sat": 0.44,
     },
 }
 

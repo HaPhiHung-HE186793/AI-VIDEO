@@ -511,14 +511,43 @@ def benchmark_against_reference(
             segs = []
     num_cuts = len(segs) if segs else max(1, int(round(dur_c / 4.6)))
     asl = round(dur_c / max(1, num_cuts), 2)
-    target_cuts = max(55, int(round(target_duration_sec / 4.5)))
+    target_cuts = max(12, int(round(target_duration_sec / 5.5)))
     cut_count_sub = min(100.0, (num_cuts / target_cuts) * 100.0)
-    asl_sub = 100.0 if 2.8 <= asl <= 4.8 else max(0.0, 100.0 - abs(asl - 4.0) * 18.0)
+    asl_sub = 100.0 if 2.8 <= asl <= 6.8 else max(0.0, 100.0 - abs(asl - 4.8) * 15.0)
     pacing_score = round(0.65 * cut_count_sub + 0.35 * asl_sub, 1)
-    if num_cuts < 50:
+    if num_cuts < target_cuts * 0.75:
         issues.append(
-            f"INSUFFICIENT_CUT_DENSITY ({num_cuts} cú cắt vs chuẩn {target_cuts}+ cú cắt trong 5 phút): "
-            "Cần dựng đa góc máy (Multi-Coverage Sub-Clipping + Dynamic Focal Punch-In) xuyên suốt 5 hồi."
+            f"INSUFFICIENT_CUT_DENSITY ({num_cuts} cú cắt vs chuẩn {target_cuts}+ cú cắt): "
+            "Cần bổ sung thêm điểm cắt hoặc góc máy."
+        )
+
+    # 3b. Narrative Continuity & Non-Repetition Score (Strict Chronological Progression)
+    ordered_ids = [s["shot_id"] for s in sorted(project.get("shots", []), key=lambda x: x.get("order", 999))]
+    rank_map = {sid: idx for idx, sid in enumerate(ordered_ids)}
+    backward_jumps = 0
+    non_contiguous_revisits = 0
+    seen_completed = set()
+    prev_sid_tl = None
+    prev_rank = -1
+    for seg in segs:
+        sid = seg.get("shot_id", "")
+        r = rank_map.get(sid, prev_rank)
+        if r < prev_rank:
+            backward_jumps += 1
+        if sid != prev_sid_tl:
+            if sid in seen_completed:
+                non_contiguous_revisits += 1
+            if prev_sid_tl is not None:
+                seen_completed.add(prev_sid_tl)
+        prev_sid_tl = sid
+        prev_rank = max(prev_rank, r)
+    narrative_continuity_score = round(
+        max(0.0, 100.0 - backward_jumps * 15.0 - non_contiguous_revisits * 10.0), 1
+    )
+    if backward_jumps > 0 or non_contiguous_revisits > 0:
+        issues.append(
+            f"NARRATIVE_CONTINUITY_BROKEN (Nhảy lùi thời gian {backward_jumps} lần, lặp lại cảnh cũ không liền kề {non_contiguous_revisits} lần): "
+            "Mạch truyện bị đảo lộn nhân-quả hoặc lặp vòng lặp."
         )
 
     # 4. Camera Archetype Coverage Score (6 Jurassic World Battle Archetypes)
@@ -577,12 +606,13 @@ def benchmark_against_reference(
         issues.append(f"ACTIVE_WINDOW_DEFECTS: Còn {defect_hits} lỗi thị giác giao cắt với cửa sổ dựng [edit_in, edit_out].")
 
     overall_score = round(
-        0.22 * duration_score
-        + 0.22 * lighting_score
-        + 0.18 * pacing_score
-        + 0.18 * camera_variety_score
-        + 0.10 * motion_score
-        + 0.10 * defect_free_score,
+        0.18 * duration_score
+        + 0.20 * lighting_score
+        + 0.14 * pacing_score
+        + 0.16 * camera_variety_score
+        + 0.16 * narrative_continuity_score
+        + 0.08 * motion_score
+        + 0.08 * defect_free_score,
         1,
     )
 
@@ -622,6 +652,7 @@ def benchmark_against_reference(
             "lighting_chiaroscuro_score_100": lighting_score,
             "pacing_cut_density_score_100": pacing_score,
             "camera_variety_score_100": camera_variety_score,
+            "narrative_continuity_score_100": narrative_continuity_score,
             "motion_energy_score_100": motion_score,
             "defect_free_score_100": defect_free_score,
         },
@@ -631,6 +662,8 @@ def benchmark_against_reference(
             "cut_count": num_cuts,
             "avg_shot_length_sec": asl,
             "target_duration_sec": target_duration_sec,
+            "backward_jumps": backward_jumps,
+            "non_contiguous_revisits": non_contiguous_revisits,
             "covered_archetypes": covered,
             "missing_archetypes": missing_arch,
         },

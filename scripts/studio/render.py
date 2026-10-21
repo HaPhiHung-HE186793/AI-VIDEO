@@ -132,18 +132,21 @@ def _prepare_color_match(segs: list) -> None:
 
 
 def _crop_mode_filter(seg: dict, w: int, h: int) -> str:
-    """Áp dụng tiêu cự quang học cắt cúp đa góc máy (Multi-Coverage Anamorphic Optical Punch-In)."""
+    """Áp dụng tiêu cự quang học cắt cúp đa góc máy (Multi-Coverage Anamorphic Optical Punch-In).
+
+    Giữ mép trên khung hình (`ih*0.02..0.04`) để tuyệt đối không bao giờ cắt mất phần đầu/mõm khủng long.
+    """
     cm = (seg.get("crop_mode") or "wide_master").strip().lower()
     if cm == "visceral_jaw_clamp_85mm":
-        return f",crop=iw*0.64:ih*0.64:(iw-ow)/2:ih*0.10,scale={w}:{h}:flags=lanczos"
+        return f",crop=iw*0.78:ih*0.78:(iw-ow)/2:ih*0.03,scale={w}:{h}:flags=lanczos"
     if cm == "cu_left_85mm":
-        return f",crop=iw*0.68:ih*0.68:iw*0.04:ih*0.10,scale={w}:{h}:flags=lanczos"
+        return f",crop=iw*0.78:ih*0.78:iw*0.03:ih*0.03,scale={w}:{h}:flags=lanczos"
     if cm == "cu_right_85mm":
-        return f",crop=iw*0.68:ih*0.68:iw*0.28:ih*0.10,scale={w}:{h}:flags=lanczos"
+        return f",crop=iw*0.78:ih*0.78:iw*0.19:ih*0.03,scale={w}:{h}:flags=lanczos"
     if cm == "foot_tremor_ground":
-        return f",crop=iw*0.66:ih*0.66:(iw-ow)/2:ih*0.30,scale={w}:{h}:flags=lanczos"
+        return f",crop=iw*0.84:ih*0.84:(iw-ow)/2:ih*0.06,scale={w}:{h}:flags=lanczos"
     if cm == "ots_dirty_frame":
-        return f",crop=iw*0.76:ih*0.76:iw*0.12:ih*0.08,scale={w}:{h}:flags=lanczos"
+        return f",crop=iw*0.86:ih*0.86:(iw-ow)/2:ih*0.02,scale={w}:{h}:flags=lanczos"
     return ""
 
 

@@ -116,6 +116,10 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
                 if auto_edit:
                     tin, tout = float(s.get("edit_in", w0)), float(s.get("edit_out", w1))
                 seg["notes"].append("Không tách rõ thoại khỏi nền — nên đặt edit_in/edit_out thủ công.")
+        elif project.get("chronological_full_clean_window") and not project.get("epic_multi_coverage"):
+            tin = max(w0, 0.15)
+            tout = max(tin + ed["min_shot_sec"], min(w1, dur - 0.10))
+            source = "chronological_full"
         elif s.get("beat") in bt.beats_by_id(project):
             share = bt.shot_need(proj_dir, project, s, cfg)
             if auto_edit and (float(s.get("edit_out", w1)) - float(s.get("edit_in", w0))) >= share - 0.02:
@@ -131,7 +135,13 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
         tin, tout = max(0.0, min(tin, dur)), max(0.0, min(tout, dur))
         if tout - tin < ed["min_shot_sec"]:
             tout = min(dur, tin + ed["min_shot_sec"])
-        seg.update(tin=tin, tout=tout, source=source)
+        seg.update(
+            tin=tin,
+            tout=tout,
+            source=source,
+            crop_mode=s.get("crop_mode") or "wide_master",
+            coverage_role=s.get("coverage_role") or "wide_two_shot",
+        )
 
         trans = (s.get("transition_out") or ed["default_transition"]).lower()
         seg["transition_out"] = DISSOLVE if trans in (DISSOLVE, "fade", "xfade") else CUT
@@ -192,27 +202,32 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
 
 
 def _expand_epic_battle_timeline(proj_dir: Path, project: dict, cfg: dict, base_segs: list, target_dur: float) -> list:
-    """Dựng phim hành động đa góc máy 5 hồi (5-Act Multi-Coverage Hollywood Editorial Engine) đạt chuẩn thời lượng `target_dur` (vd. 300s).
+    """Dựng phim hành động đa góc máy 5 hồi Tuyến Tính Không Lặp Cảnh (Strict Chronological Non-Overlapping Engine).
 
-    - Khai thác toàn bộ các take sạch (`take 1`, `take 2`) của từng shot và chia thành 3 pha thời gian (`head`, `mid`, `tail`)
-      nằm gọn trong cửa sổ sạch 100% (`clean_windows` né cả lỗi `major` và `minor`).
-    - Luân phiên 6 chế độ tiêu cự quang học (`crop_mode`): `wide_master`, `visceral_jaw_clamp_85mm`, `cu_left_85mm`,
-      `cu_right_85mm`, `foot_tremor_ground`, `ots_dirty_frame` để không bao giờ lặp lại 2 góc máy giống nhau liên tiếp.
+    - Duyệt tuần tự một chiều từ shot đầu đến shot cuối theo đúng `order` kịch bản (`backward_jumps = 0`, `revisits = 0`).
+    - Với mỗi shot, đi lần lượt qua từng take sạch (`take 1` -> `take 2`). Nếu cửa sổ sạch dài (`>= 6.6s`), chia đôi tại
+      điểm giữa `mid` thành 2 cú cắt nối tiếp không trùng lặp: Nửa đầu `[w0, mid]` (Toàn cảnh `wide_master`) -> Nửa sau
+      `[mid, w1]` (Cận cảnh ngang tầm mắt `ots_dirty_frame` / `cu_left_85mm` / `cu_right_85mm`).
+    - Tuyệt đối không bao giờ quay lại take hay đoạn thời gian đã chiếu.
     """
     from . import takes as tk_mod
 
     fps = cfg["output"]["fps"]
-    n_cuts = max(len(base_segs), int(round(target_dur / 4.2857)))
-    target_frames_total = int(round(target_dur * fps))
-    base_frames_per_cut = target_frames_total // n_cuts
-    rem_frames = target_frames_total - (base_frames_per_cut * n_cuts)
+    n_base = len(base_segs)
+    safe_coverage_cycle = [
+        ("ots_dirty_frame", "environmental_destruction"),
+        ("visceral_jaw_clamp_85mm", "visceral_jaw_clamp_cu"),
+        ("cu_left_85mm", "eye_snarl_ecu"),
+        ("cu_right_85mm", "eye_snarl_ecu"),
+    ]
 
-    # Chuẩn bị danh sách (clip_path, w0, w1) sạch lỗi cho mỗi base_seg
-    seg_variants = {}
-    for bseg in base_segs:
+    raw_cuts = []
+    for b_idx, bseg in enumerate(base_segs):
         s = bseg["shot"]
-        sid = bseg["shot_id"]
-        variants = []
+        native_role = s.get("coverage_role") or ""
+        act_num = min(5, int((b_idx / max(1, n_base)) * 5) + 1)
+
+        take_windows = []
         for t_obj in s.get("takes", []):
             p = proj_dir / t_obj.get("path", "")
             if not p.exists():
@@ -222,105 +237,96 @@ def _expand_epic_battle_timeline(proj_dir: Path, project: dict, cfg: dict, base_
                 continue
             dur = float(q.get("duration") or bseg["clip_duration"] or 8.0)
             defs = ((q.get("vision") or {}).get("defects")) or []
-            strict_w = tk_mod.clean_windows(dur, defs, severities=("major", "minor"), pad=0.20)
+            strict_w = tk_mod.clean_windows(dur, defs, severities=("major", "minor"), pad=0.12)
             best_w = max(strict_w, key=lambda w: w[1] - w[0], default=None)
-            if not best_w or (best_w[1] - best_w[0]) < 3.2:
-                maj_w = tk_mod.clean_windows(dur, defs, severities=("major",), pad=0.25)
+            if not best_w or (best_w[1] - best_w[0]) < 2.8:
+                maj_w = tk_mod.clean_windows(dur, defs, severities=("major",), pad=0.15)
                 best_w = max(maj_w, key=lambda w: w[1] - w[0], default=(0.0, dur))
-            if best_w[1] - best_w[0] >= 3.0:
-                variants.append((p, float(best_w[0]), float(best_w[1]), dur))
-        if not variants:
-            w0, w1 = bseg.get("clean_window", (0.0, bseg["clip_duration"]))
-            variants.append((bseg["clip"], float(w0), float(w1), float(bseg["clip_duration"])))
-        seg_variants[sid] = variants
+            if best_w[1] - best_w[0] >= 2.8:
+                take_windows.append((p, float(best_w[0]), float(best_w[1]), dur))
 
-    # Phân nhóm shot theo 5 Hồi kịch tính (Act I..V) + nhóm cutaway đặc tả (Macro/ECU/JawClamp/Knockdown)
-    n_base = len(base_segs)
-    cutaway_segs = [
-        b for b in base_segs
-        if (b["shot"].get("coverage_role") or "") in (
-            "foot_tremor_macro", "eye_snarl_ecu", "visceral_jaw_clamp_cu", "asymmetric_knockdown"
-        )
-    ]
-    coverage_cycle = [
-        ("wide_master", "wide_two_shot"),
-        ("visceral_jaw_clamp_85mm", "visceral_jaw_clamp_cu"),
-        ("cu_left_85mm", "eye_snarl_ecu"),
-        ("foot_tremor_ground", "foot_tremor_macro"),
-        ("cu_right_85mm", "eye_snarl_ecu"),
-        ("ots_dirty_frame", "environmental_destruction"),
-    ]
+        if not take_windows:
+            w0, w1 = bseg.get("clean_window", (0.0, bseg["clip_duration"]))
+            take_windows.append((bseg["clip"], float(w0), float(w1), float(bseg["clip_duration"])))
+
+        shot_cut_idx = 0
+        for t_i, (clip_p, w0, w1, clip_dur) in enumerate(take_windows):
+            avail = w1 - w0
+            if avail >= 6.4:
+                mid = round((w0 + w1) * 0.5, 4)
+                halves = [(w0, mid), (mid, w1)]
+            else:
+                halves = [(w0, w1)]
+
+            for h_i, (h0, h1) in enumerate(halves):
+                if shot_cut_idx == 0 and h_i == 0:
+                    crop_mode, cov_role = "wide_master", (native_role or "wide_two_shot")
+                elif native_role in ("foot_tremor_macro", "eye_snarl_ecu", "visceral_jaw_clamp_cu", "asymmetric_knockdown", "abyss_standoff_wide"):
+                    crop_mode = "wide_master" if h_i == 0 else "ots_dirty_frame"
+                    cov_role = native_role
+                else:
+                    crop_mode, cov_role = safe_coverage_cycle[(b_idx + shot_cut_idx) % len(safe_coverage_cycle)]
+
+                raw_cuts.append({
+                    "bseg": bseg,
+                    "b_idx": b_idx,
+                    "act": act_num,
+                    "clip": clip_p,
+                    "clip_duration": clip_dur,
+                    "w0": w0,
+                    "w1": w1,
+                    "tin": h0,
+                    "tout": h1,
+                    "crop_mode": crop_mode,
+                    "coverage_role": cov_role,
+                })
+                shot_cut_idx += 1
+
+    # Cú cắt cuối cùng luôn là wide_master kết mở
+    if raw_cuts:
+        raw_cuts[-1]["crop_mode"] = "wide_master"
+        raw_cuts[-1]["coverage_role"] = "abyss_standoff_wide"
+
+    # Phân bổ chính xác tổng số frame để đạt đúng `target_dur` (vd. 300.0s)
+    target_frames_total = int(round(target_dur * fps))
+    raw_durs = [max(0.5, rc["tout"] - rc["tin"]) for rc in raw_cuts]
+    sum_raw = sum(raw_durs) or 1.0
+    scaled_frames = [max(int(2.5 * fps), int(round((d / sum_raw) * target_frames_total))) for d in raw_durs]
+    diff_frames = target_frames_total - sum(scaled_frames)
+    step = 1 if diff_frames > 0 else -1
+    idx_cycle = 0
+    while diff_frames != 0 and raw_cuts:
+        k = idx_cycle % len(scaled_frames)
+        if step > 0 or scaled_frames[k] > int(2.6 * fps):
+            scaled_frames[k] += step
+            diff_frames -= step
+        idx_cycle += 1
+        if idx_cycle > len(scaled_frames) * 200:
+            break
 
     expanded = []
-    use_counts = {b["shot_id"]: 0 for b in base_segs}
-    prev_sid = None
-
-    for c_idx in range(n_cuts):
-        frames_here = base_frames_per_cut + (1 if c_idx < rem_frames else 0)
-        cut_dur = round(frames_here / fps, 4)
-
-        if c_idx == n_cuts - 1:
-            chosen = base_segs[-1]
-        else:
-            act_idx = min(4, int((c_idx / n_cuts) * 5))
-            # Cửa sổ trượt theo hồi (Act 0 -> đầu phim, Act 4 -> cuối phim)
-            start_i = max(0, int(round((act_idx / 5.0) * max(1, n_base - 3))))
-            end_i = min(n_base, start_i + max(5, n_base // 2))
-            act_pool = list(base_segs[start_i:end_i])
-            for cw in cutaway_segs:
-                if cw not in act_pool:
-                    act_pool.append(cw)
-            if not act_pool:
-                act_pool = list(base_segs)
-            # Ưu tiên shot ít xuất hiện nhất trong pool và khác với shot liền trước
-            candidates = [b for b in act_pool if b["shot_id"] != prev_sid] or act_pool
-            candidates.sort(key=lambda b: (use_counts[b["shot_id"]], (act_pool.index(b) + c_idx) % len(act_pool)))
-            chosen = candidates[c_idx % min(3, len(candidates))]
-
-        sid = chosen["shot_id"]
-        prev_sid = sid
-        u_idx = use_counts[sid]
-        use_counts[sid] += 1
-
-        variants = seg_variants[sid]
-        clip_p, w0, w1, clip_dur = variants[u_idx % len(variants)]
-        avail = max(0.1, w1 - w0)
-        eff_dur = min(cut_dur, avail)
-
-        # Chọn pha thời gian (head / mid / tail) trong cửa sổ sạch
-        is_finale_shot = (sid == base_segs[-1]["shot_id"])
-        phase_mode = 2 if (is_finale_shot and c_idx == n_cuts - 1) else ((u_idx // len(variants)) % 3)
-        if avail <= eff_dur + 0.30:
-            tin = w0
-        elif phase_mode == 0:
-            tin = min(w1 - eff_dur, w0 + 0.15)
-        elif phase_mode == 1:
-            tin = w0 + (avail - eff_dur) * 0.5
-        else:
-            tin = max(w0, w1 - eff_dur - 0.15)
-        tin = round(max(0.0, tin), 4)
-        tout = round(tin + cut_dur, 4)
-
-        native_role = chosen["shot"].get("coverage_role") or ""
-        if c_idx == n_cuts - 1:
-            crop_mode, cov_role = "wide_master", "abyss_standoff_wide"
-        elif native_role and u_idx < 2:
-            crop_mode, cov_role = "wide_master", native_role
-        else:
-            crop_mode, cov_role = coverage_cycle[(c_idx + u_idx) % len(coverage_cycle)]
-
-        new_seg = dict(chosen)
+    for rc, f_cnt in zip(raw_cuts, scaled_frames):
+        cut_dur = round(f_cnt / fps, 4)
+        tin = rc["tin"]
+        tout = tin + cut_dur
+        if tout > rc["w1"]:
+            tin = max(rc["w0"], rc["w1"] - cut_dur)
+            tout = round(tin + cut_dur, 4)
+        if tout > rc["clip_duration"]:
+            tin = max(0.0, rc["clip_duration"] - cut_dur)
+            tout = round(tin + cut_dur, 4)
+        new_seg = dict(rc["bseg"])
         new_seg.update(
-            clip=clip_p,
-            clip_duration=clip_dur,
-            tin=tin,
-            tout=tout,
+            clip=rc["clip"],
+            clip_duration=rc["clip_duration"],
+            tin=round(tin, 4),
+            tout=round(tout, 4),
             duration=cut_dur,
             transition_out=CUT,
-            crop_mode=crop_mode,
-            coverage_role=cov_role,
-            act=min(5, int((c_idx / n_cuts) * 5) + 1),
-            source=f"epic_act{min(5, int((c_idx / n_cuts) * 5) + 1)}_{crop_mode}",
+            crop_mode=rc["crop_mode"],
+            coverage_role=rc["coverage_role"],
+            act=rc["act"],
+            source=f"epic_act{rc['act']}_{rc['crop_mode']}",
             notes=[],
         )
         expanded.append(new_seg)
