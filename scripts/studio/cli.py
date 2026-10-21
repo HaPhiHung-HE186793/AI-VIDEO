@@ -1262,11 +1262,136 @@ def _ref_paths(proj: Path, m: dict, s: dict, limit: int = 3) -> list:
     return [proj / p for p in rels]
 
 
+def _flow_generate_assets(proj: Path, m: dict, args, cfg: dict):
+    """Tự động tạo & thu hoạch trọn bộ tài nguyên tiền kỳ (nhân vật, bối cảnh, đạo cụ) trên Google Flow (0 credit).
+
+    Wave 1: Tạo ảnh gốc đầu tiên của mỗi nhân vật + toàn bộ bối cảnh + đạo cụ -> tải về.
+    Wave 2: Tạo các góc còn lại của nhân vật (three_quarter, profile) có gắn kèm ảnh gốc Wave 1 để khóa 100% nhận dạng.
+    """
+    from . import flow as fl
+
+    aspect = args.aspect or m.get("aspect_ratio", "16:9")
+    model = args.model or cfg["models"]["image"]["pro"]
+    stage_dir = proj / ".flow" / "staged"
+    incoming = proj / "assets" / "frames" / "_incoming"
+    incoming.mkdir(parents=True, exist_ok=True)
+
+    wave1, wave2 = [], []
+    for c in m.get("characters", []):
+        cid = c["id"]
+        rps = c.get("reference_prompts") or []
+        for idx, rp in enumerate(rps):
+            dst = proj / rp["path"]
+            if dst.exists() and not args.retakes:
+                continue
+            item = {
+                "key": f"ASSET_{cid}_{rp.get('view', idx)}",
+                "dest": dst,
+                "prompt": rp["prompt"],
+                "anchor": (proj / rps[0]["path"]) if idx > 0 and rps else None,
+                "anchor_uid": f"REF_{cid}_ANCHOR" if idx > 0 else "",
+            }
+            if idx == 0:
+                wave1.append(item)
+            else:
+                wave2.append(item)
+    for e in m.get("environments", []):
+        dst = proj / e["path"]
+        if (not dst.exists() or args.retakes) and e.get("clean_plate_prompt"):
+            wave1.append({
+                "key": f"ASSET_{e['id']}",
+                "dest": dst,
+                "prompt": e["clean_plate_prompt"],
+                "anchor": None,
+                "anchor_uid": "",
+            })
+    for p in m.get("props", []):
+        dst = proj / p["path"]
+        if (not dst.exists() or args.retakes) and p.get("prop_prompt"):
+            wave1.append({
+                "key": f"ASSET_{p['id']}",
+                "dest": dst,
+                "prompt": p["prop_prompt"],
+                "anchor": None,
+                "anchor_uid": "",
+            })
+
+    if not wave1 and not wave2:
+        out({"status": "ok", "note": "Tất cả tài nguyên tiền kỳ đã tồn tại.", "assets": []})
+        return
+
+    harvested = []
+    with fl.Flow(cfg["browser"]["debug_port"], m.get("flow_project_url", ""), download_dir=incoming) as f:
+        if args.new_project or not m.get("flow_project_url"):
+            m["flow_project_url"] = f.new_project()
+            mf.save(proj, m)
+        f.configure(kind="image", aspect=aspect, model=model, count=args.count)
+
+        for wave_idx, wave_items in enumerate((wave1, wave2), start=1):
+            if not wave_items:
+                continue
+            prompt_map = {}
+            dest_map = {}
+            for it in wave_items:
+                f.clear_prompt()
+                if it["anchor"] and it["anchor"].exists():
+                    f.attach_file(it["anchor"], stage_dir=stage_dir, uid=it["anchor_uid"])
+                f.type_prompt(it["prompt"])
+                f.screenshot(proj / ".flow" / f"{it['key']}_compose.png")
+                if not args.dry_run:
+                    f.submit()
+                    f.wait(2.5)
+                prompt_map[it["key"]] = it["prompt"]
+                dest_map[it["key"]] = it["dest"]
+
+            if args.dry_run:
+                for it in wave_items:
+                    harvested.append({"key": it["key"], "dest": rel(proj, it["dest"]), "wave": wave_idx, "dry_run": True})
+                continue
+
+            def _on_asset_row(r, _dest_map=dest_map, _wave=wave_idx):
+                k = r.get("shot")
+                if not k or "files" not in r or not r["files"]:
+                    return
+                dst = _dest_map.get(k)
+                if not dst:
+                    return
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                chosen = Path(r["files"][0])
+                shutil.copy2(chosen, dst)
+                for fpath in r["files"]:
+                    Path(fpath).unlink(missing_ok=True)
+                qa.strip_image_letterbox(dst, cfg["qa"]["letterbox_luma"])
+                harvested.append({"key": k, "path": rel(proj, dst), "wave": _wave})
+
+            f.harvest_rows(
+                "image",
+                prompt_map,
+                incoming,
+                only_shots=set(prompt_map),
+                quota={k: 1 for k in prompt_map},
+                wait_done=True,
+                wait_timeout=900,
+                on_row=_on_asset_row,
+            )
+
+    mf.save(proj, m)
+    out({
+        "flow_project": m.get("flow_project_url"),
+        "kind": "assets",
+        "harvested": harvested,
+        "next": "audit-assets rồi flow-generate --kind frames",
+    })
+
+
 def cmd_flow_generate(args, cfg):
     from . import flow as fl
 
     proj = proj_dir_of(args)
     m = mf.load(proj)
+    if args.kind == "assets":
+        _flow_generate_assets(proj, m, args, cfg)
+        return
     mf.resolve_chained_keyframes(m, proj)
     shots = _flow_targets(m, args)
     if not shots:
@@ -2082,9 +2207,9 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--dry-run", action="store_true")
     sp.add_argument("--wait-timeout", type=int, default=600)
 
-    sp = add("flow-generate", cmd_flow_generate, "Tự tạo frame (Nano Banana) hoặc video (Veo) trên Google Flow")
+    sp = add("flow-generate", cmd_flow_generate, "Tự tạo tài nguyên tiền kỳ (assets), frame (Nano Banana) hoặc video (Veo) trên Google Flow")
     project_arg(sp)
-    sp.add_argument("--kind", choices=["frames", "video"], default="video")
+    sp.add_argument("--kind", choices=["assets", "frames", "video"], default="video")
     sp.add_argument("--shots", default="", help="shot_01,shot_02 (mặc định: mọi shot có prompt)")
     sp.add_argument("--retakes", action="store_true", help="Chỉ các shot auto-select đánh dấu needs_retake")
     sp.add_argument("--count", type=int, default=2, help="Số bản mỗi shot (x1–x4)")

@@ -1,0 +1,42 @@
+{
+  "id": "CHAR_REX",
+  "name": "Rex",
+  "short_name": "Rex",
+  "type": "creature",
+  "identity_line": "a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes",
+  "wardrobe_variants": {
+    "prowling": "calmly strolling with clean rain-beaded bronze-brown hide and steady heavy posture",
+    "battle_scarred": "bronze-brown flanks splattered with dark wet canyon mud, fresh claw-rake marks on its shoulder, and hot steam billowing from its jaws"
+  },
+  "reference_prompts": [
+    {
+      "view": "head",
+      "path": "assets/characters/CHAR_REX_head.png",
+      "prompt": "Rex: a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Three-quarter close-up of the head, mouth closed, realistic wet reptile skin texture. Live-action IMAX 65mm creature cinematography. Plain neutral grey studio background, soft directional lighting, single subject, no text."
+    },
+    {
+      "view": "three_quarter",
+      "path": "assets/characters/CHAR_REX_three_quarter.png",
+      "prompt": "Rex: a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Full-body three-quarter view in a natural standing pose showing its smooth muscular back without spikes. Live-action IMAX 65mm creature cinematography. Plain neutral grey studio background, soft directional lighting, single subject, no text."
+    },
+    {
+      "view": "profile",
+      "path": "assets/characters/CHAR_REX_profile.png",
+      "prompt": "Rex: a massive 9-ton adult Tyrannosaurus rex with warm earthy bronze-brown pebbly hide, golden-ochre underbelly, thick smooth muscular back without dorsal spikes, broad rectangular bone-crushing skull, and deep-set amber reptile eyes. Full-body side profile view showing classic head-to-tail proportions and smooth back. Live-action IMAX 65mm creature cinematography. Plain neutral grey studio background, soft directional lighting, single subject, no text."
+    }
+  ],
+  "reference_images": [
+    "assets/characters/CHAR_REX_head.png",
+    "assets/characters/CHAR_REX_three_quarter.png",
+    "assets/characters/CHAR_REX_profile.png"
+  ],
+  "recommended_image_model": "pro",
+  "bank_char_id": "CHAR_REX",
+  "source_project": "clash-of-titans-rex-vs-vasto-part-1",
+  "bank_files": [
+    "CHAR_REX_head.png",
+    "CHAR_REX_three_quarter.png",
+    "CHAR_REX_profile.png"
+  ],
+  "bank_wardrobe_files": {}
+}

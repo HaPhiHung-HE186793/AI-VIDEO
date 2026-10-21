@@ -1029,3 +1029,190 @@ def test_universal_genres_wardrobe_bank_180_axis_and_nle_export(tmp_path, cfg):
     cc_data = json.loads(Path(nle_out["capcut_draft"]).read_text(encoding="utf-8"))
     assert cc_data["duration"] == 4_000_000
     assert len(cc_data["tracks"]) == 4
+
+
+def test_universal_genres_wardrobe_bank_180_axis_and_nle_export(tmp_path, cfg):
+    import json
+    import xml.etree.ElementTree as ET
+    from pathlib import Path
+    import numpy as np
+    from studio import grade, manifest as mf, media, music, nle
+
+    cv2 = media.cv2_module()
+
+    # 1. Universal Genre Director Profiles (10 thể loại chuyên nghiệp + LUT + Music Mood)
+    assert len(prompts.GENRE_PROFILES) >= 10
+    for g_key, g_prof in prompts.GENRE_PROFILES.items():
+        sample = {"project_name": f"Test {g_key}"}
+        applied = prompts.apply_genre_profile(sample, g_key, overwrite=True)
+        assert sample["genre"] == g_key
+        assert sample["lut_preset"] in grade.PRESETS
+        assert music.detect_mood(sample, "auto") == g_prof["music_mood"]
+        lut_file = tmp_path / f"{g_key}.cube"
+        grade.write_cube(lut_file, applied["lut_preset"], strength=0.85, size=9)
+        assert lut_file.exists()
+
+    # 2. OmniChar Wardrobe / State Overrides & Global Actor Bank
+    proj_a = tmp_path / "ep_01"
+    proj_b = tmp_path / "ep_02"
+    bank_dir = tmp_path / "actor_bank"
+    (proj_a / "assets/characters").mkdir(parents=True, exist_ok=True)
+    (proj_b / "assets/characters").mkdir(parents=True, exist_ok=True)
+
+    base_ref = proj_a / "assets/characters/hero_front.png"
+    combat_ref = proj_a / "assets/characters/hero_scarred.png"
+    cv2.imwrite(str(base_ref), np.full((120, 120, 3), 100, dtype=np.uint8))
+    cv2.imwrite(str(combat_ref), np.full((120, 120, 3), 180, dtype=np.uint8))
+
+    manifest_a = {
+        "project_slug": "ep-01",
+        "genre": "wuxia_xianxia",
+        "style_line": prompts.GENRE_PROFILES["wuxia_xianxia"]["style_line"],
+        "characters": [
+            {
+                "id": "CHAR_LI",
+                "name": "Li Mu",
+                "short_name": "Li Mu",
+                "voice": "Charon",
+                "identity_line": "a 26-year-old swordsman with a sharp jawline and high black ponytail",
+                "reference_images": ["assets/characters/hero_front.png"],
+                "wardrobe_variants": {
+                    "scholar": "wearing clean white linen robes with a jade flute at his waist",
+                    "battle_scarred": "wearing torn blood-stained black armor with rain-soaked hair",
+                },
+                "wardrobe_refs": {
+                    "battle_scarred": ["assets/characters/hero_scarred.png"],
+                },
+            },
+            {
+                "id": "CHAR_VEX",
+                "name": "General Vex",
+                "short_name": "Vex",
+                "identity_line": "a tall armored warlord with a silver iron mask and crimson cape",
+                "reference_images": ["assets/characters/hero_front.png"],
+            },
+        ],
+        "shots": [
+            {
+                "shot_id": "shot_01",
+                "scene_id": "scene_duel",
+                "order": 1,
+                "generation_mode": "first_frame",
+                "first_frame_path": "assets/characters/hero_front.png",
+                "camera": "35mm medium two-shot",
+                "subjects": ["CHAR_LI", "CHAR_VEX"],
+                "character_states": {"CHAR_LI": "battle_scarred"},
+                "action": "Li Mu parries Vex's heavy halberd strike",
+                "audio": {"mode": "sfx_only", "sfx": "steel clash"},
+            },
+            {
+                "shot_id": "shot_02",
+                "scene_id": "scene_duel",
+                "order": 2,
+                "generation_mode": "first_frame",
+                "first_frame_path": "assets/characters/hero_front.png",
+                "camera": "50mm medium two-shot",
+                "subjects": ["CHAR_VEX", "CHAR_LI"],
+                "action": "Vex slashes at Li Mu",
+                "audio": {"mode": "sfx_only", "sfx": "sword whoosh"},
+            },
+            {
+                "shot_id": "shot_03",
+                "scene_id": "scene_duel",
+                "order": 3,
+                "generation_mode": "first_frame",
+                "first_frame_path": "assets/characters/hero_front.png",
+                "camera": "85mm close-up",
+                "subjects": ["CHAR_LI"],
+                "action": "Li Mu glares fiercely while looking to the right",
+                "audio": {"mode": "sfx_only", "sfx": "wind"},
+            },
+            {
+                "shot_id": "shot_04",
+                "scene_id": "scene_duel",
+                "order": 4,
+                "generation_mode": "first_frame",
+                "first_frame_path": "assets/characters/hero_front.png",
+                "camera": "85mm close-up",
+                "subjects": ["CHAR_VEX"],
+                "action": "Vex sneers coldly while looking to the right",
+                "audio": {"mode": "sfx_only", "sfx": "wind"},
+            },
+        ],
+    }
+
+    for s in manifest_a["shots"]:
+        s["veo_prompt"] = prompts.build_prompt(manifest_a, s)
+
+    assert "a 26-year-old swordsman with a sharp jawline and high black ponytail (current state/wardrobe: wearing torn blood-stained black armor with rain-soaked hair)" in manifest_a["shots"][0]["veo_prompt"]
+    s1_lint_codes = {f["code"] for f in prompts.lint_shot(manifest_a, manifest_a["shots"][0], cfg)}
+    assert "IDENTITY_LINE_DRIFT" not in s1_lint_codes
+
+    s1_refs = mf.shot_reference_paths(manifest_a, manifest_a["shots"][0], proj_dir=proj_a, limit=3)
+    assert s1_refs[0] == "assets/characters/hero_scarred.png"
+
+    exp_res = mf.export_character_to_bank(proj_a, manifest_a, "CHAR_LI", bank_dir=bank_dir)
+    assert exp_res["files_copied"] == 1
+    bank_list = mf.list_actor_bank(bank_dir=bank_dir)
+    assert any(x["id"] == "CHAR_LI" and "battle_scarred" in x["wardrobe_variants"] for x in bank_list)
+    manifest_b = {"project_slug": "ep-02", "characters": []}
+    imp_res = mf.import_character_from_bank(proj_b, manifest_b, "CHAR_LI", bank_dir=bank_dir)
+    assert imp_res["char_id"] == "CHAR_LI"
+    assert (proj_b / "assets/characters/hero_scarred.png").exists()
+
+    # 3. Kiểm tra 180-Degree Screen Direction & Eyeline Match Linter
+    proj_codes = {f["code"] for f in prompts.lint_project(manifest_a, cfg)}
+    assert "AXIS_180_VIOLATION" in proj_codes
+    assert "EYELINE_MISMATCH" in proj_codes
+
+    manifest_a["shots"][1]["subjects"] = ["CHAR_LI", "CHAR_VEX"]
+    manifest_a["shots"][3]["action"] = "Vex sneers coldly while looking to the left"
+    proj_codes_fixed = {f["code"] for f in prompts.lint_project(manifest_a, cfg)}
+    assert "AXIS_180_VIOLATION" not in proj_codes_fixed
+    assert "EYELINE_MISMATCH" not in proj_codes_fixed
+
+    # 4. Kiểm tra DAG Execution Waves & NLE Export (.fcpxml, .edl, CapCut Draft JSON)
+    manifest_a["shots"][1]["chain_from_prev"] = True
+    dag = mf.compute_generation_dag(manifest_a, proj_a)
+    assert dag["critical_path_waves"] == 2
+    assert "shot_01" in dag["waves"][0]["parallel_shots"]
+    assert "shot_02" in dag["waves"][1]["parallel_shots"]
+
+    dummy_clip = proj_a / "assets/clips/shot_01.mp4"
+    dummy_clip.parent.mkdir(parents=True, exist_ok=True)
+    dummy_clip.write_bytes(b"fake_mp4")
+    dummy_vo = proj_a / "assets/audio/vo/beat_01.wav"
+    dummy_vo.parent.mkdir(parents=True, exist_ok=True)
+    dummy_vo.write_bytes(b"fake_wav")
+    segs = [
+        {
+            "shot_id": "shot_01",
+            "beat_id": "beat_01",
+            "clip": dummy_clip,
+            "has_audio": True,
+            "clip_duration": 8.0,
+            "tin": 0.5,
+            "tout": 4.5,
+            "duration": 4.0,
+            "timeline_start": 0.0,
+            "transition_in_sec": 0.0,
+            "transition_out": "cut",
+            "vo_path": dummy_vo,
+            "vo_offset": 0.2,
+            "vo_duration": 3.5,
+            "subtitle": "Kiếm khí tung hoành giữa đêm mưa.",
+            "source": "auto",
+            "notes": [],
+        }
+    ]
+    nle_out = nle.export_all_nle(segs, proj_a / "output", manifest_a, cfg, fmt="landscape")
+    assert (proj_a / "output/timeline.fcpxml").exists()
+    assert (proj_a / "output/timeline.edl").exists()
+    assert (proj_a / "output/capcut_draft_content.json").exists()
+
+    tree = ET.parse(nle_out["fcpxml"])
+    assert tree.getroot().tag == "fcpxml"
+    cc_data = json.loads(Path(nle_out["capcut_draft"]).read_text(encoding="utf-8"))
+    assert cc_data["duration"] == 4_000_000
+    assert len(cc_data["tracks"]) == 4
+

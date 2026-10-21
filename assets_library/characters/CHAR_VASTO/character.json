@@ -1,0 +1,42 @@
+{
+  "id": "CHAR_VASTO",
+  "name": "Vasto",
+  "short_name": "Vasto",
+  "type": "creature",
+  "identity_line": "a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes",
+  "wardrobe_variants": {
+    "prowling": "silently patrolling with glistening dark obsidian-slate armored scales and sharp dorsal horn-spikes",
+    "battle_scarred": "obsidian-slate armored neck and flanks streaked with canyon mud and fresh bite marks, dorsal horn-spikes caked in wet ash, breathing ragged steam"
+  },
+  "reference_prompts": [
+    {
+      "view": "head",
+      "path": "assets/characters/CHAR_VASTO_head.png",
+      "prompt": "Vasto: a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes. Three-quarter close-up of the head, mouth closed, horned brow ridges and scarred snout clearly visible. Live-action IMAX 65mm creature cinematography. Plain neutral grey studio background, soft directional lighting, single subject, no text."
+    },
+    {
+      "view": "three_quarter",
+      "path": "assets/characters/CHAR_VASTO_three_quarter.png",
+      "prompt": "Vasto: a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes. Full-body three-quarter view in a grounded predatory stance showing the jagged row of triangular dorsal horn-spikes along its back. Live-action IMAX 65mm creature cinematography. Plain neutral grey studio background, soft directional lighting, single subject, no text."
+    },
+    {
+      "view": "profile",
+      "path": "assets/characters/CHAR_VASTO_profile.png",
+      "prompt": "Vasto: a colossal 10-ton adult Giganotosaurus apex predator with dark obsidian-slate armored scales, a prominent jagged row of sharp triangular horn-spikes running along its spine and brow ridges, narrow blade-toothed skull with a pale scar across the snout, and cold yellow reptile eyes. Full-body side profile view showing head-to-tail proportions and jagged dorsal horn-spikes. Live-action IMAX 65mm creature cinematography. Plain neutral grey studio background, soft directional lighting, single subject, no text."
+    }
+  ],
+  "reference_images": [
+    "assets/characters/CHAR_VASTO_head.png",
+    "assets/characters/CHAR_VASTO_three_quarter.png",
+    "assets/characters/CHAR_VASTO_profile.png"
+  ],
+  "recommended_image_model": "pro",
+  "bank_char_id": "CHAR_VASTO",
+  "source_project": "clash-of-titans-rex-vs-vasto-part-1",
+  "bank_files": [
+    "CHAR_VASTO_head.png",
+    "CHAR_VASTO_three_quarter.png",
+    "CHAR_VASTO_profile.png"
+  ],
+  "bank_wardrobe_files": {}
+}

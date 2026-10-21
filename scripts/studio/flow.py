@@ -525,21 +525,24 @@ class Flow:
                     if on_row:
                         on_row(row)
                     continue
-                btn = self.page.locator(UI["bulk_download"]).nth(i)
-                btn.scroll_into_view_if_needed()
-                self.wait(0.8)
-                # Lưới có thể nạp/xê dịch hàng khi cuộn → xác nhận lại đúng hàng (theo khóa) trước khi bấm.
                 keys_now = self._row_keys()
-                if i >= len(keys_now) or keys_now[i] != key:
-                    if key not in keys_now:
-                        row = {"shot": sid, "error": "hàng bị xê dịch, không tìm lại được", "row_text": txt[:120]}
-                        results.append(row)
-                        if on_row:
-                            on_row(row)
-                        continue
-                    i = keys_now.index(key)
-                    btn = self.page.locator(UI["bulk_download"]).nth(i)
-                    btn.scroll_into_view_if_needed()
+                if key not in keys_now:
+                    done_rows.discard(key)
+                    break
+                i = keys_now.index(key)
+                btn = self.page.locator(UI["bulk_download"]).nth(i)
+                try:
+                    btn.scroll_into_view_if_needed(timeout=5000)
+                except Exception:
+                    done_rows.discard(key)
+                    break
+                self.wait(0.8)
+                keys_now = self._row_keys()
+                if key not in keys_now:
+                    done_rows.discard(key)
+                    break
+                i = keys_now.index(key)
+                btn = self.page.locator(UI["bulk_download"]).nth(i)
                 before = {f for d in watch for f in d.iterdir()}
                 partial_hung = kind == "video" and bool(re.search(r"\b\d{1,3}%", tile_txt)) and "play_arrow" in tile_txt
                 got = None
