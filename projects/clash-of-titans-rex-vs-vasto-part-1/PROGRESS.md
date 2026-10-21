@@ -19,9 +19,9 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 ## Trạng thái
 
 - **Slug:** `clash-of-titans-rex-vs-vasto-part-1` — thư mục `projects/clash-of-titans-rex-vs-vasto-part-1/` (KHÔNG `init` dự án mới)
-- **Flow:** (chưa có — sẽ tạo khi flow-generate --new-project)
+- **Flow:** https://flow.google.com/project/2771c196-bd45-40e4-bd63-da2daafb79d1
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T15:37:56 trên máy **DESKTOP-HUP72C4** (lệnh `lint-prompts`)
+- **Cập nhật lần cuối:** 2026-10-21T15:41:44 trên máy **DESKTOP-HUP72C4** (lệnh `audit-assets`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
@@ -152,5 +152,10 @@ python scripts/studio_helper.py storyboard-approve --project clash-of-titans-rex
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-21 15:41 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
+| 10-21 15:40 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
+| 10-21 15:40 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
+| 10-21 15:40 | DESKTOP-HUP72C4 | `flow-generate --kind assets --count 2 --new-project` | ok |
+| 10-21 15:38 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
 | 10-21 15:37 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
 | 10-21 15:37 | DESKTOP-HUP72C4 | `build-prompts ` | ok |

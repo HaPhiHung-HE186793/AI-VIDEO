@@ -125,3 +125,4 @@ flowchart LR
   - `shot_58`: Trên đỉnh Mỏm đá gành biển, Rex đứng thở dốc, nước biển và máu nhỏ giọt từ cằm xuống mặt đá, đôi mắt hổ phách nhìn theo kẻ bại trận đang rút lui dưới biển.
   - `shot_59`: Góc máy thấp 1.2m ngước lên: Rex bước một bước nặng nề lên điểm cao nhất của Mỏm đá gành biển, sóng biển đập vào vách đá phía sau tung bọt trắng xóa dưới ánh nắng bình minh xuyên qua mây bão.
   - `shot_60`: Đại cảnh IMAX Kết thúc: Rex vươn cao cổ, há rộng hàm tung tiếng gầm bá chủ vang dội khắp vùng bờ biển và đại dương, khép lại trận đại chiến 5 phút hoàn chỉnh.
+
