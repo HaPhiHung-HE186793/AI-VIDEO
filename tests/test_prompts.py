@@ -558,3 +558,145 @@ def test_storyboard_grid_prompt_and_auto_slicer(tmp_path, cfg):
     assert (proj_dir / res["annotated_sheet"]).exists()
     p1 = cv2.imread(str(proj_dir / res["panels"][0]["path"]))
     assert p1.shape == (1080, 1920, 3)
+
+
+
+def test_industrial_5_upgrades_compact_prompt_backfilling_continuity_and_inertia(tmp_path, cfg):
+    import numpy as np
+    from studio import manifest as mf, media, qa, storyboard as sb, takes
+
+    cv2 = media.cv2_module()
+    proj_dir = tmp_path / "ind_proj"
+    proj_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1. Tạo ảnh tham chiếu nhân vật + bối cảnh + Hero Keyframe của shot_01
+    char_ref = proj_dir / "assets/characters/CHAR_TREX_head.png"
+    char_ref.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(char_ref), np.full((300, 300, 3), (40, 60, 80), dtype=np.uint8))
+
+    env_ref = proj_dir / "assets/environments/ENV_SWAMP.png"
+    env_ref.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(env_ref), np.full((360, 640, 3), (25, 35, 30), dtype=np.uint8))
+
+    s1_hero = proj_dir / "assets/frames/KF_IND_S01_START.jpg"
+    s1_hero.parent.mkdir(parents=True, exist_ok=True)
+    cv2.imwrite(str(s1_hero), np.full((1080, 1920, 3), (35, 55, 75), dtype=np.uint8))
+
+    proj = {
+        "project_name": "Industrial AIGC Pipeline",
+        "project_slug": "ind-proj",
+        "project_code": "IND",
+        "language": "en",
+        "aspect_ratio": "16:9",
+        "style_line": (
+            "Photorealistic ILM live-action creature cinematography, 35mm Anamorphic lens, "
+            "low-key Chiaroscuro night rain lighting (warm 2700K amber ground firelight bounce vs cold 6500K steel-teal overhead rain rim light)"
+        ),
+        "characters": [
+            {
+                "id": "CHAR_TREX",
+                "name": "Rex",
+                "short_name": "Rex",
+                "identity_line": "a massive 9-ton adult Tyrannosaurus rex with dark charcoal-brown pebbly hide",
+                "reference_images": ["assets/characters/CHAR_TREX_head.png"],
+            }
+        ],
+        "environments": [
+            {
+                "id": "ENV_SWAMP",
+                "name": "Storm Swamp",
+                "identity_line": (
+                    "a flooded prehistoric cypress forest at night, "
+                    "fallen burning trunks casting warm 2700K amber firelight bounce and cold 6500K steel-teal rain rim light"
+                ),
+                "path": "assets/environments/ENV_SWAMP.png",
+            }
+        ],
+        "shots": [
+            {
+                "shot_id": "shot_01",
+                "scene_id": "scene_01",
+                "order": 1,
+                "generation_mode": "first_last",
+                "first_frame_path": "assets/frames/KF_IND_S01_START.jpg",
+                "first_frame_source": "hero_1080p",
+                "last_frame_path": "assets/frames/KF_IND_S01_END.jpg",
+                "camera": "1.5m low-angle 35mm Anamorphic lens",
+                "subjects": ["CHAR_TREX"],
+                "environment": "ENV_SWAMP",
+                "lighting": "low-key Chiaroscuro night rain: cold 6500K steel-teal overhead rain rim light and warm 2700K amber ground firelight bounce",
+                "start_action": "Rex lowers its head in the rain",
+                "action": "Rex roars into the storm",
+                "end_action": "Rex snaps its jaws shut",
+                "timeline_phases": [
+                    {
+                        "time": "0.0s-2.5s",
+                        "phase_name": "Inhale",
+                        "camera": "35mm low-angle push",
+                        "subjects": {"CHAR_TREX": "Rex expands its ribcage"},
+                        "vfx": "Rain sheets splash off warm 2700K amber firelight mud",
+                    },
+                    {
+                        "time": "2.5s-8.0s",
+                        "phase_name": "Roar",
+                        "camera": "Handheld shudder",
+                        "subjects": {"CHAR_TREX": "Rex unleashes a shockwave roar"},
+                        "vfx": "Water ripples radially outward under 6500K steel-teal rain",
+                    },
+                ],
+                "audio": {"mode": "sfx_only", "sfx": "deep roar"},
+            },
+            {
+                "shot_id": "shot_02",
+                "scene_id": "scene_01",
+                "order": 2,
+                "generation_mode": "first_last",
+                "camera": "1.5m medium close-up, 50mm lens",
+                "subjects": ["CHAR_TREX"],
+                "environment": "ENV_SWAMP",
+                "action": "Rex stalks forward through the mud",
+                "end_action": "Rex pauses and turns toward camera",
+                "mid_actions": ["step 1", "step 2", "step 3", "step 4"],
+                "audio": {"mode": "sfx_only", "sfx": "heavy footsteps"},
+            },
+        ],
+    }
+
+    # Upgrade 2: Visual-First Compact Motion Prompting khử câu lighting lặp 3 lần
+    veo_s1 = prompts.build_prompt(proj, proj["shots"][0])
+    assert veo_s1.count("2700K") <= 2
+    assert "a massive 9-ton adult Tyrannosaurus rex with dark charcoal-brown pebbly hide" in veo_s1
+
+    # Upgrade 3: Iterative Scene Anchor Backfilling — shot_02 tự động nhận Hero Frame của shot_01 làm mỏ neo ánh sáng cảnh
+    anchor_for_s2 = mf.scene_lighting_anchor_path(proj, proj["shots"][1], proj_dir=proj_dir)
+    assert anchor_for_s2 == "assets/frames/KF_IND_S01_START.jpg"
+    refs_s2 = mf.shot_reference_paths(proj, proj["shots"][1], proj_dir=proj_dir, limit=3)
+    assert "assets/frames/KF_IND_S01_START.jpg" in refs_s2
+
+    # Upgrade 1: 2-Stage Storyboard Grid không ghi đè Hero Frame 1080p đã có của shot_01
+    grid_img = np.full((1080, 1920, 3), 120, dtype=np.uint8)
+    grid_path = proj_dir / "grid.jpg"
+    cv2.imwrite(str(grid_path), grid_img)
+    sb.slice_storyboard_grid(grid_path, proj_dir, proj, rows=2, cols=2, apply_to_shots=True, overwrite_hero_frames=False)
+    assert proj["shots"][0]["first_frame_source"] == "hero_1080p"
+    assert proj["shots"][0].get("grid_panel_start_path", "").startswith("assets/frames/grid_panels/PANEL_")
+
+    # Upgrade 4a: Anti-Over-Keyframing Linter bắt lỗi nhồi quá nhiều mid_actions (>=4)
+    proj["shots"][1]["veo_prompt"] = prompts.build_prompt(proj, proj["shots"][1])
+    codes_s2 = {f["code"] for f in prompts.lint_shot(proj, proj["shots"][1], cfg)}
+    assert "TOO_MANY_WAYPOINTS" in codes_s2
+
+    # Upgrade 4b: Pre-Flight Start-End Continuity Gate phát hiện nhảy độ sáng (Luma Jump) & lệch màu
+    s1_end = proj_dir / "assets/frames/KF_IND_S01_END.jpg"
+    cv2.imwrite(str(s1_end), np.full((1080, 1920, 3), (230, 230, 230), dtype=np.uint8))
+    cont = qa.check_keyframe_pair_continuity(s1_hero, s1_end)
+    assert not cont["ok"]
+    assert any("SEVERE_LUMA_JUMP" in x for x in cont["issues"])
+
+    # Upgrade 5: Auto Inertia Window Trim cắt bỏ đầu/cuối tĩnh của clip 8s
+    fps = 24.0
+    # 0.0s-0.8s tĩnh (diff=0.1), 0.8s-6.8s chuyển động mạnh (diff=8.0), 6.8s-8.0s đỗ tĩnh (diff=0.1)
+    diffs = np.array([0.1] * 20 + [8.0] * 144 + [0.1] * 28, dtype=np.float32)
+    eff_w0, eff_w1 = takes.inertia_trim_bounds(diffs, fps, 0.0, 8.0, 4.0)
+    assert eff_w0 >= 0.75
+    assert eff_w1 <= 7.0

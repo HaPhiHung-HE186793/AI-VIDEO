@@ -65,13 +65,15 @@ def groups(project: dict) -> list:
 
 
 def build(proj: Path, project: dict, cfg: dict, credits_per_shot: int) -> dict:
+    from . import qa
+
     proj = Path(proj)
     mf.resolve_chained_keyframes(project, proj)
     out_dir = proj / "output"
     out_dir.mkdir(parents=True, exist_ok=True)
     page = out_dir / "storyboard.html"
     rel = lambda p: os.path.relpath(p, out_dir).replace("\\", "/")  # noqa: E731
-    rows, n_shots, missing = [], 0, []
+    rows, n_shots, missing, continuity_warnings = [], 0, [], []
     for b, shots in groups(project):
         title = (f"{b['beat_id']} · {html.escape(b.get('purpose', ''))}" if b else f"{shots[0]['shot_id']} (không thuộc beat)")
         narration = (b.get("narration") if b else mf.shot_audio(shots[0]).get("line")) or ""
@@ -82,6 +84,22 @@ def build(proj: Path, project: dict, cfg: dict, credits_per_shot: int) -> dict:
             frames = _frame_for(proj, s)
             if not frames and s.get("generation_mode") in ("first_frame", "first_last"):
                 missing.append(s["shot_id"])
+            if (
+                s.get("generation_mode") == "first_last"
+                and s.get("first_frame_path")
+                and s.get("last_frame_path")
+                and (proj / s["first_frame_path"]).exists()
+                and (proj / s["last_frame_path"]).exists()
+            ):
+                chk = qa.check_keyframe_pair_continuity(
+                    proj / s["first_frame_path"],
+                    proj / s["last_frame_path"],
+                    dynamic_camera=bool(s.get("dynamic_camera")),
+                )
+                s["keyframe_continuity"] = chk
+                if not chk["ok"]:
+                    for iss in chk["issues"]:
+                        continuity_warnings.append(f"{s['shot_id']}: {iss}")
             imgs = "".join(f'<img src="{rel(f)}" alt="{s["shot_id"]}">' for f in frames) or '<div class="noimg">chưa có frame</div>'
             cells.append(f'<div class="shot"><div class="imgs">{imgs}</div><b>{s["shot_id"]}</b> · {html.escape(s.get("camera", ""))}'
                          f'<p>{html.escape(s.get("action", ""))}</p></div>')
@@ -112,7 +130,8 @@ h2{{font-size:16px;margin:4px 0}} blockquote{{margin:6px 0 10px;font-style:itali
                              "built_hash": state["current_hash"], "built_at": datetime.now().isoformat(timespec="seconds")}
     return {"html": str(page), "contact_sheet": str(sheet) if sheet else None, "beats": len(rows), "shots": n_shots,
             "shots_to_generate": [s["shot_id"] for s in to_make],
-            "estimated_video_credits": est, "missing_frames": missing, "approval": approval_state(project)}
+            "estimated_video_credits": est, "missing_frames": missing,
+            "continuity_warnings": continuity_warnings, "approval": approval_state(project)}
 
 
 def _contact(proj: Path, project: dict, out: Path):
@@ -142,7 +161,7 @@ def _contact(proj: Path, project: dict, out: Path):
 
 
 def default_grid_panels(project: dict, rows: int = 3, cols: int = 3) -> list:
-    """Tr? v? danh s?ch rows*cols ? (panel) theo th? t? th?i gian c?a k?ch b?n ?? v? trong 1 ?nh Storyboard Grid."""
+    """Trả về danh sách rows*cols ô (panel) theo thứ tự thời gian của kịch bản để vẽ trong 1 ảnh Storyboard Grid."""
     n_panels = rows * cols
     custom = (project.get("storyboard_grid") or {}).get("panels") or []
     if len(custom) == n_panels:
@@ -203,7 +222,7 @@ def default_grid_panels(project: dict, rows: int = 3, cols: int = 3) -> list:
 
 
 def _detect_grid_splits(gray, count: int, axis: int) -> list:
-    """D? ???ng k? ph?n c?ch (divider line) gi?a c?c ? theo ph??ng ngang (axis=0) ho?c d?c (axis=1)."""
+    """Dò đường kẻ phân cách (divider line) giữa các ô theo phương ngang (axis=0) hoặc dọc (axis=1)."""
     import numpy as np
 
     total = gray.shape[axis]
@@ -215,7 +234,7 @@ def _detect_grid_splits(gray, count: int, axis: int) -> list:
         best_pos, best_score = ideal, float("inf")
         for pos in range(lo, hi + 1):
             line = gray[pos, :] if axis == 0 else gray[:, pos]
-            # ???ng k? ph?n c?ch th??ng t?i ??u (std th?p + luma th?p) ho?c tr?ng ??u (std th?p)
+            # Đường kẻ phân cách thường tối đều (std thấp + luma thấp) hoặc trắng đều (std thấp)
             std_v = float(np.std(line))
             mean_v = float(np.mean(line))
             dark_bonus = mean_v * 0.35 if mean_v < 60 else (255.0 - mean_v) * 0.35 if mean_v > 210 else 45.0
@@ -229,17 +248,17 @@ def _detect_grid_splits(gray, count: int, axis: int) -> list:
 
 
 def _clean_and_upscale_cell(cell_bgr, aspect: str = "16:9", luma_thresh: int = 28):
-    """C?t b? vi?n ?en/tr?ng c?n s?t quanh ? v? ph?ng n?t Lanczos4 l?n chu?n Full HD (1920x1080 ho?c 1080x1920)."""
+    """Cắt bỏ viền đen/trắng còn sót quanh ô và phóng nét Lanczos4 lên chuẩn Full HD (1920x1080 hoặc 1080x1920)."""
     import numpy as np
 
     cv2 = media.cv2_module()
     h, w = cell_bgr.shape[:2]
-    # 1. C?t l?m nh? 1.2% m?i c?nh ?? lo?i ho?n to?n ???ng k? ph?n c?ch
+    # 1. Cắt lẹm nhẹ 1.2% mỗi cạnh để loại hoàn toàn đường kẻ phân cách
     px, py = max(2, int(round(w * 0.012))), max(2, int(round(h * 0.012)))
     if w > 4 * px and h > 4 * py:
         cell_bgr = cell_bgr[py : h - py, px : w - px]
 
-    # 2. Qu?t 4 c?nh n?u v?n c?n vi?n ?en ho?c tr?ng ??ng nh?t
+    # 2. Quét 4 cạnh nếu vẫn còn viền đen hoặc trắng đồng nhất
     gray = cv2.cvtColor(cell_bgr, cv2.COLOR_BGR2GRAY)
     ch, cw = gray.shape[:2]
     max_trim_y, max_trim_x = int(ch * 0.08), int(cw * 0.08)
@@ -262,7 +281,7 @@ def _clean_and_upscale_cell(cell_bgr, aspect: str = "16:9", luma_thresh: int = 2
         right -= 1
     cell_bgr = cell_bgr[top:bot, left:right]
 
-    # 3. C?n ch?nh ??ng t? l? 16:9 ho?c 9:16 v? n?ng c?p Lanczos4 + Unsharp Mask nh?
+    # 3. Căn chỉnh đúng tỷ lệ 16:9 hoặc 9:16 và nâng cấp Lanczos4 + Unsharp Mask nhẹ
     target_w, target_h = (1080, 1920) if aspect == "9:16" else (1920, 1080)
     target_ratio = target_w / target_h
     ch, cw = cell_bgr.shape[:2]
@@ -290,9 +309,16 @@ def slice_storyboard_grid(
     rows: int = 3,
     cols: int = 3,
     apply_to_shots: bool = True,
+    overwrite_hero_frames: bool = False,
     letterbox_luma: int = 26,
 ) -> dict:
-    """T? ??ng c?t 1 ?nh Storyboard Grid (RxC) th?nh c?c frame 16:9/9:16 s?ch + xu?t b?n Storyboard Sheet c? nh?n."""
+    """Tự động cắt 1 ảnh Storyboard Grid (RxC) thành các frame 16:9/9:16 sạch + xuất bản Storyboard Sheet có nhãn.
+
+    Theo quy trình 2-Stage Layout-to-Hero Keyframe:
+    - Mỗi ô cắt ra luôn được lưu vào `grid_panel_start_path` / `grid_panel_end_path` để làm Layout & Color Reference.
+    - Nếu shot đã có Hero Keyframe 1080p sắc nét (`first_frame_source == "hero_1080p"`) và `overwrite_hero_frames=False`,
+      hệ thống không ghi đè ô cắt lưới độ phân giải thấp lên Hero Keyframe.
+    """
     import shutil
     import numpy as np
 
@@ -301,7 +327,7 @@ def slice_storyboard_grid(
     proj = Path(proj)
     im = cv2.imread(str(grid_path))
     if im is None:
-        raise media.MediaError(f"Kh?ng ??c ???c ?nh Storyboard Grid: {grid_path}")
+        raise media.MediaError(f"Không đọc được ảnh Storyboard Grid: {grid_path}")
 
     aspect = project.get("aspect_ratio", "16:9")
     gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
@@ -314,7 +340,7 @@ def slice_storyboard_grid(
     cand_dir = proj / "assets" / "frames" / "candidates"
     cand_dir.mkdir(parents=True, exist_ok=True)
 
-    # T?o b?n annotated (c? nh?n #1..#N) k?ch th??c l?n ?? ng??i d?ng duy?t tr?c quan tr?n 1 ?nh
+    # Tạo bản annotated (có nhãn #1..#N) kích thước lớn để người dùng duyệt trực quan trên 1 ảnh
     sheet_w, sheet_h = (1620, 2880) if aspect == "9:16" else (2880, 1620)
     annotated = cv2.resize(im, (sheet_w, sheet_h), interpolation=cv2.INTER_LANCZOS4)
     sx, sy = sheet_w / im.shape[1], sheet_h / im.shape[0]
@@ -331,8 +357,9 @@ def slice_storyboard_grid(
         panel_file = panels_dir / f"PANEL_{idx:02d}.jpg"
         cv2.imwrite(str(panel_file), clean_panel, [int(cv2.IMWRITE_JPEG_QUALITY), 95])
         panel_sha = media.sha256_file(panel_file)
+        panel_rel = os.path.relpath(panel_file, proj).replace("\\", "/")
 
-        # V? nh?n l?n b?n annotated_sheet
+        # Vẽ nhãn lên bản annotated_sheet
         ax0, ay0 = int(round(x0 * sx)), int(round(y0 * sy))
         badge_txt = re.sub(r"[^\x20-\x7E]+", "-", f"#{idx} {p.get('title', '')}").strip()
         bw = min(int((x1 - x0) * sx) - 16, 18 + 13 * len(badge_txt))
@@ -342,39 +369,48 @@ def slice_storyboard_grid(
         cv2.putText(annotated, badge_txt, (ax0 + 18, ay0 + 35), cv2.FONT_HERSHEY_SIMPLEX, 0.68, (0, 230, 255), 2, cv2.LINE_AA)
 
         applied_targets = []
-        if apply_to_shots:
-            for t in p.get("targets", []):
-                sid, slot = t["shot"], t.get("slot", "start")
-                s = mf.find_shot(project, sid)
-                if not s:
-                    continue
-                if slot == "start" and s.get("chain_from_prev"):
-                    continue
-                uid_prefix = mf.keyframe_uid(project, sid, slot)
-                cand_key = "last_frame_candidates" if slot == "end" else "frame_candidates"
-                path_key = "last_frame_path" if slot == "end" else "first_frame_path"
-                cands = s.setdefault(cand_key, [])
-                if not any(x.get("sha256") == panel_sha for x in cands):
-                    dst_cand = cand_dir / f"{uid_prefix}_grid_p{idx:02d}.jpg"
-                    shutil.copy2(panel_file, dst_cand)
-                    cands.append({
-                        "path": os.path.relpath(dst_cand, proj).replace("\\", "/"),
-                        "sha256": panel_sha,
-                        "uid": uid_prefix,
-                        "from_storyboard_grid": idx,
-                    })
-                canonical = proj / mf.keyframe_rel_path(project, sid, slot, ".jpg")
-                canonical.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(panel_file, canonical)
-                s[path_key] = os.path.relpath(canonical, proj).replace("\\", "/")
-                applied_targets.append(f"{sid}:{slot}")
+        for t in p.get("targets", []):
+            sid, slot = t["shot"], t.get("slot", "start")
+            s = mf.find_shot(project, sid)
+            if not s:
+                continue
+            grid_ref_key = "grid_panel_end_path" if slot == "end" else "grid_panel_start_path"
+            s[grid_ref_key] = panel_rel
+            if not apply_to_shots:
+                continue
+            if slot == "start" and s.get("chain_from_prev"):
+                continue
+            uid_prefix = mf.keyframe_uid(project, sid, slot)
+            cand_key = "last_frame_candidates" if slot == "end" else "frame_candidates"
+            path_key = "last_frame_path" if slot == "end" else "first_frame_path"
+            src_key = "last_frame_source" if slot == "end" else "first_frame_source"
+            cands = s.setdefault(cand_key, [])
+            if not any(x.get("sha256") == panel_sha for x in cands):
+                dst_cand = cand_dir / f"{uid_prefix}_grid_p{idx:02d}.jpg"
+                shutil.copy2(panel_file, dst_cand)
+                cands.append({
+                    "path": os.path.relpath(dst_cand, proj).replace("\\", "/"),
+                    "sha256": panel_sha,
+                    "uid": uid_prefix,
+                    "from_storyboard_grid": idx,
+                })
+            # Không ghi đè nếu shot đã có Hero Keyframe 1080p thực sự (trừ khi bật overwrite_hero_frames=True)
+            has_hero = s.get(src_key) == "hero_1080p" and s.get(path_key) and (proj / s[path_key]).exists()
+            if has_hero and not overwrite_hero_frames:
+                continue
+            canonical = proj / mf.keyframe_rel_path(project, sid, slot, ".jpg")
+            canonical.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(panel_file, canonical)
+            s[path_key] = os.path.relpath(canonical, proj).replace("\\", "/")
+            s[src_key] = "storyboard_grid_draft"
+            applied_targets.append(f"{sid}:{slot}")
 
         sliced_info.append({
             "panel": idx,
             "row": p["row"],
             "col": p["col"],
             "title": p.get("title", ""),
-            "path": os.path.relpath(panel_file, proj).replace("\\", "/"),
+            "path": panel_rel,
             "applied_to": applied_targets,
         })
 

@@ -388,20 +388,83 @@ def build_group_reference_sheet(manifest: dict, char_ids: list, proj_dir: Path) 
     return rel_out if out_path.exists() else ""
 
 
+def scene_lighting_anchor_path(manifest: dict, shot: dict, proj_dir: Path = None) -> str:
+    """Tìm ảnh Hero Keyframe mỏ neo của cùng cảnh/bối cảnh (Iterative Scene Anchor Backfilling).
+
+    Theo chuẩn công nghiệp của các studio AI hàng đầu Trung Quốc (Bona Film AIGMS / Seedance / Kling):
+    sau khi Shot đầu tiên của bối cảnh đã sinh ra được 1 Hero Keyframe chuẩn ánh sáng thực địa (vd. nhân vật
+    dưới mưa đêm 2700K/6500K), các shot tiếp theo trong cùng `scene_id`/`environment` có chung nhân vật sẽ
+    đính kèm thêm Hero Keyframe đó làm chuẩn khóa màu da, tỷ lệ cơ thể và độ tương phản ánh sáng.
+    """
+    def ok(rel_path: str) -> bool:
+        if not rel_path:
+            return False
+        return True if proj_dir is None else (Path(proj_dir) / rel_path).exists()
+
+    explicit = shot.get("scene_anchor_path") or ""
+    if ok(explicit):
+        return explicit
+
+    cur_sid = shot.get("shot_id")
+    cur_scene = shot.get("scene_id") or ""
+    cur_env = shot.get("environment") or ""
+    cur_cast = set(shot_all_cast_ids(shot))
+    own_frames = {shot.get("first_frame_path") or "", shot.get("last_frame_path") or ""}
+
+    for s in ordered_shots(manifest):
+        if s.get("shot_id") == cur_sid:
+            break
+        if s.get("exclude_from_edit"):
+            continue
+        same_space = (cur_env and s.get("environment") == cur_env) or (cur_scene and s.get("scene_id") == cur_scene)
+        if not same_space:
+            continue
+        if cur_cast and not (cur_cast & set(shot_all_cast_ids(s))):
+            continue
+        # Bỏ qua frame nháp cắt từ lưới Storyboard Grid độ phân giải thấp
+        if s.get("first_frame_source") == "storyboard_grid_draft":
+            continue
+        cand = s.get("first_frame_path") or ""
+        if cand and cand not in own_frames and ok(cand):
+            return cand
+    return ""
+
+
+def backfill_scene_anchor(manifest: dict, shot_id: str, frame_rel_path: str = "") -> dict:
+    """Đóng dấu 1 Hero Keyframe (hoặc frame trích xuất từ take đạt điểm cao) làm mỏ neo ánh sáng cho toàn bộ cảnh."""
+    src_shot = find_shot(manifest, shot_id)
+    anchor_rel = frame_rel_path or src_shot.get("first_frame_path") or ""
+    if not anchor_rel:
+        raise ManifestError(f"Shot '{shot_id}' chưa có frame để backfill làm mỏ neo.")
+    src_shot["is_scene_anchor"] = True
+    src_shot.pop("first_frame_source", None)
+    target_env = src_shot.get("environment") or ""
+    target_scene = src_shot.get("scene_id") or ""
+    updated = []
+    for s in ordered_shots(manifest):
+        if s.get("shot_id") == shot_id or s.get("exclude_from_edit"):
+            continue
+        if (target_env and s.get("environment") == target_env) or (target_scene and s.get("scene_id") == target_scene):
+            s["scene_anchor_path"] = anchor_rel
+            updated.append(s["shot_id"])
+    return {"anchor_shot": shot_id, "anchor_path": anchor_rel, "applied_to_shots": updated}
+
+
 def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limit: int = 3,
-                         include_env: bool = True) -> list:
-    """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin + Auto Group Composite) cho shot.
+                         include_env: bool = True, include_scene_anchor: bool = True) -> list:
+    """Chọn danh sách ảnh tham chiếu tối ưu (Round-Robin + Auto Group Composite + Iterative Scene Backfilling).
 
     Thứ tự ưu tiên để không làm rớt bất kỳ nhân vật nào dù cảnh có 2 hay 20 nhân vật:
-    1. `shot.reference_images` (đạo diễn chỉ định cứng).
+    1. `shot.reference_images` (đạo diễn chỉ định cứng) + `grid_panel_start_path` (nếu đang nâng cấp từ ô Storyboard Grid).
     2. Nếu cảnh có nhiều nhân vật (>= 3 người có ảnh trên đĩa) khiến tổng số ảnh vượt `limit`:
        - Giữ ảnh riêng cho nhân vật tiêu điểm đầu tiên (`subjects[0]`).
        - Tự động ghép toàn bộ các nhân vật còn lại (hoặc cả nhóm 4..20+ người) thành 1 bảng `group_cast_<hash>.jpg`
          để chỉ tốn 1 slot nhưng AI thấy đủ mặt tất cả mọi người.
     3. Ảnh chính diện (`refs[0]`) của từng nhân vật trong `shot_all_cast_ids(shot)`.
     4. Ảnh đạo cụ (`shot.props` hoặc đạo cụ khớp tên trong `action`).
-    5. Ảnh bối cảnh sạch (`environment.path`) nếu `include_env=True`.
-    6. Ảnh góc thứ hai (`refs[1]`, thường là 3/4) và các góc còn lại của từng nhân vật.
+    5. Ảnh mỏ neo ánh sáng thực địa cùng cảnh (`scene_lighting_anchor_path` - Iterative Backfilling).
+    6. Ảnh bối cảnh sạch (`environment.path`) nếu `include_env=True`.
+    7. Ảnh góc thứ hai (`refs[1]`, thường là 3/4) và các góc còn lại của từng nhân vật.
     """
     chars = characters_by_id(manifest)
     envs = environments_by_id(manifest)
@@ -420,6 +483,10 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
 
     for p in shot.get("reference_images", []):
         push(p)
+
+    # Nếu shot có ô tham chiếu bố cục cắt từ Storyboard Grid và đang cần nâng cấp lên Hero Frame 1080p
+    if shot.get("grid_panel_start_path") and shot.get("use_grid_layout_ref", True):
+        push(shot["grid_panel_start_path"])
 
     all_cast = shot_all_cast_ids(shot)
     subj_refs = []
@@ -451,6 +518,12 @@ def shot_reference_paths(manifest: dict, shot: dict, proj_dir: Path = None, limi
         pname = (p_obj.get("name") or "").lower()
         if pid in shot_props or (pname and pname in action_lower):
             push(p_obj.get("path", ""))
+
+    # Vòng 2.5: Iterative Backfilling — mỏ neo ánh sáng & tỷ lệ nhân vật từ Hero Frame đã duyệt của cùng cảnh
+    if include_scene_anchor:
+        scene_anchor = scene_lighting_anchor_path(manifest, shot, proj_dir=proj_dir)
+        if scene_anchor:
+            push(scene_anchor)
 
     # Vòng 3: góc thứ hai (three_quarter) của từng nhân vật
     for refs in subj_refs:

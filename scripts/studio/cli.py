@@ -1046,7 +1046,7 @@ def cmd_storyboard(args, cfg):
 
 
 def cmd_flow_storyboard(args, cfg):
-    """T?o 1 ?nh Storyboard Grid t?ng h?p (3x3 ho?c 2x2) tr?n Google Flow (0 credit) r?i t? ??ng c?t th?nh frame l? 16:9/9:16."""
+    """Tạo 1 ảnh Storyboard Grid tổng hợp (3x3 hoặc 2x2) trên Google Flow (0 credit) rồi tự động cắt thành frame lẻ 16:9/9:16."""
     from . import flow as fl
 
     proj = proj_dir_of(args)
@@ -1128,7 +1128,7 @@ def cmd_flow_storyboard(args, cfg):
             )
 
     if not canonical.exists():
-        sys.exit(f"[ERROR] Ch?a c? ?nh Storyboard Grid t?i {canonical} ?? c?t (slice).")
+        sys.exit(f"[ERROR] Chưa có ảnh Storyboard Grid tại {canonical} để cắt (slice).")
 
     slice_res = storyboard.slice_storyboard_grid(
         canonical,
@@ -1137,6 +1137,7 @@ def cmd_flow_storyboard(args, cfg):
         rows=rows,
         cols=cols,
         apply_to_shots=not args.no_apply_to_shots,
+        overwrite_hero_frames=getattr(args, "overwrite_hero_frames", False),
         letterbox_luma=cfg["qa"]["letterbox_luma"],
     )
     sb_res = storyboard.build(proj, m, cfg, credits_per_shot=cfg["credits"].get("per_shot_estimate", 20))
@@ -1149,7 +1150,7 @@ def cmd_flow_storyboard(args, cfg):
         "candidates": [c["path"] for c in sb_grid.get("candidates", [])],
         "sliced_panels": slice_res["panels"],
         "storyboard_html": sb_res["html"],
-        "next": "Ng??i d?ng xem output/storyboard_sheet.jpg (1 ?nh t?ng h?p) ? storyboard-approve ? flow-generate --kind video",
+        "next": "Người dùng xem output/storyboard_sheet.jpg (1 ảnh tổng hợp) → flow-generate --kind frames (nâng cấp Hero 1080p) → storyboard-approve → flow-generate --kind video",
     })
 
 
@@ -1241,10 +1242,22 @@ def cmd_flow_generate(args, cfg):
             if kind == "image":
                 slots = []
                 if s.get("first_frame_prompt") and not s.get("chain_from_prev"):
-                    if args.retakes or not s.get("first_frame_path") or not (proj / s["first_frame_path"]).exists():
+                    needs_start = (
+                        args.retakes
+                        or not s.get("first_frame_path")
+                        or not (proj / s["first_frame_path"]).exists()
+                        or s.get("first_frame_source") == "storyboard_grid_draft"
+                    )
+                    if needs_start:
                         slots.append(("start", s["first_frame_prompt"]))
                 if s.get("last_frame_prompt") and (s.get("generation_mode") == "first_last" or s.get("end_action")):
-                    if args.retakes or not s.get("last_frame_path") or not (proj / s["last_frame_path"]).exists():
+                    needs_end = (
+                        args.retakes
+                        or not s.get("last_frame_path")
+                        or not (proj / s["last_frame_path"]).exists()
+                        or s.get("last_frame_source") == "storyboard_grid_draft"
+                    )
+                    if needs_end:
                         slots.append(("end", s["last_frame_prompt"]))
                 for slot, text in slots:
                     row = {"shot": s["shot_id"], "slot": slot, "mode": "image", "model": shot_model,
@@ -1422,16 +1435,18 @@ def cmd_flow_harvest(args, cfg):
                 dst = cand_dir / f"{uid_prefix}_c{len(cands) + 1:02d}{Path(fpath).suffix}"
                 Path(fpath).replace(dst)
                 cands.append({"path": rel(proj, dst), "sha256": sha, "uid": uid_prefix})
-            if cands and (not s.get(path_key) or not (proj / s[path_key]).exists()):
-                chosen_rel = cands[0]["path"]
+            src_key = "last_frame_source" if slot == "end" else "first_frame_source"
+            non_grid_cands = [c for c in cands if not c.get("from_storyboard_grid")]
+            if non_grid_cands and (not s.get(path_key) or not (proj / s[path_key]).exists() or s.get(src_key) == "storyboard_grid_draft"):
+                chosen_rel = non_grid_cands[0]["path"]
                 anchor_p = mf.root_anchor_frame_path(m, s, proj) if slot == "end" else None
-                if slot == "end" and len(cands) > 1 and anchor_p and anchor_p.exists():
+                if slot == "end" and len(non_grid_cands) > 1 and anchor_p and anchor_p.exists():
                     try:
                         import numpy as np
                         cv2 = media.cv2_module()
                         ref_im = cv2.resize(cv2.imread(str(anchor_p)), (160, 90)).astype(np.float32)
                         scored = []
-                        for c in cands:
+                        for c in non_grid_cands:
                             cim = cv2.imread(str(proj / c["path"]))
                             if cim is not None:
                                 cim = cv2.resize(cim, (160, 90)).astype(np.float32)
@@ -1446,6 +1461,12 @@ def cmd_flow_harvest(args, cfg):
                 shutil.copy2(proj / chosen_rel, canonical)
                 qa.strip_image_letterbox(canonical, cfg["qa"]["letterbox_luma"])
                 s[path_key] = rel(proj, canonical)
+                s[src_key] = "hero_1080p"
+                if slot == "start" and not mf.scene_lighting_anchor_path(m, s, proj):
+                    try:
+                        mf.backfill_scene_anchor(m, s["shot_id"], s[path_key])
+                    except Exception:  # noqa: BLE001
+                        pass
                 mf.resolve_chained_keyframes(m, proj)
             report.append({"shot": s["shot_id"], "slot": slot, "uid": uid_prefix, "candidates": [c["path"] for c in cands]})
         mf.save(proj, m)  # Lưu ngay sau từng hàng tải xong (Streaming Harvest)
@@ -1968,14 +1989,15 @@ def build_parser() -> argparse.ArgumentParser:
     project_arg(sp)
     sp.add_argument("--by", default="user")
 
-    sp = add("flow-storyboard", cmd_flow_storyboard, "T?o 1 ?nh Storyboard Grid t?ng h?p (3x3/2x2) tr?n Flow (0 credit) v? t? c?t th?nh frame l?")
+    sp = add("flow-storyboard", cmd_flow_storyboard, "Tạo 1 ảnh Storyboard Grid tổng hợp (3x3/2x2) trên Flow (0 credit) và tự cắt thành frame lẻ")
     project_arg(sp)
-    sp.add_argument("--grid", default="3x3", help="K?ch th??c l??i Storyboard trong 1 ?nh, vd: 3x3 (9 ?) ho?c 2x2 (4 ?)")
-    sp.add_argument("--count", type=int, default=2, help="S? ph??ng ?n ?nh Storyboard t?o tr?n Flow (x1-x4)")
+    sp.add_argument("--grid", default="3x3", help="Kích thước lưới Storyboard trong 1 ảnh, vd: 3x3 (9 ô) hoặc 2x2 (4 ô)")
+    sp.add_argument("--count", type=int, default=2, help="Số phương án ảnh Storyboard tạo trên Flow (x1-x4)")
     sp.add_argument("--model", default="")
-    sp.add_argument("--slice-only", action="store_true", help="Ch? c?t l?i t? ?nh Storyboard Grid ?? t?i s?n")
-    sp.add_argument("--harvest-only", action="store_true", help="Ch? t?i ?nh Storyboard Grid ?? t?o tr?n Flow r?i c?t")
-    sp.add_argument("--no-apply-to-shots", action="store_true", help="Ch? xu?t ra grid_panels/, kh?ng ghi ?? first_frame_path/last_frame_path")
+    sp.add_argument("--slice-only", action="store_true", help="Chỉ cắt lại từ ảnh Storyboard Grid đã tải sẵn")
+    sp.add_argument("--harvest-only", action="store_true", help="Chỉ tải ảnh Storyboard Grid đã tạo trên Flow rồi cắt")
+    sp.add_argument("--no-apply-to-shots", action="store_true", help="Chỉ xuất ra grid_panels/, không ghi vào first_frame_path/last_frame_path")
+    sp.add_argument("--overwrite-hero-frames", action="store_true", help="Ghi đè cả các shot đã có Hero Keyframe 1080p")
     sp.add_argument("--dry-run", action="store_true")
     sp.add_argument("--wait-timeout", type=int, default=600)
 

@@ -438,6 +438,51 @@ def _align_first_last_camera(camera_text: str, shot: dict) -> str:
     return cam
 
 
+def _content_words(text: str) -> set:
+    stop = {"a", "an", "the", "in", "on", "at", "of", "with", "and", "or", "to", "from", "by", "for", "as", "into", "under", "over"}
+    return {w for w in re.findall(r"[a-z0-9]{2,}", (text or "").lower()) if w not in stop}
+
+
+def _dedupe_visual_clauses(setting: str, lighting: str, style_line: str, reference_body: str = "",
+                           compact_for_keyframe_video: bool = False) -> str:
+    """Khử trùng lặp mệnh đề ánh sáng/môi trường giữa setting, lighting, style_line và timeline_phases.
+
+    Theo chuẩn Visual-First Compact Motion Prompting của các studio AI hàng đầu (Kling / Seedance / Veo 3.1):
+    khi đã khóa Keyframe START/END và có bảng phân cảnh động học, việc lặp lại cùng một mô tả ánh sáng
+    (vd. '2700K amber firelight vs 6500K steel-teal rain rim light') 2–3 lần trong cùng 1 prompt sẽ làm
+    Text Attention lấn át Visual & Physics Attention.
+    """
+    style_words = _content_words(style_line)
+    body_words = _content_words(reference_body) if compact_for_keyframe_video else set()
+
+    setting_clean = (setting or "").strip(" ,.")
+    if compact_for_keyframe_video and setting_clean and (style_words or body_words):
+        s_clauses = [c.strip() for c in re.split(r",\s+", setting_clean) if c.strip()]
+        kept_s = []
+        ref_union = style_words | body_words
+        for idx, cl in enumerate(s_clauses):
+            cw = _content_words(cl)
+            if idx == 0 or not cw or len(cw & ref_union) / len(cw) < 0.68:
+                kept_s.append(cl)
+        setting_clean = ", ".join(kept_s)
+
+    setting_words = _content_words(setting_clean)
+    ref_for_lighting = style_words | setting_words | body_words
+
+    lighting_clean = (lighting or "").strip(" ,.")
+    if lighting_clean and ref_for_lighting:
+        l_clauses = [c.strip() for c in re.split(r"[;,]+\s*", lighting_clean) if c.strip()]
+        kept_l = []
+        for cl in l_clauses:
+            cw = _content_words(cl)
+            if not cw or len(cw & ref_for_lighting) / len(cw) < 0.68:
+                kept_l.append(cl)
+                ref_for_lighting |= cw
+        lighting_clean = ", ".join(kept_l)
+
+    return _sentence(", ".join(x for x in [setting_clean, lighting_clean] if x))
+
+
 def build_prompt(project: dict, shot: dict) -> str:
     """Ghép prompt Veo 3.1 có cấu trúc: [Máy quay] + [Nhân vật & Sơ đồ chỗ ngồi 1..N] + [Quỹ đạo chuyển động 3 pha] + [Quần chúng nền & Ánh sáng] + [Âm thanh]."""
     chars = mf.characters_by_id(project)
@@ -453,7 +498,8 @@ def build_prompt(project: dict, shot: dict) -> str:
     if attr_lock:
         parts.append(attr_lock)
 
-    parts.append(_build_motion_arc(shot, chars))
+    motion_arc = _build_motion_arc(shot, chars)
+    parts.append(motion_arc)
 
     crowd_line = _crowd_atmosphere_line(project, shot)
     if crowd_line:
@@ -462,8 +508,11 @@ def build_prompt(project: dict, shot: dict) -> str:
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
         setting = envs[shot["environment"]].get("identity_line") or envs[shot["environment"]].get("name")
-    parts.append(_sentence(", ".join(x for x in [setting, shot.get("lighting")] if x)))
-    parts.append(_sentence(project.get("style_line") or project.get("visual_style")))
+    style_str = project.get("style_line") or project.get("visual_style") or ""
+    is_kf_timeline = shot.get("generation_mode") in ("first_frame", "first_last") and bool(shot.get("timeline_phases"))
+    parts.append(_dedupe_visual_clauses(setting, shot.get("lighting") or "", style_str,
+                                        reference_body=motion_arc, compact_for_keyframe_video=is_kf_timeline))
+    parts.append(_sentence(style_str))
 
     audio = mf.shot_audio(shot)
     sfx = audio.get("sfx", "")
@@ -501,6 +550,11 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
     pose = _clean_kinematic_action(shot.get("start_action") or shot.get("action") or "")
     cam_head = (cam or shot.get("camera") or shot.get("camera_shot") or "").rstrip(".")
     parts = [_sentence(f"{cam_head}: {pose}" if cam_head and pose else (cam_head or pose))]
+    if shot.get("grid_panel_start_path") and shot.get("use_grid_layout_ref", True):
+        parts.append(
+            "Hero 1080p keyframe upgrade from the attached storyboard layout reference panel: preserve the panel's "
+            "camera composition and color palette while rendering full high-frequency skin/scale textures and sharp anatomical detail from the character references."
+        )
 
     all_cast = mf.shot_all_cast_ids(shot)
     parts += _format_cast_lines(shot, chars)
@@ -523,8 +577,10 @@ def build_first_frame_prompt(project: dict, shot: dict) -> str:
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
         setting = envs[shot["environment"]].get("identity_line") or envs[shot["environment"]].get("name")
-    parts.append(_sentence(", ".join(x for x in [setting, shot.get("lighting")] if x)))
-    parts.append(_sentence(project.get("style_line") or project.get("visual_style")))
+    style_str = project.get("style_line") or project.get("visual_style") or ""
+    parts.append(_dedupe_visual_clauses(setting, shot.get("lighting") or "", style_str,
+                                        reference_body=start_stg_line, compact_for_keyframe_video=bool(start_stg_line)))
+    parts.append(_sentence(style_str))
     parts.append("Single still keyframe, exact composition and lighting, no text, no subtitles.")
     return re.sub(r"\s{2,}", " ", " ".join(p for p in parts if p)).strip()
 
@@ -591,8 +647,10 @@ def build_last_frame_prompt(project: dict, shot: dict) -> str:
     setting = shot.get("setting")
     if not setting and shot.get("environment") in envs:
         setting = envs[shot["environment"]].get("identity_line") or envs[shot["environment"]].get("name")
-    parts.append(_sentence(", ".join(x for x in [setting, shot.get("lighting")] if x)))
-    parts.append(_sentence(project.get("style_line") or project.get("visual_style")))
+    style_str = project.get("style_line") or project.get("visual_style") or ""
+    parts.append(_dedupe_visual_clauses(setting, shot.get("lighting") or "", style_str,
+                                        reference_body=end_stg_line, compact_for_keyframe_video=bool(end_stg_line)))
+    parts.append(_sentence(style_str))
     parts.append(tail_rule)
     return re.sub(r"\s{2,}", " ", " ".join(p for p in parts if p)).strip()
 
@@ -828,8 +886,22 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
             f"Dự án có {len(chars)} nhân vật có tên — hãy đưa đầy đủ các nhân vật phụ trong bàn vào `ensemble_cast` (hoặc `subjects`) "
             "và thêm `background_crowd` nếu ở quán đông vui.")
 
+    raw_mids = shot.get("mid_actions") if isinstance(shot.get("mid_actions"), list) else []
+    wp_total = int(shot.get("waypoint_total", 1) or 1)
+    if (len(raw_mids) >= 3 or wp_total >= 4) and not shot.get("allow_dense_waypoints"):
+        lvl = "warn" if (len(raw_mids) >= 4 or wp_total >= 5) else "info"
+        add(lvl, "TOO_MANY_WAYPOINTS",
+            f"Shot chia thành {max(len(raw_mids) + 1, wp_total)} đoạn keyframe tĩnh liên tiếp — tạo quá nhiều frame tĩnh sát nhau "
+            "làm vận tốc bị reset về 0 tại mỗi điểm nối (giật cục Stop-Motion). Nên dùng `timeline_phases` (3 pha động học trên 1 cặp START–END) hoặc cắt góc máy mới.")
+
     if mode in ("first_frame", "first_last") and not shot.get("first_frame_path"):
         add("error", "MISSING_FIRST_FRAME", f"mode={mode} nhưng chưa có first_frame_path.")
+    if mode in ("first_frame", "first_last") and (
+        shot.get("first_frame_source") == "storyboard_grid_draft" or shot.get("last_frame_source") == "storyboard_grid_draft"
+    ):
+        add("info", "STORYBOARD_GRID_DRAFT_KEYFRAME",
+            "Keyframe hiện tại đang là ô cắt từ ảnh lưới Storyboard Grid (độ phân giải gốc thấp) — nên chạy `flow-generate --kind frames` "
+            "để nâng cấp lên Hero Keyframe 1080p sắc nét trước khi tạo video.")
     if mode == "first_last":
         if not shot.get("last_frame_path"):
             add("error", "MISSING_LAST_FRAME", "mode=first_last nhưng chưa có last_frame_path.")
@@ -1008,7 +1080,7 @@ def route_model(score: int, cfg: dict) -> dict:
 
 
 def build_storyboard_grid_prompt(project: dict, rows: int = 3, cols: int = 3, panels: list = None) -> str:
-    """D?ng prompt 1 ?nh Storyboard Grid t?ng h?p (vd: 3x3 = 9 ? ho?c 2x2 = 4 ? c?ng t? l? khung h?nh d? ?n)."""
+    """Dựng prompt 1 ảnh Storyboard Grid tổng hợp (vd: 3x3 = 9 ô hoặc 2x2 = 4 ô cùng tỷ lệ khung hình dự án)."""
     from . import storyboard as sb
 
     chars = mf.characters_by_id(project)

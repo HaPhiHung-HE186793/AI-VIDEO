@@ -230,8 +230,55 @@ def needed_seconds(proj: Path, shot: dict, cfg: dict, project: dict = None) -> f
     return float(ed.get("preferred_shot_sec", 4.0))
 
 
+def inertia_trim_bounds(diffs, fps: float, w0: float, w1: float, length: float,
+                        min_head_pad: float = 0.35, min_tail_pad: float = 0.45) -> tuple:
+    """Gọt bỏ vùng khởi động tĩnh ở đầu clip (0.0s–0.6s) và vùng giảm tốc đỗ tĩnh ở cuối clip (7.2s–8.0s).
+
+    Theo quy tắc dựng phim 'Trim the Fat / Cut on Action' của các studio AI hàng đầu (Bona Film / Kuaishou):
+    clip sinh từ Keyframe `first_last` luôn có quán tính bằng 0 ở 2 đầu mút. Hàm này đo đường cong động năng
+    `diffs` để co biên `[w0, w1]` vào đúng vùng đã đạt vận tốc thực trước khi chọn cửa sổ `edit_in`–`edit_out`.
+    """
+    import numpy as np
+
+    slack = (w1 - w0) - length
+    if slack <= 0.15 or diffs is None or len(diffs) < 8 or not fps:
+        return round(w0, 2), round(w1, 2)
+
+    n = len(diffs)
+    i_start = max(1, min(n - 1, int(round(w0 * fps))))
+    i_end = max(i_start + 1, min(n - 1, int(round(w1 * fps))))
+    mid_a = i_start + int((i_end - i_start) * 0.2)
+    mid_b = max(mid_a + 1, i_start + int((i_end - i_start) * 0.8))
+    mid_energy = float(np.median(diffs[mid_a:mid_b])) if mid_b > mid_a else float(np.mean(diffs[i_start:i_end]))
+    active_thr = max(0.35, mid_energy * 0.38)
+
+    max_head_trim = min(1.1, slack * 0.45)
+    head_trim = min(min_head_pad if w0 <= 0.15 else 0.0, max_head_trim)
+    max_head_frames = int(round((w0 + max_head_trim) * fps))
+    cur_i = int(round((w0 + head_trim) * fps))
+    while cur_i < min(n - 1, max_head_frames) and float(diffs[cur_i]) < active_thr:
+        cur_i += 1
+    eff_w0 = min(w0 + max_head_trim, max(w0 + head_trim, cur_i / fps))
+
+    rem_slack = max(0.0, (w1 - eff_w0) - length)
+    max_tail_trim = min(1.2, rem_slack * 0.85)
+    clip_dur = n / fps
+    tail_trim = min(min_tail_pad if w1 >= clip_dur - 0.2 else 0.0, max_tail_trim)
+    min_tail_frames = int(round((w1 - max_tail_trim) * fps))
+    cur_j = int(round((w1 - tail_trim) * fps))
+    while cur_j > max(1, min_tail_frames) and float(diffs[min(n - 1, cur_j)]) < active_thr:
+        cur_j -= 1
+    eff_w1 = max(w1 - max_tail_trim, min(w1 - tail_trim, cur_j / fps))
+
+    if eff_w1 - eff_w0 < length:
+        return round(w0, 2), round(w1, 2)
+    return round(eff_w0, 2), round(eff_w1, 2)
+
+
 def motion_peak_window(clip: Path, w0: float, w1: float, length: float, lead_ratio: float = 0.42) -> tuple:
-    """Tìm cửa sổ [a, b] dài `length` bên trong [w0, w1] sao cho đỉnh chuyển động (impact peak) nằm tại ~42% cửa sổ."""
+    """Tìm cửa sổ [a, b] dài `length` bên trong [w0, w1] sao cho đỉnh chuyển động (impact peak) nằm tại ~42% cửa sổ,
+    đồng thời tự động cắt bỏ 2 đầu mút tăng/giảm tốc tĩnh (Auto Inertia Window Trim).
+    """
     import numpy as np
 
     if not clip or not Path(clip).exists() or w1 - w0 <= length + 0.15:
@@ -249,14 +296,15 @@ def motion_peak_window(clip: Path, w0: float, w1: float, length: float, lead_rat
         k = max(3, int(round(0.35 * fps)))
         kernel = np.ones(k) / k
         smooth = np.convolve(diffs, kernel, mode="same")
-        margin = min(0.45, (w1 - w0 - length) * 0.35)
-        i0 = max(1, int(round((w0 + margin) * fps)))
-        i1 = min(len(smooth) - 1, int(round((w1 - margin) * fps)))
+        eff_w0, eff_w1 = inertia_trim_bounds(smooth, fps, w0, w1, length)
+        margin = min(0.35, max(0.0, (eff_w1 - eff_w0 - length) * 0.30))
+        i0 = max(1, int(round((eff_w0 + margin) * fps)))
+        i1 = min(len(smooth) - 1, int(round((eff_w1 - margin) * fps)))
         if i1 <= i0:
-            i0, i1 = max(1, int(round(w0 * fps))), min(len(smooth) - 1, int(round(w1 * fps)))
+            i0, i1 = max(1, int(round(eff_w0 * fps))), min(len(smooth) - 1, int(round(eff_w1 * fps)))
         peak_i = i0 + int(np.argmax(smooth[i0:i1 + 1]))
         t_peak = peak_i / fps
-        a = max(w0, min(w1 - length, t_peak - lead_ratio * length))
+        a = max(eff_w0, min(eff_w1 - length, t_peak - lead_ratio * length))
         return round(a, 2), round(a + length, 2)
     except Exception:  # noqa: BLE001
         a = round(w0 + (w1 - w0 - length) / 2, 2)

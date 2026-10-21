@@ -100,6 +100,55 @@ def strip_image_letterbox(image_path: Path, thr: float = 20.0, min_ratio: float 
     return True
 
 
+def check_keyframe_pair_continuity(start_img_path: Path, end_img_path: Path, dynamic_camera: bool = False) -> dict:
+    """Kiểm định độ tương thích quang học giữa cặp Keyframe START và END trước khi tốn credit chạy Veo 3.1.
+
+    Theo quy trình Pre-Flight Continuity Gate của các studio AI hàng đầu:
+    nếu ảnh START và ảnh END lệch tỷ lệ khung hình, nhảy độ sáng (luma jump > 55) hoặc trôi bảng màu
+    (histogram correlation < 0.35), mạng DiT sẽ buộc phải dùng hiệu ứng chồng mờ (cross-dissolve) hoặc biến hình.
+    """
+    import numpy as np
+
+    cv2 = media.cv2_module()
+    im_a = cv2.imread(str(start_img_path))
+    im_b = cv2.imread(str(end_img_path))
+    if im_a is None or im_b is None:
+        return {"ok": False, "luma_diff": 0.0, "hist_corr": 0.0, "issues": ["MISSING_IMAGE: Không đọc được file ảnh START hoặc END."]}
+
+    ha, wa = im_a.shape[:2]
+    hb, wb = im_b.shape[:2]
+    ratio_a, ratio_b = wa / max(1, ha), wb / max(1, hb)
+    issues = []
+    if abs(ratio_a - ratio_b) > 0.03:
+        issues.append(f"ASPECT_MISMATCH: START ({wa}x{ha}) và END ({wb}x{hb}) khác tỷ lệ khung hình → dễ sinh dải đen hoặc méo hình.")
+
+    small_a = cv2.resize(im_a, (320, 180))
+    small_b = cv2.resize(im_b, (320, 180))
+    gray_a = cv2.cvtColor(small_a, cv2.COLOR_BGR2GRAY).astype(np.float32)
+    gray_b = cv2.cvtColor(small_b, cv2.cvtColor(small_b, cv2.COLOR_BGR2GRAY).dtype if False else cv2.COLOR_BGR2GRAY).astype(np.float32)
+
+    luma_diff = float(abs(np.mean(gray_a) - np.mean(gray_b)))
+    if luma_diff > 55.0:
+        issues.append(f"SEVERE_LUMA_JUMP: Độ sáng trung bình giữa START và END lệch {luma_diff:.1f}/255 (> 55) → dễ gây chớp sáng hoặc chồng mờ giữa clip.")
+
+    hsv_a = cv2.cvtColor(small_a, cv2.COLOR_BGR2HSV)
+    hsv_b = cv2.cvtColor(small_b, cv2.COLOR_BGR2HSV)
+    hist_a = cv2.calcHist([hsv_a], [0, 1], None, [30, 32], [0, 180, 0, 256])
+    hist_b = cv2.calcHist([hsv_b], [0, 1], None, [30, 32], [0, 180, 0, 256])
+    cv2.normalize(hist_a, hist_a)
+    cv2.normalize(hist_b, hist_b)
+    hist_corr = float(cv2.compareHist(hist_a, hist_b, cv2.HISTCMP_CORREL))
+    if hist_corr < 0.35:
+        issues.append(f"COLOR_PALETTE_DRIFT: Tương quan bảng màu giữa START và END quá thấp (corr={hist_corr:.2f} < 0.35) → kiểm tra lại ánh sáng của frame END.")
+
+    return {
+        "ok": len(issues) == 0,
+        "luma_diff": round(luma_diff, 1),
+        "hist_corr": round(hist_corr, 3),
+        "issues": issues,
+    }
+
+
 def detect_mid_clip_dissolve(frames, fps: float, min_span_diff: float = 28.0, max_blend_ratio: float = 0.22) -> list:
     """Phát hiện lỗi Veo tự chèn hiệu ứng chồng hình mờ (cross-dissolve / double exposure) ở giữa clip.
 
