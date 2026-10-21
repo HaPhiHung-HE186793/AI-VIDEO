@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `clash-of-titans-rex-vs-vasto-part-1` — thư mục `projects/clash-of-titans-rex-vs-vasto-part-1/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/2771c196-bd45-40e4-bd63-da2daafb79d1
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-21T15:41:44 trên máy **DESKTOP-HUP72C4** (lệnh `audit-assets`)
+- **Cập nhật lần cuối:** 2026-10-21T16:31:36 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
@@ -119,43 +119,51 @@ python scripts/studio_helper.py storyboard-approve --project clash-of-titans-rex
 
 ## Media trên máy này
 
-⚠ Máy **DESKTOP-HUP72C4** thiếu 180/186 file — chạy `media-pull` (hoặc tải lại take từ Flow).
+⚠ Máy **DESKTOP-HUP72C4** thiếu 60/126 file — chạy `media-pull` (hoặc tải lại take từ Flow).
 
-- `assets/frames/KF_CTRV1_S01_START.jpg` — shot_01 frame đầu
-- `assets/frames/KF_CTRV1_S01_END.jpg` — shot_01 frame cuối
 - `assets/clips/shot_01.mp4` — shot_01 clip dựng
-- `assets/frames/KF_CTRV1_S02_START.jpg` — shot_02 frame đầu
-- `assets/frames/KF_CTRV1_S02_END.jpg` — shot_02 frame cuối
 - `assets/clips/shot_02.mp4` — shot_02 clip dựng
-- `assets/frames/KF_CTRV1_S03_START.jpg` — shot_03 frame đầu
-- `assets/frames/KF_CTRV1_S03_END.jpg` — shot_03 frame cuối
 - `assets/clips/shot_03.mp4` — shot_03 clip dựng
-- `assets/frames/KF_CTRV1_S04_START.jpg` — shot_04 frame đầu
-- `assets/frames/KF_CTRV1_S04_END.jpg` — shot_04 frame cuối
 - `assets/clips/shot_04.mp4` — shot_04 clip dựng
-- `assets/frames/KF_CTRV1_S05_START.jpg` — shot_05 frame đầu
-- `assets/frames/KF_CTRV1_S05_END.jpg` — shot_05 frame cuối
 - `assets/clips/shot_05.mp4` — shot_05 clip dựng
-- `assets/frames/KF_CTRV1_S06_START.jpg` — shot_06 frame đầu
-- `assets/frames/KF_CTRV1_S06_END.jpg` — shot_06 frame cuối
 - `assets/clips/shot_06.mp4` — shot_06 clip dựng
-- `assets/frames/KF_CTRV1_S07_START.jpg` — shot_07 frame đầu
-- `assets/frames/KF_CTRV1_S07_END.jpg` — shot_07 frame cuối
 - `assets/clips/shot_07.mp4` — shot_07 clip dựng
-- `assets/frames/KF_CTRV1_S08_START.jpg` — shot_08 frame đầu
-- `assets/frames/KF_CTRV1_S08_END.jpg` — shot_08 frame cuối
 - `assets/clips/shot_08.mp4` — shot_08 clip dựng
-- `assets/frames/KF_CTRV1_S09_START.jpg` — shot_09 frame đầu
-- … và 155 file khác
+- `assets/clips/shot_09.mp4` — shot_09 clip dựng
+- `assets/clips/shot_10.mp4` — shot_10 clip dựng
+- `assets/clips/shot_11.mp4` — shot_11 clip dựng
+- `assets/clips/shot_12.mp4` — shot_12 clip dựng
+- `assets/clips/shot_13.mp4` — shot_13 clip dựng
+- `assets/clips/shot_14.mp4` — shot_14 clip dựng
+- `assets/clips/shot_15.mp4` — shot_15 clip dựng
+- `assets/clips/shot_16.mp4` — shot_16 clip dựng
+- `assets/clips/shot_17.mp4` — shot_17 clip dựng
+- `assets/clips/shot_18.mp4` — shot_18 clip dựng
+- `assets/clips/shot_19.mp4` — shot_19 clip dựng
+- `assets/clips/shot_20.mp4` — shot_20 clip dựng
+- `assets/clips/shot_21.mp4` — shot_21 clip dựng
+- `assets/clips/shot_22.mp4` — shot_22 clip dựng
+- `assets/clips/shot_23.mp4` — shot_23 clip dựng
+- `assets/clips/shot_24.mp4` — shot_24 clip dựng
+- `assets/clips/shot_25.mp4` — shot_25 clip dựng
+- … và 35 file khác
 
 ## Nhật ký lệnh (mới nhất trước)
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-21 16:31 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-21 16:29 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
+| 10-21 16:23 | DESKTOP-HUP72C4 | `flow-generate --kind frames --model Nano Banana Pro --count 1 --shots shot_25,shot_26,shot_27,shot_28,shot_29,shot_30,shot_31,shot_32,shot_33,shot_34,shot_35,shot_36,shot_37,` | ok |
+| 10-21 16:14 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
+| 10-21 16:14 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
+| 10-21 16:09 | DESKTOP-HUP72C4 | `flow-harvest --kind image` | ok |
+| 10-21 16:05 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
+| 10-21 16:02 | DESKTOP-HUP72C4 | `flow-generate --kind frames --model Nano Banana Pro --count 1 --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12,shot_13,` | ok |
+| 10-21 15:55 | DESKTOP-HUP72C4 | `flow-harvest --kind image` | ok |
+| 10-21 15:53 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_12` | ok |
+| 10-21 15:49 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
+| 10-21 15:46 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_01,shot_02,shot_03,shot_04,shot_05,shot_06,shot_07,shot_08,shot_09,shot_10,shot_11,shot_12 --count 1` | ok |
 | 10-21 15:41 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
 | 10-21 15:40 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
 | 10-21 15:40 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait` | ok |
-| 10-21 15:40 | DESKTOP-HUP72C4 | `flow-generate --kind assets --count 2 --new-project` | ok |
-| 10-21 15:38 | DESKTOP-HUP72C4 | `audit-assets ` | ok |
-| 10-21 15:37 | DESKTOP-HUP72C4 | `lint-prompts --strict` | ok |
-| 10-21 15:37 | DESKTOP-HUP72C4 | `build-prompts ` | ok |

@@ -1442,7 +1442,7 @@ def cmd_flow_generate(args, cfg):
                     )
                     if needs_start:
                         slots.append(("start", s["first_frame_prompt"]))
-                if s.get("last_frame_prompt") and (s.get("generation_mode") == "first_last" or s.get("end_action")):
+                if s.get("last_frame_prompt") and s.get("generation_mode") == "first_last":
                     needs_end = (
                         args.retakes
                         or not s.get("last_frame_path")
@@ -1552,7 +1552,7 @@ def cmd_flow_harvest(args, cfg):
         if kind == "image":
             if s.get("first_frame_prompt") and not s.get("chain_from_prev"):
                 prompt_map[s["shot_id"]] = s["first_frame_prompt"]
-            if s.get("last_frame_prompt"):
+            if s.get("last_frame_prompt") and s.get("generation_mode") == "first_last":
                 prompt_map[f"{s['shot_id']}__end"] = s["last_frame_prompt"]
         elif s.get("veo_prompt"):
             prompt_map[s["shot_id"]] = s["veo_prompt"]

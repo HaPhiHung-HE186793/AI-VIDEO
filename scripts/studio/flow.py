@@ -22,7 +22,7 @@ UI = {
     "settings": "button[aria-label='Điều kiện kích hoạt cài đặt']",
     "submit": "button[aria-label='Bắt đầu tạo']",
     "clear_prompt": "button[aria-label='Xoá câu lệnh']",
-    "bulk_download": "button[aria-label='Tải xuống hàng loạt']",
+    "bulk_download": "button[aria-label='Tải xuống hàng loạt'], button[aria-label='Tải xuống']",
     "editor_download": "button[aria-label='Tải nội dung nghe nhìn xuống']",
     "ingredient_search": "input[placeholder*='Tìm kiếm']",
     "group_mode": "Chế độ",
@@ -519,7 +519,7 @@ class Flow:
                     continue
                 if sid in quota and quota[sid] <= 0:
                     continue
-                if kind == "video" and "Không thành công" in txt and "play_arrow" not in txt:
+                if "Không thành công" in txt and (kind == "image" or "play_arrow" not in txt):
                     row = {"shot": sid, "error": "Flow báo Không thành công trên cả hàng", "row_text": txt[:120]}
                     results.append(row)
                     if on_row:
