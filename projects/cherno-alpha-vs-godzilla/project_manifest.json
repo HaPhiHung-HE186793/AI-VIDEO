@@ -6729,25 +6729,30 @@
       "arena_stage": "ENV_ACT5_CRATER_RUINS",
       "causal_link": "THEREFORE: At the microsecond before contact, Cherno Alpha's right hydraulic piston fires at maximum velocity while Tesla arcs bridge the air gap",
       "entry_state": "ChernoAlpha's right siege fist hurtles from left to right through thick smoke and rain, wrapped in blue electrical lightning",
-      "start_action": "ChernoAlpha's right siege fist hurtles from left to right through thick smoke and rain, wrapped in blue electrical lightning",
-      "action": "In extreme slow motion, the secondary hydraulic pistons along ChernoAlpha's right forearm extend fully on the left, discharging blinding blue electrical arcs that vaporize falling raindrops in mid-air",
+      "start_action": "Cherno Alpha stands upright on the LEFT facing RIGHT with its scarred chest armor (three diagonal silver claw gouges) and smoking right shoulder crater visible behind its cocked right hydraulic fist at chest height, blinding cyan-blue Tesla lightning arcing across the knuckles against upper-floor skyscraper ruins.",
+      "action": "Standing upright on the LEFT side of the frame facing RIGHT, Cherno Alpha cocks back its massive blocky olive-drab right hydraulic fist at chest height aimed RIGHT as the Tesla knuckle coils overload with blinding blue-white electrical lightning arcs.",
       "exit_state": "ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right",
-      "end_action": "ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right",
+      "end_action": "The cocked right hydraulic fist blazes with maximum blue-white Tesla electrical voltage at chest height, ready to lunge forward from Left to Right.",
       "generation_mode": "first_frame",
       "first_frame_path": "assets/frames/KF_CAVG1_S49_START.jpg",
-      "camera": "85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist",
+      "camera": "Low-angle medium close-up at chest and shoulder height (60 meters up in the air against ruined skyscraper upper floors and dark storm clouds, no street ground or feet visible)",
       "spatial_mode": "low_angle_3d",
       "spatial_lock": true,
       "subjects": [
         "CHAR_CHERNO_ALPHA"
       ],
       "character_states": {
-        "CHAR_CHERNO_ALPHA": "state_5_overcharged_tesla_victor"
+        "CHAR_CHERNO_ALPHA": "Olive-drab armor scarred with three diagonal silver claw gouges on chest and smoking molten crater on right shoulder; right hydraulic fist raised at chest height on Left aimed Right, glowing with blinding cyan-blue Tesla lightning arcs."
       },
       "eyeline": "right",
       "environment": "ENV_ACT5_CRATER_RUINS",
       "lighting": "rainy night in ruined city, dark teal and orange lighting, volumetric fog, wet asphalt reflecting firelight and city lights, IMAX 70mm cinematic VFX, heavy slow-motion weight",
-      "start_staging": "Photorealistic live-action cinema tight close-up on Cherno Alpha massive blocky olive-drab hydraulic steel RIGHT fist and forearm positioned on the Left side of the frame aimed Right above the dry cracked black asphalt plaza at night (zero ocean water or floodwater). Heavy pneumatic steel pistons retract and lock back along the soot-scorched olive-drab forearm while blinding blue-white electrical Tesla lightning arcs violently across the heavy steel knuckles in the pouring rain.",
+      "start_staging": {
+        "camera_shot": "Medium close-up at upper-torso chest height, elevated against ruined skyscraper upper floors and storm clouds",
+        "subject_poses": {
+          "CHAR_CHERNO_ALPHA": "Positioned on the LEFT side of the frame facing RIGHT, standing upright with cylindrical reactor head and scarred chest armor on the Left, massive right hydraulic fist cocked at chest height aimed RIGHT, crackling with blinding cyan-blue Tesla lightning arcs."
+        }
+      },
       "end_staging": {
         "camera_blocking": "85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
@@ -6822,13 +6827,12 @@
       ],
       "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S47_START.jpg",
-      "veo_prompt": "85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: battle-scarred, scorched olive-drab steel armor, foreground right blunt blocky steel siege fist overcharged with high-voltage blue electrical arcs while left fist stays unlit). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. Action: ChernoAlpha's right siege fist hurtles from left to right through thick smoke and rain, wrapped in blue electrical lightning. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT5_CRATER_RUINS. SFX: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. Action: ChernoAlpha: In extreme slow motion, the secondary hydraulic pistons along ChernoAlpha's right forearm extend fully on the left, discharging blinding blue electrical arcs that vaporize falling raindrops in mid-air. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. Action: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Photorealistic live-action cinema tight close-up on Cherno Alpha massive blocky olive-drab hydraulic steel RIGHT fist and forearm positioned on the Left side of the frame aimed Right above the dry cracked black asphalt plaza at night (zero ocean water or floodwater). Heavy pneumatic steel pistons retract and lock back along the soot-scorched olive-drab forearm while blinding blue-white electrical Tesla lightning arcs violently across the heavy steel knuckles in the pouring rain.",
-      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: battle-scarred, scorched olive-drab steel armor, foreground right blunt blocky steel siege fist overcharged with high-voltage blue electrical arcs while left fist stays unlit). Camera & Optics: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. Physical Contact & Mass Coupling: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT5_CRATER_RUINS. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "veo_prompt": "Low-angle medium close-up at chest and shoulder height (60 meters up in the air against ruined skyscraper upper floors and dark storm clouds, no street ground or feet visible). ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: Olive-drab armor scarred with three diagonal silver claw gouges on chest and smoking molten crater on right shoulder; right hydraulic fist raised at chest height on Left aimed Right, glowing with blinding cyan-blue Tesla lightning arcs). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. Action: ChernoAlpha's right siege fist hurtles from left to right through thick smoke and rain, wrapped in blue electrical lightning. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT5_CRATER_RUINS. SFX: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. Action: ChernoAlpha: In extreme slow motion, the secondary hydraulic pistons along ChernoAlpha's right forearm extend fully on the left, discharging blinding blue electrical arcs that vaporize falling raindrops in mid-air. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist. Action: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: high-voltage Tesla discharge roar, pneumatic piston cannon blast, slow-motion time-dilation bass drop. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Low-angle medium close-up at chest and shoulder height (60 meters up in the air against ruined skyscraper upper floors and dark storm clouds, no street ground or feet visible): Cherno Alpha stands upright on the LEFT facing RIGHT with its scarred chest armor (three diagonal silver claw gouges) and smoking right shoulder crater visible behind its cocked right hydraulic fist at chest height, blinding cyan-blue Tesla lightning arcing across the knuckles against upper-floor skyscraper ruins. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: Olive-drab armor scarred with three diagonal silver claw gouges on chest and smoking molten crater on right shoulder; right hydraulic fist raised at chest height on Left aimed Right, glowing with blinding cyan-blue Tesla lightning arcs). Character Staging & Anatomy: ChernoAlpha: Positioned on the LEFT side of the frame facing RIGHT, standing upright with cylindrical reactor head and scarred chest armor on the Left, massive right hydraulic fist cocked at chest height aimed RIGHT, crackling with blinding cyan-blue Tesla lightning arcs. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: The cocked right hydraulic fist blazes with maximum blue-white Tesla electrical voltage at chest height, ready to lunge forward from Left to Right. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: Olive-drab armor scarred with three diagonal silver claw gouges on chest and smoking molten crater on right shoulder; right hydraulic fist raised at chest height on Left aimed Right, glowing with blinding cyan-blue Tesla lightning arcs). Camera & Optics: 85mm Macro extreme close-up slow-motion shot on Cherno Alpha's overcharged right Tesla fist; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. Physical Contact & Mass Coupling: ChernoAlpha's overcharged right Tesla fist reaches peak velocity on the left, about to strike right. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT5_CRATER_RUINS. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
         "reasons": [
-          "cận chi tiết giải phẫu",
           "đã khóa bố cục bằng keyframe (in-betweening)"
         ],
         "tier": "fast",
@@ -6838,10 +6842,17 @@
       "lint": [],
       "first_frame": {
         "reference_images": [
-          "assets/frames/KF_CAVG1_S45_START.jpg",
-          "assets/frames/KF_CAVG1_S46_START.jpg"
-        ]
-      }
+          "assets/frames/KF_CAVG1_S48_START.jpg",
+          "assets/frames/KF_CAVG1_S46_START.jpg",
+          "assets/characters/CHAR_CHERNO_ALPHA_ref_1.jpg"
+        ],
+        "prompt": "Photorealistic live-action cinema, 16:9 widescreen, ARRI Alexa 65 anamorphic lens. Elevated low-angle medium close-up at upper-torso chest height (60 meters up in the air against ruined skyscraper upper floors and dark storm clouds, NO street ground or feet visible). Strict 180-degree screen-direction lock: Cherno Alpha stands upright on the LEFT side of the frame facing RIGHT. Cherno Alpha (85-meter Russian Mark-1 Jaeger with heavy olive-drab armor, massive cylindrical cooling-tower reactor head with glowing vertical amber visor slit, three deep diagonal silver claw gouges across its chest armor, and a smoking molten crater on its right shoulder) cocks back its massive blocky olive-drab right hydraulic fist in the foreground at chest height aimed from LEFT to RIGHT. The heavy hydraulic cylinders along the right forearm compress at maximum pressure as blinding cyan-blue and white high-voltage Tesla electrical lightning arcs violently across the giant steel knuckles, illuminating the rain-lashed olive-drab armor."
+      },
+      "reference_images": [
+        "assets/frames/KF_CAVG1_S48_START.jpg",
+        "assets/frames/KF_CAVG1_S46_START.jpg",
+        "assets/characters/CHAR_CHERNO_ALPHA_ref_1.jpg"
+      ]
     },
     {
       "shot_id": "shot_50",
@@ -7877,25 +7888,30 @@
       "arena_stage": "ENV_ACT5_CRATER_RUINS",
       "causal_link": "THEREFORE: Cherno Alpha's scorched right siege fist retracts its hydraulic pistons as residual blue sparks fade",
       "entry_state": "ChernoAlpha's scorched right mechanical fist hangs in the foreground on the left facing right, dripping rainwater and faint blue sparks",
-      "start_action": "ChernoAlpha's scorched right mechanical fist hangs in the foreground on the left facing right, dripping rainwater and faint blue sparks",
-      "action": "The extended hydraulic pistons along ChernoAlpha's right forearm retract smoothly with a heavy metallic lock on the left, while rainwater washes soot and fading blue electrical embers off its dented steel knuckles",
+      "start_action": "Cherno Alpha stands upright on the LEFT side of the frame facing RIGHT (scarred olive-drab chest armor with three diagonal claw gouges and cylindrical reactor head visible on Left), holding its scorched smoking right hydraulic fist raised in the foreground aimed RIGHT as white steam vents from the retracting wrist pistons and tiny residual blue sparks flicker on the knuckles.",
+      "action": "Standing upright on the LEFT side of the frame facing RIGHT, Cherno Alpha holds its scorched, battle-blackened right hydraulic fist raised at chest height aimed RIGHT as the heavy piston cylinders retract with a hiss of thick white cooling steam and faint residual blue electrical sparks.",
       "exit_state": "ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain",
-      "end_action": "ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain",
+      "end_action": "Thick white cooling steam billows from the retracting right forearm pistons at chest height as the residual blue sparks fade.",
       "generation_mode": "first_frame",
       "first_frame_path": "assets/frames/KF_CAVG1_S58_START.jpg",
-      "camera": "85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist",
+      "camera": "Low-angle medium close-up at chest and shoulder height (60 meters up in the air against ruined skyscraper upper floors and storm clouds, no street ground visible)",
       "spatial_mode": "low_angle_3d",
       "spatial_lock": true,
       "subjects": [
         "CHAR_CHERNO_ALPHA"
       ],
       "character_states": {
-        "CHAR_CHERNO_ALPHA": "state_5_overcharged_tesla_victor"
+        "CHAR_CHERNO_ALPHA": "Battle-scarred olive-drab armor with three diagonal silver claw gouges on chest and smoking right shoulder crater; scorched right hydraulic fist raised at chest height from Left to Right venting white cooling steam and faint residual blue electrical sparks."
       },
       "eyeline": "right",
       "environment": "ENV_ACT5_CRATER_RUINS",
       "lighting": "rainy night in ruined city, dark teal and orange lighting, volumetric fog, wet asphalt reflecting firelight and city lights, IMAX 70mm cinematic VFX, heavy slow-motion weight",
-      "start_staging": "Photorealistic live-action cinema tight close-up on Cherno Alpha's massive blocky olive-drab hydraulic steel RIGHT fist and forearm positioned on the Left side of the frame above dry cracked black asphalt rubble at night (zero ocean water or floodwater). The heavy steel knuckles are blackened with carbon scorch marks and dented plating as the last faint blue electrical Tesla sparks fizzle out and thick white cooling steam rises from the hydraulic pistons in the pouring rain.",
+      "start_staging": {
+        "camera_shot": "Medium close-up at upper-torso chest height, elevated against ruined skyscraper upper floors and storm clouds",
+        "subject_poses": {
+          "CHAR_CHERNO_ALPHA": "Positioned on the LEFT side of the frame facing RIGHT, standing upright with scarred chest armor on the Left and scorched smoking right hydraulic fist held at chest height aimed RIGHT, venting white steam and faint residual blue sparks."
+        }
+      },
       "end_staging": {
         "camera_blocking": "85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
@@ -7970,13 +7986,12 @@
       ],
       "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S47_START.jpg",
-      "veo_prompt": "85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: battle-scarred, scorched olive-drab steel armor, foreground right blunt blocky steel siege fist overcharged with high-voltage blue electrical arcs while left fist stays unlit). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. Action: ChernoAlpha's scorched right mechanical fist hangs in the foreground on the left facing right, dripping rainwater and faint blue sparks. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT5_CRATER_RUINS. SFX: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. Action: ChernoAlpha: The extended hydraulic pistons along ChernoAlpha's right forearm retract smoothly with a heavy metallic lock on the left, while rainwater washes soot and fading blue electrical embers off its dented steel knuckles. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. Action: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Photorealistic live-action cinema tight close-up on Cherno Alpha's massive blocky olive-drab hydraulic steel RIGHT fist and forearm positioned on the Left side of the frame above dry cracked black asphalt rubble at night (zero ocean water or floodwater). The heavy steel knuckles are blackened with carbon scorch marks and dented plating as the last faint blue electrical Tesla sparks fizzle out and thick white cooling steam rises from the hydraulic pistons in the pouring rain.",
-      "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: battle-scarred, scorched olive-drab steel armor, foreground right blunt blocky steel siege fist overcharged with high-voltage blue electrical arcs while left fist stays unlit). Camera & Optics: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. Physical Contact & Mass Coupling: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT5_CRATER_RUINS. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
+      "veo_prompt": "Low-angle medium close-up at chest and shoulder height (60 meters up in the air against ruined skyscraper upper floors and storm clouds, no street ground visible). ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: Battle-scarred olive-drab armor with three diagonal silver claw gouges on chest and smoking right shoulder crater; scorched right hydraulic fist raised at chest height from Left to Right venting white cooling steam and faint residual blue electrical sparks). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. Action: ChernoAlpha's scorched right mechanical fist hangs in the foreground on the left facing right, dripping rainwater and faint blue sparks. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT5_CRATER_RUINS. SFX: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. Action: ChernoAlpha: The extended hydraulic pistons along ChernoAlpha's right forearm retract smoothly with a heavy metallic lock on the left, while rainwater washes soot and fading blue electrical embers off its dented steel knuckles. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist. Action: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: heavy hydraulic piston lock clank, sizzling raindrops on hot steel, fading electrical crackle. No subtitles, no on-screen text.",
+      "first_frame_prompt": "Low-angle medium close-up at chest and shoulder height (60 meters up in the air against ruined skyscraper upper floors and storm clouds, no street ground visible): Cherno Alpha stands upright on the LEFT side of the frame facing RIGHT (scarred olive-drab chest armor with three diagonal claw gouges and cylindrical reactor head visible on Left), holding its scorched smoking right hydraulic fist raised in the foreground aimed RIGHT as white steam vents from the retracting wrist pistons and tiny residual blue sparks flicker on the knuckles. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: Battle-scarred olive-drab armor with three diagonal silver claw gouges on chest and smoking right shoulder crater; scorched right hydraulic fist raised at chest height from Left to Right venting white cooling steam and faint residual blue electrical sparks). Character Staging & Anatomy: ChernoAlpha: Positioned on the LEFT side of the frame facing RIGHT, standing upright with scarred chest armor on the Left and scorched smoking right hydraulic fist held at chest height aimed RIGHT, venting white steam and faint residual blue sparks. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "last_frame_prompt": "Final state at the end of the shot: Thick white cooling steam billows from the retracting right forearm pistons at chest height as the residual blue sparks fade. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: Battle-scarred olive-drab armor with three diagonal silver claw gouges on chest and smoking right shoulder crater; scorched right hydraulic fist raised at chest height from Left to Right venting white cooling steam and faint residual blue electrical sparks). Camera & Optics: 85mm Macro extreme close-up shot on Cherno Alpha's battle-scarred right Tesla fist; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. Physical Contact & Mass Coupling: ChernoAlpha's right fist locks into its resting armored housing on the left, steaming softly in the rain. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT5_CRATER_RUINS. A devastated flooded, ruined modern coastal city blast-crater epicenter at night during a heavy thunderstorm, shrouded in thick smoke, fire, and parting storm clouds with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
         "reasons": [
-          "cận chi tiết giải phẫu",
           "đã khóa bố cục bằng keyframe (in-betweening)"
         ],
         "tier": "fast",
@@ -7986,10 +8001,17 @@
       "lint": [],
       "first_frame": {
         "reference_images": [
-          "assets/frames/KF_CAVG1_S45_START.jpg",
-          "assets/frames/KF_CAVG1_S30_START.jpg"
-        ]
-      }
+          "assets/frames/KF_CAVG1_S57_START.jpg",
+          "assets/frames/KF_CAVG1_S60_START.jpg",
+          "assets/characters/CHAR_CHERNO_ALPHA_ref_1.jpg"
+        ],
+        "prompt": "Photorealistic live-action cinema, 16:9 widescreen, ARRI Alexa 65 anamorphic lens. Elevated low-angle medium close-up at upper-torso chest height (60 meters up in the air against ruined skyscraper upper floors and dark storm clouds, NO street ground or feet visible). Strict 180-degree screen-direction lock: Cherno Alpha stands upright on the LEFT side of the frame facing RIGHT, with its right arm extending from its shoulder on the LEFT toward the RIGHT. Cherno Alpha (85-meter Russian Mark-1 Jaeger with heavy olive-drab armor, massive cylindrical cooling-tower reactor head with glowing vertical amber visor slit, three deep diagonal silver claw gouges across its chest armor, and a smoking crater on its right shoulder) holds its scorched, carbon-blackened blocky right hydraulic fist raised at chest height in the foreground aimed from LEFT to RIGHT. The heavy steel piston cylinders along the forearm retract into the wrist housing, venting thick plumes of white cooling steam and black smoke into the rain while tiny residual cyan-blue electrical sparks flicker across the scorched steel knuckles."
+      },
+      "reference_images": [
+        "assets/frames/KF_CAVG1_S57_START.jpg",
+        "assets/frames/KF_CAVG1_S60_START.jpg",
+        "assets/characters/CHAR_CHERNO_ALPHA_ref_1.jpg"
+      ]
     },
     {
       "shot_id": "shot_59",
@@ -9490,36 +9512,6 @@
   },
   "session_log": [
     {
-      "at": "2026-10-22T21:37:08",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --shots shot_17,shot_20 --count 2 --model Nano Banana Pro",
-      "ok": false,
-      "error": "FlowError: Không kết nối được Chrome cổng 9222 — chạy `check-browser --launch`. (BrowserType.connect_over_cdp: connect ECONNREFUSED 127.0.0.1:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://127.0.0.1:9222\n)"
-    },
-    {
-      "at": "2026-10-22T21:37:28",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --shots shot_17,shot_20 --count 2 --model Nano Banana Pro",
-      "ok": true
-    },
-    {
-      "at": "2026-10-22T21:40:09",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --shots shot_17,shot_20 --count 2 --model Nano Banana Pro",
-      "ok": false,
-      "error": "TimeoutError: Locator.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"input[placeholder*='Tìm kiếm']\").last\n"
-    },
-    {
-      "at": "2026-10-22T21:42:24",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_17,shot_20 --wait",
-      "ok": true
-    },
-    {
       "at": "2026-10-22T21:44:50",
       "machine": "DESKTOP-HUP72C4",
       "command": "flow-harvest",
@@ -9775,12 +9767,40 @@
       "command": "qa-vision",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-22T23:30:11",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "build-prompts",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T23:31:07",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_49,shot_58",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T23:38:24",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_49,shot_58 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T23:46:25",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-22T23:12:16",
+    "at": "2026-10-22T23:46:25",
     "machine": "DESKTOP-HUP72C4",
-    "command": "qa-vision"
+    "command": "storyboard"
   },
   "flow_project_url": "https://flow.google.com/project/eba75017-1af5-48e6-b95b-1b0d6294c221",
   "flow_jobs": [
@@ -11433,11 +11453,29 @@
       "credits": 0,
       "at": "2026-10-22T23:03:07",
       "harvested": "2026-10-22T23:08:58"
+    },
+    {
+      "shot": "shot_49",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T23:30:35"
+    },
+    {
+      "shot": "shot_58",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T23:31:07"
     }
   ],
   "storyboard": {
     "status": "pending",
-    "built_hash": "b31c103596abf550",
-    "built_at": "2026-10-22T23:10:10"
+    "built_hash": "586116d3e54e2a65",
+    "built_at": "2026-10-22T23:46:24"
   }
 }
