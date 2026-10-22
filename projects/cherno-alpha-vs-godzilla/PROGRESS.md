@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `cherno-alpha-vs-godzilla` — thư mục `projects/cherno-alpha-vs-godzilla/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/eba75017-1af5-48e6-b95b-1b0d6294c221
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-22T21:17:19 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
+- **Cập nhật lần cuối:** 2026-10-22T23:12:16 trên máy **DESKTOP-HUP72C4** (lệnh `qa-vision`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
@@ -152,18 +152,18 @@ python scripts/studio_helper.py storyboard-approve --project cherno-alpha-vs-god
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-22 21:17 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-22 21:15 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_13,shot_15,shot_16 --wait` | ok |
-| 10-22 21:15 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_13,shot_15,shot_16 --count 2` | ok |
-| 10-22 21:11 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_13,shot_14,shot_15,shot_16 --wait` | ok |
-| 10-22 21:11 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_13,shot_14,shot_15,shot_16 --count 2` | ok |
-| 10-22 20:56 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-22 20:55 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_16 --wait` | ok |
-| 10-22 20:54 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_16 --count 2` | ok |
-| 10-22 20:52 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_16 --wait` | ok |
-| 10-22 20:50 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_16 --count 2` | ok |
-| 10-22 20:20 | DESKTOP-HUP72C4 | `storyboard ` | ok |
-| 10-22 20:19 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_16 --wait` | ok |
-| 10-22 20:17 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_16 --count 2` | ok |
-| 10-22 20:16 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_16 --wait` | ok |
-| 10-22 20:16 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_16 --count 2` | ok |
+| 10-22 23:12 | DESKTOP-HUP72C4 | `qa-vision ` | ok |
+| 10-22 23:12 | DESKTOP-HUP72C4 | `qa-frames ` | ❌ [ERROR] Không có clip nào để QA. |
+| 10-22 23:11 | DESKTOP-HUP72C4 | `lint-prompts ` | ok |
+| 10-22 23:11 | DESKTOP-HUP72C4 | `lint-prompts ` | ❌ AttributeError: 'str' object has no attribute 'get' |
+| 10-22 23:10 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-22 23:10 | DESKTOP-HUP72C4 | `lint-prompts ` | ❌ AttributeError: 'str' object has no attribute 'get' |
+| 10-22 23:10 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
+| 10-22 23:09 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_57,shot_58,shot_59,shot_60 --wait` | ok |
+| 10-22 23:06 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60 --wait` | ok |
+| 10-22 23:03 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_55,shot_56,shot_57,shot_58,shot_59,shot_60 --count 2` | ok |
+| 10-22 23:01 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54 --count 2` | ok |
+| 10-22 22:58 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54 --count 2` | ok |
+| 10-22 22:54 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_43,shot_44,shot_45,shot_46,shot_47,shot_48 --wait` | ok |
+| 10-22 22:53 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_46,shot_47,shot_48 --count 2` | ok |
+| 10-22 22:51 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_43,shot_44,shot_45 --count 2` | ok |

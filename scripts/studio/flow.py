@@ -59,9 +59,10 @@ JS_ROW_TEXTS = r"""(sel) => [...document.querySelectorAll(sel)].map(btn => {
   while (el.parentElement) { el = el.parentElement; if (el.querySelectorAll(sel).length > 1) break; best = el; }
   return (best.innerText || '').replace(/\s+/g, ' ').trim(); })"""
 
-# Nút "+" của thanh prompt: nút có chữ 'add' nằm cùng khung với nút gửi.
+# Nút "+" của thanh prompt: nút có chữ 'add' nằm cùng khung thanh prompt (cao < 260px) với nút gửi.
 JS_MARK_PLUS = r"""(submitSel) => { const sub = document.querySelector(submitSel); if (!sub) return false;
-  let box = sub; for (let i = 0; i < 8 && box; i++) { box = box.parentElement;
+  let box = sub; for (let i = 0; i < 5 && box; i++) { box = box.parentElement;
+    if (!box || box.getBoundingClientRect().height > 260) break;
     const b = [...box.querySelectorAll('button')].find(x => (x.innerText || '').trim() === 'add');
     if (b) { document.querySelectorAll('[data-studio-plus]').forEach(e => e.removeAttribute('data-studio-plus'));
              b.setAttribute('data-studio-plus', '1'); return true; } }
@@ -187,7 +188,7 @@ class Flow:
                 raise FlowError("Không có tab Google Flow nào đang mở.")
             pages = [self.browser.contexts[0].new_page()]  # máy mới / phiên mới: tự mở tab dự án
         self.page = pages[0]
-        if self.project_url and self.project_url not in self.page.url:
+        if self.project_url and self.page.url.split("?")[0].rstrip("/") != self.project_url.rstrip("/"):
             self.page.goto(self.project_url, wait_until="domcontentloaded")
             self.page.wait_for_timeout(3000)
         if self.project_url and self.project_url.rstrip("/") not in self.page.url:
@@ -240,8 +241,9 @@ class Flow:
         return self.project_url
 
     def back_to_grid(self):
-        if "/edit/" in self.page.url:
-            self.page.goto(self.page.url.split("/edit/")[0], wait_until="domcontentloaded")
+        if "/edit/" in self.page.url or "/character" in self.page.url:
+            base = self.project_url or self.page.url.split("/edit/")[0].split("/character")[0]
+            self.page.goto(base, wait_until="domcontentloaded")
             self.wait(2.5)
 
     # ------------------------------------------------------------- cài đặt
@@ -293,13 +295,17 @@ class Flow:
     # ------------------------------------------------------------- ô prompt
     def clear_prompt(self):
         """Xóa sạch ô prompt: chữ + frame/thành phần đính kèm (nút ✕ "Xoá câu lệnh" chỉ hiện khi có nội dung)."""
+        self.back_to_grid()
         self.close_panels()
         clear_btn = self.page.locator(UI["clear_prompt"])
         if clear_btn.count() and clear_btn.first.is_visible():
             clear_btn.first.click()
             self.wait(0.8)
         box = self.page.locator(UI["prompt_box"])
-        box.click()
+        if not (box.count() and box.first.is_visible()):
+            self.escape(2)
+            self.wait(1.0)
+        box.first.click()
         self.page.keyboard.press("Control+A")
         self.page.keyboard.press("Delete")
         self.wait(0.3)
@@ -311,7 +317,13 @@ class Flow:
         """
         self.close_panels()
         box = self.page.locator(UI["prompt_box"])
-        box.click()
+        for _ in range(3):
+            try:
+                box.first.click(timeout=5000)
+                break
+            except Exception:
+                self.escape()
+                self.wait(1.0)
         # Đếm số thẻ thành phần (chip/button) bên trong khung composer trước khi xóa chữ
         chip_sel = "flow-prompt-chip, [data-ingredient-chip], button[aria-label*='Xoá'], mat-chip"
         chips_before = self.page.locator(chip_sel).count()
@@ -325,10 +337,19 @@ class Flow:
         return True
 
     def type_prompt(self, text: str):
+        self.back_to_grid()
+        self.close_panels()
+        self.wait(0.5)
         box = self.page.locator(UI["prompt_box"])
-        box.click()
+        for _ in range(3):
+            try:
+                box.first.click(timeout=5000)
+                break
+            except Exception:
+                self.escape()
+                self.wait(1.0)
         self.page.keyboard.press("Control+End")
-        self.page.keyboard.insert_text((" " if box.inner_text().strip() else "") + text)
+        self.page.keyboard.insert_text((" " if box.first.inner_text().strip() else "") + text)
         self.wait(0.5)
 
     def prompt_text(self) -> str:
@@ -381,6 +402,9 @@ class Flow:
             # Danh sách không tự làm mới theo ô tìm kiếm: xóa rồi gõ lại cho tới khi file vừa tải xuất hiện.
             for _ in range(30):
                 self.wait(1.5)
+                if not search.count() or not search.is_visible():
+                    self._open_ingredients()
+                    search = self.page.locator(UI["ingredient_search"]).last
                 search.fill("")
                 self.wait(0.3)
                 search.fill(query)
@@ -394,7 +418,8 @@ class Flow:
         add = self.page.get_by_role("button", name=UI["add_to_prompt"], exact=True)
         if add.count():
             add.last.click()
-            self.wait(0.5)
+            self.wait(0.8)
+        self.close_panels()
 
     def attach_file(self, path: Path, stage_dir: Path = None, uid: str = ""):
         """Đính ảnh tham chiếu (thành phần) theo tên file / Unique ID — tải lên nếu dự án chưa có."""

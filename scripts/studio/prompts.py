@@ -782,6 +782,8 @@ def build_prompt(project: dict, shot: dict) -> str:
 
 def build_first_frame_prompt(project: dict, shot: dict) -> str:
     """Dựng prompt ảnh Keyframe mở đầu (`first_frame_prompt`) đồng bộ vị trí Trái/Phải, đủ 1..N nhân vật và quần chúng nền."""
+    if isinstance(shot.get("start_staging"), str) and shot["start_staging"].strip():
+        return shot["start_staging"].strip()
     chars = mf.characters_by_id(project)
     envs = mf.environments_by_id(project)
     props = mf.props_by_id(project)
@@ -1155,7 +1157,8 @@ def lint_shot(project: dict, shot: dict, cfg: dict) -> list:
     # Kiểm tra mâu thuẫn vị trí Trái/Phải ngay trong nội bộ 1 shot (subjects[0] mặc định bên Trái nhưng start_staging lại đặt bên Phải)
     focal_valid = [cid for cid in subjects if cid in chars]
     if len(focal_valid) >= 2 and bool(shot.get("spatial_lock", True)):
-        stg_poses = (shot.get("start_staging") or {}).get("subject_poses") or {}
+        raw_stg = shot.get("start_staging")
+        stg_poses = (raw_stg.get("subject_poses") if isinstance(raw_stg, dict) else None) or {}
         if isinstance(stg_poses, dict):
             left_cid, right_cid = focal_valid[0], focal_valid[1]
             left_pose = str(stg_poses.get(left_cid) or "")
@@ -1293,8 +1296,10 @@ def _detect_fsm_posture_discontinuity(prev: dict, cur: dict, chars: dict) -> str
     """Phát hiện lỗi đứt gãy trạng thái vật lý (State Amnesia) giữa cuối shot trước và đầu shot sau."""
     if cur.get("allow_posture_jump"):
         return ""
-    prev_end_poses = (prev.get("end_staging") or {}).get("subject_poses") or {}
-    cur_start_poses = (cur.get("start_staging") or {}).get("subject_poses") or {}
+    raw_prev_end = prev.get("end_staging")
+    raw_cur_start = cur.get("start_staging")
+    prev_end_poses = (raw_prev_end.get("subject_poses") if isinstance(raw_prev_end, dict) else None) or {}
+    cur_start_poses = (raw_cur_start.get("subject_poses") if isinstance(raw_cur_start, dict) else None) or {}
     common_cids = [c for c in (prev.get("subjects") or []) if c in (cur.get("subjects") or []) and c in chars]
     for cid in common_cids:
         c_name = display_name(chars.get(cid, {}), cid)
