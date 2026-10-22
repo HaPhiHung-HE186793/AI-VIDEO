@@ -2390,7 +2390,7 @@
       "eyeline": "right",
       "environment": "ENV_ACT2_BOULEVARD_RUINS",
       "lighting": "rainy night in ruined city, dark teal and orange lighting, volumetric fog, wet asphalt reflecting firelight and city lights, IMAX 70mm cinematic VFX, heavy slow-motion weight",
-      "start_staging": "Medium-wide low-angle two-shot on a cracked black asphalt city avenue with yellow lane lines and burning skyscrapers, strictly on dry land with zero ocean water. On the left, Cherno Alpha (an 85-meter brutalist Soviet Jaeger mech in weathered olive-drab armor with a tall cylindrical conning-tower head and glowing amber visor strip) pulls both heavy arms back tightly against its chest in a bent-elbow boxing guard while thick white cooling steam hisses from its retracted forearm piston, leaning its massive shoulder forward to charge. On the right side of the street, Godzilla hunches staggered backward with dark charcoal dorsal fins, recovering from the punch.",
+      "start_staging": "Medium close-up chest-up two-shot at night in heavy rain between burning skyscrapers, dark teal storm lighting. On the left, Cherno Alpha (brutalist olive-drab Soviet Jaeger mech with cylindrical conning-tower head, glowing amber vertical visor strip, and two heavy mechanical arms) snaps its smoking forearm hydraulic pistons back into a tight bent-elbow chest guard as pressurized white cooling steam hisses from the dual steel piston cylinders on its forearm, dipping its massive left shoulder pad forward to ram. On the right at close range, Godzilla hunches staggered backward with its head tilted back and dark charcoal scales.",
       "end_staging": {
         "camera_blocking": "85mm Macro close-up shot on Cherno Alpha's smoking right piston assembly",
         "foreground_occlusion": "heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge",
@@ -2471,12 +2471,32 @@
           "path": "assets/frames/candidates/KF_CAVG1_S16_START_c06.jpg",
           "sha256": "f09115f408757d0535b78901c61efa2a695a9c93da1a90c8cbe1e5d71b222bfd",
           "uid": "KF_CAVG1_S16_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S16_START_c07.jpg",
+          "sha256": "e933ed354445758b17c32a03c7879f667f6ef46cf47247d05748ac16514dd012",
+          "uid": "KF_CAVG1_S16_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S16_START_c08.jpg",
+          "sha256": "a28a6280b32eb17a37b129b5bc5dac9b16b48bc6c275d80ecbbcfb973112d654",
+          "uid": "KF_CAVG1_S16_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S16_START_c09.jpg",
+          "sha256": "3b96533df950d196fb97d73bdd782ada0aed05c91f3c99b2a2a2f19ded690f93",
+          "uid": "KF_CAVG1_S16_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S16_START_c10.jpg",
+          "sha256": "fb382813145498595127189323f5845ea8f617b05805e1219ab15f5b52003f3a",
+          "uid": "KF_CAVG1_S16_START"
         }
       ],
       "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S12_START.jpg",
       "veo_prompt": "85mm Macro close-up shot on Cherno Alpha's smoking right piston assembly. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: rain-slicked olive-drab steel armor with fresh claw scrape marks across the chest plate, right hydraulic piston arm venting pressurized white steam and electrical sparks). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro close-up shot on Cherno Alpha's smoking right piston assembly. Action: ChernoAlpha's extended right hydraulic arm is smoking in the rain on the left facing right. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT2_BOULEVARD_RUINS. SFX: rhythmic hydraulic ratcheting clack, loud steam valve purge, raindrops sizzling on hot steel. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro close-up shot on Cherno Alpha's smoking right piston assembly. Action: ChernoAlpha's right elbow piston slides smoothly back into its armored housing on the left, ejecting a ring of white steam that immediately condenses in the cold thunderstorm rain. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: rhythmic hydraulic ratcheting clack, loud steam valve purge, raindrops sizzling on hot steel. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro close-up shot on Cherno Alpha's smoking right piston assembly. Action: ChernoAlpha's right arm is reset in a tight high guard on the left facing right. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: rhythmic hydraulic ratcheting clack, loud steam valve purge, raindrops sizzling on hot steel. A flooded, strewn with crumbled highway overpasses and submerged debris directly inland from the harbor, burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: rhythmic hydraulic ratcheting clack, loud steam valve purge, raindrops sizzling on hot steel. No subtitles, no on-screen text.",
-      "first_frame_prompt": "Medium-wide low-angle two-shot on a cracked black asphalt city avenue with yellow lane lines and burning skyscrapers, strictly on dry land with zero ocean water. On the left, Cherno Alpha (an 85-meter brutalist Soviet Jaeger mech in weathered olive-drab armor with a tall cylindrical conning-tower head and glowing amber visor strip) pulls both heavy arms back tightly against its chest in a bent-elbow boxing guard while thick white cooling steam hisses from its retracted forearm piston, leaning its massive shoulder forward to charge. On the right side of the street, Godzilla hunches staggered backward with dark charcoal dorsal fins, recovering from the punch.",
+      "first_frame_prompt": "Medium close-up chest-up two-shot at night in heavy rain between burning skyscrapers, dark teal storm lighting. On the left, Cherno Alpha (brutalist olive-drab Soviet Jaeger mech with cylindrical conning-tower head, glowing amber vertical visor strip, and two heavy mechanical arms) snaps its smoking forearm hydraulic pistons back into a tight bent-elbow chest guard as pressurized white cooling steam hisses from the dual steel piston cylinders on its forearm, dipping its massive left shoulder pad forward to ram. On the right at close range, Godzilla hunches staggered backward with its head tilted back and dark charcoal scales.",
       "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's right arm is reset in a tight high guard on the left facing right. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: rain-slicked olive-drab steel armor with fresh claw scrape marks across the chest plate, right hydraulic piston arm venting pressurized white steam and electrical sparks). Camera & Optics: 85mm Macro close-up shot on Cherno Alpha's smoking right piston assembly; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's right arm is reset in a tight high guard on the left facing right. Physical Contact & Mass Coupling: ChernoAlpha's right arm is reset in a tight high guard on the left facing right. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT2_BOULEVARD_RUINS. A flooded, ruined modern coastal city downtown boulevard at night during a heavy thunderstorm, strewn with crumbled highway overpasses and submerged debris directly inland from the harbor, burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
@@ -2490,7 +2510,7 @@
       },
       "lint": [],
       "reference_images": [
-        "assets/frames/candidates/KF_CAVG1_S12_START_c06.jpg",
+        "assets/frames/candidates/KF_CAVG1_S13_START_c03.jpg",
         "assets/characters/CHAR_CHERNO_ALPHA_three_quarter.png"
       ],
       "strict_reference_images": true,
@@ -8976,41 +8996,6 @@
   },
   "session_log": [
     {
-      "at": "2026-10-21T20:13:16",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T20:13:17",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T20:14:57",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2 --shots shot_01,shot_02,shot_03,shot_04",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T20:15:35",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-harvest",
-      "args": "--kind image --shots shot_01,shot_02,shot_03,shot_04 --wait",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T20:18:09",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2 --shots shot_04",
-      "ok": true
-    },
-    {
       "at": "2026-10-21T20:19:26",
       "machine": "DESKTOP-HUP72C4",
       "command": "flow-harvest",
@@ -9255,10 +9240,45 @@
       "command": "storyboard",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-22T20:50:17",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_16 --count 2",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T20:52:00",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_16 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T20:54:12",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_16 --count 2",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T20:55:56",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_16 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T20:56:57",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-22T20:20:06",
+    "at": "2026-10-22T20:56:57",
     "machine": "DESKTOP-HUP72C4",
     "command": "storyboard"
   },
@@ -10303,11 +10323,31 @@
       "credits": 0,
       "at": "2026-10-22T20:17:38",
       "harvested": "2026-10-22T20:19:08"
+    },
+    {
+      "shot": "shot_16",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T20:50:17",
+      "harvested": "2026-10-22T20:51:58"
+    },
+    {
+      "shot": "shot_16",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T20:54:12",
+      "harvested": "2026-10-22T20:55:53"
     }
   ],
   "storyboard": {
     "status": "pending",
     "built_hash": "b31c103596abf550",
-    "built_at": "2026-10-22T20:20:06"
+    "built_at": "2026-10-22T20:56:57"
   }
 }
