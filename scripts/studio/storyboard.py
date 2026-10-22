@@ -41,10 +41,11 @@ def _frame_for(proj: Path, s: dict) -> list:
         lp = proj / s["last_frame_path"]
         if lp not in paths:
             paths.append(lp)
-    for c in s.get("frame_candidates", []):
-        p = proj / c["path"]
-        if p.exists() and p not in paths:
-            paths.append(p)
+    if not paths:
+        for c in s.get("frame_candidates", []):
+            p = proj / c["path"]
+            if p.exists() and p not in paths:
+                paths.append(p)
     return paths[:3]
 
 
@@ -100,7 +101,7 @@ def build(proj: Path, project: dict, cfg: dict, credits_per_shot: int) -> dict:
                 if not chk["ok"]:
                     for iss in chk["issues"]:
                         continuity_warnings.append(f"{s['shot_id']}: {iss}")
-            imgs = "".join(f'<img src="{rel(f)}" alt="{s["shot_id"]}">' for f in frames) or '<div class="noimg">chưa có frame</div>'
+            imgs = "".join(f'<img src="{rel(f)}?v={int(f.stat().st_mtime)}" alt="{s["shot_id"]}">' for f in frames) or '<div class="noimg">chưa có frame</div>'
             cells.append(f'<div class="shot"><div class="imgs">{imgs}</div><b>{s["shot_id"]}</b> · {html.escape(s.get("camera", ""))}'
                          f'<p>{html.escape(s.get("action", ""))}</p></div>')
         rows.append(f'<section><h2>{title}{jcut}</h2><blockquote>{html.escape(narration)}</blockquote>'

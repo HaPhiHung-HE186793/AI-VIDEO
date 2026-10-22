@@ -21,7 +21,7 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 - **Slug:** `cherno-alpha-vs-godzilla` — thư mục `projects/cherno-alpha-vs-godzilla/` (KHÔNG `init` dự án mới)
 - **Flow:** https://flow.google.com/project/eba75017-1af5-48e6-b95b-1b0d6294c221
 - **Ngôn ngữ / khung:** en / 16:9; giọng dẫn `-`
-- **Cập nhật lần cuối:** 2026-10-22T23:46:25 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
+- **Cập nhật lần cuối:** 2026-10-23T00:34:28 trên máy **DESKTOP-HUP72C4** (lệnh `storyboard`)
 - **Storyboard:** chưa duyệt
 
 ## ▶ Bước tiếp theo: 5. Tải kết quả Flow đang tạo dở
@@ -38,6 +38,7 @@ python scripts/studio_helper.py flow-harvest --project cherno-alpha-vs-godzilla 
 |---|---|---|---|---|---|
 | shot_49 | image | Nano Banana Pro | 2 | 0 | 2026-10-22T23:30:35 |
 | shot_58 | image | Nano Banana Pro | 2 | 0 | 2026-10-22T23:31:07 |
+| shot_49 | image | Nano Banana Pro | 2 | 0 | 2026-10-23T00:29:51 |
 
 ## Shot
 
@@ -157,6 +158,10 @@ python scripts/studio_helper.py flow-harvest --project cherno-alpha-vs-godzilla 
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
+| 10-23 00:34 | DESKTOP-HUP72C4 | `storyboard ` | ok |
+| 10-23 00:34 | DESKTOP-HUP72C4 | `lint-prompts ` | ok |
+| 10-23 00:30 | DESKTOP-HUP72C4 | `flow-harvest --kind image --wait --shots shot_49` | ❌ AttributeError: 'str' object has no attribute 'get' |
+| 10-23 00:29 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_49` | ok |
 | 10-22 23:46 | DESKTOP-HUP72C4 | `storyboard ` | ok |
 | 10-22 23:38 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_49,shot_58 --wait` | ok |
 | 10-22 23:31 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_49,shot_58` | ok |
@@ -168,7 +173,3 @@ python scripts/studio_helper.py flow-harvest --project cherno-alpha-vs-godzilla 
 | 10-22 23:10 | DESKTOP-HUP72C4 | `storyboard ` | ok |
 | 10-22 23:10 | DESKTOP-HUP72C4 | `lint-prompts ` | ❌ AttributeError: 'str' object has no attribute 'get' |
 | 10-22 23:10 | DESKTOP-HUP72C4 | `build-prompts ` | ok |
-| 10-22 23:09 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_57,shot_58,shot_59,shot_60 --wait` | ok |
-| 10-22 23:06 | DESKTOP-HUP72C4 | `flow-harvest --kind image --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54,shot_55,shot_56,shot_57,shot_58,shot_59,shot_60 --wait` | ok |
-| 10-22 23:03 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_55,shot_56,shot_57,shot_58,shot_59,shot_60 --count 2` | ok |
-| 10-22 23:01 | DESKTOP-HUP72C4 | `flow-generate --kind frames --shots shot_49,shot_50,shot_51,shot_52,shot_53,shot_54 --count 2` | ok |
