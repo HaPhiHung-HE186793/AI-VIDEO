@@ -4,7 +4,7 @@ Tự sinh. Dự án đang làm dở: mở `projects/<slug>/PROGRESS.md` hoặc c
 
 | Dự án | Bước tiếp theo | Hoạt động cuối | Máy |
 |---|---|---|---|
-| [cherno-alpha-vs-godzilla](cherno-alpha-vs-godzilla/PROGRESS.md) | 4. 🧑 Chờ người dùng duyệt storyboard | 2026-10-22 17:27 | DESKTOP-HUP72C4 |
+| [cherno-alpha-vs-godzilla](cherno-alpha-vs-godzilla/PROGRESS.md) | 4. 🧑 Chờ người dùng duyệt storyboard | 2026-10-22 18:00 | DESKTOP-HUP72C4 |
 | [clash-of-titans-rex-vs-vasto-part-1](clash-of-titans-rex-vs-vasto-part-1/PROGRESS.md) | 7. Upscale 1080p | 2026-10-21 18:44 | DESKTOP-HUP72C4 |
 | [t-rex-vs-spinosaurus-swamp-battle](t-rex-vs-spinosaurus-swamp-battle/PROGRESS.md) | 5. Tải kết quả Flow đang tạo dở | 2026-10-21 09:44 | DESKTOP-HUP72C4 |
 | [podcast-giac-mo-thiep-cuoi](podcast-giac-mo-thiep-cuoi/PROGRESS.md) | 4. 🧑 Chờ người dùng duyệt storyboard | 2026-10-20 18:32 | user |

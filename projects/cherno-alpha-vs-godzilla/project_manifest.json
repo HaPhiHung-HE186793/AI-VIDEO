@@ -1406,10 +1406,10 @@
       "order": 9,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "THEREFORE: Cherno Alpha primes its right hydraulic siege piston for the opening collision",
-      "entry_state": "ChernoAlpha's massive olive-drab right forearm is held in a boxer guard on the left facing right, sparking from the fist slam",
-      "start_action": "ChernoAlpha's massive olive-drab right forearm is held in a boxer guard on the left facing right, sparking from the fist slam",
-      "action": "ChernoAlpha's heavy elbow piston retracts backward along oiled steel rails and locks into high-pressure firing position, venting pressurized white steam into the pouring rain",
+      "causal_link": "THEREFORE: With both fists raised in its boxing guard on the street, Cherno Alpha retracts and locks its right elbow hydraulic piston in mid-air to charge a devastating punch",
+      "entry_state": "ChernoAlpha holds its massive right arm and blocky steel fist raised high in the air in front of its glowing amber sternum visor on the left facing right",
+      "start_action": "ChernoAlpha holds its massive right arm and blocky steel fist raised high in the air in front of its glowing amber sternum visor on the left facing right",
+      "action": "Raised high in the air in combat guard, ChernoAlpha's heavy right elbow piston retracts backward along oiled steel rails and locks into high-pressure firing position, venting pressurized white steam and orange sparks into the pouring rain",
       "exit_state": "ChernoAlpha's right hydraulic piston arm is cocked fully back and locked on the left facing right, ready to strike",
       "end_action": "ChernoAlpha's right hydraulic piston arm is cocked fully back and locked on the left facing right, ready to strike",
       "generation_mode": "first_frame",
@@ -1495,12 +1495,22 @@
           "path": "assets/frames/candidates/KF_CAVG1_S09_START_c02.jpg",
           "sha256": "2988e0036428d841d1779b795ea0afc96c2bbe2a8f6bb1a24481fe91f1943630",
           "uid": "KF_CAVG1_S09_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S09_START_c03.jpg",
+          "sha256": "69af504eb7de0ba4464d60f1f647db6b9d91a270e2d88e3009b7b986d9a324c3",
+          "uid": "KF_CAVG1_S09_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S09_START_c04.jpg",
+          "sha256": "7face335abcbe926335c151ab4488ead690ba219ddfa7eadf88dffb0cf9af95b",
+          "uid": "KF_CAVG1_S09_START"
         }
       ],
       "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm. Action: ChernoAlpha's massive olive-drab right forearm is held in a boxer guard on the left facing right, sparking from the fist slam. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: heavy pneumatic piston retraction clank, high-pressure steam release, deep mechanical hydraulic groans. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm. Action: ChernoAlpha's heavy elbow piston retracts backward along oiled steel rails and locks into high-pressure firing position, venting pressurized white steam into the pouring rain. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: heavy pneumatic piston retraction clank, high-pressure steam release, deep mechanical hydraulic groans. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm. Action: ChernoAlpha's right hydraulic piston arm is cocked fully back and locked on the left facing right, ready to strike. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: heavy pneumatic piston retraction clank, high-pressure steam release, deep mechanical hydraulic groans. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: heavy pneumatic piston retraction clank, high-pressure steam release, deep mechanical hydraulic groans. No subtitles, no on-screen text.",
-      "first_frame_prompt": "85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm: ChernoAlpha's massive olive-drab right forearm is held in a boxer guard on the left facing right, sparking from the fist slam. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's massive olive-drab right forearm is held in a boxer guard on the left facing right, sparking from the fist slam. Physical Contact & Mass Coupling: ChernoAlpha's massive olive-drab right forearm is held in a boxer guard on the left facing right, sparking from the fist slam. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "85mm Macro medium close-up detail shot angled up at Cherno Alpha's raised right mechanical arm and upper chest HIGH IN MID-AIR (NOT touching the ground): continuing directly from Cherno Alpha's raised boxing guard stance, its massive weathered olive-drab steel right forearm and clenched blocky siege fist are held high in the air in front of its glowing amber sternum visor and cylindrical reactor chest-head, pointing right. The heavy hydraulic piston assembly at the right elbow is retracted and cocked under extreme pressure, venting thick white steam and spraying bright orange-yellow mechanical sparks from the elbow cylinder in the pouring rain, with dark burning city skyscrapers far in the background. Rainy night in a ruined city, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
       "last_frame_prompt": "Final state at the end of the shot: ChernoAlpha's right hydraulic piston arm is cocked fully back and locked on the left facing right, ready to strike. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Camera & Optics: 85mm Macro extreme close-up detail shot on Cherno Alpha's right hydraulic arm; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left: ChernoAlpha's right hydraulic piston arm is cocked fully back and locked on the left facing right, ready to strike. Physical Contact & Mass Coupling: ChernoAlpha's right hydraulic piston arm is cocked fully back and locked on the left facing right, ready to strike. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
@@ -1512,7 +1522,12 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "reference_images": [
+        "assets/frames/candidates/KF_CAVG1_S08_START_c03.jpg",
+        "assets/characters/CHAR_CHERNO_ALPHA_three_quarter.png"
+      ],
+      "strict_reference_images": true
     },
     {
       "shot_id": "shot_10",
@@ -1521,10 +1536,10 @@
       "order": 10,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "BUT: Godzilla narrows its eyes and coils its massive neck muscles to meet the mechanical challenger head-on",
-      "entry_state": "Godzilla's charcoal-scaled head is lowered in an aggressive posture on the right facing left",
-      "start_action": "Godzilla's charcoal-scaled head is lowered in an aggressive posture on the right facing left",
-      "action": "Godzilla's jaws snap shut with a bone-crushing clack, hot vapor billowing from its nostrils as rainwater streams down its scarred charcoal snout reflected in amber skyscraper firelight",
+      "causal_link": "MEANWHILE: Standing opposite on the flooded street, Godzilla lowers its head, snaps its jaws, and exhales hot vapor before charging",
+      "entry_state": "Godzilla stands high on the flooded coastal street on the right facing left, lowering its scarred head with jaws snarling and hot vapor billowing from its nostrils",
+      "start_action": "Godzilla stands high on the flooded coastal street on the right facing left, lowering its scarred head with jaws snarling and hot vapor billowing from its nostrils",
+      "action": "Standing on the coastal city street, Godzilla lowers its head and snaps its jaws shut with a bone-crushing clack, hot white vapor billowing from its nostrils as rainwater streams down its scarred charcoal snout",
       "exit_state": "Godzilla's head and muscular shoulders lunge forward from the right toward the left",
       "end_action": "Godzilla's head and muscular shoulders lunge forward from the right toward the left",
       "generation_mode": "first_frame",
@@ -1610,11 +1625,21 @@
           "path": "assets/frames/candidates/KF_CAVG1_S10_START_c02.jpg",
           "sha256": "a3cd9792fb5ebd8eac53ce82e774c8344413772c6e73012de55df4424922f620",
           "uid": "KF_CAVG1_S10_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S10_START_c03.jpg",
+          "sha256": "f9cb973708d65e434d641ccfcf32f6c01afbaa3dfa50ba64ad8620b0b88b5ff0",
+          "uid": "KF_CAVG1_S10_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S10_START_c04.jpg",
+          "sha256": "8acda41b54505786eecc06b138ed427d89bcbeceb42c37f2c42c60f10654d9c7",
+          "uid": "KF_CAVG1_S10_START"
         }
       ],
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "85mm Macro extreme close-up detail shot on Godzilla's head and neck plates. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 85mm Macro extreme close-up detail shot on Godzilla's head and neck plates. Action: Godzilla's charcoal-scaled head is lowered in an aggressive posture on the right facing left. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: low guttural kaiju growl, heavy jaw snap, hissing steam breath, torrential rain. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 85mm Macro extreme close-up detail shot on Godzilla's head and neck plates. Action: Godzilla's jaws snap shut with a bone-crushing clack, hot vapor billowing from its nostrils as rainwater streams down its scarred charcoal snout reflected in amber skyscraper firelight. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: low guttural kaiju growl, heavy jaw snap, hissing steam breath, torrential rain. [5.5s-8.0s Consequence & Exit State Lock] Camera: 85mm Macro extreme close-up detail shot on Godzilla's head and neck plates. Action: Godzilla's head and muscular shoulders lunge forward from the right toward the left. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: low guttural kaiju growl, heavy jaw snap, hissing steam breath, torrential rain. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: low guttural kaiju growl, heavy jaw snap, hissing steam breath, torrential rain. No subtitles, no on-screen text.",
-      "first_frame_prompt": "85mm Macro extreme close-up detail shot on Godzilla's head and neck plates: Godzilla's charcoal-scaled head is lowered in an aggressive posture on the right facing left. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: 85mm Macro extreme close-up detail shot on Godzilla's head and neck plates; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: Godzilla: On the right: Godzilla's charcoal-scaled head is lowered in an aggressive posture on the right facing left. Physical Contact & Mass Coupling: Godzilla's charcoal-scaled head is lowered in an aggressive posture on the right facing left. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "85mm Anamorphic low-angle medium close-up shot on Godzilla's head, neck, and massive upper shoulders standing high on the ruined city street on the right side of the frame facing left (above dry/wet street pavement, NO ocean waves around its chest): Godzilla lowers its scarred dark charcoal head aggressively toward the left in a pre-charge snarl, jaws baring jagged teeth as hot white steam and vapor billow from its nostrils and mouth in the cold pouring rain. Its jagged dorsal plates are dark charcoal grey (not glowing blue), and behind it are burning city skyscrapers and orange street firelight. Rainy night in a ruined city, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
       "last_frame_prompt": "Final state at the end of the shot: Godzilla's head and muscular shoulders lunge forward from the right toward the left. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: 85mm Macro extreme close-up detail shot on Godzilla's head and neck plates; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: Godzilla: On the right: Godzilla's head and muscular shoulders lunge forward from the right toward the left. Physical Contact & Mass Coupling: Godzilla's head and muscular shoulders lunge forward from the right toward the left. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 1,
@@ -1626,7 +1651,12 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "reference_images": [
+        "assets/frames/candidates/KF_CAVG1_S08_START_c03.jpg"
+      ],
+      "strict_reference_images": true,
+      "first_frame_source": "hero_1080p"
     },
     {
       "shot_id": "shot_11",
@@ -1635,10 +1665,10 @@
       "order": 11,
       "is_hook": false,
       "arena_stage": "ENV_ACT1_HARBOR_RUINS",
-      "causal_link": "THEREFORE: Both titans charge forward across the harbor seawall boundary directly into the contiguous flooded downtown boulevard",
-      "entry_state": "On the left, ChernoAlpha leans forward with its right piston cocked; on the right, Godzilla lunges forward from the harbor seawall",
-      "start_action": "On the left, ChernoAlpha leans forward with its right piston cocked; on the right, Godzilla lunges forward from the harbor seawall",
-      "action": "ChernoAlpha sprints and charges forward from the left while Godzilla charges forward from the right, both titans crossing the shattered seawall boundary into the flooded downtown boulevard as massive walls of floodwater erupt around their legs",
+      "causal_link": "THEREFORE: Both titans explode into a headlong sprint toward each other along the coastal asphalt street",
+      "entry_state": "On the coastal asphalt street beside the seawall, ChernoAlpha on the left leans forward in a full sprint toward the right while Godzilla on the right charges forward toward the left",
+      "start_action": "On the coastal asphalt street beside the seawall, ChernoAlpha on the left leans forward in a full sprint toward the right while Godzilla on the right charges forward toward the left",
+      "action": "Along the wide coastal asphalt street beside the concrete seawall, ChernoAlpha sprints and charges forward from the left while Godzilla charges forward from the right, splashing rainwater across the pavement as they rush at each other",
       "exit_state": "On the left, ChernoAlpha reaches the flooded downtown boulevard at full charging momentum; on the right, Godzilla closes to striking distance on the boulevard asphalt",
       "end_action": "On the left, ChernoAlpha reaches the flooded downtown boulevard at full charging momentum; on the right, Godzilla closes to striking distance on the boulevard asphalt",
       "generation_mode": "first_frame",
@@ -1731,12 +1761,32 @@
           "path": "assets/frames/candidates/KF_CAVG1_S11_START_c02.jpg",
           "sha256": "1425d7087009cbc8705a82f494cae025c286805f69fef36e077a0d524e520ec5",
           "uid": "KF_CAVG1_S11_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S11_START_c03.jpg",
+          "sha256": "2638d0020c2c75011feb315728da9b7466c87b50bba6a117febd4ea46c0ee2fa",
+          "uid": "KF_CAVG1_S11_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S11_START_c04.jpg",
+          "sha256": "aa858fc727aa4da9eb08795da2114b05841fb4502b19b21f275550af0760a7b1",
+          "uid": "KF_CAVG1_S11_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S11_START_c05.jpg",
+          "sha256": "ad2d2f8bc2d0b6ffeb6157f2f10bb02178c5d929272866794d2ae10d36c23ba7",
+          "uid": "KF_CAVG1_S11_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S11_START_c06.jpg",
+          "sha256": "8f81a73e69cf25079f8a75e57b8304c35d79c77e4afed0f39ea7307720851186",
+          "uid": "KF_CAVG1_S11_START"
         }
       ],
       "first_frame_source": "hero_1080p",
       "scene_anchor_path": "assets/frames/KF_CAVG1_S05_START.jpg",
       "veo_prompt": "35mm Anamorphic over-the-shoulder depth tracking shot behind Cherno Alpha on the left. In the close foreground on the left, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Looming in the midground on the right, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 35mm Anamorphic over-the-shoulder depth tracking shot behind Cherno Alpha on the left. Action: ChernoAlpha: On the left, ChernoAlpha leans forward with its right piston cocked; Godzilla: on the right, Godzilla lunges forward from the harbor seawall. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT1_HARBOR_RUINS. SFX: thunderous rhythmic mechanical footsteps, booming kaiju footfalls, roaring floodwater splashes, thunder. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 35mm Anamorphic over-the-shoulder depth tracking shot behind Cherno Alpha on the left. Action: ChernoAlpha sprints and charges forward from the left; Godzillacharges forward from the right, both titans crossing the shattered seawall boundary into the flooded downtown boulevard as massive walls of floodwater erupt around their legs. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: thunderous rhythmic mechanical footsteps, booming kaiju footfalls, roaring floodwater splashes, thunder. [5.5s-8.0s Consequence & Exit State Lock] Camera: 35mm Anamorphic over-the-shoulder depth tracking shot behind Cherno Alpha on the left. Action: ChernoAlpha: On the left, ChernoAlpha reaches the flooded downtown boulevard at full charging momentum; Godzilla: on the right, Godzilla closes to striking distance on the boulevard asphalt. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: thunderous rhythmic mechanical footsteps, booming kaiju footfalls, roaring floodwater splashes, thunder. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: thunderous rhythmic mechanical footsteps, booming kaiju footfalls, roaring floodwater splashes, thunder. No subtitles, no on-screen text.",
-      "first_frame_prompt": "35mm Anamorphic over-the-shoulder depth: On the left, ChernoAlpha leans forward with its right piston cocked; on the right, Godzilla lunges forward from the harbor seawall. In the close foreground on the left, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Looming in the midground on the right, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: 35mm Anamorphic over-the-shoulder depth tracking shot behind Cherno Alpha on the left; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha leans forward with its right piston cocked | Godzilla: on the right, Godzilla lunges forward from the harbor seawall. Physical Contact & Mass Coupling: On the left, ChernoAlpha leans forward with its right piston cocked; on the right, Godzilla lunges forward from the harbor seawall. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "1.2m ground-level 28mm Anamorphic wide dynamic action two-shot on a wide flooded city avenue at night between burning skyscrapers: Cherno Alpha on the left and Godzilla on the right are SPRINTING AND CHARGING HEADLONG TOWARD EACH OTHER at full speed across the shallow rain-flooded asphalt road. On the left side, 85-meter olive-drab Jaeger Cherno Alpha leans its torso forward at a steep 45-degree sprint angle running right, front leg driving forward and rear leg kicking up a massive rooster-tail splash of street rainwater, arms pumping in a sprint. On the right side, Godzilla leans its massive body and head low forward running left in an aggressive quadruped-like forward lunge, jaws wide open roaring, dark charcoal dorsal plates, both titans rapidly closing the gap in the middle of the avenue. Rainy night in a ruined city, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
       "last_frame_prompt": "Final state at the end of the shot: On the left, ChernoAlpha reaches the flooded downtown boulevard at full charging momentum; on the right, Godzilla closes to striking distance on the boulevard asphalt. Surgical action-impact edit from the attached start frame reference: update the subjects' full-body spatial displacement, knocked-down or lunging combat postures, and shattered environmental debris/water splashes to match the target final state, while locking the exact same camera lens, perspective, lighting scheme, and left-to-right character identities. In the close foreground on the left, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Looming in the midground on the right, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: 35mm Anamorphic over-the-shoulder depth tracking shot behind Cherno Alpha on the left; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha reaches the flooded downtown boulevard at full charging momentum | Godzilla: on the right, Godzilla closes to striking distance on the boulevard asphalt. Physical Contact & Mass Coupling: On the left, ChernoAlpha reaches the flooded downtown boulevard at full charging momentum; on the right, Godzilla closes to striking distance on the boulevard asphalt. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT1_HARBOR_RUINS. A flooded, ruined modern coastal city harbor at night during a heavy thunderstorm, where deep ocean bay water crashes over a shattered seawall onto flooded coastal streets with burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe showing the full physical aftermath, identical camera framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 2,
@@ -1748,7 +1798,12 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "reference_images": [
+        "assets/characters/CHAR_CHERNO_ALPHA_three_quarter.png",
+        "assets/frames/candidates/KF_CAVG1_S10_START_c03.jpg"
+      ],
+      "strict_reference_images": true
     },
     {
       "shot_id": "shot_12",
@@ -1757,10 +1812,10 @@
       "order": 12,
       "is_hook": false,
       "arena_stage": "ENV_ACT2_BOULEVARD_RUINS",
-      "causal_link": "THEREFORE: Entering the flooded downtown boulevard, Cherno Alpha plants its lead foot to unleash its signature piston strike",
-      "entry_state": "On the left, ChernoAlpha charges onto the flooded downtown boulevard; on the right, Godzilla barrels forward past a collapsed highway overpass",
-      "start_action": "On the left, ChernoAlpha charges onto the flooded downtown boulevard; on the right, Godzilla barrels forward past a collapsed highway overpass",
-      "action": "ChernoAlpha slides its left steel boot across the wet boulevard asphalt, crushing a submerged bus to anchor its pivot while Godzilla rears its chest up on the right toslam down onto the mech",
+      "causal_link": "THEREFORE: Having closed the distance to point-blank range, Cherno Alpha plants its front boot and cocks its right fist all the way back to unleash its first piston punch",
+      "entry_state": "At point-blank range on the flooded street, ChernoAlpha on the left plants its front left boot and draws its right arm all the way back behind its torso to wind up a punch while Godzilla looms right in front on the right",
+      "start_action": "At point-blank range on the flooded street, ChernoAlpha on the left plants its front left boot and draws its right arm all the way back behind its torso to wind up a punch while Godzilla looms right in front on the right",
+      "action": "Now face-to-face at close range on the flooded avenue, ChernoAlpha plants its front left steel boot crushing a wrecked bus and cocks its massive right hydraulic fist all the way back behind its torso to wind up a punch while Godzilla lunges in on the right",
       "exit_state": "On the left, ChernoAlpha's lead foot is planted firmly in boulevard debris with its right piston fist cocked; on the right, Godzilla's chest is exposed at point-blank range",
       "end_action": "On the left, ChernoAlpha's lead foot is planted firmly in boulevard debris with its right piston fist cocked; on the right, Godzilla's chest is exposed at point-blank range",
       "generation_mode": "first_frame",
@@ -1853,10 +1908,30 @@
           "path": "assets/frames/candidates/KF_CAVG1_S12_START_c02.jpg",
           "sha256": "b1c4adb82a3c14ab2e87b5d3d250abe5048ad6339f59ff40947a544421fc06e2",
           "uid": "KF_CAVG1_S12_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S12_START_c03.jpg",
+          "sha256": "a3c3040db2be4479764efcae4c46a8c7f29c99a960ceeaeb6ed0ea2565336d0c",
+          "uid": "KF_CAVG1_S12_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S12_START_c04.jpg",
+          "sha256": "3fa155e960b4fb9ed80e620a80d308ce5c5da743b5ad70020f45f91917f4a703",
+          "uid": "KF_CAVG1_S12_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S12_START_c05.jpg",
+          "sha256": "66b27014efb6a234b3cc314494e1615bed3f21a4a18a8ec3863ef1e855038933",
+          "uid": "KF_CAVG1_S12_START"
+        },
+        {
+          "path": "assets/frames/candidates/KF_CAVG1_S12_START_c06.jpg",
+          "sha256": "7353f1bdbda51ec831f442babcf0a857a5f72272bec8dcd08a3a5b76f38c40e3",
+          "uid": "KF_CAVG1_S12_START"
         }
       ],
       "veo_prompt": "1.2m ground-level 28mm Anamorphic tracking shot along the flooded downtown boulevard. Charging from the foreground left, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Bracing in the midground right, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Choreography timeline: [0.0s-2.5s Entry State & Telegraph] Camera: 1.2m ground-level 28mm Anamorphic tracking shot along the flooded downtown boulevard. Action: ChernoAlpha: On the left, ChernoAlpha charges onto the flooded downtown boulevard; Godzilla: on the right, Godzilla barrels forward past a collapsed highway overpass. VFX/Env: Rainy night in ruined city, dark teal and orange lighting, volumetric fog in ENV_ACT2_BOULEVARD_RUINS. SFX: screeching metal on wet asphalt, crushed vehicle crunch, deep mechanical hydraulic groans, monster roar. [2.5s-5.5s Primary Biomechanical & Mechanical Action] Camera: 1.2m ground-level 28mm Anamorphic tracking shot along the flooded downtown boulevard. Action: ChernoAlpha slides its left steel boot across the wet boulevard asphalt, crushing a submerged bus to anchor its pivot; Godzillarears its chest up on the right toslam down onto the mech. VFX/Env: IMAX 70mm cinematic VFX, heavy slow-motion weight, realistic water and debris displacement. SFX: screeching metal on wet asphalt, crushed vehicle crunch, deep mechanical hydraulic groans, monster roar. [5.5s-8.0s Consequence & Exit State Lock] Camera: 1.2m ground-level 28mm Anamorphic tracking shot along the flooded downtown boulevard. Action: ChernoAlpha: On the left, ChernoAlpha's lead foot is planted firmly in boulevard debris with its right piston fist cocked; Godzilla: on the right, Godzilla's chest is exposed at point-blank range. VFX/Env: Settling floodwater waves, sparks, and steam matching exit state. SFX: screeching metal on wet asphalt, crushed vehicle crunch, deep mechanical hydraulic groans, monster roar. A flooded, strewn with crumbled highway overpasses and submerged debris directly inland from the harbor, burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Ambient sound only: screeching metal on wet asphalt, crushed vehicle crunch, deep mechanical hydraulic groans, monster roar. No subtitles, no on-screen text.",
-      "first_frame_prompt": "1.2m ground-level 28mm Anamorphic: On the left, ChernoAlpha charges onto the flooded downtown boulevard; on the right, Godzilla barrels forward past a collapsed highway overpass. Charging from the foreground left, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Bracing in the midground right, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: 1.2m ground-level 28mm Anamorphic tracking shot along the flooded downtown boulevard; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha charges onto the flooded downtown boulevard | Godzilla: on the right, Godzilla barrels forward past a collapsed highway overpass. Physical Contact & Mass Coupling: On the left, ChernoAlpha charges onto the flooded downtown boulevard; on the right, Godzilla barrels forward past a collapsed highway overpass. Environment & 3D VFX State: Rainy night in ruined city, dark teal and orange lighting in ENV_ACT2_BOULEVARD_RUINS. A flooded, strewn with crumbled highway overpasses and submerged debris directly inland from the harbor, burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, exact composition and lighting, no text, no subtitles.",
+      "first_frame_prompt": "1.2m ground-level 28mm Anamorphic tight medium-wide combat two-shot on the flooded city avenue at night: Cherno Alpha on the left and Godzilla on the right have collided into POINT-BLANK MELEE RANGE, standing almost chest-to-chest in the middle of the flooded street with zero gap between them. On the left, 85-meter olive-drab Jaeger Cherno Alpha braces its front left steel boot deep into the cracked wet asphalt throwing up a sheet of water, rotates its heavy torso, and COILS ITS MASSIVE RIGHT MECHANICAL ARM AND CLENCHED FIST ALL THE WAY BACK BEHIND ITS HIP AND TORSO to wind up an explosive right haymaker punch, white steam and orange sparks erupting from its cocked right elbow piston while its left forearm guards against Godzilla's neck. Immediately in front on the right at point-blank range, Godzilla lunges into Cherno Alpha with jaws roaring and claws raised, dark charcoal dorsal fins, towering burning skyscrapers behind them. Rainy night in a ruined city, dark moody teal and orange Hollywood color grading, IMAX 70mm film look. Single still keyframe, no text, no subtitles.",
       "last_frame_prompt": "Final state at the end of the shot: On the left, ChernoAlpha's lead foot is planted firmly in boulevard debris with its right piston fist cocked; on the right, Godzilla's chest is exposed at point-blank range. Surgical pose edit from the attached start frame reference: change ONLY the character pose and expression to match the target state while locking the exact same camera angle, lens, background environment, tabletop props, lighting, and left-to-right character positions. Charging from the foreground left, ChernoAlpha is an 85-meter 2400-ton brutalist heavy mechanical Jaeger robot with weathered olive-drab industrial steel armor, a massive cylindrical nuclear-reactor tower rising from its chest in place of a head, an amber-lit recessed conning-tower cockpit visor on its sternum, twin forward-facing chest-shoulder flamethrower nozzles, and colossal blunt blocky hydraulic piston-driven steel siege fists (current state/wardrobe: intact weathered olive-drab industrial steel armor drenched in heavy rain, amber sternum cockpit visor lit, blunt blocky steel siege fists closed). Bracing in the midground right, Godzilla is a 110-meter 90000-ton colossal amphibious prehistoric titan kaiju with rugged charcoal-black armored reptile scales, a broad square-jawed kaiju skull, a towering upright muscular torso, thick pillar-like legs, a jagged row of sharp dark bone-grey maple-leaf dorsal plates running down its spine, and a massive long muscular whip-tail (current state/wardrobe: wet charcoal-black armored kaiju scales cascading with foaming ocean water, unlit dark bone-grey jagged dorsal fins, ferocious square kaiju jaws). Camera & Optics: 1.2m ground-level 28mm Anamorphic tracking shot along the flooded downtown boulevard; foreground scale anchor: heavy rain streaks, splashing floodwater, or wet concrete debris framing the lower edge. Character Staging & Anatomy: ChernoAlpha: On the left, ChernoAlpha's lead foot is planted firmly in boulevard debris with its right piston fist cocked | Godzilla: on the right, Godzilla's chest is exposed at point-blank range. Physical Contact & Mass Coupling: On the left, ChernoAlpha's lead foot is planted firmly in boulevard debris with its right piston fist cocked; on the right, Godzilla's chest is exposed at point-blank range. Environment & 3D VFX State: Aftermath physics and volumetric fog in ENV_ACT2_BOULEVARD_RUINS. A flooded, strewn with crumbled highway overpasses and submerged debris directly inland from the harbor, burning skyscrapers in the background, IMAX 70mm film look. IMAX 70mm theatrical blockbuster VFX cinematography, rainy night in ruined coastal city, dark moody teal and orange Hollywood color grading, volumetric fog, wet asphalt reflecting firelight and city lights, realistic heavy slow-motion weight, 180-degree shutter natural motion blur. Single still keyframe, identical framing to start frame, no text, no subtitles.",
       "routing": {
         "complexity": 2,
@@ -1868,7 +1943,13 @@
         "label": "Omni 1.1 Flash",
         "credits": 12
       },
-      "lint": []
+      "lint": [],
+      "reference_images": [
+        "assets/characters/CHAR_CHERNO_ALPHA_three_quarter.png",
+        "assets/frames/candidates/KF_CAVG1_S10_START_c03.jpg"
+      ],
+      "strict_reference_images": true,
+      "is_scene_anchor": true
     },
     {
       "shot_id": "shot_13",
@@ -8832,56 +8913,6 @@
   },
   "session_log": [
     {
-      "at": "2026-10-21T19:44:44",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T19:44:45",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T19:45:36",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T19:45:37",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T19:46:44",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "build-prompts",
-      "args": "",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T19:46:45",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "lint-prompts",
-      "args": "--strict",
-      "ok": true
-    },
-    {
-      "at": "2026-10-21T19:46:59",
-      "machine": "DESKTOP-HUP72C4",
-      "command": "flow-generate",
-      "args": "--kind frames --count 2 --shots shot_05,shot_24,shot_25,shot_26,shot_29,shot_31,shot_32,shot_41 --retakes",
-      "ok": false,
-      "error": "[ERROR] Không có shot nào để tạo (kiểm tra --shots / prompt / --retakes)."
-    },
-    {
       "at": "2026-10-21T19:46:59",
       "machine": "DESKTOP-HUP72C4",
       "command": "flow-harvest",
@@ -9112,10 +9143,59 @@
       "command": "storyboard",
       "args": "",
       "ok": true
+    },
+    {
+      "at": "2026-10-22T17:49:47",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_09,shot_10,shot_11,shot_12 --count 2",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T17:53:07",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_09,shot_10,shot_11,shot_12 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T17:54:05",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_12 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T17:56:30",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-generate",
+      "args": "--kind frames --shots shot_11,shot_12 --count 2",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T17:58:05",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "flow-harvest",
+      "args": "--kind image --shots shot_11,shot_12 --wait",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T17:59:11",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
+    },
+    {
+      "at": "2026-10-22T18:00:11",
+      "machine": "DESKTOP-HUP72C4",
+      "command": "storyboard",
+      "args": "",
+      "ok": true
     }
   ],
   "last_activity": {
-    "at": "2026-10-22T17:27:21",
+    "at": "2026-10-22T18:00:11",
     "machine": "DESKTOP-HUP72C4",
     "command": "storyboard"
   },
@@ -10050,11 +10130,71 @@
       "credits": 0,
       "at": "2026-10-22T17:24:52",
       "harvested": "2026-10-22T17:25:23"
+    },
+    {
+      "shot": "shot_09",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T17:49:24",
+      "harvested": "2026-10-22T17:50:31"
+    },
+    {
+      "shot": "shot_10",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T17:49:31",
+      "harvested": "2026-10-22T17:50:27"
+    },
+    {
+      "shot": "shot_11",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T17:49:39",
+      "harvested": "2026-10-22T17:50:20"
+    },
+    {
+      "shot": "shot_12",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T17:49:47",
+      "harvested": "2026-10-22T17:54:03"
+    },
+    {
+      "shot": "shot_11",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T17:56:22",
+      "harvested": "2026-10-22T17:58:04"
+    },
+    {
+      "shot": "shot_12",
+      "slot": "start",
+      "kind": "image",
+      "model": "Nano Banana Pro",
+      "count": 2,
+      "credits": 0,
+      "at": "2026-10-22T17:56:30",
+      "harvested": "2026-10-22T17:57:59"
     }
   ],
   "storyboard": {
     "status": "pending",
-    "built_hash": "04d76f14f42453ba",
-    "built_at": "2026-10-22T17:27:21"
+    "built_hash": "7d0795b90e563c5c",
+    "built_at": "2026-10-22T18:00:11"
   }
 }
