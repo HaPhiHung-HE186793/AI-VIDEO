@@ -174,7 +174,10 @@ def _shake_And_grain_suffix(seg: dict, w: int, h: int) -> str:
 
 def _video_chain(i: int, seg: dict, w: int, h: int, fps: int, fit: str) -> str:
     d = seg["duration"]
-    head = (f"[{i}:v]trim=start={seg['tin']:.4f},setpts=PTS-STARTPTS,fps={fps},"
+    raw_span = max(0.1, float(seg["tout"] - seg["tin"]))
+    stretch = max(1.0, d / raw_span) if d > raw_span + 0.05 else 1.0
+    pts_expr = f"{stretch:.5f}*(PTS-STARTPTS)" if stretch > 1.0 else "PTS-STARTPTS"
+    head = (f"[{i}:v]trim=start={seg['tin']:.4f}:end={seg['tout']:.4f},setpts={pts_expr},fps={fps},"
             f"tpad=stop_mode=clone:stop_duration=0.5,trim=duration={d:.4f},setpts=PTS-STARTPTS,fps={fps}")
     post_fx = _shake_And_grain_suffix(seg, w, h)
     if fit == "crop":

@@ -19,71 +19,69 @@ Kết thúc phiên: `media-push` rồi `git add -A && git commit && git push` (q
 ## Trạng thái
 
 - **Slug:** `podcast-giac-mo-thiep-cuoi` — thư mục `projects/podcast-giac-mo-thiep-cuoi/` (KHÔNG `init` dự án mới)
-- **Flow:** https://flow.google.com/project/69dec2a7-c3f5-4f28-b83b-5327bb8e2d5f
+- **Flow:** https://flow.google.com/project/e3841c79-a90e-405d-a255-43bb95cd64ab
 - **Ngôn ngữ / khung:** vi / 16:9; giọng dẫn `Charon`
-- **Cập nhật lần cuối:** 2026-10-20T18:32:44 trên máy **user** (lệnh `storyboard`)
-- **Storyboard:** chưa duyệt
+- **Cập nhật lần cuối:** 2026-10-23T10:21:24 trên máy **user** (lệnh `thumbnail`)
+- **Storyboard:** đã sửa sau khi duyệt (cần duyệt lại: 8234c36e0f3bcfa2)
 
-## ▶ Bước tiếp theo: 4. 🧑 Chờ người dùng duyệt storyboard
+## ▶ Bước tiếp theo: 7. Upscale 1080p
 
-46 shot chưa có video. Storyboard chưa duyệt.
+Còn 720p: shot_01a, shot_01b, shot_02a, shot_02b, shot_02c, shot_03a, shot_03b, shot_04a, shot_04b, shot_05a, shot_05b, shot_06a, shot_06b, shot_07a, shot_07b, shot_07c, shot_08a, shot_08b, shot_08c, shot_09a, shot_09b, shot_09c, shot_10a, shot_10b, shot_10c, shot_11a, shot_11b, shot_11c, shot_12a, shot_12b, shot_12c, shot_13a, shot_13b, shot_13c, shot_14a, shot_14b, shot_14c, shot_15a, shot_15b, shot_16a, shot_16b, shot_16c, shot_17a, shot_17b, shot_18a, shot_18b
 
 ```powershell
-python scripts/studio_helper.py storyboard --project podcast-giac-mo-thiep-cuoi
-(người dùng xem output/storyboard.html)
-python scripts/studio_helper.py storyboard-approve --project podcast-giac-mo-thiep-cuoi --by "<tên>"
+python scripts/studio_helper.py flow-upscale --project podcast-giac-mo-thiep-cuoi --shots shot_01a,shot_01b,shot_02a,shot_02b,shot_02c,shot_03a,shot_03b,shot_04a,shot_04b,shot_05a,shot_05b,shot_06a,shot_06b,shot_07a,shot_07b,shot_07c,shot_08a,shot_08b,shot_08c,shot_09a,shot_09b,shot_09c,shot_10a,shot_10b,shot_10c,shot_11a,shot_11b,shot_11c,shot_12a,shot_12b,shot_12c,shot_13a,shot_13b,shot_13c,shot_14a,shot_14b,shot_14c,shot_15a,shot_15b,shot_16a,shot_16b,shot_16c,shot_17a,shot_17b,shot_18a,shot_18b
 ```
 
 ## Shot
 
 | # | Shot | Beat | Trạng thái | Take chọn | 1080p | Cắt |
 |---|---|---|---|---|---|---|
-| 1 | shot_01a | b01_noon_break_hook | pending | - / 0 |  |  |
-| 2 | shot_01b | b01_noon_break_hook | pending | - / 0 |  |  |
-| 3 | shot_02a | b02_post_grad_busy_life | pending | - / 0 |  |  |
-| 4 | shot_02b | b02_post_grad_busy_life | pending | - / 0 |  |  |
-| 5 | shot_02c | b02_post_grad_busy_life | pending | - / 0 |  |  |
-| 6 | shot_03a | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
-| 7 | shot_03b | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
-| 8 | shot_04a | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
-| 9 | shot_04b | b03_rooftop_arrival_full_table | pending | - / 0 |  |  |
-| 10 | shot_05a | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
-| 11 | shot_05b | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
-| 12 | shot_06a | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
-| 13 | shot_06b | b04_tan_and_gentle_girl | pending | - / 0 |  |  |
-| 14 | shot_07a | b05_teasing_the_pioneers | pending | - / 0 |  |  |
-| 15 | shot_07b | b05_teasing_the_pioneers | pending | - / 0 |  |  |
-| 16 | shot_07c | b05_teasing_the_pioneers | pending | - / 0 |  |  |
-| 17 | shot_08a | b06_dead_silence_alien_stare | pending | - / 0 |  |  |
-| 18 | shot_08b | b06_dead_silence_alien_stare | pending | - / 0 |  |  |
-| 19 | shot_08c | b06_dead_silence_alien_stare | pending | - / 0 |  |  |
-| 20 | shot_09a | b07_hoang_anh_viet_duong_bombshell | pending | - / 0 |  |  |
-| 21 | shot_09b | b07_hoang_anh_viet_duong_bombshell | pending | - / 0 |  |  |
-| 22 | shot_09c | b07_hoang_anh_viet_duong_bombshell | pending | - / 0 |  |  |
-| 23 | shot_10a | b08_tan_nods_bride_smiles | pending | - / 0 |  |  |
-| 24 | shot_10b | b08_tan_nods_bride_smiles | pending | - / 0 |  |  |
-| 25 | shot_10c | b08_tan_nods_bride_smiles | pending | - / 0 |  |  |
-| 26 | shot_11a | b09_secret_wedding_album_reveal | pending | - / 0 |  |  |
-| 27 | shot_11b | b09_secret_wedding_album_reveal | pending | - / 0 |  |  |
-| 28 | shot_11c | b09_secret_wedding_album_reveal | pending | - / 0 |  |  |
-| 29 | shot_12a | b10_where_is_my_invitation | pending | - / 0 |  |  |
-| 30 | shot_12b | b10_where_is_my_invitation | pending | - / 0 |  |  |
-| 31 | shot_12c | b10_where_is_my_invitation | pending | - / 0 |  |  |
-| 32 | shot_13a | b11_tantrum_and_paparazzi | pending | - / 0 |  |  |
-| 33 | shot_13b | b11_tantrum_and_paparazzi | pending | - / 0 |  |  |
-| 34 | shot_13c | b11_tantrum_and_paparazzi | pending | - / 0 |  |  |
-| 35 | shot_14a | b12_alarm_635_ceiling_shock | pending | - / 0 |  |  |
-| 36 | shot_14b | b12_alarm_635_ceiling_shock | pending | - / 0 |  |  |
-| 37 | shot_14c | b12_alarm_635_ceiling_shock | pending | - / 0 |  |  |
-| 38 | shot_15a | b13_morning_wash_bitter_tears | pending | - / 0 |  |  |
-| 39 | shot_15b | b13_morning_wash_bitter_tears | pending | - / 0 |  |  |
-| 40 | shot_16a | b14_blurry_dream_bride_memory | pending | - / 0 |  |  |
-| 41 | shot_16b | b14_blurry_dream_bride_memory | pending | - / 0 |  |  |
-| 42 | shot_16c | b14_blurry_dream_bride_memory | pending | - / 0 |  |  |
-| 43 | shot_17a | b15_psa_to_all_brothers | pending | - / 0 |  |  |
-| 44 | shot_17b | b15_psa_to_all_brothers | pending | - / 0 |  |  |
-| 45 | shot_18a | b16_final_warning_and_accuracy_check | pending | - / 0 |  |  |
-| 46 | shot_18b | b16_final_warning_and_accuracy_check | pending | - / 0 |  |  |
+| 1 | shot_01a | b01_noon_break_hook | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 2 | shot_01b | b01_noon_break_hook | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 3 | shot_02a | b02_post_grad_busy_life | qa_pass | 1 / 1 |  | 0.65–8.00 |
+| 4 | shot_02b | b02_post_grad_busy_life | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 5 | shot_02c | b02_post_grad_busy_life | qa_pass | 1 / 1 |  | 0.00–7.35 |
+| 6 | shot_03a | b03_rooftop_arrival_full_table | qa_pass | 1 / 1 |  | 1.59–8.00 |
+| 7 | shot_03b | b03_rooftop_arrival_full_table | qa_pass | 1 / 1 |  | 0.00–6.41 |
+| 8 | shot_04a | b03_rooftop_arrival_full_table | qa_pass | 1 / 1 |  | 1.59–8.00 |
+| 9 | shot_04b | b03_rooftop_arrival_full_table | qa_pass | 1 / 1 |  | 0.00–6.41 |
+| 10 | shot_05a | b04_tan_and_gentle_girl | qa_pass | 1 / 1 |  | 2.70–8.00 |
+| 11 | shot_05b | b04_tan_and_gentle_girl | qa_pass | 1 / 1 |  | 0.00–5.30 |
+| 12 | shot_06a | b04_tan_and_gentle_girl | qa_pass | 1 / 1 |  | 2.70–8.00 |
+| 13 | shot_06b | b04_tan_and_gentle_girl | qa_pass | 1 / 1 |  | 0.00–5.30 |
+| 14 | shot_07a | b05_teasing_the_pioneers | qa_pass | 1 / 1 |  | 0.69–8.00 |
+| 15 | shot_07b | b05_teasing_the_pioneers | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 16 | shot_07c | b05_teasing_the_pioneers | qa_pass | 1 / 1 |  | 0.00–7.31 |
+| 17 | shot_08a | b06_dead_silence_alien_stare | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 18 | shot_08b | b06_dead_silence_alien_stare | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 19 | shot_08c | b06_dead_silence_alien_stare | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 20 | shot_09a | b07_hoang_anh_viet_duong_bombshell | qa_pass | 1 / 1 |  | 1.63–8.00 |
+| 21 | shot_09b | b07_hoang_anh_viet_duong_bombshell | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 22 | shot_09c | b07_hoang_anh_viet_duong_bombshell | qa_pass | 1 / 1 |  | 0.00–6.37 |
+| 23 | shot_10a | b08_tan_nods_bride_smiles | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 24 | shot_10b | b08_tan_nods_bride_smiles | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 25 | shot_10c | b08_tan_nods_bride_smiles | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 26 | shot_11a | b09_secret_wedding_album_reveal | qa_pass | 1 / 1 |  | 0.60–8.00 |
+| 27 | shot_11b | b09_secret_wedding_album_reveal | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 28 | shot_11c | b09_secret_wedding_album_reveal | qa_pass | 1 / 1 |  | 0.00–7.40 |
+| 29 | shot_12a | b10_where_is_my_invitation | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 30 | shot_12b | b10_where_is_my_invitation | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 31 | shot_12c | b10_where_is_my_invitation | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 32 | shot_13a | b11_tantrum_and_paparazzi | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 33 | shot_13b | b11_tantrum_and_paparazzi | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 34 | shot_13c | b11_tantrum_and_paparazzi | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 35 | shot_14a | b12_alarm_635_ceiling_shock | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 36 | shot_14b | b12_alarm_635_ceiling_shock | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 37 | shot_14c | b12_alarm_635_ceiling_shock | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 38 | shot_15a | b13_morning_wash_bitter_tears | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 39 | shot_15b | b13_morning_wash_bitter_tears | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 40 | shot_16a | b14_blurry_dream_bride_memory | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 41 | shot_16b | b14_blurry_dream_bride_memory | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 42 | shot_16c | b14_blurry_dream_bride_memory | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 43 | shot_17a | b15_psa_to_all_brothers | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 44 | shot_17b | b15_psa_to_all_brothers | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 45 | shot_18a | b16_final_warning_and_accuracy_check | qa_pass | 1 / 1 |  | 0.00–8.00 |
+| 46 | shot_18b | b16_final_warning_and_accuracy_check | qa_pass | 1 / 1 |  | 0.00–8.00 |
 
 ## Beat & lời dẫn
 
@@ -104,53 +102,30 @@ python scripts/studio_helper.py storyboard-approve --project podcast-giac-mo-thi
 - **b15_psa_to_all_brothers** (resolution) 🔊 Qua giấc mơ vô tri đêm qua, tao xin phát thông báo cảnh báo khẩn cấp tới toàn thể anh em trong nhóm: từ Vũ Tấn, Hoàng Anh, Việt Đường, Lưu Văn Việt Đức, Nguyễn Phong, Quang Bình cho tới Hà Phi Hùng, Nhật Anh, Duy Khiêm! Anh em mình ra trường có thể ít gặp nhau, mỗi đứa một guồng quay cuộc sống riêng, nhưng sau này đứa nào cưới vợ thì nhớ gửi thiệp mời tao cho đầy đủ! Tao không cần phong bì hoàn lại đâu, tao chỉ cần đúng một tấm thiệp hồng trao tay để xác nhận tình anh em mình vẫn còn tồn tại, đừng để tao phải biết tin qua tài khoản phụ hay báo mạng nhé!
 - **b16_final_warning_and_accuracy_check** (resolution) 🔊 Các anh em nghe rõ rồi thì nhớ xác nhận giúp tao một tiếng nhé, đừng có mà bỏ rơi thằng bạn này đấy! Còn bạn gái hay vợ tương lai của đứa nào tình cờ nghe được quả podcast giấc mơ vô tri này của tao thì cũng nhớ nhắc chồng gửi thiệp cho tao nha! Phần còn lại thì để tao ghim sẵn ở đây, đợi hôm nào thằng Vũ Tấn cưới vợ thật, tao sẽ mang đúng cái video này ra đối chiếu với cô dâu Linh ngoài đời xem giấc mơ báo mộng của tao có độ chính xác bao nhiêu phần trăm!
 
+## Đầu ra gần nhất
+
+- `output/final_video.mp4` (2026-10-23 10:20)
+
 ## Media trên máy này
 
-⚠ Máy **user** thiếu 46/152 file — chạy `media-pull` (hoặc tải lại take từ Flow).
-
-- `assets/clips/shot_01a.mp4` — shot_01a clip dựng
-- `assets/clips/shot_01b.mp4` — shot_01b clip dựng
-- `assets/clips/shot_02a.mp4` — shot_02a clip dựng
-- `assets/clips/shot_02b.mp4` — shot_02b clip dựng
-- `assets/clips/shot_02c.mp4` — shot_02c clip dựng
-- `assets/clips/shot_03a.mp4` — shot_03a clip dựng
-- `assets/clips/shot_03b.mp4` — shot_03b clip dựng
-- `assets/clips/shot_04a.mp4` — shot_04a clip dựng
-- `assets/clips/shot_04b.mp4` — shot_04b clip dựng
-- `assets/clips/shot_05a.mp4` — shot_05a clip dựng
-- `assets/clips/shot_05b.mp4` — shot_05b clip dựng
-- `assets/clips/shot_06a.mp4` — shot_06a clip dựng
-- `assets/clips/shot_06b.mp4` — shot_06b clip dựng
-- `assets/clips/shot_07a.mp4` — shot_07a clip dựng
-- `assets/clips/shot_07b.mp4` — shot_07b clip dựng
-- `assets/clips/shot_07c.mp4` — shot_07c clip dựng
-- `assets/clips/shot_08a.mp4` — shot_08a clip dựng
-- `assets/clips/shot_08b.mp4` — shot_08b clip dựng
-- `assets/clips/shot_08c.mp4` — shot_08c clip dựng
-- `assets/clips/shot_09a.mp4` — shot_09a clip dựng
-- `assets/clips/shot_09b.mp4` — shot_09b clip dựng
-- `assets/clips/shot_09c.mp4` — shot_09c clip dựng
-- `assets/clips/shot_10a.mp4` — shot_10a clip dựng
-- `assets/clips/shot_10b.mp4` — shot_10b clip dựng
-- `assets/clips/shot_10c.mp4` — shot_10c clip dựng
-- … và 21 file khác
+Đủ 200/200 file media trên máy **user**.
 
 ## Nhật ký lệnh (mới nhất trước)
 
 | Lúc | Máy | Lệnh | Kết quả |
 |---|---|---|---|
-| 10-20 18:32 | user | `storyboard ` | ok |
-| 10-20 18:32 | user | `voiceover ` | ok |
-| 10-20 18:31 | user | `voiceover ` | ok |
-| 10-20 18:21 | user | `voiceover ` | ok |
-| 10-20 18:21 | user | `storyboard ` | ok |
-| 10-20 18:20 | user | `flow-harvest --kind image --wait --wait-timeout 180 --shots shot_10c,shot_11b,shot_11c,shot_12b,shot_12c,shot_13b,shot_13c,shot_14b,shot_14c,shot_15b,shot_16b,shot_16c,shot_` | ok |
-| 10-20 18:20 | user | `flow-harvest --kind image --wait --wait-timeout 600 --shots shot_10c,shot_11b,shot_11c,shot_12b,shot_12c,shot_13b,shot_13c,shot_14b,shot_14c,shot_15b,shot_16b,shot_16c,shot_` | ok |
-| 10-20 18:19 | user | `flow-generate --kind frames --count 2 --new-project --shots shot_10c,shot_11b,shot_11c,shot_12b,shot_12c,shot_13b,shot_13c,shot_14b,shot_14c,shot_15b,shot_16b,shot_16c,shot_1` | ok |
-| 10-20 18:15 | user | `flow-harvest --kind image --wait --wait-timeout 180 --shots shot_01b,shot_02a,shot_02b,shot_02c,shot_03b,shot_04b,shot_05b,shot_06b,shot_07b,shot_07c,shot_08b,shot_08c,shot_` | ok |
-| 10-20 18:15 | user | `flow-harvest --kind image --wait --wait-timeout 600 --shots shot_01b,shot_02a,shot_02b,shot_02c,shot_03b,shot_04b,shot_05b,shot_06b,shot_07b,shot_07c,shot_08b,shot_08c,shot_` | ok |
-| 10-20 18:14 | user | `flow-generate --kind frames --count 2 --new-project --shots shot_01b,shot_02a,shot_02b,shot_02c,shot_03b,shot_04b,shot_05b,shot_06b,shot_07b,shot_07c,shot_08b,shot_08c,shot_0` | ok |
-| 10-20 18:11 | user | `flow-harvest --kind image --wait --wait-timeout 180 --shots shot_02a` | ok |
-| 10-20 18:10 | user | `flow-generate --kind frames --count 2 --new-project --shots shot_02a` | ok |
-| 10-20 18:06 | user | `storyboard ` | ok |
-| 10-20 18:05 | user | `qa-frames ` | ❌ [ERROR] Không có clip nào để QA. |
+| 10-23 10:21 | user | `thumbnail --title GIẤC MƠ THIỆP CƯỚI --subtitle Tỉnh dậy cay xè khóe mắt` | ok |
+| 10-23 10:20 | user | `assemble --burn-subs` | ok |
+| 10-23 10:17 | user | `make-lut --preset warm_dawn --strength 0.6` | ok |
+| 10-23 10:17 | user | `score ` | ok |
+| 10-23 10:16 | user | `auto-select ` | ok |
+| 10-23 10:10 | user | `auto-select ` | ok |
+| 10-23 10:10 | user | `qa-takes-submit ` | ok |
+| 10-23 10:05 | user | `qa-takes ` | ok |
+| 10-23 10:04 | user | `flow-harvest --kind video --wait --wait-timeout 60 --shots shot_13a` | ok |
+| 10-23 10:03 | user | `flow-harvest --kind video --wait --wait-timeout 120 --shots shot_13a` | ok |
+| 10-23 10:01 | user | `flow-harvest --kind video --wait --wait-timeout 300 --shots shot_13a` | ok |
+| 10-23 09:59 | user | `flow-generate --kind video --count 1 --skip-approval --shots shot_13a` | ok |
+| 10-23 09:59 | user | `build-prompts ` | ok |
+| 10-23 09:59 | user | `flow-harvest --kind video --wait --wait-timeout 180 --shots shot_01b,shot_10b,shot_17b` | ok |
+| 10-23 09:56 | user | `flow-harvest --kind video --wait --wait-timeout 180 --shots shot_01b,shot_10b,shot_13a,shot_17b` | ok |

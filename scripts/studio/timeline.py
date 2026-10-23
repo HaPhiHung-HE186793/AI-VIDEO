@@ -40,8 +40,10 @@ def _find_seam(clip_a: Path, t_min: float, clip_b: Path, b_in: float = 0.0, t_ma
 
 
 def _is_continuation(prev: dict, cur: dict) -> bool:
-    return bool(cur.get("chain_from_prev")) or (
-        cur.get("generation_mode") == "extend" and cur.get("extends") == prev.get("shot_id")
+    return (
+        prev.get("transition_to_next") == "INTRA_SCENE_CONTINUE"
+        or bool(cur.get("chain_from_prev"))
+        or (cur.get("generation_mode") == "extend" and cur.get("extends") == prev.get("shot_id"))
     )
 
 
@@ -126,6 +128,8 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
                 tin, tout = float(s.get("edit_in", w0)), float(s.get("edit_out", w1))
             else:
                 tin, tout = _fit_in_window(w0, w1, share)
+            if share > (tout - tin) + 0.02:
+                seg["target_duration"] = round(min(share, (tout - tin) * 1.45), 4)
             source = "beat_share"
         elif auto_edit:
             tin, tout, source = float(s.get("edit_in", w0)), float(s.get("edit_out", w1)), "auto"
@@ -198,7 +202,8 @@ def compute(proj_dir: Path, project: dict, cfg: dict, include_pending: bool = Fa
 
     t = 0.0
     for i, seg in enumerate(segs):
-        seg["duration"] = round(round((seg["tout"] - seg["tin"]) * fps) / fps, 4)
+        raw_d = seg.get("target_duration") or (seg["tout"] - seg["tin"])
+        seg["duration"] = round(round(raw_d * fps) / fps, 4)
         prev = segs[i - 1] if i else None
         overlap = 0.0
         if prev and prev["transition_out"] == DISSOLVE:

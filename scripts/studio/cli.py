@@ -2053,7 +2053,7 @@ def build_parser() -> argparse.ArgumentParser:
     def project_arg(sp):
         sp.add_argument("--project", required=True, help="Thư mục dự án hoặc slug trong projects/")
 
-    sp = add("plan", cmd_plan, "Ước lượng số clip, credit & Kiến trúc Biên đạo Đạo diễn Top 0.1% theo thời lượng")
+    sp = add("plan", cmd_plan, "Ước lượng số clip, credit & Kiến trúc Biên đạo Đạo diễn Top 0.1%% theo thời lượng")
     sp.add_argument("--duration", type=int, required=True)
     sp.add_argument("--lang", default="vi")
     sp.add_argument("--avg-shot", type=float, default=5.0, help="Độ dài TB một shot sau dựng (giây)")

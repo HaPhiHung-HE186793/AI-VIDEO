@@ -75,7 +75,7 @@ DEFAULT_CONFIG = {
         "black_luma": 8,
         "silence_dbfs": -50.0,
         "min_duration_sec": 4.0,
-        "first_frame_min_corr": 0.8,   # clip tạo từ frame mở đầu phải khớp frame đó (chống tải nhầm hàng)
+        "first_frame_min_corr": 0.75,   # clip tạo từ frame mở đầu phải khớp frame đó (chống tải nhầm hàng)
     },
     "prompt": {"min_chars": 150, "warn_chars": 750, "max_chars": 1000, "max_timecoded_phases": 2},
     "subtitles": {

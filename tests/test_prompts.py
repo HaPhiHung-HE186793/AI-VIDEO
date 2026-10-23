@@ -518,7 +518,7 @@ def test_ilm_3d_spatial_modes_contact_physics_and_fantasy_trap_linter(cfg):
 
 def test_storyboard_grid_prompt_and_auto_slicer(tmp_path, cfg):
     import numpy as np
-    from scripts.studio import media, storyboard as sb
+    from studio import media, storyboard as sb
 
     cv2 = media.cv2_module()
     proj_dir = tmp_path / "demo_grid"

@@ -379,15 +379,16 @@ def choose_take(shot: dict, need_sec: float, cfg: dict, pref: float = None, chai
         strict_pad = 0.20 if has_minor else 0.25
         strict_wins = clean_windows(dur, defects, severities=("major", "minor"), pad=strict_pad)
         best_strict = max(strict_wins, key=lambda w: w[1] - w[0], default=None)
-        if best_strict and best_strict[1] - best_strict[0] >= need_sec:
+        req_sec = min(need_sec, max(0.5, dur - 0.05))
+        if best_strict and best_strict[1] - best_strict[0] >= req_sec:
             best = best_strict
             minor_free_bonus = 0.35 if has_minor else 0.0
         else:
             wins = clean_windows(dur, defects, severities=("major",), pad=0.25)
             best = max(wins, key=lambda w: w[1] - w[0], default=None)
             minor_free_bonus = 0.0
-        if not best or best[1] - best[0] < need_sec:
-            reasons.append(f"{tag}: đoạn sạch dài nhất {0 if not best else best[1] - best[0]:.1f}s < cần {need_sec:.1f}s")
+        if not best or best[1] - best[0] < req_sec:
+            reasons.append(f"{tag}: đoạn sạch dài nhất {0 if not best else best[1] - best[0]:.1f}s < cần {req_sec:.1f}s")
             continue
         length = min(best[1] - best[0], max(need_sec, pref))
         if chain_prev and chain_next and best[0] <= 0.25 and best[1] >= dur - 0.25:
